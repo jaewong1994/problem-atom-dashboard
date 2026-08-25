@@ -152,6 +152,11 @@ function presenterMarkup(question) {
 }
 
 function renderMathBody(container, text) {
+  if (window.NGD2Display?.mathText && window.NGD2Display?.render) {
+    container.innerHTML = window.NGD2Display.mathText(text);
+    window.NGD2Display.render(container);
+    return;
+  }
   container.textContent = text;
   if (typeof window.renderMathInElement !== "function") return;
   window.renderMathInElement(container, {
@@ -197,7 +202,7 @@ function renderQuestion(exam, section, question) {
       <button type="button" class="body-button" ${question.body ? "" : "disabled"}>${question.body ? "문제 펼치기" : "본문 등록 대기"}</button>
       <button type="button" class="preview-button" ${question.preview ? "" : "disabled"}>${question.preview ? "원본 이미지 보기" : "이미지 없음"}</button>
     </div>
-    <div class="problem-body" hidden></div>
+    <div class="problem-body ngd2-body" hidden></div>
   `;
   const checkbox = card.querySelector('input[type="checkbox"]');
   checkbox.addEventListener("change", (event) => toggle(question.id, event.target.checked, event.target));
