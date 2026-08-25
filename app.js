@@ -435,7 +435,9 @@ function showPreview(exam, section, question) {
   const image = $("#previewImage");
   image.src = question.preview;
   image.alt = `${exam.year} ${exam.session} ${section.title} ${question.number}번 문제`;
-  $("#previewDialog").showModal();
+  const dialog = $("#previewDialog");
+  dialog.showModal();
+  dialog.scrollTop = 0;
 }
 
 async function refreshData() {
