@@ -108,7 +108,7 @@ function compatibility(items) {
   if (items.length > 4) return { type: "warn", text: "파일럿 권장 범위인 필수 원자 2~4개를 넘었습니다. 과잉조건과 계산 팽창을 확인하세요." };
   if (!items.some((atom) => atom.stage === 1)) return { type: "warn", text: "풀이에 진입할 전략(S) 또는 표현 전환(R)이 없습니다." };
   if (!items.some((atom) => atom.stage === 2)) return { type: "warn", text: "핵심 결론을 만드는 추론(I)이 없어 계산형 문항이 될 가능성이 큽니다." };
-  return { type: "ok", text: "입력과 출력의 순서를 구성할 수 있습니다. 조건 충돌과 정답 유일성은 아직 검증 전입니다." };
+  return { type: "ok", text: "앞 원자의 결과를 다음 원자의 조건으로 연결할 수 있습니다. 조건 충돌과 정답이 하나인지 여부는 아직 확인하지 않았습니다." };
 }
 
 function draftFor(items) {
@@ -135,8 +135,8 @@ function draftFor(items) {
 
   const selectedNames = items.map((atom) => atom.name.replace(/으로|로|해|를/g, "")).slice(0, 3).join(" · ");
   return {
-    title: `${selectedNames}을 연결한 골격 재구성형 초안`,
-    body: `${lines.join("\n\n")}\n\n발문 후보: 위 조건을 만족시키는 정수 $k$의 값을 구하도록 하되, 원자의 출력이 다음 원자의 입력이 되는 순서로 조건을 배치한다.\n\n※ 이 문장은 설계 계약이다. AI가 수치와 표현을 재구성한 뒤 정답 유일성·교육과정·원문 유사도를 사람이 검증한다.`,
+    title: `${selectedNames}을 순서대로 사용한 문제 제작 조건`,
+    body: `${lines.join("\n\n")}\n\n발문 후보: 위 조건을 만족시키는 정수 $k$의 값을 구하도록 하되, 앞 원자에서 얻은 결과가 다음 원자의 조건으로 쓰이게 배치한다.\n\n※ 이것은 AI에 전달할 제작 조건이다. AI가 수치와 표현을 바꾼 뒤 정답이 하나인지, 교육과정에 맞는지, 원문과 지나치게 비슷하지 않은지 강사가 확인한다.`,
   };
 }
 
