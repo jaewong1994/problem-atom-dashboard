@@ -4,84 +4,59 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>기출 원자화 현황판</title>
-  <link rel="stylesheet" href="vendor/katex/katex.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="grouped.css">
+  <meta name="description" content="기출문제 분석·재조합 시스템의 현황판과 프로젝트 비전으로 이동합니다.">
+  <title>Problem Atom · 프로젝트 입장</title>
+  <link rel="stylesheet" href="entry.css">
 </head>
 <body>
-  <header class="topbar">
-    <div>
-      <p class="eyebrow">기출문제 분석 · 재조합 시스템</p>
-      <h1>세미나 자산 현황판</h1>
-      <a class="vision-link" href="vision.html">프로젝트 비전 · 원자 조합 데모 →</a>
-    </div>
-    <div class="sync-box" aria-live="polite">
-      <span id="syncDot" class="sync-dot"></span>
-      <div><strong id="syncLabel">연결 확인 중</strong><small id="syncDetail">로컬 JSON을 읽고 있습니다</small></div>
-    </div>
-  </header>
+  <div class="entry-shell">
+    <header class="entry-header">
+      <a class="entry-brand" href="index.html" aria-label="Problem Atom 입장 화면">
+        <span class="brand-mark">PA</span>
+        <span>Problem Atom</span>
+      </a>
+      <p>기출문제 분석 · 재조합 시스템</p>
+    </header>
 
-  <main>
-    <nav class="source-tabs" aria-label="시험 유형">
-      <button class="source-tab active" type="button" data-group="kice"><strong>평가원</strong><span data-tab-count="kice">0</span><small>6·9월 모의평가 · 수능</small></button>
-      <button class="source-tab" type="button" data-group="education"><strong>교육청 학력평가</strong><span data-tab-count="education">0</span><small>추후 적재</small></button>
-    </nav>
+    <main class="entry-main">
+      <section class="entry-intro" aria-labelledby="entry-title">
+        <p class="entry-kicker">SEMINAR ARCHIVE</p>
+        <h1 id="entry-title" data-split-text>문제를 해체하고,<br>다시 설계합니다.</h1>
+        <p class="entry-summary">세미나의 진행 상황을 확인하거나, 원자화 연구의 목적과 장기 비전을 살펴보세요.</p>
+        <div class="atom-field" aria-hidden="true">
+          <span class="atom-core">원자</span>
+          <span class="atom-orbit orbit-one"></span>
+          <span class="atom-orbit orbit-two"></span>
+          <span class="atom-label label-analysis">분석</span>
+          <span class="atom-label label-composition">재조합</span>
+        </div>
+      </section>
 
-    <section class="control-panel" aria-label="현황판 필터">
-      <div class="member-field">
-        <label for="actor">현재 발표자</label>
-        <input id="actor" maxlength="20" placeholder="발표자 이름 또는 별칭" autocomplete="off">
-      </div>
-      <div class="search-field">
-        <label for="search">문제 찾기</label>
-        <input id="search" type="search" placeholder="연도, 6월, 수능, 미적분, 문항 번호">
-      </div>
-      <div class="filter-group" aria-label="배점 필터">
-        <button class="filter active" data-score="all" type="button">전체</button>
-        <button class="filter" data-score="4" type="button">4점</button>
-        <button class="filter" data-score="3" type="button">3점</button>
-        <button class="filter" data-score="unknown" type="button">미분류</button>
-      </div>
-      <div class="static-actions" id="staticActions" hidden>
-        <button id="exportProgress" type="button">세미나 기록 JSON 내보내기</button>
-        <button id="clearDraft" type="button">내 임시 기록 초기화</button>
-      </div>
-    </section>
+      <nav class="entry-routes" aria-label="프로젝트 화면 선택">
+        <a class="route route-dashboard" href="dashboard.html">
+          <span class="route-index">01</span>
+          <span class="route-copy">
+            <strong>현황판</strong>
+            <small>연도별 기출과 4점 문항 분석 현황, 발표자를 확인합니다.</small>
+          </span>
+          <span class="route-action">현황 확인</span>
+        </a>
+        <a class="route route-vision" href="vision.html">
+          <span class="route-index">02</span>
+          <span class="route-copy">
+            <strong>프로젝트 비전</strong>
+            <small>원자화의 목적, 검증 기준과 문제 재조합 데모를 살펴봅니다.</small>
+          </span>
+          <span class="route-action">비전 탐색</span>
+        </a>
+      </nav>
+    </main>
 
-    <section class="stats" aria-label="전체 진행률">
-      <article class="stat-card primary"><span>4점 분석 완료</span><strong id="fourStat">0 / 0</strong><div class="meter"><i id="fourBar"></i></div></article>
-      <article class="stat-card"><span>발표 완료 문항</span><strong id="allStat">0 / 0</strong><small>한 명 이상 발표한 고유 문항</small></article>
-      <article class="stat-card"><span>문제 본문 / 이미지</span><strong id="previewStat">0문항</strong><small id="assetStatDetail">연결된 확인 자료</small></article>
-      <article class="stat-card"><span>분석 대상 연도</span><strong id="yearStat">0개년</strong><small id="yearStatDetail">선택한 시험 유형</small></article>
-    </section>
-
-    <section class="notice" id="notice" hidden></section>
-    <section id="examList" class="exam-list" aria-label="기출 체크리스트"></section>
-    <div id="empty" class="empty" hidden><strong id="emptyTitle">조건에 맞는 문항이 없습니다.</strong><span id="emptyDetail">검색어나 배점 필터를 바꿔 보세요.</span></div>
-  </main>
-
-  <dialog id="previewDialog">
-    <button id="closePreview" class="close" type="button" aria-label="미리보기 닫기">×</button>
-    <div id="previewTitle" class="preview-title"></div>
-    <img id="previewImage" alt="">
-  </dialog>
-
-  <template id="examTemplate">
-    <details class="exam-card">
-      <summary>
-        <div class="exam-heading"><span class="year"></span><div><strong class="title"></strong><small class="asset-label"></small></div></div>
-        <div class="summary-progress"><span class="count"></span><div class="mini-meter"><i></i></div><b class="percent"></b></div>
-      </summary>
-      <div class="exam-body">
-        <div class="exam-toolbar"><span class="score-breakdown"></span><button class="expand-previews" type="button">미리보기 모두 보기</button></div>
-        <div class="question-grid"></div>
-      </div>
-    </details>
-  </template>
-
-  <script src="vendor/katex/katex.min.js" defer></script>
-  <script src="vendor/katex/auto-render.min.js" defer></script>
-  <script src="app.js" defer></script>
+    <footer class="entry-footer">
+      <span>수학 문항 연구를 재사용 가능한 자산으로</span>
+      <span>SEMINAR · ARCHIVE · RECOMBINATION</span>
+    </footer>
+  </div>
+  <script src="entry.js" defer></script>
 </body>
 </html>

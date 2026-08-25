@@ -1,0 +1,204 @@
+/* React Bits SplitText 데모의 타이포그래피, 등장 순서, reduced-motion 원칙을 정적 Pages에 맞게 적용했다. */
+:root {
+  --page: #f3f6f5;
+  --surface: #fbfdfc;
+  --ink: #12211d;
+  --muted: #61706c;
+  --line: #d6e0dc;
+  --accent: #087f70;
+  --accent-deep: #075f55;
+  --accent-soft: #e2f1ed;
+  --font-sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--page); }
+body {
+  min-width: 320px;
+  min-height: 100dvh;
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(rgb(8 127 112 / .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(8 127 112 / .035) 1px, transparent 1px),
+    var(--page);
+  background-size: 64px 64px;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+.entry-shell {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: min(100% - 48px, 1320px);
+  min-height: 100dvh;
+  margin: 0 auto;
+}
+.entry-header,
+.entry-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 74px;
+  border-bottom: 1px solid var(--line);
+}
+.entry-header p,
+.entry-footer { color: var(--muted); font-size: .77rem; }
+.entry-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-size: .86rem;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -.01em;
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  color: #fff;
+  background: var(--accent);
+  font-family: var(--font-mono);
+  font-size: .72rem;
+}
+
+.entry-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr);
+  align-items: stretch;
+  gap: clamp(44px, 7vw, 104px);
+  padding: clamp(56px, 8vh, 96px) 0;
+}
+.entry-intro { position: relative; display: flex; flex-direction: column; justify-content: center; }
+.entry-kicker {
+  margin: 0 0 20px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+h1 {
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(3.2rem, 6.3vw, 6.5rem);
+  font-weight: 790;
+  letter-spacing: -.075em;
+  line-height: 1.02;
+  word-break: keep-all;
+  perspective: 800px;
+}
+.split-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(28px) rotateX(-24deg);
+  animation: word-in .72s cubic-bezier(.2,.72,.2,1) forwards;
+  animation-delay: calc(var(--word-index) * 72ms + 90ms);
+  transform-origin: 50% 100%;
+}
+.entry-summary {
+  max-width: 34rem;
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-size: clamp(.98rem, 1.3vw, 1.08rem);
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+.atom-field { position: relative; width: 280px; height: 112px; margin-top: 42px; }
+.atom-core {
+  position: absolute;
+  left: 76px;
+  top: 35px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--accent);
+  font-size: .72rem;
+  font-weight: 800;
+  box-shadow: 0 12px 30px rgb(8 127 112 / .2);
+}
+.atom-orbit { position: absolute; left: 36px; top: 23px; width: 132px; height: 76px; border: 1px solid rgb(8 127 112 / .28); border-radius: 50%; }
+.orbit-one { transform: rotate(18deg); animation: orbit-breathe 5s ease-in-out infinite; }
+.orbit-two { transform: rotate(-22deg); animation: orbit-breathe 5s 1.2s ease-in-out infinite reverse; }
+.atom-label { position: absolute; color: var(--muted); font-family: var(--font-mono); font-size: .65rem; }
+.label-analysis { left: 0; top: 2px; }
+.label-composition { left: 174px; bottom: 4px; }
+
+.entry-routes { display: grid; align-content: center; border-top: 1px solid var(--line); }
+.route {
+  position: relative;
+  display: grid;
+  grid-template-columns: 46px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  min-height: 190px;
+  padding: 30px 12px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  transition: padding 240ms ease, background 240ms ease, border-color 240ms ease;
+}
+.route::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform 240ms ease;
+}
+.route:hover,
+.route:focus-visible { padding-inline: 24px 14px; background: rgb(255 255 255 / .64); border-color: #b9ccc6; outline: none; }
+.route:hover::before,
+.route:focus-visible::before { transform: scaleY(1); }
+.route-index { align-self: start; color: var(--accent); font-family: var(--font-mono); font-size: .7rem; font-weight: 800; }
+.route-copy strong { display: block; font-size: clamp(1.7rem, 3vw, 2.55rem); letter-spacing: -.05em; }
+.route-copy small { display: block; max-width: 28rem; margin-top: 12px; color: var(--muted); font-size: .87rem; line-height: 1.65; word-break: keep-all; }
+.route-action {
+  min-width: 92px;
+  color: var(--accent-deep);
+  font-size: .78rem;
+  font-weight: 800;
+  text-align: right;
+  white-space: nowrap;
+}
+.route-action::after { content: "  →"; display: inline-block; transition: transform 200ms ease; }
+.route:hover .route-action::after { transform: translateX(5px); }
+
+.entry-footer { min-height: 66px; border-top: 1px solid var(--line); border-bottom: 0; font-family: var(--font-mono); font-size: .64rem; letter-spacing: .06em; }
+
+@keyframes word-in { to { opacity: 1; transform: translateY(0) rotateX(0); } }
+@keyframes orbit-breathe { 0%,100% { opacity: .45; transform: rotate(18deg) scale(.98); } 50% { opacity: 1; transform: rotate(24deg) scale(1.04); } }
+
+@media (max-width: 900px) {
+  .entry-main { grid-template-columns: 1fr; gap: 60px; }
+  h1 { max-width: 12ch; font-size: clamp(3.6rem, 11vw, 6.2rem); }
+  .entry-routes { width: 100%; }
+}
+@media (max-width: 560px) {
+  .entry-shell { width: min(100% - 30px, 1320px); }
+  .entry-header { min-height: 64px; }
+  .entry-header p { display: none; }
+  .entry-main { gap: 48px; padding: 44px 0 54px; }
+  h1 { font-size: clamp(2.8rem, 15vw, 4.5rem); }
+  .atom-field { margin-top: 28px; transform: scale(.88); transform-origin: left center; }
+  .route { grid-template-columns: 34px 1fr; min-height: 168px; gap: 12px; padding: 24px 4px; }
+  .route-action { grid-column: 2; text-align: left; }
+  .entry-footer span:last-child { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .split-word { opacity: 1; transform: none; animation: none; }
+  .atom-orbit { animation: none; }
+  .route, .route::before, .route-action::after { transition: none; }
+}

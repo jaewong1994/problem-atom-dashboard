@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import shutil
+import stat
 from pathlib import Path
 
 
@@ -14,6 +15,9 @@ SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
     "index.html",
+    "entry.css",
+    "entry.js",
+    "dashboard.html",
     "app.js",
     "styles.css",
     "grouped.css",
@@ -45,7 +49,11 @@ def build_site() -> None:
     if SITE.exists():
         if SITE.parent != ROOT or SITE.name != "_site":
             raise RuntimeError("빌드 폴더 경로 검증 실패")
-        shutil.rmtree(SITE)
+        def remove_readonly(function, path, _error):
+            Path(path).chmod(stat.S_IWRITE)
+            function(path)
+
+        shutil.rmtree(SITE, onexc=remove_readonly)
     SITE.mkdir()
     for name in STATIC_FILES:
         source = ROOT / name
