@@ -9,8 +9,10 @@ from pathlib import Path
 
 DASH = Path(__file__).resolve().parent
 NGD2 = Path(r"C:\Users\jaewo\OneDrive\바탕 화면\학원\NGD2_새폴더_풀세트\공장")
-OLD_ROOT = Path(r"C:\Users\jaewo\OneDrive\바탕 화면\학원\입실론\고2\한글파일\모의고사 [20260216]\모의고사 [2026] HWP\[년도별] 모의고사 고3 (2003-2025년)")
-CSAT_ROOT = Path(r"C:\Users\jaewo\OneDrive\바탕 화면\학원\입실론\고2\한글파일\모의고사 [20260216]\모의고사 [2026] HWP\[기출] 수능기출 (1983-2026학년도)")
+SOURCE_ROOT = Path(r"C:\Users\jaewo\OneDrive\바탕 화면\학원\입실론\한글자료\모의고사 [20260216]\모의고사 [2026] HWP")
+OLD_ROOT = SOURCE_ROOT / "[년도별] 모의고사 고3 (2003-2025년)"
+CSAT_ROOT = SOURCE_ROOT / "[기출] 수능기출 (1983-2026학년도)"
+OFFICIAL_WORK = NGD2.parent / "회귀자료" / "공식시험_적재_20260825"
 ASSETS = DASH / "assets" / "questions"
 
 
@@ -154,8 +156,8 @@ def csat_question(exam_id: str, number: int) -> dict:
     }
 
 
-def csat_exams() -> list[dict]:
-    """HWP를 OCR하지 않고 파일명만으로 20개년 수능 체크 구조를 만든다."""
+def csat_scaffold_exams() -> list[dict]:
+    """NGD2 공식시험 적재본이 없을 때만 사용하는 수능 체크 구조다."""
     grouped: dict[int, list[tuple[str, Path]]] = defaultdict(list)
     for hwp in sorted(CSAT_ROOT.glob("*.hwp")):
         match = re.match(r"(\d{4})학년도 수능 수(?:리|학)\((.+?)\)\.hwp", hwp.name)
@@ -208,9 +210,109 @@ def csat_exams() -> list[dict]:
     return exams
 
 
+def csat_section_id(raw: str) -> str:
+    if raw in {"공통", "기하", "미적분", "확통"}:
+        return raw
+    return (raw.replace("수리가형", "가형")
+               .replace("수리나형", "나형")
+               .replace("수리A형", "A형")
+               .replace("수리B형", "B형")
+               .replace("수학가형", "가형")
+               .replace("수학나형", "나형"))
+
+
+def csat_section_title(section_id: str) -> str:
+    labels = {
+        "공통": "공통 문항",
+        "기하": "기하 선택",
+        "미적분": "미적분 선택",
+        "확통": "확률과 통계 선택",
+    }
+    return labels.get(section_id, section_id.replace("_", " "))
+
+
+def csat_ready_exams() -> list[dict]:
+    """검증 완료된 NGD2 공식시험 JSONL과 렌더를 읽기 전용으로 현황판에 연결한다."""
+    manifest_path = OFFICIAL_WORK / "manifest.json"
+    if not manifest_path.exists():
+        return []
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if manifest.get("status") != "verified":
+        return []
+
+    grouped: dict[int, list[dict]] = defaultdict(list)
+    for spec in manifest.get("sessions", []):
+        if spec.get("org") != "수능" or "_수능_" not in spec.get("key", ""):
+            continue
+        year = int(spec["academic_year"])
+        raw_section = spec["key"].split("_수능_", 1)[1]
+        section_id = csat_section_id(raw_section)
+        render_dir = Path(spec["renders_dir"]) if spec.get("renders_dir") else None
+        questions = []
+        with Path(spec["items_path"]).open(encoding="utf-8") as handle:
+            for line in handle:
+                item = json.loads(line)
+                score_match = re.search(r"\[([234])점\]", item.get("raw_text", ""))
+                score = int(score_match.group(1)) if score_match else None
+                if score not in (3, 4):
+                    continue
+                meta = item.get("meta") or {}
+                number = int(meta.get("question_no") or item["origin_seq"])
+                question_id = f"csat-{year}-{section_id}-{number:02d}"
+                legacy_ids = [question_id]
+                if section_id == "공통":
+                    legacy_ids.append(f"csat-{year}-common-{number:02d}")
+                if section_id.startswith("가형"):
+                    legacy_ids.append(f"csat-{year}-가형-{number:02d}")
+                preview = None
+                src_img = render_dir / f"item_{number:03d}.png" if render_dir else None
+                if src_img and src_img.exists():
+                    dest_dir = ASSETS / f"csat-{year}-{section_id}"
+                    dest_dir.mkdir(parents=True, exist_ok=True)
+                    dest = dest_dir / src_img.name
+                    shutil.copy2(src_img, dest)
+                    preview = dest.relative_to(DASH).as_posix()
+                questions.append({
+                    "id": question_id,
+                    "number": number,
+                    "score": score,
+                    "unit": item.get("unit") or "개념 태그 미입력",
+                    "preview": preview,
+                    "body": item.get("raw_text") or None,
+                    "legacyIds": sorted(set(legacy_ids)),
+                })
+        if questions:
+            grouped[year].append({
+                "id": section_id,
+                "title": csat_section_title(section_id),
+                "kind": "common" if section_id == "공통" else ("choice" if section_id in {"기하", "미적분", "확통"} else "track"),
+                "questions": questions,
+                "source": Path(spec.get("source_path") or spec["items_path"]).name,
+            })
+
+    order = {"공통": 0, "기하": 1, "미적분": 2, "확통": 3, "가형": 4, "나형": 5, "A형": 6, "B형": 7}
+    exams = []
+    for year, sections in grouped.items():
+        sections.sort(key=lambda section: (next((rank for name, rank in order.items() if section["id"].startswith(name)), 99), section["id"]))
+        sources = sorted({section.pop("source") for section in sections})
+        exams.append({
+            "id": f"csat-{year}",
+            "examGroup": "csat",
+            "organizer": "평가원",
+            "year": year,
+            "session": "수능",
+            "title": f"{year}학년도 대학수학능력시험",
+            "assetStatus": "ready",
+            "sourceFiles": sources,
+            "sections": sections,
+        })
+    return exams
+
+
 def main() -> None:
     ASSETS.mkdir(parents=True, exist_ok=True)
-    exams = pending_exams() + ready_exams() + csat_exams()
+    csat = csat_ready_exams() or csat_scaffold_exams()
+    exams = pending_exams() + ready_exams() + csat
     exams.sort(key=lambda x: ({"mock": 0, "csat": 1, "education": 2}.get(x["examGroup"], 9), -x["year"], x["session"]))
     payload = {
         "schemaVersion": 3,

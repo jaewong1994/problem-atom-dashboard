@@ -61,7 +61,14 @@ def build_site() -> None:
             raise FileNotFoundError(f"배포 필수 파일 없음: {name}")
         shutil.copy2(source, SITE / name)
     for name in STATIC_DIRS:
-        shutil.copytree(ROOT / name, SITE / name)
+        ignore = None
+        if name == "assets":
+            ignore = shutil.ignore_patterns(
+                "csat-2014-수리A형", "csat-2014-수리B형",
+                "csat-2015-수리A형", "csat-2015-수리B형",
+                "csat-2016-수리A형", "csat-2016-수리B형",
+            )
+        shutil.copytree(ROOT / name, SITE / name, ignore=ignore)
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
     print(f"GitHub Pages 빌드 완료: {SITE}")
 

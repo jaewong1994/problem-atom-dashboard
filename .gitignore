@@ -3,4 +3,5 @@ __pycache__/
 *.pyc
 *.exe
 progress/*.json
-
+assets/questions/csat-201[4-6]-수리A형/
+assets/questions/csat-201[4-6]-수리B형/
