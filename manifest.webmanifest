@@ -1,0 +1,50 @@
+{
+  "id": "./",
+  "name": "Problem Atom · 기출문제 분석",
+  "short_name": "Problem Atom",
+  "description": "기출문제 분석·재조합 세미나 현황판",
+  "lang": "ko-KR",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f6f2",
+  "theme_color": "#0d7469",
+  "orientation": "any",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "assets/pwa/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/pwa/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "세미나 현황판",
+      "short_name": "현황판",
+      "description": "연도별 기출 분석 진행률 확인",
+      "url": "./dashboard.html",
+      "icons": [{ "src": "assets/pwa/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "프로젝트 계획",
+      "short_name": "계획",
+      "description": "프로젝트 계획과 원자 조합 데모",
+      "url": "./vision.html",
+      "icons": [{ "src": "assets/pwa/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

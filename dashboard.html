@@ -4,10 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#0d7469">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Problem Atom">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>기출 원자화 현황판</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/pwa/apple-touch-icon.png">
+  <link rel="icon" sizes="192x192" href="assets/pwa/icon-192.png">
   <link rel="stylesheet" href="vendor/katex/katex.min.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="grouped.css">
+  <link rel="stylesheet" href="pwa-install.css">
 </head>
 <body>
   <header class="topbar">
@@ -85,5 +94,6 @@
   <script src="vendor/ngd2/ngd2-math.js?v=20260824k" defer></script>
   <script src="vendor/ngd2/ngd2-display.js?v=20260825" defer></script>
   <script src="app.js" defer></script>
+  <script src="pwa-install.js" defer></script>
 </body>
 </html>
