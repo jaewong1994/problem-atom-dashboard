@@ -1,0 +1,18 @@
+.authority-boundary {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 18px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--orange);
+  background: #fbf0e9;
+}
+
+.authority-boundary strong {
+  font-size: 14px;
+}
+
+.authority-boundary span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}

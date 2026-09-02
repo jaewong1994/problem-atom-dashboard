@@ -28,6 +28,11 @@ STATIC_FILES = (
     "vision.html",
     "vision.css",
     "vision.js",
+    "asset-library.html",
+    "asset-library.css",
+    "ontology-boundary.css",
+    "asset-library.js",
+    "asset-library.json",
     "dashboard-data.json",
     "progress-summary.json",
 )

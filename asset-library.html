@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d7469"><meta name="description" content="세미나에서 검수한 5축 문항 연구 자산과 문항 패밀리 현황">
+  <title>공유 연구 자산 · Problem Atom</title>
+  <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="assets/pwa/apple-touch-icon.png">
+  <link rel="stylesheet" href="asset-library.css"><link rel="stylesheet" href="ontology-boundary.css"><link rel="stylesheet" href="pwa-install.css">
+</head>
+<body>
+  <header class="asset-header">
+    <div><p>PROBLEM ATOM · REVIEWED ASSETS</p><h1>공유 연구 자산</h1><span>세미나에서 확인한 5축 카드와 문항 분석만 표시합니다.</span></div>
+    <nav><a href="index.html">입장</a><a href="dashboard.html">기출 현황</a><a href="vision.html">계획</a></nav>
+  </header>
+  <main>
+    <section class="authority-boundary" aria-label="세미나 정본 보호 원칙">
+      <strong>이 페이지의 정본은 강사 세미나에서 독립적으로 만든 PA 자산입니다.</strong>
+      <span>NGD2의 AI 생성 온톨로지는 세미나 분석·명명에 사용하지 않습니다. PA 승인 뒤에만 별도 비교표로 연결하고, PA ID와 정의는 바꾸지 않습니다.</span>
+    </section>
+    <section id="stats" class="stats" aria-label="자산 집계"></section>
+    <section class="pipeline" aria-label="자산 승격 과정">
+      <b>기록지</b><i>→</i><b>AI 정리 후보</b><i>→</i><b>강사 검토</b><i>→</i><b>승인 자산</b><i>→</i><b>문항 패밀리</b><i>→</i><b>출판 후보</b>
+    </section>
+    <section class="controls">
+      <label>검색 <input id="search" type="search" placeholder="이름, ID, 정의, 병목"></label>
+      <div id="filters" aria-label="자산 종류 필터"></div>
+    </section>
+    <section>
+      <div class="section-title"><div><p>5 AXES</p><h2>개념 · 스킬 · 판단 · 유형 · 전략</h2></div><span id="resultCount"></span></div>
+      <div id="assetGrid" class="asset-grid"></div>
+      <div id="empty" class="empty" hidden><strong>아직 공유 승인된 자산이 없습니다.</strong><span>운영자가 세미나 결과를 검토해 반영하면 이곳에 자동 집계됩니다.</span></div>
+    </section>
+    <section class="long-goal">
+      <p>LONG-TERM CHECK</p><h2>최종적으로 측정할 것</h2>
+      <div><article><b>전범위 분석</b><span>미분석 고등수학 문항을 5축과 풀이 흐름으로 빠짐없이 분류</span></article><article><b>병목 교정</b><span>학생이 막힌 축을 찾아 진단형·교정형·전이형·통합형 문항으로 연결</span></article><article><b>모의고사 조립</b><span>범위·난이도·풀이시간·병목 분포를 만족하는 자체 문항으로 시험 제작</span></article></div>
+    </section>
+  </main>
+  <script src="asset-library.js" defer></script><script src="pwa-install.js" defer></script>
+</body>
+</html>

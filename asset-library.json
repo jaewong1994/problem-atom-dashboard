@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-02T13:28:13.709500+00:00",
+  "summary": {
+    "entities": 0,
+    "questions": 0,
+    "families": 0,
+    "mockExams": 0,
+    "approved": 0,
+    "byKind": {
+      "concept": 0,
+      "skill": 0,
+      "decision": 0,
+      "problem_pattern": 0,
+      "strategy": 0
+    }
+  },
+  "entities": [],
+  "questions": [],
+  "families": [],
+  "mockExams": []
+}

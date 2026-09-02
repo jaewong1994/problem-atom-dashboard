@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v1`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v3`;
 const SHELL = [
   "./",
   "./index.html",
@@ -12,6 +12,10 @@ const SHELL = [
   "./vision.html",
   "./vision.css",
   "./vision.js",
+  "./asset-library.html",
+  "./asset-library.css",
+  "./ontology-boundary.css",
+  "./asset-library.js",
   "./pwa-install.css",
   "./pwa-install.js",
   "./manifest.webmanifest",
@@ -44,7 +48,7 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (request.mode === "navigate" || url.pathname.endsWith("dashboard-data.json") || url.pathname.endsWith("progress-summary.json")) {
+  if (request.mode === "navigate" || url.pathname.endsWith("dashboard-data.json") || url.pathname.endsWith("progress-summary.json") || url.pathname.endsWith("asset-library.json")) {
     event.respondWith(networkFirst(request));
     return;
   }

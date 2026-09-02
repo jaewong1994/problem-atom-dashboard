@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="기출문제 분석·재조합 프로젝트의 주간 운영, 회차별 목표, 완료 기준과 원자 조합 데모">
+  <meta name="description" content="기출문제 5축 분석, 학생 병목 교정 문항 제작, 모의고사·교재 편찬을 위한 단계별 계획">
   <meta name="theme-color" content="#0d7469">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -25,7 +25,7 @@
       <a href="#weekly">매주 할 일</a>
       <a href="#plan">회차별 계획</a>
       <a href="#finish">최종 결과</a>
-      <a href="#lab">조합 데모</a>
+      <a href="asset-library.html">공유 자산</a>
       <a class="dashboard-link" href="dashboard.html">현황판 보기</a>
     </nav>
   </header>
@@ -34,13 +34,13 @@
     <section class="hero concrete-hero">
       <div class="hero-copy">
         <p class="eyebrow">기출문제 분석 · 재조합 프로젝트</p>
-        <h1>기출 4점 풀이를 나눠 기록하고,<br><em>그 기록으로 새 문제를 만든다.</em></h1>
-        <p class="hero-lead">수학강사 4~5명이 매주 기출을 풀고 토론합니다. 문항마다 풀이를 움직인 조건, 관찰, 표현 전환, 계산, 실수 지점을 기록합니다. AI는 이 기록을 검색하고 조합해 새 문제 초안을 만들고, 강사가 최종 검수합니다.</p>
+        <h1>학생이 막힌 지점을 찾아,<br><em>그 병목을 없애는 문제를 만든다.</em></h1>
+        <p class="hero-lead">수학강사 4~5명이 기출 풀이를 개념·스킬·판단·유형·전략으로 분석합니다. AI는 검증된 요소를 조합해 같은 병목을 다양한 계산량과 난이도로 훈련하는 문항군을 만들고, 강사가 다시 설계·검수합니다.</p>
         <div class="hero-actions">
           <a class="button primary" href="#weekly">이번 주 할 일 보기</a>
           <a class="button secondary" href="dashboard.html">완료 문항 확인하기</a>
         </div>
-        <p class="hero-boundary"><strong>NGD2와는 별도 프로젝트입니다.</strong> 현재는 기출 원문을 읽기 전용으로 가져오며, 나중에 연결할 수 있게 데이터 형식만 맞춥니다.</p>
+        <p class="hero-boundary"><strong>세미나 정본은 NGD2와 분리합니다.</strong> 분석 중에는 NGD2의 AI 온톨로지·이름·추천을 보지 않습니다. 강사 토론으로 만든 <code>PA-*</code> 카드가 승인되고 내용이 고정된 뒤에만 NGD2와 비교표를 만들며, 같은 요소여도 양쪽 ID와 정의를 모두 보존합니다.</p>
       </div>
 
       <aside class="operation-card" aria-label="권장 주간 운영 기준">
@@ -49,9 +49,9 @@
           <div><dt>인원</dt><dd>4~5명</dd><small>수학강사 중심</small></div>
           <div><dt>주기</dt><dd>주 1회</dd><small>100분 세미나</small></div>
           <div><dt>처리량</dt><dd>4문항</dd><small>문항당 약 20분</small></div>
-          <div><dt>기록</dt><dd>3~8개</dd><small>문항당 원자 수</small></div>
+          <div><dt>기록</dt><dd>5축</dd><small>병목과 풀이 흐름</small></div>
         </dl>
-        <p class="plain-definition"><b>원자란?</b> 다른 문제에서도 다시 쓸 수 있도록 한 문장으로 설명한 최소 풀이 단위입니다. 반드시 <strong>무엇을 보고 → 무엇을 해서 → 무엇을 얻는지</strong>가 있어야 합니다.</p>
+        <p class="plain-definition"><b>분석 단위는?</b> 개념·스킬·판단·유형·전략 카드와 <strong>신호 → 판단 → 행동 → 결과</strong> 연결입니다. 학생이 어느 연결에서 멈췄는지까지 기록합니다.</p>
       </aside>
     </section>
 
@@ -66,7 +66,7 @@
           <span>세미나 전 · 각자 20~30분</span>
           <h3>맡은 문제를 풀어 온다</h3>
           <ul>
-            <li>정답보다 먼저 풀이가 시작된 지점을 표시</li>
+            <li>정답보다 먼저 풀이가 시작되거나 멈춘 지점을 표시</li>
             <li>막히기 쉬운 지점과 다른 풀이를 메모</li>
             <li>같은 문제를 여러 명이 맡아도 됨</li>
           </ul>
@@ -76,8 +76,8 @@
           <h3>문항마다 결론을 남긴다</h3>
           <ol>
             <li><b>10분</b><span>오늘 다룰 4문항과 발표자 확인</span></li>
-            <li><b>80분</b><span>문항당 20분씩 풀이 비교와 원자 확정</span></li>
-            <li><b>10분</b><span>중복 원자 병합, 미해결 항목 지정</span></li>
+            <li><b>80분</b><span>문항당 20분씩 풀이 비교, 5축과 병목 확정</span></li>
+            <li><b>10분</b><span>중복 카드 병합, 미해결 항목 지정</span></li>
           </ol>
         </article>
         <article>
@@ -85,16 +85,16 @@
           <h3>종이를 검색 가능한 자료로 바꾼다</h3>
           <ul>
             <li>기록지 스캔과 OCR</li>
-            <li>AI로 항목 초안 입력</li>
+              <li>AI로 5축 카드와 풀이 연결 초안 입력</li>
             <li>발표자 확인 후 JSON 일괄 반영</li>
           </ul>
         </article>
       </div>
 
       <div class="one-problem-output">
-        <div><span>문항 1개를 끝내면 남아야 하는 것</span><strong>기록지 1장 + 원자 3~8개 + 난이도 판단 + 재구성 조건</strong></div>
+        <div><span>문항 1개를 끝내면 남아야 하는 것</span><strong>기록지 2쪽 + 5축 카드 + 풀이 흐름 + 병목 + 변형 계약</strong></div>
         <ul>
-          <li>출처와 문항번호</li><li>한 줄 핵심 관찰</li><li>풀이 순서</li><li>필수 원자</li><li>발표자 전원</li><li>어려운 이유</li><li>계산 부담</li><li>바꿔도 되는 조건</li><li>바꾸면 안 되는 조건</li><li>미해결 질문</li>
+          <li>출처와 문항번호</li><li>5축 카드 ID</li><li>풀이 순서</li><li>주 병목</li><li>발표자 전원</li><li>관찰된 오답</li><li>3가지 난이도축</li><li>바꿔도 되는 조건</li><li>바꾸면 안 되는 조건</li><li>문항군 아이디어</li>
         </ul>
       </div>
     </section>
@@ -108,48 +108,48 @@
       <div class="plan-table" role="table" aria-label="회차별 실행 계획">
         <div class="plan-head" role="row"><span>시점</span><span>누적 문항</span><span>그때 할 수 있는 일</span><span>다음 단계로 가는 기준</span></div>
         <article role="row">
-          <b>4회<br><small>약 1개월</small></b><strong>16문항</strong><p>같은 풀이를 같은 이름으로 부르도록 태그와 원자 작성 규칙을 고칩니다.</p><em>같은 문항을 두 사람이 분석했을 때 핵심 원자 80% 이상 일치</em>
+          <b>4회<br><small>약 1개월</small></b><strong>16문항</strong><p>5축 이름과 학생 병목 기록 규칙을 고정합니다.</p><em>두 강사의 핵심 판단·병목 판정이 80% 이상 일치</em>
         </article>
         <article role="row">
-          <b>8회<br><small>약 2개월</small></b><strong>32문항</strong><p>같은 단원 안에서 반복되는 원자를 찾고, 중복 이름을 하나로 합칩니다.</p><em>승인 원자의 25% 이상이 서로 다른 문항에서 다시 발견됨</em>
+          <b>8회<br><small>약 2개월</small></b><strong>32문항</strong><p>반복되는 5축 카드를 합치고 병목별 진단형·교정형 문항을 시험합니다.</p><em>승인 카드 25% 이상 재발견, 병목 외 오답이 과도하지 않음</em>
         </article>
         <article class="plan-focus" role="row">
-          <b>16회<br><small>약 4개월</small></b><strong>64문항</strong><p>한 단원을 골라 원자 2~4개를 조합한 새 문제 초안을 처음 만듭니다.</p><em>새 문제 20개 중 수학 오류 없이 한 번 수정 후 쓸 수 있는 문제가 12개 이상</em>
+          <b>16회<br><small>약 4개월</small></b><strong>64문항</strong><p>한 병목을 진단·교정·전이·통합하는 문항 패밀리를 제작합니다.</p><em>독립 검수와 블라인드 풀이를 통과한 수업용 문항군 5세트 이상</em>
         </article>
         <article role="row">
-          <b>32회<br><small>약 8개월</small></b><strong>128문항</strong><p>처음 보는 기출을 스캔하면 사용된 원자 후보와 비슷한 기출을 보여주는 검색 기능을 시험합니다.</p><em>미분석 50문항 중 45문항 이상에서 강사가 지정한 원자가 검색 결과 5개 안에 포함</em>
+          <b>32회<br><small>약 8개월</small></b><strong>128문항</strong><p>처음 보는 문항의 5축, 풀이 흐름, 학생 병목 후보를 자동 검색합니다.</p><em>미분석 50문항 중 핵심 판단 Top-5 재현율 90% 이상</em>
         </article>
         <article role="row">
-          <b>52회<br><small>약 1년</small></b><strong>208문항</strong><p>주요 단원별로 쉬운형, 표준형, 고난도형 문제 묶음을 사람이 검수해 제작합니다.</p><em>30문항 난이도 예측 중 강사 판단과 한 단계 이내로 맞는 문항 24개 이상</em>
+          <b>52회<br><small>약 1년</small></b><strong>208문항</strong><p>주요 병목별 문항 패밀리를 학생에게 적용해 난이도와 교정 효과를 보정합니다.</p><em>예상 병목 적중률과 난이도 예측을 실제 풀이 데이터로 설명 가능</em>
         </article>
         <article role="row">
-          <b>100회<br><small>약 2년</small></b><strong>400문항</strong><p>단원을 넘나드는 원자를 골라 개정 교육과정용 융합 문제와 교재 한 단원을 제작합니다.</p><em>내부 검수, 다른 강사의 출처 비공개 풀이, 원문 유사도 검사를 모두 통과한 출판 후보 100문항 이상</em>
+          <b>100회+<br><small>장기 목표</small></b><strong>400문항+</strong><p>고등수학 전범위 분석 사전을 만들고 자체 문항만으로 통합형 모의고사와 교재를 조립합니다.</p><em>전범위 표본 완전 분류 95% 이상, G0~G5 통과 출판 문항 100개 이상</em>
         </article>
       </div>
-      <p class="count-note">예상 원자 수를 목표로 잡지 않습니다. 같은 원자는 합치고, 다른 문제에서 다시 확인된 원자만 유지합니다. 많이 만드는 것보다 다시 쓸 수 있는 원자를 남기는 것이 기준입니다.</p>
+      <p class="count-note">전범위 분석과 모의고사 조립은 장기 지향점입니다. 초반에는 카드 수가 아니라 판정 일치도와 병목 적중률을 통과해야 다음 단계로 갑니다.</p>
     </section>
 
     <section class="finish section-pad" id="finish">
       <div class="finish-intro">
         <p class="section-number">03 / 최종 결과</p>
-        <h2>교사가 조건을 고르면<br>AI가 문제 초안을 만든다</h2>
-        <p>최종 목표는 자동 출제가 아닙니다. 검증된 기출 풀이 요소를 골라 난이도와 계산량을 지정하면 AI가 초안을 만들고, 수학강사가 검수해 교재와 문제은행에 쓸 수 있게 하는 것입니다.</p>
+        <h2>병목을 고르면<br>훈련 문항군과 모의고사를 만든다</h2>
+        <p>최종 목표는 자동 출제가 아닙니다. 교사가 학생의 병목과 시험 청사진을 정하고, AI가 검증된 5축 조합으로 후보를 만들며, 강사가 재설계·검수해 저작권과 품질 이력이 남는 교재·모의고사 자산으로 승격하는 것입니다.</p>
       </div>
 
       <ol class="final-flow" aria-label="최종 사용 흐름">
         <li><span>1</span><div><b>새 문제 스캔</b><small>운영자가 OCR로 문장과 수식을 읽음</small></div></li>
-        <li><span>2</span><div><b>사용 원자 찾기</b><small>비슷한 기출과 원자 후보 5개를 제시</small></div></li>
-        <li><span>3</span><div><b>강사가 확정</b><small>맞는 원자를 고치고 빠진 원자를 추가</small></div></li>
-        <li><span>4</span><div><b>제작 조건 선택</b><small>단원, 배점, 목표 등급, 계산량, 풀이 시간 입력</small></div></li>
-        <li><span>5</span><div><b>AI가 초안 제작</b><small>호환되는 원자를 연결해 문제와 해설 생성</small></div></li>
-        <li><span>6</span><div><b>사람이 검수</b><small>정답, 조건, 교육과정, 원문 유사도를 확인하고 승인</small></div></li>
+        <li><span>2</span><div><b>5축과 병목 찾기</b><small>비슷한 기출과 근거 구간을 함께 제시</small></div></li>
+        <li><span>3</span><div><b>강사가 확정</b><small>5축 카드와 실제 병목을 고치고 보완</small></div></li>
+        <li><span>4</span><div><b>문항군 명세</b><small>진단·교정·전이·통합, 계산량과 풀이시간 지정</small></div></li>
+        <li><span>5</span><div><b>AI 후보 제작</b><small>호환되는 5축을 연결해 여러 초안 생성</small></div></li>
+        <li><span>6</span><div><b>사람이 출판 승격</b><small>수학·병목·독창성·교육과정·조판을 독립 검수</small></div></li>
       </ol>
 
       <div class="deliverables">
-        <article><span>먼저 완성</span><h3>기출 분석 자료실</h3><p>문항, 발표자, 원자, 풀이 순서, 난이도와 실수 지점을 검색합니다.</p></article>
-        <article><span>그다음 완성</span><h3>새 문제 분석 검색</h3><p>스캔한 문항에서 사용된 원자와 유사 기출을 찾아 강사가 확인합니다.</p></article>
-        <article><span>검증 후 완성</span><h3>문제 제작 도구</h3><p>원자와 목표 난이도를 고르면 AI가 문제와 해설의 첫 초안을 만듭니다.</p></article>
-        <article><span>장기 결과</span><h3>교재와 문제은행</h3><p>검수 통과 문항만 모아 수능 대비, 내신 대비, 융합형 세트로 배포합니다.</p></article>
+        <article><span>먼저 완성</span><h3>기출 분석 자료실</h3><p>문항, 발표자, 5축 카드, 풀이 순서, 난이도와 병목을 검색합니다.</p></article>
+        <article><span>그다음 완성</span><h3>새 문제 분석 검색</h3><p>스캔한 문항에서 사용된 5축 카드와 유사 기출을 찾아 강사가 확인합니다.</p></article>
+        <article><span>검증 후 완성</span><h3>병목별 문항 패밀리</h3><p>같은 결손을 다양한 표현·계산량·난이도로 진단하고 교정합니다.</p></article>
+        <article><span>장기 결과</span><h3>모의고사·교재·문제은행</h3><p>출판 게이트를 통과한 자체 문항으로 시험 청사진을 빠르게 조립합니다.</p></article>
       </div>
     </section>
 
@@ -157,17 +157,17 @@
       <div class="coverage-answer">
         <p class="section-number">04 / 100% 분석의 뜻</p>
         <h2>모든 기출을<br>분석할 수 있을까?</h2>
-        <p class="answer"><strong>모든 기출을 기존 원자만으로 억지로 맞추지는 않습니다.</strong> 처음 보는 풀이가 나오면 새 원자로 등록합니다. 목표는 자동으로 100% 맞히는 것이 아니라, 모든 문항을 기존 원자, 수정 필요, 새 원자 필요 중 하나로 빠짐없이 분류하는 것입니다.</p>
+        <p class="answer"><strong>기존 카드로 모든 문제를 억지로 맞추지는 않습니다.</strong> 모든 고등수학 문항을 기존 조합으로 설명 가능, 카드 확장 필요, 신규 판단·유형 필요 중 하나로 빠짐없이 분류합니다. 새로운 발상을 발견하면 사전이 확장됩니다.</p>
       </div>
       <div class="coverage-model direct-check">
         <h3>이 검사를 통과하면 “기출 분석 가능”으로 판정합니다.</h3>
         <ol>
-          <li><b>미분석 100문항을 준비</b><span>세미나에 쓰지 않은 평가원 4점 문항으로 검사</span></li>
-          <li><b>원자 후보를 자동 검색</b><span>각 문항마다 가능성 높은 원자 5개와 근거 구간 제시</span></li>
-          <li><b>강사가 정답표 작성</b><span>검색 결과를 보지 않고 필요한 원자를 직접 확정</span></li>
-          <li><b>90문항 이상 맞으면 통과</b><span>정답 원자가 후보 5개 안에 있고, 나머지도 새 원자로 설명 가능해야 함</span></li>
+          <li><b>미분석 100문항을 준비</b><span>평가원·교육청·교과서·고난도 문항을 범위별로 분리</span></li>
+          <li><b>5축 후보를 자동 검색</b><span>각 문항마다 가능성 높은 카드와 근거 구간 제시</span></li>
+          <li><b>강사가 정답표 작성</b><span>검색 결과를 보지 않고 5축과 풀이 연결을 직접 확정</span></li>
+          <li><b>95문항 이상 완전 분류</b><span>핵심 판단과 연결 순서가 맞고 나머지는 신규 카드로 설명 가능해야 함</span></li>
         </ol>
-        <p class="metric-note"><strong>금지할 주장:</strong> “AI가 모든 문제를 자동으로 이해한다.”<br><strong>허용할 주장:</strong> “강사가 확인할 수 있는 원자 후보와 비슷한 기출을 빠르게 찾는다.”</p>
+        <p class="metric-note"><strong>금지할 주장:</strong> “AI가 모든 문제를 자동으로 이해한다.”<br><strong>허용할 주장:</strong> “강사가 확인할 수 있는 5축 후보와 비슷한 풀이 구조를 빠르게 찾는다.”</p>
       </div>
     </section>
 
@@ -182,24 +182,24 @@
         <div class="fusion-source"><span>수열</span><b>점화식을 누적합의<br>차이로 바꾸기</b></div>
         <i>+</i>
         <div class="fusion-source"><span>확률</span><b>가능한 경우를<br>조건으로 걸러 세기</b></div>
-        <strong>= 원자 사이의 입력과 출력이 맞을 때만 새 융합 문제 후보가 됨</strong>
+        <strong>= 판단과 스킬의 입력·출력이 이어질 때만 통합형 문제 후보가 됨</strong>
       </div>
       <div class="why-needed">
         <article><b>단원명 검색</b><p>“함수+수열” 문제만 찾을 수 있고 왜 함께 쓰였는지는 알기 어렵습니다.</p></article>
-        <article><b>원자 검색</b><p>앞 단계에서 얻은 결과가 다음 단계의 조건으로 쓰이는 문제를 찾을 수 있습니다.</p></article>
+        <article><b>풀이 연결 검색</b><p>앞 단계에서 얻은 결과가 다음 판단의 조건으로 쓰이는 문제를 찾을 수 있습니다.</p></article>
         <article><b>난이도 조절</b><p>개념을 바꾸지 않고 단서 숨김, 경우 수, 계산 길이를 따로 조절할 수 있습니다.</p></article>
       </div>
     </section>
 
     <section class="lab section-pad" id="lab">
       <div class="section-heading lab-heading">
-        <div><p class="section-number">06 / 직접 조합해 보기</p><h2>원자를 고르고<br>난이도를 바꿔 본다</h2></div>
-        <p>아래 카드는 데모용입니다. 원자 2~4개를 고른 뒤 단서, 경우 수, 계산량을 바꾸면 AI에 전달할 제작 조건이 만들어집니다.</p>
+        <div><p class="section-number">06 / 직접 조합해 보기</p><h2>5축 카드를 고르고<br>병목 문항군을 만든다</h2></div>
+        <p>아래 데모에서 개념·스킬·판단·유형·전략을 고르고 단서, 분기, 계산량을 바꾸면 AI에 전달할 문항 패밀리 명세가 만들어집니다.</p>
       </div>
 
       <div class="lab-shell">
         <section class="atom-library" aria-labelledby="atomLibraryTitle">
-          <div class="lab-title"><span>1</span><div><strong id="atomLibraryTitle">사용할 원자</strong><small>카드를 눌러 2~4개 선택</small></div></div>
+          <div class="lab-title"><span>1</span><div><strong id="atomLibraryTitle">사용할 요소 카드</strong><small>같은 축도 여러 개 선택 가능</small></div></div>
           <div id="atomList" class="atom-list"></div>
         </section>
 
@@ -218,7 +218,7 @@
         <section class="result" aria-labelledby="resultTitle">
           <div class="lab-title inverse"><span>3</span><div><strong id="resultTitle">AI에 전달할 제작 조건</strong><small>선택에 따라 바로 갱신</small></div></div>
           <div id="compatibility" class="compatibility"></div>
-          <div id="chain" class="chain" aria-label="선택한 원자 순서"></div>
+          <div id="chain" class="chain" aria-label="선택한 5축 카드 순서"></div>
           <div class="vector-wrap">
             <div><span>예상 난이도</span><strong id="levelLabel">3등급형 탐색</strong></div>
             <div id="vector" class="vector"></div>
@@ -239,14 +239,14 @@
         <p>매 4회마다 기록 방식과 태그는 고칩니다. 그러나 기출 풀이를 재사용 가능한 단위로 기록하고, 그 기록으로 새 문제를 만든다는 목표는 고정합니다.</p>
       </div>
       <div class="rules-grid">
-        <article><span>계속할 것</span><ul><li>기출 풀이 근거를 문항과 함께 보관</li><li>같은 원자는 합치고 차이를 기록</li><li>사람이 검수한 자료만 승인</li><li>실패한 조합도 이유와 함께 저장</li></ul></article>
-        <article class="stop-list"><span>하지 않을 것</span><ul><li>단순 계산 한 줄까지 무조건 원자로 분리</li><li>AI가 만든 문제를 검수 없이 배포</li><li>처리 문항 수 때문에 합의 기준을 낮춤</li><li>NGD2 통합을 프로젝트 성공 조건으로 삼음</li></ul></article>
+        <article><span>계속할 것</span><ul><li>기출 풀이 근거를 문항과 함께 보관</li><li>같은 5축 카드는 합치고 차이를 기록</li><li>병목 적중을 학생 풀이로 확인</li><li>실패한 조합도 이유와 함께 저장</li></ul></article>
+        <article class="stop-list"><span>하지 않을 것</span><ul><li>숫자만 바꾼 유사문항을 자산으로 집계</li><li>AI가 만든 문제를 검수 없이 배포</li><li>처리 문항 수 때문에 합의 기준을 낮춤</li><li>NGD2 통합을 프로젝트 성공 조건으로 삼음</li></ul></article>
       </div>
       <p class="closing direct-closing">최종 성공 기준은 간단합니다. <strong>기출을 빠짐없이 분석하고, 원하는 난이도의 새 문제를 만들고, 수학강사가 검수해 실제 수업에 쓸 수 있는가.</strong></p>
     </section>
   </main>
 
-  <footer><span>기출문제 분석 · 재조합 프로젝트</span><a href="dashboard.html">세미나 완료 문항 확인하기 →</a></footer>
+  <footer><span>기출문제 분석 · 재조합 프로젝트</span><a href="asset-library.html">승인 연구 자산 확인하기 →</a></footer>
 
   <script src="vendor/katex/katex.min.js"></script>
   <script src="vendor/katex/auto-render.min.js"></script>
