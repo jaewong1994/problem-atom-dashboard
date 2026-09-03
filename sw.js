@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v4`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v5`;
 const SHELL = [
   "./",
   "./index.html",
@@ -52,7 +52,7 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (request.mode === "navigate" || url.pathname.endsWith("dashboard-data.json") || url.pathname.endsWith("progress-summary.json") || url.pathname.endsWith("asset-library.json")) {
+  if (request.mode === "navigate" || url.pathname.endsWith("dashboard-data.json") || url.pathname.endsWith("progress-summary.json") || url.pathname.endsWith("asset-library.json") || url.pathname.endsWith("realtime-config.js")) {
     event.respondWith(networkFirst(request));
     return;
   }
