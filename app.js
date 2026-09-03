@@ -552,7 +552,11 @@ function render() {
     $("#emptyTitle").textContent = "조건에 맞는 문항이 없습니다.";
     $("#emptyDetail").textContent = "검색어나 배점 필터를 바꿔 보세요.";
   }
-  document.querySelectorAll(".source-tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.group === state.group));
+  document.querySelectorAll(".source-tab").forEach((tab) => {
+    const active = tab.dataset.group === state.group;
+    tab.classList.toggle("active", active);
+    tab.setAttribute("aria-pressed", String(active));
+  });
   updateStats();
 }
 
@@ -803,8 +807,12 @@ async function init() {
   });
   document.querySelectorAll(".filter").forEach((button) => {
     button.addEventListener("click", () => {
-      document.querySelectorAll(".filter").forEach((item) => item.classList.remove("active"));
+      document.querySelectorAll(".filter").forEach((item) => {
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
       button.classList.add("active");
+      button.setAttribute("aria-pressed", "true");
       state.score = button.dataset.score;
       render();
     });

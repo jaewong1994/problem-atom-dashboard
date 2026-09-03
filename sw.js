@@ -1,10 +1,11 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v7`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v8`;
 const SHELL = [
   "./",
   "./index.html",
   "./entry.css",
   "./entry.js",
+  "./site-shell.css",
   "./dashboard.html",
   "./styles.css",
   "./grouped.css",

@@ -11,9 +11,11 @@ ROOT = Path(__file__).resolve().parent
 def main() -> None:
     config = json.loads((ROOT / "season-config.json").read_text(encoding="utf-8"))["activeSeason"]
     html = (ROOT / "dashboard.html").read_text(encoding="utf-8")
+    shell_css = (ROOT / "site-shell.css").read_text(encoding="utf-8")
     app = (ROOT / "app.js").read_text(encoding="utf-8")
     realtime = (ROOT / "realtime.js").read_text(encoding="utf-8")
     realtime_config = (ROOT / "realtime-config.js").read_text(encoding="utf-8")
+    service_worker = (ROOT / "sw.js").read_text(encoding="utf-8")
     sql = (ROOT / "realtime" / "supabase_setup.sql").read_text(encoding="utf-8")
     data = json.loads((ROOT / "dashboard-data.json").read_text(encoding="utf-8"))
     vision = (ROOT / "vision.html").read_text(encoding="utf-8")
@@ -25,6 +27,11 @@ def main() -> None:
     assert "id=\"seasonGrid\"" in html
     assert "id=\"subjectFilter\"" in html and "id=\"yearFilter\"" in html
     assert "강사 이름" in html
+    assert html.index('id="actor"') < html.index("<main>")
+    assert html.count('id="actor"') == 1
+    assert 'class="global-nav"' in html and 'aria-current="page"' in html
+    assert "min-height: 44px" in shell_css and "prefers-reduced-motion" in shell_css
+    assert '"./site-shell.css"' in service_worker
     assert "세미나분석지_초간단.hwpx" in html
     assert "seasonPlaceholder" in app
     assert 'question.courseCode === "M2"' in app

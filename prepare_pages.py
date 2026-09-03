@@ -26,6 +26,7 @@ STATIC_FILES = (
     "styles.css",
     "grouped.css",
     "season.css",
+    "site-shell.css",
     "realtime-config.js",
     "realtime.js",
     "season-config.json",
