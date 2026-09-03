@@ -22,6 +22,7 @@ const state = {
 };
 
 const $ = (selector) => document.querySelector(selector);
+const isPublishedStaticHost = location.hostname.endsWith("github.io");
 const els = {
   list: $("#examList"),
   actor: $("#actor"),
@@ -832,6 +833,11 @@ async function init() {
   $("#clearDraft").addEventListener("click", clearDraft);
 
   try {
+    if (isPublishedStaticHost) {
+      await loadStaticMode();
+      await initRealtime();
+      return;
+    }
     state.data = await api("/api/data");
     state.lastData = `${state.data.generatedAt}|${state.data.schemaVersion}|${state.data.exams?.length}`;
     buildAliases();
