@@ -1,7 +1,7 @@
 {
   "schema": "problem-atom/problem-bank3-course-tags/1.0",
   "generatedAt": "2026-09-03T09:12:57+00:00",
-  "source": "NGD2 문제은행3 읽기 전용 과목·단원 메타",
+  "source": "문제은행3 읽기 전용 과목·단원 메타",
   "note": "세미나 사람검수 온톨로지와 분리된 탐색용 태그이며 자동 병합하지 않는다.",
   "courseLabels": {
     "CM1": "공통수학Ⅰ",

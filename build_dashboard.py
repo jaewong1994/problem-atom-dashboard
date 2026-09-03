@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import io
 import json
+import os
 import re
 import shutil
 import zipfile
@@ -12,11 +13,15 @@ from pathlib import Path
 from PIL import Image
 
 DASH = Path(__file__).resolve().parent
-NGD2 = Path(r"C:\Users\jaewo\OneDrive\바탕 화면\학원\NGD2_새폴더_풀세트\공장")
+LOCAL_SOURCE_FILE = DASH / "source-bank-root.local.txt"
+_source_root = os.environ.get("PROBLEM_BANK_ROOT", "").strip()
+if not _source_root and LOCAL_SOURCE_FILE.exists():
+    _source_root = LOCAL_SOURCE_FILE.read_text(encoding="utf-8-sig").strip()
+SOURCE_BANK = Path(_source_root) if _source_root else DASH / "_source_bank_not_configured"
 SOURCE_ROOT = Path(r"C:\Users\jaewo\OneDrive\바탕 화면\학원\입실론\한글자료\모의고사 [20260216]\모의고사 [2026] HWP")
 OLD_ROOT = SOURCE_ROOT / "[년도별] 모의고사 고3 (2003-2025년)"
 CSAT_ROOT = SOURCE_ROOT / "[기출] 수능기출 (1983-2026학년도)"
-OFFICIAL_WORK = NGD2.parent / "회귀자료" / "공식시험_적재_20260825"
+OFFICIAL_WORK = SOURCE_BANK.parent / "회귀자료" / "공식시험_적재_20260825"
 ASSETS = DASH / "assets" / "questions"
 PB3_TAGS = DASH / "problem-bank3-tags.json"
 
@@ -142,7 +147,7 @@ def read_source(source: Path) -> dict | None:
     year, session = int(match.group(1)), match.group(2)
     track = track_from_name(source.name)
     legacy_exam_id = f"kice-{year}-{session[:-1]}-{track}"
-    render_dir = NGD2 / "renders" / base
+    render_dir = SOURCE_BANK / "renders" / base
     questions = []
     with source.open(encoding="utf-8") as handle:
         for line in handle:
@@ -178,7 +183,7 @@ def read_source(source: Path) -> dict | None:
 
 def ready_exams() -> list[dict]:
     grouped: dict[tuple[int, str], list[dict]] = defaultdict(list)
-    for source in sorted(NGD2.glob("학평_*_평가원_고3_*.items.jsonl")):
+    for source in sorted(SOURCE_BANK.glob("학평_*_평가원_고3_*.items.jsonl")):
         parsed = read_source(source)
         if parsed:
             grouped[(parsed["year"], parsed["session"])].append(parsed)
@@ -276,7 +281,7 @@ def csat_question(exam_id: str, number: int) -> dict:
 
 
 def csat_scaffold_exams() -> list[dict]:
-    """NGD2 공식시험 적재본이 없을 때만 사용하는 수능 체크 구조다."""
+    """공식시험 적재본이 없을 때만 사용하는 수능 체크 구조다."""
     grouped: dict[int, list[tuple[str, Path]]] = defaultdict(list)
     for hwp in sorted(CSAT_ROOT.glob("*.hwp")):
         match = re.match(r"(\d{4})학년도 수능 수(?:리|학)\((.+?)\)\.hwp", hwp.name)
@@ -351,7 +356,7 @@ def csat_section_title(section_id: str) -> str:
 
 
 def csat_ready_exams() -> list[dict]:
-    """검증 완료된 NGD2 공식시험 JSONL과 렌더를 읽기 전용으로 현황판에 연결한다."""
+    """검증 완료된 공식시험 JSONL과 렌더를 읽기 전용으로 현황판에 연결한다."""
     manifest_path = OFFICIAL_WORK / "manifest.json"
     if not manifest_path.exists():
         return []

@@ -165,7 +165,7 @@
   overflow-wrap: anywhere;
 }
 
-.problem-body.ngd2-body {
+.problem-body.problem-render-body {
   white-space: normal;
   overflow-wrap: break-word;
 }

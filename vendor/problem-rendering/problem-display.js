@@ -95,7 +95,7 @@
      ⑨ 미리보기 안전 자르기 clip() — 수식 한가운데서 잘려 LaTeX 원문이 노출되던 문제
      ⑩ 한 줄 라벨용 inline() — 목록 행에 블록 요소를 넣지 않는 경량 경로
    v1.4 (2026-07-28 재웅 표시검수 3차)
-     ⑧ 조판도구 편입용 타이포 옵트아웃(.ngd2-inherit)
+     ⑧ 조판도구 편입용 타이포 옵트아웃(.problem-render-inherit)
    v1.3 (2026-07-28 재웅 표시검수 2차)
      ⑥ 선지 줄넘김 정렬(현재 표준 5지선다는 5→3+2→1열, 두 문단에 걸친 학평 선지 재봉합 버그 수정)
      ⑦ 세로로 긴 인라인 수식의 행간 확보
@@ -107,7 +107,7 @@
    포함: ① ₩LaTeX 복원 ② $·\(\)·\[\] 세그먼트 수리(수식공통.js 위임) ③ KaTeX 4구분자 렌더
         ④ 선지 ①~⑤ 균등 배치 + 폭 초과 시 세로 전환 ⑤ 구조 HTML(그림·박스·표) 규격 CSS
         ⑥ 시험지 타이포(명조·자간·행간) ⑦ (가)(나)(다) 조건 박스 복원 ⑧ 연산자 글자 크기.
-   컨테이너에 class="ngd2-body" 를 붙여 사용.
+   컨테이너에 class="problem-render-body" 를 붙여 사용.
 
    ★ v1.2 배경 (재웅 실측 스크린샷, 교재=마플시너지 출신 공통 증상)
      교재 문항 1,546건 중 576건은 body_html 이 없어 raw_text(평문)만으로 표시된다.
@@ -120,8 +120,8 @@
      (5) 지수: 첨자가 전반적으로 작음 → scriptstyle 크기를 0.70em→0.79em 로 상향(수직 위치는 불변).
          반대로 HWP 변환기가 지수 안에도 \dfrac 을 박아 넣어(실측 #7307 `2^{\dfrac4a-\dfrac1b}`)
          지수 분수만 본문보다 커지는 역전이 있었다 → 첨자 안의 \dfrac·\cfrac·\displaystyle 은 해제. */
-window.NGD2Display = (function(){
-  const rep = s => window.NGD2Math ? NGD2Math.repairMathSeg(s) : s;
+window.ProblemDisplay = (function(){
+  const rep = s => window.ProblemMath ? ProblemMath.repairMathSeg(s) : s;
   /* (2026-07-28 재웅) 인라인 수식의 적분·시그마·극한이 textstyle 로 작게 나옴 → 해당 세그먼트를 displaystyle 로.
      (v1.2) 분수(\frac 계열·이항계수)도 동일 사유로 추가 — 재웅 실측: 마플시너지 문항의 1/(a-3) 꼴이 깨알같이 작음.
      시험지 조판 관례(적분기호 길게·분수 크게)에 맞춤. 이미 displaystyle 이면 이중 적용 안 함.
@@ -721,7 +721,7 @@ $\\therefore m+n+k=1+2+0=3$`;
       }
       if(dCells.length!==xs.length||fCells.length!==xs.length)continue;
       const tr=(label,cells)=>'<tr><th scope="row">'+label+'</th>'+cells.map(v=>'<td>'+v+'</td>').join("")+'</tr>';
-      const table='<table class="ngd2-variation-table"><tbody>'+tr('$x$',xs.map(rawMath))+tr("$f'(x)$",dCells)+tr('$f(x)$',fCells)+'</tbody></table>';
+      const table='<table class="problem-render-variation-table"><tbody>'+tr('$x$',xs.map(rawMath))+tr("$f'(x)$",dCells)+tr('$f(x)$',fCells)+'</tbody></table>';
       const beforeX=mids.slice(0,xi).reverse().find(v=>/f.*=.*x/i.test(v.t.b));
       const lastVal=vals[vals.length-1],suffix=toks.slice(lastVal.p+1).map(t=>t.t!=null?t.t:rawMath({t})).join("").replace(/^[↗↘↖↙\s]+/,"");
       rows[i]=(beforeX?rawMath(beforeX)+"<br>":"")+table+suffix;
@@ -742,7 +742,7 @@ $\\therefore m+n+k=1+2+0=3$`;
       const fs=rows.slice(k+1,end).filter(v=>v.trim());
       if(xs.length<3||xs.length!==ds.length||xs.length!==fs.length)continue;
       const tr=(label,cells)=>'<tr><th scope="row">'+label+'</th>'+cells.map(v=>'<td>'+v+'</td>').join("")+'</tr>';
-      const table='<table class="ngd2-variation-table"><tbody>'+tr(rows[i],xs)+tr(rows[j],ds)+tr(rows[k],fs)+'</tbody></table>';
+      const table='<table class="problem-render-variation-table"><tbody>'+tr(rows[i],xs)+tr(rows[j],ds)+tr(rows[k],fs)+'</tbody></table>';
       rows.splice(i,end-i,table);i++;
     }
     return rows.join("<br>");
@@ -880,13 +880,13 @@ $\\therefore m+n+k=1+2+0=3$`;
     return !(figs<=3&&text.length<=18);
   }
   function figureCarrier(n){
-    return n.closest(".ngd2-figure-zone") || n.closest(".hfigwrap") || n.closest(".hfigs") ||
+    return n.closest(".problem-render-figure-zone") || n.closest(".hfigwrap") || n.closest(".hfigs") ||
       n.closest(".nvfig") || n.closest("figure") || n;
   }
   function figureNodes(box){
     const out=[];
     box.querySelectorAll(".hfigs,.hfigwrap,.nvfig,figure,img,svg").forEach(n=>{
-      if(n.closest(".ngd2-figure-zone")||figureIsProtected(n))return;
+      if(n.closest(".problem-render-figure-zone")||figureIsProtected(n))return;
       const c=figureCarrier(n);
       if(c===box||out.some(x=>x===c||x.contains(c)))return;
       /* 더 큰 carrier가 뒤늦게 잡히면 그 안의 작은 후보를 제거한다. */
@@ -905,7 +905,7 @@ $\\therefore m+n+k=1+2+0=3$`;
   function problemFigures(html){
     const box=document.createElement("div");box.innerHTML=String(html||"");
     const nodes=figureNodes(box);if(!nodes.length)return box.innerHTML;
-    const zone=document.createElement("div");zone.className="ngd2-figure-zone ngd2-problem-figures";
+    const zone=document.createElement("div");zone.className="problem-render-figure-zone problem-render-problem-figures";
     nodes.forEach(n=>zone.appendChild(n));
     const choice=box.querySelector(".nchoices,.hchoices,.hchoicegrid,.hchoice"),anchor=choice&&directChild(box,choice);
     if(anchor)box.insertBefore(zone,anchor);else box.appendChild(zone);
@@ -914,7 +914,7 @@ $\\therefore m+n+k=1+2+0=3$`;
   function solutionFigures(html){
     const box=document.createElement("div");box.innerHTML=String(html||"");
     figureNodes(box).forEach(n=>{
-      const zone=document.createElement("span");zone.className="ngd2-figure-zone ngd2-solution-figures";
+      const zone=document.createElement("span");zone.className="problem-render-figure-zone problem-render-solution-figures";
       n.parentNode.insertBefore(zone,n);zone.appendChild(n);
     });
     cleanEmptyFigureParents(box);return box.innerHTML;
@@ -958,7 +958,7 @@ $\\therefore m+n+k=1+2+0=3$`;
      $y=-x+3$), #5702(over식 뒤 $\frac…$) 실측. 정규화 키가 정확히 일치할 때만 지운다. */
   function _mathKey(t){
     let x=String(t||"");
-    try{ x=(window.NGD2Math&&NGD2Math.repairMathSeg)?NGD2Math.repairMathSeg(x):x; }catch(_e){}
+    try{ x=(window.ProblemMath&&ProblemMath.repairMathSeg)?ProblemMath.repairMathSeg(x):x; }catch(_e){}
     /* (2026-08-24 최적화 18회차) 덤프 쪽에만 남는 서체 접두(it·rm·bf)가 키를 어긋나게 한다
        (#7606 `=itk` vs `=k` 실측) — 키 산출에서만 박리, 원문은 불변 */
     x=x.replace(/(?<![A-Za-z])(?:rm|it|bf)(?=[A-Za-z0-9])/g,"");
@@ -967,7 +967,7 @@ $\\therefore m+n+k=1+2+0=3$`;
   }
   function _dupInLookahead(core, lookahead){
     let c=core;
-    try{ if(window.NGD2Math&&NGD2Math.hwpInputToTex) c=NGD2Math.hwpInputToTex(String(core)); }catch(_e){}
+    try{ if(window.ProblemMath&&ProblemMath.hwpInputToTex) c=ProblemMath.hwpInputToTex(String(core)); }catch(_e){}
     const key=_mathKey(c);
     if(key.length<2) return false;
     for(const mm of String(lookahead||"").matchAll(/\$([^$]{1,300})\$/g)){
@@ -1031,7 +1031,7 @@ $\\therefore m+n+k=1+2+0=3$`;
           if(t && _dupInLookahead(t, lookahead)){
             repl="";                       /* 변환된 쌍둥이가 바로 뒤에 있으면 덤프는 중복 — 제거 */
           }else{
-            repl = t ? "$" + (window.NGD2Math && NGD2Math.hwpInputToTex ? NGD2Math.hwpInputToTex(t) : t) + "$" : "";
+            repl = t ? "$" + (window.ProblemMath && ProblemMath.hwpInputToTex ? ProblemMath.hwpInputToTex(t) : t) + "$" : "";
           }
           lines[j] = "";
         }else{
@@ -1046,7 +1046,7 @@ $\\therefore m+n+k=1+2+0=3$`;
           if(core && _dupInLookahead(core, la)){
             repl = "";
           }else{
-            repl = core ? "$" + (window.NGD2Math && NGD2Math.hwpInputToTex ? NGD2Math.hwpInputToTex(core) : core) + "$" : "";
+            repl = core ? "$" + (window.ProblemMath && ProblemMath.hwpInputToTex ? ProblemMath.hwpInputToTex(core) : core) + "$" : "";
           }
           if(next>=0) repl += " " + chunk.slice(next);
         }
@@ -1070,7 +1070,7 @@ $\\therefore m+n+k=1+2+0=3$`;
       .replace(rx,(all,lead,run)=>{
       if(!/(?<![A-Za-z\\])(?:rm|it|bf)(?![A-Za-z])|[~`]/.test(run))return all;
       let tex=run.trim();
-      try{if(window.NGD2Math&&NGD2Math.hwpInputToTex)tex=NGD2Math.hwpInputToTex(tex);}catch(_e){}
+      try{if(window.ProblemMath&&ProblemMath.hwpInputToTex)tex=ProblemMath.hwpInputToTex(tex);}catch(_e){}
       const prefix=lead==='.'?'':lead;
       /* 뒤에 이미 `$...$`가 붙은 혼합형에서도 닫는 `$`+여는 `$`가 `$$`로
          재해석되지 않도록, 새로 승격하는 조각은 동등한 인라인 구분자 \(...\)를 쓴다. */
@@ -1118,7 +1118,7 @@ $\\therefore m+n+k=1+2+0=3$`;
         return "$"+z.replace(/\{/g,"\\{").replace(/\}/g,"\\}")+"$";
       }
       if(/(?:LEFT|RIGHT|ANGLE|TRIANGLE|TIMES|DIVIDE|\bover\b)/i.test(z)&&/[=+\-]/.test(z)){
-        const tex=window.NGD2Math&&NGD2Math.hwpInputToTex?NGD2Math.hwpInputToTex(z):z;
+        const tex=window.ProblemMath&&ProblemMath.hwpInputToTex?ProblemMath.hwpInputToTex(z):z;
         return "$"+tex+"$";
       }
       return line;
@@ -1525,7 +1525,7 @@ $\\therefore m+n+k=1+2+0=3$`;
      never printable, so display equations in inherited(print) mode are reduced
      only when their natural width exceeds the available column width. */
   function fitPrintDisplayMath(el){
-    el.querySelectorAll(".ngd2-inherit .katex-display, .ngd2-body.ngd2-inherit.katex-display").forEach(d=>{
+    el.querySelectorAll(".problem-render-inherit .katex-display, .problem-render-body.problem-render-inherit.katex-display").forEach(d=>{
       d.style.overflow="visible";
       d.style.overflowX="visible";
       d.style.overflowY="visible";
@@ -1550,7 +1550,7 @@ $\\therefore m+n+k=1+2+0=3$`;
      일반 인라인 수식은 건드리지 않고, 단 폭을 실제로 넘는 한 수식만 최소 46%까지
      축소한다. PDF에서 스크롤바나 옆 단 침범은 인쇄될 수 없다. */
   function fitPrintInlineMath(el){
-    el.querySelectorAll(".ngd2-inherit .katex:not(.katex-display .katex)").forEach(k=>{
+    el.querySelectorAll(".problem-render-inherit .katex:not(.katex-display .katex)").forEach(k=>{
       if(k.parentElement&&k.parentElement.closest(".katex"))return;
       k.style.fontSize="";
       k.style.display="";
@@ -1579,18 +1579,18 @@ $\\therefore m+n+k=1+2+0=3$`;
       return 1.25;
     };
     const classify=n=>{
-      n.classList.remove("ngd2-fig-wide","ngd2-fig-standard","ngd2-fig-tall");
-      const r=ratioOf(n);n.classList.add(r>=1.65?"ngd2-fig-wide":r<=.82?"ngd2-fig-tall":"ngd2-fig-standard");
+      n.classList.remove("problem-render-fig-wide","problem-render-fig-standard","problem-render-fig-tall");
+      const r=ratioOf(n);n.classList.add(r>=1.65?"problem-render-fig-wide":r<=.82?"problem-render-fig-tall":"problem-render-fig-standard");
       const im=n.matches("img")?n:n.querySelector("img");
-      if(im&&!im.complete&&!im.dataset.ngd2SizeWatch){im.dataset.ngd2SizeWatch="1";im.addEventListener("load",()=>classify(n),{once:true});}
+      if(im&&!im.complete&&!im.dataset.problemRenderSizeWatch){im.dataset.problemRenderSizeWatch="1";im.addEventListener("load",()=>classify(n),{once:true});}
     };
-    el.querySelectorAll(".ngd2-figure-zone").forEach(z=>[...z.children].filter(n=>!n.classList.contains("hfigslot")).forEach(classify));
+    el.querySelectorAll(".problem-render-figure-zone").forEach(z=>[...z.children].filter(n=>!n.classList.contains("hfigslot")).forEach(classify));
     el.querySelectorAll(".hfigwrap").forEach(w=>{
       const place=()=>{
-        if(!w.dataset.ngd2BaseWidth){
-          const declared=parseFloat(w.style.width);if(declared>0)w.dataset.ngd2BaseWidth=String(declared);
+        if(!w.dataset.problemRenderBaseWidth){
+          const declared=parseFloat(w.style.width);if(declared>0)w.dataset.problemRenderBaseWidth=String(declared);
         }
-        const baseWidth=parseFloat(w.dataset.ngd2BaseWidth)||w.getBoundingClientRect().width;
+        const baseWidth=parseFloat(w.dataset.problemRenderBaseWidth)||w.getBoundingClientRect().width;
         const factor=Math.max(.4,Math.min(1,parseFloat(getComputedStyle(w).getPropertyValue("--qfig-factor"))||1));
         if(baseWidth>0)w.style.setProperty("width",`min(${(baseWidth*factor).toFixed(2)}px, 100%)`,"important");
         const wr=w.getBoundingClientRect();
@@ -1615,21 +1615,21 @@ $\\therefore m+n+k=1+2+0=3$`;
   }
   function layoutInlineFractions(el){
     if(!el||!el.querySelectorAll)return;
-    el.querySelectorAll('.ngd2-inline-frac').forEach(k=>k.classList.remove('ngd2-inline-frac'));
-    el.querySelectorAll('.ngd2-tall-inline').forEach(k=>k.classList.remove('ngd2-tall-inline'));
-    el.querySelectorAll('.ngd2-frac-line').forEach(line=>line.classList.remove('ngd2-frac-line'));
+    el.querySelectorAll('.problem-render-inline-frac').forEach(k=>k.classList.remove('problem-render-inline-frac'));
+    el.querySelectorAll('.problem-render-tall-inline').forEach(k=>k.classList.remove('problem-render-tall-inline'));
+    el.querySelectorAll('.problem-render-frac-line').forEach(line=>line.classList.remove('problem-render-frac-line'));
     el.querySelectorAll('.katex .mfrac').forEach(frac=>{
       const math=frac.closest('.katex');
       if(!math||math.closest('.katex-display'))return;
-      math.classList.add('ngd2-inline-frac');
+      math.classList.add('problem-render-inline-frac');
       const line=math.closest('.hp,.solstep>div,.cpb-worked-problem,.cpb-worked-steps>li,.cpb-worked-answer,.cpb-callout-body,.cpb-check-item,p,li,td');
-      if(line&&el.contains(line))line.classList.add('ngd2-frac-line');
+      if(line&&el.contains(line))line.classList.add('problem-render-frac-line');
     });
     el.querySelectorAll('.katex').forEach(math=>{
       if(math.closest('.katex-display'))return;
       const size=parseFloat(getComputedStyle(math).fontSize)||16;
       const height=math.getBoundingClientRect().height;
-      if(math.querySelector('.array,.mfrac')||height>size*1.65)math.classList.add('ngd2-tall-inline');
+      if(math.querySelector('.array,.mfrac')||height>size*1.65)math.classList.add('problem-render-tall-inline');
     });
   }
   const UNIT_REL=/^\s*(?:=|≠|≤|≥|≒|<|>|\\(?:le|ge|leq|geq|ne|neq|approx|equiv|sim|fallingdotseq)(?![A-Za-z]))/;
@@ -1640,25 +1640,25 @@ $\\therefore m+n+k=1+2+0=3$`;
   }
   function groupEquationUnits(el){
     if(!el||!el.querySelectorAll)return;
-    [...el.querySelectorAll('.heq:not(.ngd2-unit-done)')].forEach(first=>{
-      if(first.closest('.ngd2-math-unit'))return;
+    [...el.querySelectorAll('.heq:not(.problem-render-unit-done)')].forEach(first=>{
+      if(first.closest('.problem-render-math-unit'))return;
       let between=[],n=first.nextSibling;
       while(n&&n.nodeType===3&&!String(n.textContent||"").trim()){between.push(n);n=n.nextSibling;}
       if(!n||n.nodeType!==1||!n.classList.contains('heq'))return;
       /* 관계기호가 다음 조각의 시작뿐 아니라 앞 조각의 끝에 붙은 OCR도 한 식 단위로 묶는다.
          예: `BP =` + `3`이 카드 경계에서 갈라지는 것을 막는다. */
       if(!UNIT_REL.test(rawHeqTex(n))&&!UNIT_REL_END.test(rawHeqTex(first)))return;
-      const unit=document.createElement('span'); unit.className='ngd2-math-unit';
+      const unit=document.createElement('span'); unit.className='problem-render-math-unit';
       first.parentNode.insertBefore(unit,first); unit.appendChild(first);
       between.forEach(x=>unit.appendChild(x)); unit.appendChild(n);
-      first.classList.add('ngd2-unit-done'); n.classList.add('ngd2-unit-done');
+      first.classList.add('problem-render-unit-done'); n.classList.add('problem-render-unit-done');
     });
   }
   function layoutEquationUnits(el){
     if(!el||!el.querySelectorAll)return;
-    el.querySelectorAll('.ngd2-math-unit').forEach(unit=>{
-      unit.classList.remove('ngd2-math-unit-long');
-      if(unit.clientWidth&&unit.scrollWidth>unit.clientWidth+1)unit.classList.add('ngd2-math-unit-long');
+    el.querySelectorAll('.problem-render-math-unit').forEach(unit=>{
+      unit.classList.remove('problem-render-math-unit-long');
+      if(unit.clientWidth&&unit.scrollWidth>unit.clientWidth+1)unit.classList.add('problem-render-math-unit-long');
     });
   }
   /* 원문 정규식이 아니라 사용자가 실제로 보는 최종 DOM을 검사한다. KaTeX는 닫히지
@@ -1731,159 +1731,159 @@ $\\therefore m+n+k=1+2+0=3$`;
   try{
     const st=document.createElement("style");
     st.textContent=`
-.ngd2-body{--ngd2-problem-size:14.5px;--ngd2-problem-leading:1.9;--ngd2-choice-gap:14px;
-  font-family:'Noto Serif KR','바탕',Batang,serif;font-size:var(--ngd2-problem-size);line-height:var(--ngd2-problem-leading);
+.problem-render-body{--problem-render-problem-size:14.5px;--problem-render-problem-leading:1.9;--problem-render-choice-gap:14px;
+  font-family:'Noto Serif KR','바탕',Batang,serif;font-size:var(--problem-render-problem-size);line-height:var(--problem-render-problem-leading);
   letter-spacing:-0.015em;word-spacing:0.02em;color:#141a28;word-break:keep-all;overflow-wrap:break-word}
 /* (v1.4) 조판도구처럼 자체 시험지 타이포(용지·pt 설정)를 쓰는 화면용 옵트아웃.
-   class="ngd2-body ngd2-inherit" 로 쓰면 구조 규격(선지·박스·그림·수식)만 받고 서체·크기는 그 화면 것을 따른다. */
-.ngd2-body.ngd2-inherit{font-family:inherit;font-size:inherit;line-height:inherit;letter-spacing:inherit;word-spacing:inherit;color:inherit}
-.ngd2-body .katex{white-space:normal;font-size:1.06em}
-.ngd2-body .ngd2-math-unit{display:inline-block;white-space:nowrap;max-width:100%;vertical-align:baseline}
-.ngd2-body .ngd2-math-unit .katex{white-space:nowrap}
-.ngd2-body .ngd2-math-unit-long{display:block;overflow-x:auto;overflow-y:hidden;padding:2px 0;scrollbar-width:thin}
+   class="problem-render-body problem-render-inherit" 로 쓰면 구조 규격(선지·박스·그림·수식)만 받고 서체·크기는 그 화면 것을 따른다. */
+.problem-render-body.problem-render-inherit{font-family:inherit;font-size:inherit;line-height:inherit;letter-spacing:inherit;word-spacing:inherit;color:inherit}
+.problem-render-body .katex{white-space:normal;font-size:1.06em}
+.problem-render-body .problem-render-math-unit{display:inline-block;white-space:nowrap;max-width:100%;vertical-align:baseline}
+.problem-render-body .problem-render-math-unit .katex{white-space:nowrap}
+.problem-render-body .problem-render-math-unit-long{display:block;overflow-x:auto;overflow-y:hidden;padding:2px 0;scrollbar-width:thin}
 /* (v3.5) 인라인 분수는 글자 몸체보다 위아래가 크다. 분수가 있는 줄만 자동으로
    높여 다음 행과 분자·분모가 맞닿지 않게 한다. display 수식은 기존 문단 여백을 유지한다. */
-.ngd2-body .katex.ngd2-inline-frac,.cpb-wrap .katex.ngd2-inline-frac{display:inline-block;white-space:nowrap!important;padding:.14em 0 .22em;vertical-align:-.06em}
-.ngd2-body .katex.ngd2-tall-inline,.cpb-wrap .katex.ngd2-tall-inline{display:inline-block;white-space:nowrap!important;padding:.28em 0 .34em;vertical-align:middle}
-.ngd2-body:not(.ngd2-inherit) .ngd2-frac-line{line-height:2.04!important}
-.ngd2-body.ngd2-inherit .ngd2-frac-line{line-height:calc(var(--body-leading,1.9) + .12)!important}
-.cpb-wrap .ngd2-frac-line{line-height:2.04!important}
-.ngd2-inherit .cpb-wrap .ngd2-frac-line{line-height:calc(var(--body-leading,1.9) + .12)!important}
+.problem-render-body .katex.problem-render-inline-frac,.cpb-wrap .katex.problem-render-inline-frac{display:inline-block;white-space:nowrap!important;padding:.14em 0 .22em;vertical-align:-.06em}
+.problem-render-body .katex.problem-render-tall-inline,.cpb-wrap .katex.problem-render-tall-inline{display:inline-block;white-space:nowrap!important;padding:.28em 0 .34em;vertical-align:middle}
+.problem-render-body:not(.problem-render-inherit) .problem-render-frac-line{line-height:2.04!important}
+.problem-render-body.problem-render-inherit .problem-render-frac-line{line-height:calc(var(--body-leading,1.9) + .12)!important}
+.cpb-wrap .problem-render-frac-line{line-height:2.04!important}
+.problem-render-inherit .cpb-wrap .problem-render-frac-line{line-height:calc(var(--body-leading,1.9) + .12)!important}
 /* (v1.2 재웅) "지수가 좀 더 컸으면" — KaTeX 첨자 기본 0.70em(scriptstyle)/0.50em(scriptscriptstyle) 를 상향.
    수직 위치(top/pstrut)는 부모 크기 기준 em 이라 건드리지 않아도 그대로 유지된다.
    \sum·\int 의 위·아래 극한(.op-limits)에는 적용하지 않는다 — 거긴 이미 충분히 큼. */
-.ngd2-body .katex .msupsub .reset-size6.size3{font-size:.79em}
-.ngd2-body .katex .msupsub .reset-size6.size1{font-size:.58em}
-.ngd2-body .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;margin:6px 0;padding:2px 0}
-.ngd2-body.ngd2-inherit .katex-display{overflow:visible!important;max-width:100%;scrollbar-width:none}
-.ngd2-body.ngd2-inherit .katex-display::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
-.ngd2-body .katex .kvbrace{display:inline-block;transform:scaleX(.72) scaleY(1.16);transform-origin:center center}
-.ngd2-body .katex .kvbrace-l{margin-left:-.04em;margin-right:-.08em}
-.ngd2-body .katex .kvbrace-r{margin-left:-.08em;margin-right:-.04em}
-.ngd2-body .katex.kcases{display:inline-block;padding:.12em 0}
-.ngd2-body .katex.kcases .kcasebrace{transform:scaleX(.68) scaleY(1.20)}
-.ngd2-body .katex.kcases .kcaserow{transform:translateY(var(--kcase-row-shift,0));transform-origin:center}
-.ngd2-body .katex .kcompose{display:inline-block;font-size:.70em;position:relative;top:-.03em}
-.ngd2-body img{max-width:100%}
-.ngd2-body:not(.ngd2-inherit) .hp{margin:4px 0;line-height:1.85}
-.ngd2-body:not(.ngd2-inherit) .hp.htall{line-height:2.5;margin:7px 0}
+.problem-render-body .katex .msupsub .reset-size6.size3{font-size:.79em}
+.problem-render-body .katex .msupsub .reset-size6.size1{font-size:.58em}
+.problem-render-body .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;margin:6px 0;padding:2px 0}
+.problem-render-body.problem-render-inherit .katex-display{overflow:visible!important;max-width:100%;scrollbar-width:none}
+.problem-render-body.problem-render-inherit .katex-display::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+.problem-render-body .katex .kvbrace{display:inline-block;transform:scaleX(.72) scaleY(1.16);transform-origin:center center}
+.problem-render-body .katex .kvbrace-l{margin-left:-.04em;margin-right:-.08em}
+.problem-render-body .katex .kvbrace-r{margin-left:-.08em;margin-right:-.04em}
+.problem-render-body .katex.kcases{display:inline-block;padding:.12em 0}
+.problem-render-body .katex.kcases .kcasebrace{transform:scaleX(.68) scaleY(1.20)}
+.problem-render-body .katex.kcases .kcaserow{transform:translateY(var(--kcase-row-shift,0));transform-origin:center}
+.problem-render-body .katex .kcompose{display:inline-block;font-size:.70em;position:relative;top:-.03em}
+.problem-render-body img{max-width:100%}
+.problem-render-body:not(.problem-render-inherit) .hp{margin:4px 0;line-height:1.85}
+.problem-render-body:not(.problem-render-inherit) .hp.htall{line-height:2.5;margin:7px 0}
 /* 해설은 풀이 단계 사이를 문제 본문보다 넉넉히 띄운다. 조판 상속 모드는 별도 종이 규격을 유지한다. */
-.pksol.ngd2-body:not(.ngd2-inherit) .hp,
-.detailsolution.ngd2-body:not(.ngd2-inherit) .hp,
-.sol.ngd2-body:not(.ngd2-inherit) .hp,
-.qi .sol.ngd2-body:not(.ngd2-inherit) .hp{margin:6px 0;line-height:2.05}
-.pksol.ngd2-body:not(.ngd2-inherit) .hp.htall,
-.detailsolution.ngd2-body:not(.ngd2-inherit) .hp.htall,
-.sol.ngd2-body:not(.ngd2-inherit) .hp.htall,
-.qi .sol.ngd2-body:not(.ngd2-inherit) .hp.htall{margin:9px 0;line-height:2.65}
-.pksol.ngd2-body:not(.ngd2-inherit) .katex-display,
-.detailsolution.ngd2-body:not(.ngd2-inherit) .katex-display,
-.sol.ngd2-body:not(.ngd2-inherit) .katex-display{margin:.55em 0 .7em}
-.ngd2-body .hdisp{display:block;margin:.35em 0 .35em 1.4em}
+.pksol.problem-render-body:not(.problem-render-inherit) .hp,
+.detailsolution.problem-render-body:not(.problem-render-inherit) .hp,
+.sol.problem-render-body:not(.problem-render-inherit) .hp,
+.qi .sol.problem-render-body:not(.problem-render-inherit) .hp{margin:6px 0;line-height:2.05}
+.pksol.problem-render-body:not(.problem-render-inherit) .hp.htall,
+.detailsolution.problem-render-body:not(.problem-render-inherit) .hp.htall,
+.sol.problem-render-body:not(.problem-render-inherit) .hp.htall,
+.qi .sol.problem-render-body:not(.problem-render-inherit) .hp.htall{margin:9px 0;line-height:2.65}
+.pksol.problem-render-body:not(.problem-render-inherit) .katex-display,
+.detailsolution.problem-render-body:not(.problem-render-inherit) .katex-display,
+.sol.problem-render-body:not(.problem-render-inherit) .katex-display{margin:.55em 0 .7em}
+.problem-render-body .hdisp{display:block;margin:.35em 0 .35em 1.4em}
 /* 해설의 HWP 증감표 복원. 칸 넓이를 같게 나누고 기준값·부호·함수값을
    행으로 묶어 세로 텍스트 나열로 붕괴하지 않게 한다. */
-.ngd2-body .ngd2-variation-table{width:100%;max-width:34em;margin:.65em auto;border-collapse:collapse;table-layout:fixed;font-size:.96em;line-height:1.55}
-.ngd2-body .ngd2-variation-table th,.ngd2-body .ngd2-variation-table td{border:1px solid #8f99a8;padding:.42em .34em;text-align:center;vertical-align:middle;white-space:nowrap}
-.ngd2-body .ngd2-variation-table th{width:4.5em;background:#f4f6f9;font-weight:700;color:#243451}
-.ngd2-body .ngd2-variation-table .katex{white-space:nowrap}
-.ngd2-body .hflow{display:block}
-.ngd2-body .htbl{border-collapse:collapse;margin:8px auto;font-size:.95em}
-.ngd2-body .htbl td{border:1px solid #333;padding:4px 10px;text-align:center}
-.ngd2-body .hchoice{border-collapse:collapse;margin:6px 0;width:100%}
-.ngd2-body .hchoice td{border:none;padding:2px 8px;text-align:left}
-.ngd2-body .hchoicegrid{border-collapse:collapse;margin:10px auto;max-width:100%}
-.ngd2-body .hchoicegrid td.hchoicecell{border:none!important;padding:4px 8px;text-align:center;vertical-align:middle}
-.ngd2-body .hchoices{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+.problem-render-body .problem-render-variation-table{width:100%;max-width:34em;margin:.65em auto;border-collapse:collapse;table-layout:fixed;font-size:.96em;line-height:1.55}
+.problem-render-body .problem-render-variation-table th,.problem-render-body .problem-render-variation-table td{border:1px solid #8f99a8;padding:.42em .34em;text-align:center;vertical-align:middle;white-space:nowrap}
+.problem-render-body .problem-render-variation-table th{width:4.5em;background:#f4f6f9;font-weight:700;color:#243451}
+.problem-render-body .problem-render-variation-table .katex{white-space:nowrap}
+.problem-render-body .hflow{display:block}
+.problem-render-body .htbl{border-collapse:collapse;margin:8px auto;font-size:.95em}
+.problem-render-body .htbl td{border:1px solid #333;padding:4px 10px;text-align:center}
+.problem-render-body .hchoice{border-collapse:collapse;margin:6px 0;width:100%}
+.problem-render-body .hchoice td{border:none;padding:2px 8px;text-align:left}
+.problem-render-body .hchoicegrid{border-collapse:collapse;margin:10px auto;max-width:100%}
+.problem-render-body .hchoicegrid td.hchoicecell{border:none!important;padding:4px 8px;text-align:center;vertical-align:middle}
+.problem-render-body .hchoices{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
   column-gap:14px;row-gap:9px;margin:10px 0 2px;align-items:baseline}
-.ngd2-body .hch{min-width:0;white-space:nowrap}
-.ngd2-body .hbox{border:1.5px solid #333;border-radius:2px;padding:8px 12px;margin:8px 0}
+.problem-render-body .hch{min-width:0;white-space:nowrap}
+.problem-render-body .hbox{border:1.5px solid #333;border-radius:2px;padding:8px 12px;margin:8px 0}
 /* (v1.2) 조건 박스 — 조건마다 한 줄, 접힘줄은 라벨 폭만큼 들여쓰기(시험지 관례) */
-.ngd2-body .hbox.hcond{padding:9px 14px;margin:10px 0}
-.ngd2-body .hcondr,.ngd2-body .hbox.hcond>.hp{padding-left:2.05em;text-indent:-2.05em;margin:3px 0;line-height:1.85}
+.problem-render-body .hbox.hcond{padding:9px 14px;margin:10px 0}
+.problem-render-body .hcondr,.problem-render-body .hbox.hcond>.hp{padding-left:2.05em;text-indent:-2.05em;margin:3px 0;line-height:1.85}
 /* (v1.6) 〈보 기〉 박스 — 머리표는 가운데, 항목은 표지 폭만큼 행잉 인덴트 */
-.ngd2-body .hbox.hbogi{position:relative;padding-top:18px;margin-top:18px}
+.problem-render-body .hbox.hbogi{position:relative;padding-top:18px;margin-top:18px}
 /* 보기 제목이 상단 테두리 중앙에 걸쳐 배경으로 선을 끊는 시험지 범례 형태 */
-.ngd2-body .hbogit{position:absolute;z-index:1;top:0;left:50%;transform:translate(-50%,-50%);white-space:nowrap;
+.problem-render-body .hbogit{position:absolute;z-index:1;top:0;left:50%;transform:translate(-50%,-50%);white-space:nowrap;
   box-sizing:border-box;min-width:92px;padding:1px 12px;background:#fff;text-align:center;font-weight:700;
   letter-spacing:.28em;line-height:1.35;margin:0;border:0;color:#202839}
-.pksol.ngd2-body .hbogit{background:#f7f9ff}
-.ngd2-body .hbogi .hcondr{padding-left:1.5em;text-indent:-1.5em}
-.ngd2-body:not(.ngd2-inherit) .hfig,.ngd2-body:not(.ngd2-inherit) img.hfig{display:inline-block;vertical-align:middle;margin:4px 6px;
+.pksol.problem-render-body .hbogit{background:#f7f9ff}
+.problem-render-body .hbogi .hcondr{padding-left:1.5em;text-indent:-1.5em}
+.problem-render-body:not(.problem-render-inherit) .hfig,.problem-render-body:not(.problem-render-inherit) img.hfig{display:inline-block;vertical-align:middle;margin:4px 6px;
   max-width:min(100%,440px);max-height:300px;height:auto !important;object-fit:contain}
-.ngd2-body:not(.ngd2-inherit) svg{max-width:min(100%,440px);max-height:300px}
-/* 조판도구(.ngd2-inherit)는 용지 기준으로 그림을 실제 크기대로 앉힌다 — 화면용 300px 상한을 적용하지 않는다 */
-.ngd2-body.ngd2-inherit .hfig,.ngd2-body.ngd2-inherit img.hfig{max-width:100%;height:auto}
-.ngd2-body .hfigwrap{position:relative;overflow:visible;line-height:1}
-.ngd2-body .hfigwrap>img.hfig{display:block!important;margin:0!important;width:100%!important;height:100%!important;
+.problem-render-body:not(.problem-render-inherit) svg{max-width:min(100%,440px);max-height:300px}
+/* 조판도구(.problem-render-inherit)는 용지 기준으로 그림을 실제 크기대로 앉힌다 — 화면용 300px 상한을 적용하지 않는다 */
+.problem-render-body.problem-render-inherit .hfig,.problem-render-body.problem-render-inherit img.hfig{max-width:100%;height:auto}
+.problem-render-body .hfigwrap{position:relative;overflow:visible;line-height:1}
+.problem-render-body .hfigwrap>img.hfig{display:block!important;margin:0!important;width:100%!important;height:100%!important;
   max-width:none!important;max-height:none!important;object-fit:fill!important}
-.ngd2-body .hfigwrap>.hfiglabel,.ngd2-body .hfigwrap>span:not(.hfigwrap){display:block;max-width:none;
+.problem-render-body .hfigwrap>.hfiglabel,.problem-render-body .hfigwrap>span:not(.hfigwrap){display:block;max-width:none;
   white-space:nowrap!important;overflow:visible;transform:var(--hfig-shift,translate(0,0)) scale(var(--hfig-label-scale,1));transform-origin:left top}
-.ngd2-body .hfigwrap>.hfiglabel-invalid{display:none!important}
-.ngd2-body .hfigwrap>span .katex,.ngd2-body .hfigwrap>span .katex *{white-space:nowrap!important}
+.problem-render-body .hfigwrap>.hfiglabel-invalid{display:none!important}
+.problem-render-body .hfigwrap>span .katex,.problem-render-body .hfigwrap>span .katex *{white-space:nowrap!important}
 /* (v1.9) 아무도 채우지 않은 그림 자리표시는 흔적을 남기지 않는다 */
-.ngd2-body .hfigslot{display:none}
+.problem-render-body .hfigslot{display:none}
 /* (2026-08-09) 해설 읽기 규격 — 인라인 수식은 줄 중간에서 쪼개지 않는다. 긴 display 수식은 가로 스크롤. */
 .pksol .katex,.sol .katex,.qi .sol .katex{white-space:nowrap}
 .pksol .katex-display .katex,.sol .katex-display .katex{white-space:normal}
 .pksol b,.sol b{color:#123c78}
 /* KaTeX 파싱 실패 시 빨간 원문 대신 본문색으로 — 읽기 방해 최소화 */
-.ngd2-body .katex-error{color:inherit!important}
+.problem-render-body .katex-error{color:inherit!important}
 /* (2026-08-09) 표준 정답 배지 — 해설 최상단 통일 표기 */
-.ngd2-body .solans{display:flex;align-items:center;gap:9px;margin:0 0 9px;padding:0 0 8px;border-bottom:1px solid #dbe4f6}
-.ngd2-body .solans .solansl{flex:none;background:#123c78;color:#fff;border-radius:6px;padding:3px 9px;
+.problem-render-body .solans{display:flex;align-items:center;gap:9px;margin:0 0 9px;padding:0 0 8px;border-bottom:1px solid #dbe4f6}
+.problem-render-body .solans .solansl{flex:none;background:#123c78;color:#fff;border-radius:6px;padding:3px 9px;
   font:800 11px/1 -apple-system,'Noto Sans KR',sans-serif;letter-spacing:.04em}
-.ngd2-body .solans .solansv{font-weight:700;color:#123c78;min-width:0}
-.ngd2-body .sollead{margin:2px 0 8px;font:800 12px/1.35 -apple-system,'Noto Sans KR',sans-serif;color:#304a78;letter-spacing:.04em}
-.ngd2-body .solstep{display:grid;grid-template-columns:3.25em minmax(0,1fr);gap:.35em;margin:10px 0 4px;padding:0;text-indent:0}
-.ngd2-body .solstep>span{display:block;color:#365a96;font:800 10.5px/1.35 -apple-system,'Noto Sans KR',sans-serif;letter-spacing:.03em}
-.ngd2-body .solstep>div{min-width:0;line-height:1.55}
-.ngd2-body .hfigs{text-align:center;margin:9px 0;line-height:1}
-.ngd2-body .hfigs img.hfig{margin:2px 5px}
-.ngd2-body .ngd2-figure-zone{display:flex;clear:both;width:100%;box-sizing:border-box;align-items:center;justify-content:center;
+.problem-render-body .solans .solansv{font-weight:700;color:#123c78;min-width:0}
+.problem-render-body .sollead{margin:2px 0 8px;font:800 12px/1.35 -apple-system,'Noto Sans KR',sans-serif;color:#304a78;letter-spacing:.04em}
+.problem-render-body .solstep{display:grid;grid-template-columns:3.25em minmax(0,1fr);gap:.35em;margin:10px 0 4px;padding:0;text-indent:0}
+.problem-render-body .solstep>span{display:block;color:#365a96;font:800 10.5px/1.35 -apple-system,'Noto Sans KR',sans-serif;letter-spacing:.03em}
+.problem-render-body .solstep>div{min-width:0;line-height:1.55}
+.problem-render-body .hfigs{text-align:center;margin:9px 0;line-height:1}
+.problem-render-body .hfigs img.hfig{margin:2px 5px}
+.problem-render-body .problem-render-figure-zone{display:flex;clear:both;width:100%;box-sizing:border-box;align-items:center;justify-content:center;
   gap:10px;margin:.85em 0 1.05em;text-align:center;line-height:1;break-inside:avoid;page-break-inside:avoid}
-.ngd2-body .ngd2-figure-zone>img,.ngd2-body .ngd2-figure-zone>svg,
-.ngd2-body .ngd2-figure-zone>.hfigs,.ngd2-body .ngd2-figure-zone>.nvfig,
-.ngd2-body .ngd2-figure-zone>figure,.ngd2-body .ngd2-figure-zone>.hfigwrap{flex:0 1 auto;margin:0!important;max-width:min(82%,420px);max-height:300px}
-.ngd2-body .ngd2-figure-zone>.hfigs{display:flex;align-items:center;justify-content:center;gap:10px}
-.ngd2-body .ngd2-figure-zone>img{height:auto!important;object-fit:contain}
-.ngd2-body .ngd2-figure-zone>svg{height:auto!important}
-.ngd2-body .ngd2-figure-zone>.hfigs img.hfig{margin:0!important;max-width:min(100%,420px);max-height:300px}
-.ngd2-body .ngd2-figure-zone>.nvfig>svg,.ngd2-body .ngd2-figure-zone>figure>svg{display:block;margin:auto;width:100%;height:auto;max-width:100%;max-height:300px}
-.ngd2-body .ngd2-figure-zone>.ngd2-fig-standard{width:min(72%,420px)}
-.ngd2-body .ngd2-figure-zone>.ngd2-fig-wide{width:min(88%,440px)}
-.ngd2-body .ngd2-figure-zone>.ngd2-fig-tall{width:min(54%,300px)}
+.problem-render-body .problem-render-figure-zone>img,.problem-render-body .problem-render-figure-zone>svg,
+.problem-render-body .problem-render-figure-zone>.hfigs,.problem-render-body .problem-render-figure-zone>.nvfig,
+.problem-render-body .problem-render-figure-zone>figure,.problem-render-body .problem-render-figure-zone>.hfigwrap{flex:0 1 auto;margin:0!important;max-width:min(82%,420px);max-height:300px}
+.problem-render-body .problem-render-figure-zone>.hfigs{display:flex;align-items:center;justify-content:center;gap:10px}
+.problem-render-body .problem-render-figure-zone>img{height:auto!important;object-fit:contain}
+.problem-render-body .problem-render-figure-zone>svg{height:auto!important}
+.problem-render-body .problem-render-figure-zone>.hfigs img.hfig{margin:0!important;max-width:min(100%,420px);max-height:300px}
+.problem-render-body .problem-render-figure-zone>.nvfig>svg,.problem-render-body .problem-render-figure-zone>figure>svg{display:block;margin:auto;width:100%;height:auto;max-width:100%;max-height:300px}
+.problem-render-body .problem-render-figure-zone>.problem-render-fig-standard{width:min(72%,420px)}
+.problem-render-body .problem-render-figure-zone>.problem-render-fig-wide{width:min(88%,440px)}
+.problem-render-body .problem-render-figure-zone>.problem-render-fig-tall{width:min(54%,300px)}
 /* 같은 문제에 그림이 여러 장이면 한 장이 폭을 독점하지 않게 한다. */
-.ngd2-body .ngd2-figure-zone>img:nth-last-child(n+2),.ngd2-body .ngd2-figure-zone>img:nth-last-child(n+2)~img{max-width:46%}
+.problem-render-body .problem-render-figure-zone>img:nth-last-child(n+2),.problem-render-body .problem-render-figure-zone>img:nth-last-child(n+2)~img{max-width:46%}
 /* 조판에서는 화면 px가 아니라 단 폭과 종이 높이를 기준으로 통일한다. */
-.ngd2-body.ngd2-inherit .ngd2-figure-zone>img,.ngd2-body.ngd2-inherit .ngd2-figure-zone>svg,
-.ngd2-body.ngd2-inherit .ngd2-figure-zone>.hfigs,.ngd2-body.ngd2-inherit .ngd2-figure-zone>.nvfig,
-.ngd2-body.ngd2-inherit .ngd2-figure-zone>figure,.ngd2-body.ngd2-inherit .ngd2-figure-zone>.hfigwrap{max-width:82%;max-height:72mm}
-.ngd2-body.ngd2-inherit .ngd2-figure-zone>.ngd2-fig-standard{width:72%}
-.ngd2-body.ngd2-inherit .ngd2-figure-zone>.ngd2-fig-wide{width:88%}
-.ngd2-body.ngd2-inherit .ngd2-figure-zone>.ngd2-fig-tall{width:54%}
-.ngd2-body .ngd2-figure-zone+.nchoices,.ngd2-body .ngd2-figure-zone+.hchoices,
-.ngd2-body .ngd2-figure-zone+.hchoicegrid,.ngd2-body .ngd2-figure-zone+.hchoice{margin-top:1.1em;padding-top:.8em;text-align:left}
-.ngd2-body .hchoices .hch,.ngd2-body .nchoices .nchoice{text-align:left}
-.ngd2-body .ngd2-solution-figures{margin:.8em 0 1em}
-.ngd2-body .hpic{color:#888;font-size:.85em;border:1px dashed #bbb;padding:1px 6px;border-radius:3px}
+.problem-render-body.problem-render-inherit .problem-render-figure-zone>img,.problem-render-body.problem-render-inherit .problem-render-figure-zone>svg,
+.problem-render-body.problem-render-inherit .problem-render-figure-zone>.hfigs,.problem-render-body.problem-render-inherit .problem-render-figure-zone>.nvfig,
+.problem-render-body.problem-render-inherit .problem-render-figure-zone>figure,.problem-render-body.problem-render-inherit .problem-render-figure-zone>.hfigwrap{max-width:82%;max-height:72mm}
+.problem-render-body.problem-render-inherit .problem-render-figure-zone>.problem-render-fig-standard{width:72%}
+.problem-render-body.problem-render-inherit .problem-render-figure-zone>.problem-render-fig-wide{width:88%}
+.problem-render-body.problem-render-inherit .problem-render-figure-zone>.problem-render-fig-tall{width:54%}
+.problem-render-body .problem-render-figure-zone+.nchoices,.problem-render-body .problem-render-figure-zone+.hchoices,
+.problem-render-body .problem-render-figure-zone+.hchoicegrid,.problem-render-body .problem-render-figure-zone+.hchoice{margin-top:1.1em;padding-top:.8em;text-align:left}
+.problem-render-body .hchoices .hch,.problem-render-body .nchoices .nchoice{text-align:left}
+.problem-render-body .problem-render-solution-figures{margin:.8em 0 1em}
+.problem-render-body .hpic{color:#888;font-size:.85em;border:1px dashed #bbb;padding:1px 6px;border-radius:3px}
 /* 표준 5지선다는 실폭 기준 5개 한 줄 → 3+2 → 1개씩. max-content 트랙을 써 짧은 선지는
    한 줄에 넉넉히 펴고, 3+2의 둘째 줄은 첫 두 열에 놓는다. */
-.ngd2-body .nchoices{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
-  column-gap:var(--ngd2-choice-gap);row-gap:9px;margin-top:12px;padding-top:10px;border-top:1px dashed #e8ebf3;align-items:baseline}
-.ngd2-body .nchoice{min-width:0;white-space:nowrap}
-.ngd2-body .ncnum{color:#123c78;font-weight:600;margin-right:2px}
-.ngd2-body .nchoices.c5{grid-template-columns:repeat(5,max-content);justify-content:space-between}
-.ngd2-body .nchoices.c4{grid-template-columns:repeat(4,max-content);justify-content:space-between}
-.ngd2-body .nchoices.c3{grid-template-columns:repeat(3,max-content);justify-content:space-between}
-.ngd2-body .nchoices.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.ngd2-body .nchoices.c1,.ngd2-body .nchoices.vert{grid-template-columns:minmax(0,1fr);row-gap:5px}
-.ngd2-body .nchoices.c1 .nchoice,.ngd2-body .nchoices.vert .nchoice{white-space:normal}
-.ngd2-body .hchoices.c5{grid-template-columns:repeat(5,max-content);justify-content:space-between}
-.ngd2-body .hchoices.c4{grid-template-columns:repeat(4,max-content);justify-content:space-between}
-.ngd2-body .hchoices.c3{grid-template-columns:repeat(3,max-content);justify-content:space-between}
-.ngd2-body .hchoices.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.ngd2-body .hchoices.c1,.ngd2-body .hchoices.vert{grid-template-columns:minmax(0,1fr);row-gap:5px}
-.ngd2-body .hchoices.c1 .hch,.ngd2-body .hchoices.vert .hch{white-space:normal}`;
+.problem-render-body .nchoices{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  column-gap:var(--problem-render-choice-gap);row-gap:9px;margin-top:12px;padding-top:10px;border-top:1px dashed #e8ebf3;align-items:baseline}
+.problem-render-body .nchoice{min-width:0;white-space:nowrap}
+.problem-render-body .ncnum{color:#123c78;font-weight:600;margin-right:2px}
+.problem-render-body .nchoices.c5{grid-template-columns:repeat(5,max-content);justify-content:space-between}
+.problem-render-body .nchoices.c4{grid-template-columns:repeat(4,max-content);justify-content:space-between}
+.problem-render-body .nchoices.c3{grid-template-columns:repeat(3,max-content);justify-content:space-between}
+.problem-render-body .nchoices.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.problem-render-body .nchoices.c1,.problem-render-body .nchoices.vert{grid-template-columns:minmax(0,1fr);row-gap:5px}
+.problem-render-body .nchoices.c1 .nchoice,.problem-render-body .nchoices.vert .nchoice{white-space:normal}
+.problem-render-body .hchoices.c5{grid-template-columns:repeat(5,max-content);justify-content:space-between}
+.problem-render-body .hchoices.c4{grid-template-columns:repeat(4,max-content);justify-content:space-between}
+.problem-render-body .hchoices.c3{grid-template-columns:repeat(3,max-content);justify-content:space-between}
+.problem-render-body .hchoices.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.problem-render-body .hchoices.c1,.problem-render-body .hchoices.vert{grid-template-columns:minmax(0,1fr);row-gap:5px}
+.problem-render-body .hchoices.c1 .hch,.problem-render-body .hchoices.vert .hch{white-space:normal}`;
     (document.head||document.documentElement).appendChild(st);
   }catch(e){}
 
@@ -1895,10 +1895,10 @@ $\\therefore m+n+k=1+2+0=3$`;
        스크립트 실행 직후·네트워크 응답 전에 끼므로 첫 렌더부터 적용된다. 이미 위임된 화면은 건드리지 않는다. */
   try{ setTimeout(function(){ try{
     var m=window.math;
-    if(typeof m==="function" && !m.__ngd2 && /₩/.test(String(m))){
+    if(typeof m==="function" && !m.__problemRender && /₩/.test(String(m))){
       var f=function(t){ return mathText(t); };
-      f.__ngd2=1; window.math=f;
-      if(window.console&&console.info) console.info("[표시공통] 로컬 math() → NGD2Display.mathText 로 위임(자동)");
+      f.__problemRender=1; window.math=f;
+      if(window.console&&console.info) console.info("[표시공통] 로컬 math() → ProblemDisplay.mathText 로 위임(자동)");
     }
   }catch(e){} },0); }catch(e){}
 
@@ -1906,7 +1906,7 @@ $\\therefore m+n+k=1+2+0=3$`;
           figures,withFigures,withSolFigures,problemFigures,solutionFigures,figSlots,dropSlots,stripHwpDump,splitMath,solutionOcrJunk};
 })();
 
-/* NGD2 조판 진입/복귀 세션 규약 (2026-08-14)
+/* Problem rendering 조판 진입/복귀 세션 규약 (2026-08-14)
    - 조판으로 새 자료를 보내면 이전 조판 초안은 섞지 않는다.
    - 조판에서 직전 화면으로 돌아갈 때 그 화면의 브라우저 상태를 그대로 복원한다.
    - 복귀한 화면에서 사용자가 처음 조작하면 방금 조판 초안을 폐기한다.
@@ -1914,10 +1914,10 @@ $\\therefore m+n+k=1+2+0=3$`;
 (function(){
   "use strict";
   var K={
-    draft:"ngd2_layout_draft_v2",
-    ret:"ngd2_typeset_return_v1",
-    entry:"ngd2_typeset_entry_v1",
-    armed:"ngd2_typeset_reset_armed_v1"
+    draft:"problem-render_layout_draft_v2",
+    ret:"problem-render_typeset_return_v1",
+    entry:"problem-render_typeset_entry_v1",
+    armed:"problem-render_typeset_reset_armed_v1"
   };
   var interactionGuard=false;
   function nowToken(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8);}
@@ -1968,7 +1968,7 @@ $\\therefore m+n+k=1+2+0=3$`;
     }
     events.forEach(function(n){document.addEventListener(n,reset,true);});
   }
-  window.NGD2TypesetSession={keys:K,enter:enter,clearDraft:clearDraft,
+  window.ProblemTypesetSession={keys:K,enter:enter,clearDraft:clearDraft,
     ensureReturnContext:ensureReturnContext,returnToPrevious:returnToPrevious,
     armResetOnInteraction:armResetOnInteraction,isTypesetHref:isTypesetHref};
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",armResetOnInteraction,{once:true});

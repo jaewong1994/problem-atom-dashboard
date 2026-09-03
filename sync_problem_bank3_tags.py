@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import urllib.parse
 import urllib.request
@@ -9,9 +10,11 @@ from pathlib import Path
 
 
 DASH = Path(__file__).resolve().parent
-NGD2_CONFIG = Path(
-    r"C:\Users\jaewo\OneDrive\바탕 화면\학원\NGD2_새폴더_풀세트\공장\적재설정.json"
-)
+LOCAL_SOURCE_FILE = DASH / "source-bank-root.local.txt"
+_source_root = os.environ.get("PROBLEM_BANK_ROOT", "").strip()
+if not _source_root and LOCAL_SOURCE_FILE.exists():
+    _source_root = LOCAL_SOURCE_FILE.read_text(encoding="utf-8-sig").strip()
+SOURCE_CONFIG = (Path(_source_root) / "적재설정.json") if _source_root else DASH / "_source_bank_not_configured.json"
 OUTPUT = DASH / "problem-bank3-tags.json"
 PAGE_SIZE = 1000
 
@@ -87,7 +90,7 @@ def fetch_rows(url: str, key: str) -> list[dict]:
 
 
 def main() -> None:
-    config = json.loads(NGD2_CONFIG.read_text(encoding="utf-8"))
+    config = json.loads(SOURCE_CONFIG.read_text(encoding="utf-8"))
     rows = fetch_rows(config["url"], config["key"])
     records = []
     for row in rows:
@@ -115,7 +118,7 @@ def main() -> None:
     payload = {
         "schema": "problem-atom/problem-bank3-course-tags/1.0",
         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "source": "NGD2 문제은행3 읽기 전용 과목·단원 메타",
+        "source": "문제은행3 읽기 전용 과목·단원 메타",
         "note": "세미나 사람검수 온톨로지와 분리된 탐색용 태그이며 자동 병합하지 않는다.",
         "courseLabels": COURSE_LABELS,
         "records": records,

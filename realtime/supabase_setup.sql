@@ -1,5 +1,5 @@
 -- Problem Atom 전용 Supabase 프로젝트의 SQL Editor에서 한 번 실행합니다.
--- NGD2 프로젝트에는 실행하지 않습니다.
+-- 다른 운영 프로젝트에는 실행하지 않습니다.
 
 create table if not exists public.pa_members (
   user_id uuid primary key references auth.users(id) on delete cascade,
