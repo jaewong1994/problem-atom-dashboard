@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-03T09:52:21+00:00",
+  "generatedAt": "2026-09-03T16:05:39+00:00",
   "scope": "평가원 2006~2026년 6·9월 및 수능 2007~2026학년도, 교육청 탭 준비",
   "exams": [
     {
@@ -21,7 +21,7 @@
               "id": "kice-2026-6-기하-03",
               "number": 3,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": null,
               "images": [],
               "body": "두 수열 $\\left\\{a_{n} \\right\\}\\,$, $\\left\\{b_{n} \\right\\}\\,$에 대하여\n$\\sum_{k=1}^{5} \\left(2a_{k}+b_{k} \\right)=19\\,$, $\\sum_{k=1}^{5} \\left(a_{k}+b_{k} \\right)=10\\,$\n일 때, $\\sum_{k=1}^{5}a_{k}\\,$의 값은?\n① $6\\,$ ② $7\\,$ ③ $8\\,$\n④ $9\\,$ ⑤ $10$",
@@ -30,14 +30,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "수열"
             },
             {
               "id": "kice-2026-6-기하-04",
               "number": 4,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": null,
               "images": [
                 "assets/questions/kice-2026-6-공통/item_004.png"
@@ -48,14 +48,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "함수의 극한과 연속"
             },
             {
               "id": "kice-2026-6-기하-05",
               "number": 5,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": null,
               "images": [],
               "body": "함수 $f \\left(x \\right)= \\left(3x-1 \\right) \\left(x^{2}-2x+2 \\right)\\,$에 대하여 $f\\,' \\left(2 \\right)\\,$의 값은?\n① $16\\,$ ② $18\\,$ ③ $20\\,$\n④ $22\\,$ ⑤ $24$",
@@ -64,14 +64,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "미분"
             },
             {
               "id": "kice-2026-6-기하-06",
               "number": 6,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": null,
               "images": [],
               "body": "$\\frac{3 \\pi }{2} < \\theta < 2 \\pi\\,$인 $\\theta\\,$에 대하여 $\\cos^{2}\\, \\theta =\\frac{1}{10}\\,$일 때, $\\tan\\, \\theta\\,$의 값은?\n① $-3\\,$ ② $-2\\,$ ③ $-1\\,$\n④ $2\\,$ ⑤ $3$",
@@ -80,14 +80,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "삼각함수"
             },
             {
               "id": "kice-2026-6-기하-07",
               "number": 7,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": null,
               "images": [],
               "body": "함수 $f \\left(x \\right)=x^{3}+ax+9\\,$는 $x=\\,-1\\,$에서 극대이다. 함수 $f \\left(x \\right)\\,$의 극솟값은? (단, $a\\,$는 상수이다.)\n① $6\\,$ ② $7\\,$ ③ $8\\,$\n④ $9\\,$ ⑤ $10$",
@@ -96,14 +96,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "미분"
             },
             {
               "id": "kice-2026-6-기하-08",
               "number": 8,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": null,
               "images": [
                 "assets/questions/kice-2026-6-공통/item_008.png"
@@ -114,14 +114,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "삼각함수"
             },
             {
               "id": "kice-2026-6-기하-09",
               "number": 9,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": null,
               "images": [],
               "body": "시각 $t=0\\,$일 때 동시에 원점을 출발하여 수직선 위를 움직이는 두 점 ${{P}}\\,$, ${{Q}}\\,$가 있다. 시각이 $t\\, \\left(t \\geq 0 \\right)\\,$일 때 두 점 ${{P}}\\,$, ${{Q}}\\,$의 속도가 각각\n$v_{1} \\left(t \\right)=t^{2}-t\\,$, $v_{2} \\left(t \\right)=t\\,$\n이다. 출발한 후 시각 $t=k\\,$에서 두 점 ${{P}}\\,$, ${{Q}}\\,$의 위치가 같아질 때, 양수 $k\\,$의 값은?\n① $1\\,$ ② $2\\,$ ③ $3\\,$\n④ $4\\,$ ⑤ $5$",
@@ -130,14 +130,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "적분"
             },
             {
               "id": "kice-2026-6-기하-10",
               "number": 10,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": null,
               "images": [],
               "body": "두 양수 $a\\,$, $b\\,$가\n$\\log\\,_{9}\\,a+ \\log\\,_{3}\\,b=2\\,$, $\\log\\,_{3}\\,a=8 \\log\\,_{9}\\,b\\,$\n를 만족시킬 때, $\\frac{a}{b}\\,$의 값은?\n① $1\\,$ ② $3\\,$ ③ $9\\,$\n④ $27\\,$ ⑤ $81$",
@@ -146,14 +146,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "지수함수와 로그함수"
             },
             {
               "id": "kice-2026-6-기하-11",
               "number": 11,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": null,
               "images": [],
               "body": "일차함수 $f \\left(x \\right)\\,$에 대하여\n$\\lim_{x\\,\\rightarrow\\, a}\\frac{f \\left(x+2 \\right)}{x \\left(f \\left(x \\right)-3 \\right)}\\,$\n의 값이 $a=0\\,$일 때 존재하고 $a=3\\,$일 때 존재하지 않는다. $f \\left(4 \\right)\\,$의 값은?\n① $6\\,$ ② $7\\,$ ③ $8\\,$\n④ $9\\,$ ⑤ $10$",
@@ -162,14 +162,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "함수의 극한과 연속"
             },
             {
               "id": "kice-2026-6-기하-12",
               "number": 12,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": null,
               "images": [],
               "body": "공비가 양수인 등비수열 $\\left\\{a_{n} \\right\\}\\,$이\n$2a_{1} \\left(a_{1}+a_{3} \\right)=5a_{2} \\left(a_{1}+a_{2} \\right)=20\\,$\n을 만족시킬 때, $a _{1} \\times a _{6} \\,$의 값은?\n① $\\frac{1}{27}\\,$ $\\frac{1}{9}\\,$ $\\frac{1}{3}\\,$\n④ $1\\,$ $3$",
@@ -178,14 +178,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "수열"
             },
             {
               "id": "kice-2026-6-기하-13",
               "number": 13,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": null,
               "images": [],
               "body": "두 다항함수 $f \\left(x \\right)\\,$와 $g \\left(x \\right)\\,$가 모든 실수 $x\\,$에 대하여 $f \\left(x \\right) > g \\left(x \\right)\\,$를 만족시키고, $f \\left(1 \\right)=g \\left(1 \\right)+1\\,$이다. 양수 $t\\,$에 대하여 두 곡선 $y=f \\left(x \\right)\\,$, $y=g \\left(x \\right)\\,$와 두 직선 $x=0\\,$, $x=t\\,$로 둘러싸인 도형의 넓이를 $S\\, \\left(t \\right)\\,$라 할 때,\n$S\\,' \\left(t \\right)=t^{2}-2t+a\\,$\n이다. <보기>에서 옳은 것만을 있는 대로 고른 것은? (단, $a\\,$는 상수이다.)\n<보 기> |\n| |\n| ㄱ. $a=1\\,$ㄴ. $S\\, \\left(3 \\right)=6$ㄷ. 두 곡선 $y=f \\left(x \\right)\\,$, $y=g \\left(x \\right)\\,$와 두 직선 $x=\\,-2\\,$, $x=2\\,$로 둘러싸인 도형의 넓이는 $S\\, \\left(4 \\right)\\,$의 값과 같다.\n① ㄴ ② ㄷ ③ ㄱ, ㄴ\n④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
@@ -194,14 +194,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "적분"
             },
             {
               "id": "kice-2026-6-기하-14",
               "number": 14,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": null,
               "images": [
                 "assets/questions/kice-2026-6-공통/item_014.png"
@@ -212,14 +212,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "삼각함수"
             },
             {
               "id": "kice-2026-6-기하-15",
               "number": 15,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": null,
               "images": [],
               "body": "상수항이 $0\\,$인 삼차함수 $f \\left(x \\right)\\,$가 다음 조건을 만족시킨다.\n(가) $\\int_{p}^{p+3} \\left|\\, f \\left(x \\right)\\,\\right| \\,dx \\neq \\left|\\, \\int_{p}^{p+3}f \\left(x \\right)\\,dx\\,\\right| \\,$가 되도록 하는 모든 실수 $p\\,$의 값의 범위는 $0 < p < 3\\,$이다.(나) $\\int_{0}^{3} \\left|\\, f \\left(x \\right)+q\\,\\right| \\,dx \\neq \\left|\\, \\int_{0}^{3} \\left(f \\left(x \\right)+q \\right)\\,dx\\,\\right| \\,$가 되도록 하는 모든 실수 $q\\,$의 값의 범위는 $0 < q < 1\\,$이다.\n$f \\left(6 \\right)\\,$의 값은?\n① $18\\,$ ② $21\\,$ ③ $24\\,$\n④ $27\\,$ ⑤ $30$",
@@ -228,14 +228,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "적분"
             },
             {
               "id": "kice-2026-6-기하-16",
               "number": 16,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": null,
               "images": [],
               "body": "방정식 $3^{x-6}= \\left(\\frac{1}{9} \\right)^{x}\\,$을 만족시키는 실수 $x\\,$의 값을 구하시오.",
@@ -244,14 +244,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "지수함수와 로그함수"
             },
             {
               "id": "kice-2026-6-기하-17",
               "number": 17,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": null,
               "images": [],
               "body": "다항함수 $f \\left(x \\right)\\,$에 대하여 $f\\,' \\left(x \\right)=6x^{2}+5\\,$이고 $f \\left(0 \\right)=3\\,$일 때, $f \\left(1 \\right)\\,$의 값을 구하시오.",
@@ -260,14 +260,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "적분"
             },
             {
               "id": "kice-2026-6-기하-18",
               "number": 18,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": null,
               "images": [],
               "body": "등차수열 $\\left\\{a_{n} \\right\\}\\,$에 대하여\n$a_{6}=5\\,$, $a_{5}=a_{2}-6\\,$\n일 때, $a_{1}\\,$의 값을 구하시오.",
@@ -276,14 +276,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "수열"
             },
             {
               "id": "kice-2026-6-기하-19",
               "number": 19,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": null,
               "images": [],
               "body": "곡선 $y=x^{3}-5x^{2}+3x+6$ 위의 점 $\\left(1,\\,5 \\right)\\,$에서의 접선의 $y\\,$절편을 구하시오.",
@@ -292,14 +292,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "미분"
             },
             {
               "id": "kice-2026-6-기하-20",
               "number": 20,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": null,
               "images": [
                 "assets/questions/kice-2026-6-공통/item_020.png"
@@ -310,14 +310,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "지수함수와 로그함수"
             },
             {
               "id": "kice-2026-6-기하-21",
               "number": 21,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": null,
               "images": [
                 "assets/questions/kice-2026-6-공통/item_021.png"
@@ -328,14 +328,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "미분"
             },
             {
               "id": "kice-2026-6-기하-22",
               "number": 22,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": null,
               "images": [],
               "body": "수열 $\\left\\{a_{n} \\right\\}\\,$은 $a_{1}=1\\,$, $a_{3}=4\\,$이고, 모든 자연수 $n\\,$에 대하여\n$a_{2n}=a_{n}+1\\,$\n$a_{4n+3}=a_{4n+1}=a_{n}+4\\,$\n를 만족시킨다. $a_{k}=10\\,$을 만족시키는 자연수 $k\\,$의 개수를 구하시오.",
@@ -344,8 +344,8 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "수열"
             }
           ]
         },
@@ -738,7 +738,7 @@
               "id": "kice-2026-9-기하-03",
               "number": 3,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": null,
               "images": [],
               "body": "등차수열 $\\left\\{a_{n} \\right\\}\\,$에 대하여\n$a_{2}=2$, $a_{10}-a_{7}=9$\n일 때, $a_{7}\\,$의 값은? [3점]\n① $16$ ② $17$ ③ $18$\n④ $19$ ⑤ $20$",
@@ -747,14 +747,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "수열"
             },
             {
               "id": "kice-2026-9-기하-04",
               "number": 4,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": null,
               "images": [],
               "body": "함수\n$f \\left(x \\right)= \\begin{cases}\\,7x+a & & \\left(x \\leq 2 \\right) \\\\ \\, x^{2}+ax & & \\left(x > 2 \\right)\\end{cases}$\n가 실수 전체의 집합에서 연속일 때, 상수 $a\\,$의 값은? [3점]\n① $9$ ② $10$ ③ $11$\n④ $12$ ⑤ $13$",
@@ -763,14 +763,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "함수의 극한과 연속"
             },
             {
               "id": "kice-2026-9-기하-05",
               "number": 5,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": null,
               "images": [],
               "body": "$\\int_{0}^{2} \\left(2x^{3}+6x^{2}-x \\right)\\,dx\\,$의 값은? [3점]\n① $22\\,$ ② $24\\,$ ③ $26\\,$\n④ $28\\,$ ⑤ $30$",
@@ -779,14 +779,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "적분"
             },
             {
               "id": "kice-2026-9-기하-06",
               "number": 6,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": null,
               "images": [],
               "body": "두 양수 $a\\,$, $b\\,$에 대하여 함수 $f \\left(x \\right)=a \\sin\\,\\frac{x}{b}+2\\,$의 최댓값이 $5\\,$이고 주기가 $8 \\pi\\,$일 때, $a+b\\,$의 값은? [3점]\n① $6\\,$ ② $\\frac{25}{4}\\,$ ③ $\\frac{13}{2}\\,$\n④ $\\frac{27}{4}\\,$ ⑤ $7$",
@@ -795,14 +795,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "삼각함수"
             },
             {
               "id": "kice-2026-9-기하-07",
               "number": 7,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": null,
               "images": [],
               "body": "함수 $f \\left(x \\right)=2x^{3}+ax^{2}-4ax\\,$가 $x=1\\,$에서 극소일 때, $f \\left(x \\right)\\,$의 극댓값은? (단, $a\\,$는 상수이다.) [3점]\n① $19\\,$ ② $20\\,$ ③ $21\\,$\n④ $22\\,$ ⑤ $23$",
@@ -811,14 +811,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "미분"
             },
             {
               "id": "kice-2026-9-기하-08",
               "number": 8,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": null,
               "images": [],
               "body": "모든 항이 양수인 등비수열 $\\left\\{a_{n} \\right\\}\\,$의 첫째항부터 제$n\\,$항까지의 합을 $S\\,_{n}\\,$이라 하자.\n$\\frac{S\\,_{3}}{a_{1}+2a_{2}}=\\frac{7}{3}$\n일 때, $\\frac{a_{8}}{a_{6}}\\,$의 값은? [3점]\n① $4$ ② $9$ ③ $16$\n④ $25$ ⑤ $36$",
@@ -827,14 +827,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "수열"
             },
             {
               "id": "kice-2026-9-기하-09",
               "number": 9,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": null,
               "images": [],
               "body": "수직선 위를 움직이는 두 점 ${{P}}$, ${{Q}}\\,$가 있다. 시각이 $t\\, \\left(t \\geq 0 \\right)\\,$일 때 두 점 ${{P}}$, ${{Q}}\\,$의 위치가 각각\n$x_{1}=4t^{3}-t^{2}-11t$, $x_{2}=2t^{2}+7t+3$\n이다. 두 점 ${{P}}$, ${{Q}}\\,$의 속도가 같아지는 순간 두 점 ${{P}}$, ${{Q}}\\,$의 가속도를 각각 $p$, $q\\,$라 할 때, $p-q\\,$의 값은? [4점]\n① $30$ ② $33$ ③ $36$\n④ $39$ ⑤ $42$",
@@ -843,14 +843,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "적분"
             },
             {
               "id": "kice-2026-9-기하-10",
               "number": 10,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": null,
               "images": [],
               "body": "상수 $a\\, \\left(a > 1 \\right)\\,$에 대하여 직선 $y=7\\,$이 두 곡선 $y=16a^{x}\\,$, $y=\\frac{1}{4}a^{x}\\,$과 만나는 점을 각각 ${{A}}\\,$, ${{B}}\\,$라 하자. ${ \\overline{{AB}}}=4\\,$일 때, $a\\,$의 값은? [4점]\n① $\\sqrt{2}\\,$ ② $2\\,$ ③ $2 \\sqrt{2}\\,$\n④ $4\\,$ ⑤ $4 \\sqrt{2}$",
@@ -859,14 +859,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "지수함수와 로그함수"
             },
             {
               "id": "kice-2026-9-기하-11",
               "number": 11,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": null,
               "images": [],
               "body": "다항함수 $f \\left(x \\right)\\,$가 모든 실수 $x\\,$에 대하여\n$\\int_{-1}^{x}f \\left(t \\right)\\,dt=xf \\left(x \\right)-2x^{3}-3x^{2}+6$\n을 만족시킬 때, $f \\left(0 \\right)\\,$의 값은? [4점]\n① $6$ ② $7$ ③ $8$\n④ $9$ ⑤ $10$",
@@ -875,14 +875,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "적분"
             },
             {
               "id": "kice-2026-9-기하-12",
               "number": 12,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": null,
               "images": [
                 "assets/questions/kice-2026-9-공통/item_012.png"
@@ -893,14 +893,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "삼각함수"
             },
             {
               "id": "kice-2026-9-기하-13",
               "number": 13,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": null,
               "images": [],
               "body": "최고차항의 계수가 $6\\,$인 이차함수 $f \\left(x \\right)\\,$가\n$f \\left(0 \\right)=0$, $\\int_{0}^{2}f \\left(x \\right)\\,dx=4$\n를 만족시킨다. <보기>에서 옳은 것만을 있는 대로 고른 것은? [4점]\n[표]\n<보 기>\nㄱ. $\\int_{0}^{2} \\left|\\, f \\left(x \\right)\\,\\right| \\,dx=6$ㄴ. $g \\left(1 \\right)=0\\,$인 일차함수 $g \\left(x \\right)\\,$에 대하여 $\\int_{0}^{2} \\left(f \\left(x \\right)+g \\left(x \\right) \\right)\\,dx=4\\,$이다.ㄷ. $k > 6\\,$인 각각의 실수 $k\\,$에 대하여, $\\int_{0}^{2} \\left(f \\left(x \\right)+h \\left(x \\right) \\right)\\,dx=4\\,$와 $\\int_{0}^{2} \\left|\\, f \\left(x \\right)+h \\left(x \\right)\\,\\right| \\,dx=k\\,$를 동시에 만족시키는 일차함수 $h \\left(x \\right)\\,$가 존재한다.\n[/표]\n① ㄱ ② ㄱ, ㄴ ③ ㄱ, ㄷ\n④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
@@ -909,14 +909,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "적분"
             },
             {
               "id": "kice-2026-9-기하-14",
               "number": 14,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": null,
               "images": [],
               "body": "실수 전체의 집합에서 정의된 함수\n$f \\left(x \\right)= \\begin{cases}\\,5 & & \\left(x가\\,자연수가\\,아닌\\,경우 \\right) \\\\ \\,\\frac{1}{x} & & \\left(x가\\,자연수인\\,경우 \\right)\\end{cases}$\n에 대하여, $\\sum_{k=1}^{n}\\frac{f \\left( \\sqrt[3]{k} \\right)}{5f \\left(k \\right)}\\,$의 값이 자연수가 되도록 하는 $300$ 이하의 자연수 $n\\,$의 개수는? [4점]\n① $135$ ② $144$ ③ $153$\n④ $162$ ⑤ $171$",
@@ -925,14 +925,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "수열"
             },
             {
               "id": "kice-2026-9-기하-15",
               "number": 15,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": null,
               "images": [],
               "body": "최고차항의 계수가 $1\\,$인 이차함수 $f \\left(x \\right)\\,$가 다음 조건을 만족시킬 때, $f \\left(2 \\right)\\,$의 값은? [4점]\n모든 실수 $a\\,$에 대하여\n$\\lim_{x\\,\\rightarrow\\, a}\\frac{ \\left(2x+1 \\right)f \\left(x \\right)}{f \\left(x \\right)+f \\left(x-t \\right)}\\,$\n의 값이 존재하도록 하는 양수 $t\\,$의 집합은 $\\left\\{t \\left|\\, t \\geq\\frac{3}{2} \\right\\}\\,$이다.\n① $\\frac{5}{2}\\,$ $5\\,$ $\\frac{15}{2}\\,$\n④ $10\\,$ $\\frac{25}{2}$",
@@ -941,14 +941,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "함수의 극한과 연속"
             },
             {
               "id": "kice-2026-9-기하-16",
               "number": 16,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": null,
               "images": [],
               "body": "방정식\n$\\log\\,_{3}\\, \\left(x-3 \\right)= \\log\\,_{9}\\, \\left(2x-3 \\right)$\n을 만족시키는 실수 $x\\,$의 값을 구하시오. [3점]",
@@ -957,14 +957,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "지수함수와 로그함수"
             },
             {
               "id": "kice-2026-9-기하-17",
               "number": 17,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": null,
               "images": [],
               "body": "다항함수 $f \\left(x \\right)\\,$에 대하여 $f\\,' \\left(x \\right)=6x^{2}-2x\\,$이고 $f \\left(0 \\right)=10\\,$일 때, $f \\left(1 \\right)\\,$의 값을 구하시오. [3점]",
@@ -973,14 +973,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "적분"
             },
             {
               "id": "kice-2026-9-기하-18",
               "number": 18,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": null,
               "images": [],
               "body": "수열 $\\left\\{a_{n} \\right\\}\\,$은 $a_{1}=28\\,$이고 모든 자연수 $n\\,$에 대하여\n$a_{n+1}= \\begin{cases}\\,\\frac{1}{2}a_{n} & & \\left(a_{n}이\\,짝수인\\,경우 \\right) \\\\ \\, 2a_{n}+12 & & \\left(a_{n}이\\,홀수인\\,경우 \\right)\\end{cases}$\n를 만족시킬 때, $a_{6}\\,$의 값을 구하시오. [3점]",
@@ -989,14 +989,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "수열"
             },
             {
               "id": "kice-2026-9-기하-19",
               "number": 19,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": null,
               "images": [],
               "body": "기울기가 $8\\,$이고 $y\\,$절편이 양수인 직선이 곡선 $y=x^{3}-3x^{2}-x+2\\,$에 접할 때, 이 직선은 점 $\\left(1,\\,k \\right)\\,$를 지난다. $k\\,$의 값을 구하시오. [3점]",
@@ -1005,14 +1005,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "미분"
             },
             {
               "id": "kice-2026-9-기하-20",
               "number": 20,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": null,
               "images": [
                 "assets/questions/kice-2026-9-공통/item_020.png"
@@ -1023,14 +1023,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "삼각함수"
             },
             {
               "id": "kice-2026-9-기하-21",
               "number": 21,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": null,
               "images": [],
               "body": "최고차항의 계수가 $1\\,$인 삼차함수 $f \\left(x \\right)\\,$가 다음 조건을 만족시킬 때, $f \\left(0 \\right)\\,$의 최댓값과 최솟값의 곱을 구하시오. [4점]\n(가) 방정식 $f \\left(x \\right)=0\\,$의 서로 다른 실근의 개수는 $2\\,$이다.\n(나) $g \\left(x \\right)= \\begin{cases}\\,-f \\left(x \\right) & & \\left(f \\left(x \\right) \\geq 0 \\right) \\\\ \\, 7f \\left(x \\right) & & \\left(f \\left(x \\right) < 0 \\right)\\end{cases}\\,$일 때, 어떤 실수 $a\\,$에 대하여 함수\n$h \\left(x \\right)=g \\left(x \\right)+ \\left|\\, \\left(x-1 \\right) \\left(x-a \\right) \\left(x-4+a \\right)\\,\\right| \\,$",
@@ -1039,14 +1039,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "미분"
             },
             {
               "id": "kice-2026-9-기하-22",
               "number": 22,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": null,
               "images": [],
               "body": "상수 $a\\, \\left(a > 1 \\right)\\,$과 직사각형 ${{ABCD}}\\,$가 다음 조건을 만족시킨다.\n(가) 두 곡선 $y=a^{x}\\,$, $y=2x^{2}-\\frac{7}{2}x+3\\,$은 모두 점 ${{A}}\\,$와 점 ${{B}}\\,$를 지난다.\n(나) 두 곡선 $y= \\log\\,_{a}\\, \\left(x-\\frac{1}{4} \\right)-\\frac{1}{4}\\,$, $y=2x^{2}-\\frac{15}{2}x+\\frac{15}{2}\\,$는 모두 점 ${{C}}\\,$와 점 ${{D}}\\,$를 지난다.\n$a^{3}=\\frac{q}{p}\\,$일 때, $p+q\\,$의 값을 구하시오. (단, $p\\,$와 $q\\,$는 서로소인 자연수이다.) [4점]",
@@ -1055,8 +1055,8 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "tagSource": "problem-bank-3",
-              "bankUnit": ""
+              "tagSource": "verified-course-audit",
+              "bankUnit": "지수함수와 로그함수"
             }
           ]
         },
@@ -2357,8 +2357,8 @@
                 "kice-2025-9-미적분-12",
                 "kice-2025-9-확통-12"
               ],
-              "courseCode": "M2",
-              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "courseCode": "ALG",
+              "courseLabel": "대수(기존 수학Ⅰ)",
               "bankUnit": "지수함수 그래프와 삼각형의 넓이",
               "tagSource": "problem-bank-3"
             },
@@ -5667,10 +5667,10 @@
               "legacyIds": [
                 "kice-2023-9-미적분-27"
               ],
-              "courseCode": "M2",
-              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "courseCode": "CALC",
+              "courseLabel": "미적분Ⅱ(기존 미적분)",
               "bankUnit": "정적분의 활용",
-              "tagSource": "problem-bank-3"
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "kice-2023-9-미적분-28",
@@ -6929,8 +6929,8 @@
                 "kice-2022-9-미적분-21",
                 "kice-2022-9-확통-21"
               ],
-              "courseCode": "M2",
-              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "courseCode": "ALG",
+              "courseLabel": "대수(기존 수학Ⅰ)",
               "bankUnit": "지수함수와 로그함수",
               "tagSource": "problem-bank-3"
             },
@@ -32547,7 +32547,7 @@
               "id": "csat-2026-공통-03",
               "number": 3,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2026-공통/item_003.png",
               "images": [],
               "body": "수열 $\\left\\{a_{n} \\right\\}\\,$에 대하여 $\\sum_{k=1}^{4} \\left(2a_{k}-k \\right)=0\\,$일 때, $\\sum_{k=1}^{4}a_{k}\\,$의 값은?\n[3점]\n① $1\\,$ ② $2\\,$ ③ $3\\,$ ④ $4\\,$ ⑤ $5$",
@@ -32557,14 +32557,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-04",
               "number": 4,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": "assets/questions/csat-2026-공통/item_004.png",
               "images": [],
               "body": "함수\n $f \\left(x \\right)= \\begin{cases}\\,3x-2 & & \\left(x < 1 \\right) \\\\ \\, x^{2}-3x+a & & \\left(x \\geq 1 \\right)\\end{cases}\\,$\n이 실수 전체의 집합에서 연속일 때, 상수 $a\\,$의 값은? [3점]\n① $1\\,$ ② $2\\,$ ③ $3\\,$ ④ $4\\,$ ⑤ $5$",
@@ -32574,14 +32574,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "함수의 극한과 연속",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-05",
               "number": 5,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2026-공통/item_005.png",
               "images": [],
               "body": "함수 $f \\left(x \\right)= \\left(x+2 \\right) \\left(2x^{2}-x-2 \\right)\\,$에 대하여 $f\\,' \\left(1 \\right)\\,$의 값은? [3점]\n① $6\\,$ ② $7\\,$ ③ $8\\,$ ④ $9\\,$ ⑤ $10$",
@@ -32589,16 +32589,16 @@
                 "csat-2026-common-05",
                 "csat-2026-공통-05"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-06",
               "number": 6,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2026-공통/item_006.png",
               "images": [],
               "body": "$1\\,$보다 큰 두 실수 $a\\,$, $b\\,$가\n $\\log\\,_{a}\\,b=3\\,$, $\\log\\,_{3}\\,\\frac{b}{a}=\\frac{1}{2}\\,$\n을 만족시킬 때, $\\log\\,_{9}\\,ab\\,$의 값은? [3점]\n① $\\frac{3}{8}\\,$ ② $\\frac{1}{2}\\,$ ③ $\\frac{5}{8}\\,$ ④ $\\frac{3}{4}\\,$ ⑤ $\\frac{7}{8}$",
@@ -32608,14 +32608,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-07",
               "number": 7,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2026-공통/item_007.png",
               "images": [
                 "assets/questions/csat-2026-공통/item_007_fig_01.png"
@@ -32625,16 +32625,16 @@
                 "csat-2026-common-07",
                 "csat-2026-공통-07"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-08",
               "number": 8,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2026-공통/item_008.png",
               "images": [],
               "body": "$\\sin\\, \\theta +3 \\cos\\, \\theta =0\\,$이고 $\\cos\\, \\left( \\pi - \\theta \\right) > 0\\,$일 때, $\\sin\\, \\theta\\,$의 값은? [3점]\n① $\\frac{3 \\sqrt{10}}{10}\\,$ ② $\\frac{ \\sqrt{10}}{5}\\,$ ③ $0\\,$\n④ $-\\frac{ \\sqrt{10}}{5}\\,$ ⑤ $-\\frac{3 \\sqrt{10}}{10}$",
@@ -32644,14 +32644,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-09",
               "number": 9,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2026-공통/item_009.png",
               "images": [],
               "body": "양수 $a\\,$에 대하여 함수 $f \\left(x \\right)\\,$를\n $f \\left(x \\right)=x^{3}+3ax^{2}-9a^{2}x+4\\,$\n라 하자. 직선 $y=5\\,$가 곡선 $y=f \\left(x \\right)\\,$에 접할 때, $f \\left(2 \\right)\\,$의 값은?\n[4점]\n① $11\\,$ ② $12\\,$ ③ $13\\,$ ④ $14\\,$ ⑤ $15$",
@@ -32659,16 +32659,16 @@
                 "csat-2026-common-09",
                 "csat-2026-공통-09"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-10",
               "number": 10,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2026-공통/item_010.png",
               "images": [],
               "body": "상수 $a\\, \\left(a > 1 \\right)\\,$에 대하여 곡선 $y=a^{x}-2$ 위의 점 중 제$1\\,$사분면에 있는 점 ${{A}}\\,$를 지나고 $y\\,$축에 평행한 직선이 $x\\,$축과 만나는 점을 ${{B}}\\,$, 곡선 $y=a^{x}-2\\,$의 점근선과 만나는 점을 ${{C}}\\,$라 하자. ${ \\overline{{AB}}}={ \\overline{{BC}}}\\,$이고 삼각형 ${{AOC}}\\,$의 넓이가 $8\\,$일 때, $a \\times { \\overline{{OB}}}\\,$의 값은? (단, ${{O}}\\,$는 원점이다.) [4점]\n① $2^{\\frac{13}{6}}\\,$ ② $2^{\\frac{7}{3}}\\,$ ③ $2^{\\frac{5}{2}}\\,$ ④ $2^{\\frac{8}{3}}\\,$ ⑤ $2^{\\frac{17}{6}}$",
@@ -32678,14 +32678,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-11",
               "number": 11,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2026-공통/item_011.png",
               "images": [],
               "body": "시각 $t=0\\,$일 때 원점을 출발하여 수직선 위를 움직이는 점 ${{P}}\\,$가 있다. 실수 $k\\,$에 대하여 시각이 $t\\, \\left(t \\geq 0 \\right)\\,$일 때 점 ${{P}}\\,$의 속도 $v \\left(t \\right)\\,$가\n $v \\left(t \\right)=t^{2}-kt+4\\,$\n이다. <보기>에서 옳은 것만을 있는 대로 고른 것은? [4점]\n<보 기>ㄱ. $k=0\\,$이면, 시각 $t=1\\,$일 때 점 ${{P}}\\,$의 위치는 $\\frac{13}{3}\\,$이다.ㄴ. $k=3\\,$이면, 출발한 후 점 ${{P}}\\,$의 운동 방향이 한 번 바뀐다.ㄷ. $k=5\\,$이면, 시각 $t=0\\,$에서 $t=2\\,$까지 점 ${{P}}\\,$가 움직인 거리는 $3\\,$이다.\n① ㄱ ② ㄱ, ㄴ ③ ㄱ, ㄷ\n④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
@@ -32693,16 +32693,16 @@
                 "csat-2026-common-11",
                 "csat-2026-공통-11"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-12",
               "number": 12,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2026-공통/item_012.png",
               "images": [],
               "body": "등비수열 $\\left\\{a_{n} \\right\\}\\,$이\n $2 \\left(a_{1}+a_{4}+a_{7} \\right)=a_{4}+a_{7}+a_{10}=6\\,$\n을 만족시킬 때, $a_{10}\\,$의 값은? [4점]\n① $\\frac{22}{7}\\,$ ② $\\frac{24}{7}\\,$ ③ $\\frac{26}{7}\\,$ ④ $\\frac{30}{7}\\,$ ⑤ $\\frac{32}{7}$",
@@ -32712,14 +32712,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-13",
               "number": 13,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2026-공통/item_013.png",
               "images": [],
               "body": "함수 $f \\left(x \\right)=x^{2}-4x-3\\,$에 대하여 곡선 $y=f \\left(x \\right)$ 위의 점 $\\left(1,\\,-6 \\right)\\,$에서의 접선을 $l\\,$이라 하고, 함수 $g \\left(x \\right)= \\left(x^{3}-2x \\right)f \\left(x \\right)\\,$에 대하여 곡선 $y=g \\left(x \\right)$ 위의 점 $\\left(1,\\,6 \\right)\\,$에서의 접선을 $m\\,$이라 하자. 두 직선 $l\\,$, $m\\,$과 $y\\,$축으로 둘러싸인 도형의 넓이는? [4점]\n① $21\\,$ ② $28\\,$ ③ $35\\,$ ④ $42\\,$ ⑤ $49$",
@@ -32729,14 +32729,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-14",
               "number": 14,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2026-공통/item_014.png",
               "images": [
                 "assets/questions/csat-2026-공통/item_014_fig_01.png"
@@ -32748,14 +32748,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-15",
               "number": 15,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": "assets/questions/csat-2026-공통/item_015.png",
               "images": [],
               "body": "함수 $f \\left(x \\right)\\,$가\n $f \\left(x \\right)= \\begin{cases}\\,-x^{2} & & \\left(x < 0 \\right) \\\\ \\, x^{2}-x & & \\left(x \\geq 0 \\right)\\end{cases}\\,$\n이고, 양수 $a\\,$에 대하여 함수 $g \\left(x \\right)\\,$를\n $g \\left(x \\right)= \\begin{cases}\\,ax+a & & \\left(x <\\,-1 \\right) \\\\ \\, 0 & & \\left(-1 \\leq x < 1 \\right) \\\\ \\, ax-a & & \\left(x \\geq 1 \\right)\\end{cases}\\,$\n이라 하자. 함수 $h \\left(x \\right)= \\int_{0}^{x} \\left(g \\left(t \\right)-f \\left(t \\right) \\right)\\,dt\\,$가 오직 하나의 극값을 갖도록 하는 $a\\,$의 최댓값을 $k\\,$라 하자. $a=k\\,$일 때, $k+h \\left(3 \\right)\\,$의 값은? [4점]\n① $\\frac{9}{2}\\,$ ② $\\frac{11}{2}\\,$ ③ $\\frac{13}{2}\\,$ ④ $\\frac{15}{2}\\,$ ⑤ $\\frac{17}{2}$\n단답형",
@@ -32765,14 +32765,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "함수의 극한과 연속",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-16",
               "number": 16,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2026-공통/item_016.png",
               "images": [],
               "body": "수열 $\\left\\{a_{n} \\right\\}\\,$은 $a_{1}=1\\,$이고, 모든 자연수 $n\\,$에 대하여\n $a_{n+1}=n^{2}a_{n}+1\\,$\n을 만족시킨다. $a_{3}\\,$의 값을 구하시오. [3점]",
@@ -32782,14 +32782,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-17",
               "number": 17,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2026-공통/item_017.png",
               "images": [],
               "body": "함수 $f \\left(x \\right)=4x^{3}-2x\\,$의 한 부정적분 $F\\, \\left(x \\right)\\,$에 대하여 $F\\, \\left(0 \\right)=4\\,$일 때, $F\\, \\left(2 \\right)\\,$의 값을 구하시오. [3점]",
@@ -32799,14 +32799,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-18",
               "number": 18,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2026-공통/item_018.png",
               "images": [],
               "body": "${ \\overline{{AB}}}=5\\,$, ${ \\overline{{AC}}}=6\\,$이고 $\\cos\\, \\left( ang \\leq {{BAC}} \\right)=\\,-\\frac{3}{5}\\,$인 삼각형 ${{ABC}}\\,$의 넓이를 구하시오. [3점]",
@@ -32816,14 +32816,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-19",
               "number": 19,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2026-공통/item_019.png",
               "images": [],
               "body": "$-2 \\leq x \\leq 2\\,$인 모든 실수 $x\\,$에 대하여 부등식\n $-k \\leq 2x^{3}+3x^{2}-12x-8 \\leq k\\,$\n가 성립하도록 하는 양수 $k\\,$의 최솟값을 구하시오. [3점]",
@@ -32831,16 +32831,16 @@
                 "csat-2026-common-19",
                 "csat-2026-공통-19"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-20",
               "number": 20,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2026-공통/item_020.png",
               "images": [],
               "body": "수열 $\\left\\{a_{n} \\right\\}\\,$이 다음 조건을 만족시킨다.\n $a_{1}=7\\,$ $2$ 이상의 자연수 $n\\,$에 대하여 $\\sum_{k=1}^{n}a_{k}=\\frac{2}{3}a_{n}+\\frac{1}{6}n^{2}-\\frac{1}{6}n+10\\,$ 이다.\n다음은 $\\sum_{k=1}^{12}a_{k}+ \\sum_{k=1}^{5}a_{2k+1}\\,$의 값을 구하는 과정이다.\n$2$ 이상의 자연수 $n\\,$에 대하여 $a_{n+1}= \\sum_{k=1}^{n+1}a_{k}- \\sum_{k=1}^{n}a_{k}\\,$이므로 $a_{n+1}=\\frac{2}{3} \\left(a_{n+1}-a_{n} \\right)+ \\boxed{\\, \\left(가 \\right)\\,}\\,$이고, 이 식을 정리하면 $2a_{n}+a_{n+1}=3 \\times \\boxed{\\, \\left(가 \\right)\\,}\\,$ $\\cdots$$\\cdots$ ㉠이다. $\\sum_{k=1}^{n}a_{k}=\\frac{2}{3}a_{n}+\\frac{1}{6}n^{2}-\\frac{1}{6}n+10\\, \\left(n \\geq 2 \\right)\\,$에서 양변에 $n=2\\,$를 대입하면 $a_{2}= \\boxed{\\, \\left(나 \\right)\\,}\\,$ $\\cdots$$\\cdots$ ㉡이다. ㉠과 ㉡에 의하여 $\\sum_{k=1}^{12}a_{k}+ \\sum_{k=1}^{5}a_{2k+1}$$=a_{1}+a_{2}+ \\sum_{k=1}^{5} \\left(2a_{2k+1}+a_{2k+2} \\right)$ $= \\boxed{\\, \\left(다 \\right)\\,}$이다.\n위의 (가)에 알맞은 식을 $f \\left(n \\right)\\,$이라 하고, (나), (다)에 알맞은 수를 각각 $p\\,$, $q\\,$라 할 때, $\\frac{p \\times q}{f \\left(12 \\right)}\\,$의 값을 구하시오. [4점]",
@@ -32850,14 +32850,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-21",
               "number": 21,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": "assets/questions/csat-2026-공통/item_021.png",
               "images": [],
               "body": "최고차항의 계수가 양수인 삼차함수 $f \\left(x \\right)\\,$와 실수 $t\\,$에 대하여 함수\n $g \\left(x \\right)= \\begin{cases}\\,-f \\left(x \\right) & & \\left(x < t \\right) \\\\ \\, f \\left(x \\right) & & \\left(x \\geq t \\right)\\end{cases}\\,$\n는 실수 전체의 집합에서 연속이고 다음 조건을 만족시킨다.\n(가) 모든 실수 $a\\,$에 대하여 $\\lim_{x\\,\\rightarrow\\, a+}\\frac{g \\left(x \\right)}{x \\left(x-2 \\right)}\\,$의 값이 존재한다.(나) $\\lim_{x\\,\\rightarrow\\, m+}\\frac{g \\left(x \\right)}{x \\left(x-2 \\right)}\\,$의 값이 음수가 되도록 하는 자연수 $m\\,$의 집합은 $\\left\\{g \\left(-1 \\right),\\,-\\frac{7}{2}g \\left(1 \\right) \\right\\}\\,$이다.\n$g \\left(-5 \\right)\\,$의 값을 구하시오. $\\left( \\pi \\leq {\\,#\\,} \\right.\\,$단, $g \\left(-1 \\right) \\neq\\,-\\frac{7}{2}g \\left(1 \\right) \\pi \\leq {\\,#\\,} \\right)$ [4점]",
@@ -32867,14 +32867,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "함수의 극한과 연속",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2026-공통-22",
               "number": 22,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2026-공통/item_022.png",
               "images": [],
               "body": "곡선 $y= \\log\\,_{16}\\, \\left(8x+2 \\right)$ 위의 점 ${{A}} \\left(a,\\,b \\right)\\,$와 곡선 $y=4^{x-1}-\\frac{1}{2}$ 위의 점 ${{B}}\\,$가 제$1\\,$사분면에 있다. 점 ${{A}}\\,$를 직선 $y=x\\,$에 대하여 대칭이동한 점이 직선 ${{OB}}$ 위에 있고 선분 ${{AB}}\\,$의 중점의 좌표가 $\\left(\\frac{77}{8},\\,\\frac{133}{8} \\right)\\,$일 때, $a \\times b=\\frac{q}{p}\\,$이다. $p+q\\,$의 값을 구하시오. (단, ${{O}}\\,$는 원점이고, $p\\,$와 $q\\,$는 서로소인 자연수이다.) [4점]",
@@ -32884,8 +32884,8 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             }
           ]
         },
@@ -33283,7 +33283,7 @@
               "id": "csat-2025-공통-03",
               "number": 3,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2025-공통/item_003.png",
               "images": [],
               "body": "첫째항과 공비가 모두 양수 $k\\,$인 등비수열 $\\left\\{a_{n} \\right\\}\\,$이\n $\\frac{a_{4}}{a_{2}}+\\frac{a_{2}}{a_{1}}=30$\n을 만족시킬 때, $k\\,$의 값은? [3점]\n① $1$ ② $2$ ③ $3$ ④ $4$ ⑤ $5$",
@@ -33293,14 +33293,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-04",
               "number": 4,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": "assets/questions/csat-2025-공통/item_004.png",
               "images": [],
               "body": "함수\n $f \\left( x \\right) = {\\begin{cases}\\,5x+a&&\\left( x<\\,-2 \\right) \\\\ \\,x ^{2} -a&&\\left( x \\geq \\,-2 \\right)\\end{cases}}$\n가 실수 전체의 집합에서 연속일 때, 상수 $a\\,$의 값은? [3점]\n① $6$ ② $7$ ③ $8$ ④ $9$ ⑤ $10$",
@@ -33310,14 +33310,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "함수의 극한과 연속",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-05",
               "number": 5,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2025-공통/item_005.png",
               "images": [],
               "body": "함수 $f \\left(x \\right)= \\left(x^{2}+1 \\right) \\left(3 x^{2}-x \\right)\\,$에 대하여 $f\\,' \\left(1 \\right)\\,$의 값은? [3점]\n① $8$ ② $10$ ③ $12$ ④ $14$ ⑤ $16$",
@@ -33325,16 +33325,16 @@
                 "csat-2025-common-05",
                 "csat-2025-공통-05"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-06",
               "number": 6,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2025-공통/item_006.png",
               "images": [],
               "body": "$\\cos \\, \\left(\\frac{ \\pi}{2}+ \\theta \\right)=\\,-\\frac{1}{5}\\,$일 때, $\\frac{ \\sin \\, \\theta}{1- \\cos ^{2} \\, \\theta}\\,$의 값은? [3점]\n① $-5$ ② $- \\sqrt{5}$ ③ $0$\n④ $\\sqrt{5}$ ⑤ $5$",
@@ -33344,14 +33344,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-07",
               "number": 7,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2025-공통/item_007.png",
               "images": [],
               "body": "다항함수 $f \\left(x \\right)\\,$가 모든 실수 $x\\,$에 대하여\n $\\int _{0} ^{x} {} f \\left( t \\right) \\,dt=3x ^{3} +2x$\n를 만족시킬 때, $f \\left(1 \\right)\\,$의 값은? [3점]\n① $7$ ② $9$ ③ $11$ ④ $13$ ⑤ $15$",
@@ -33359,16 +33359,16 @@
                 "csat-2025-common-07",
                 "csat-2025-공통-07"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-08",
               "number": 8,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2025-공통/item_008.png",
               "images": [],
               "body": "두 실수 $a=2 \\log \\,\\frac{1}{ \\sqrt{10}}+ \\log\\,_{2} \\,20$, $b= \\log \\,2\\,$에 대하여 $a \\times b\\,$의 값은? [3점]\n① $1$ ② $2$ ③ $3$ ④ $4$ ⑤ $5$",
@@ -33378,14 +33378,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-09",
               "number": 9,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2025-공통/item_009.png",
               "images": [],
               "body": "함수 $f \\left(x \\right)=3 x^{2}-16 x-20\\,$에 대하여\n $\\int _{-2} ^{a} {} f \\left( x \\right) \\,dx= \\int _{-2} ^{0} {} f \\left( x \\right) \\,dx$\n일 때, 양수 $a\\,$의 값은? [4점]\n① $16$ ② $14$ ③ $12$ ④ $10$ ⑤ $8$",
@@ -33393,16 +33393,16 @@
                 "csat-2025-common-09",
                 "csat-2025-공통-09"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-10",
               "number": 10,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2025-공통/item_010.png",
               "images": [],
               "body": "닫힌구간 $\\left[0,\\,2 \\pi \\right]\\,$에서 정의된 함수 $f \\left(x \\right)=a \\cos \\,b x+3\\,$이 $x=\\frac{ \\pi}{3}\\,$에서 최댓값 $13\\,$을 갖도록 하는 두 자연수 $a$, $b\\,$의 순서쌍 $\\left(a,\\, b \\right)\\,$에 대하여 $a+b\\,$의 최솟값은? [4점]\n① $12$ ② $14$ ③ $16$ ④ $18$ ⑤ $20$",
@@ -33412,14 +33412,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-11",
               "number": 11,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2025-공통/item_011.png",
               "images": [],
               "body": "시각 $t=0\\,$일 때 출발하여 수직선 위를 움직이는 점 $P\\,$의 시각 $t \\, \\left( t \\geq 0 \\right)\\,$에서의 위치 $x\\,$가\n $x=t^{3}-\\frac{3}{2} t^{2}-6 t$\n이다. 출발한 후 점 $P\\,$의 운동 방향이 바뀌는 시각에서의 점 $P\\,$의 가속도는? [4점]\n① $6$ ② $9$ ③ $12$ ④ $15$ ⑤ $18$",
@@ -33429,14 +33429,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-12",
               "number": 12,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2025-공통/item_012.png",
               "images": [],
               "body": "$a_{1}=2\\,$인 수열 $\\left\\{a_{n} \\right\\}\\,$과 $b_{1}=2\\,$인 등차수열 $\\left\\{b_{n} \\right\\}\\,$이 모든 자연수 $n\\,$에 대하여\n $\\sum_{k=1}^{n} \\frac{a_{k}}{b_{k+1}}=\\frac{1}{2} n^{2}$\n을 만족시킬 때, $\\sum_{k=1}^{5} a_{k}\\,$의 값은? [4점]\n① $120$ ② $125$ ③ $130$ ④ $135$ ⑤ $140$",
@@ -33446,14 +33446,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-13",
               "number": 13,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2025-공통/item_013.png",
               "images": [
                 "assets/questions/csat-2025-공통/item_013_fig_01.png"
@@ -33463,16 +33463,16 @@
                 "csat-2025-common-13",
                 "csat-2025-공통-13"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-14",
               "number": 14,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2025-공통/item_014.png",
               "images": [
                 "assets/questions/csat-2025-공통/item_014_fig_01.png"
@@ -33484,14 +33484,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-15",
               "number": 15,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2025-공통/item_015.png",
               "images": [],
               "body": "상수 $a \\, \\left( a != 3 \\sqrt{5} \\right)\\,$와 최고차항의 계수가 음수인 이차함수 $f \\left(x \\right)\\,$에 대하여 함수\n $g \\left( x \\right) = {\\begin{cases}\\,x ^{3} +ax ^{2} +15x+7&&\\left( x \\leq 0 \\right) \\\\ \\,f \\left( x \\right)&&\\left( x>0 \\right)\\end{cases}}$\n이 다음 조건을 만족시킨다.\n(가) 함수 $g \\left(x \\right)\\,$는 실수 전체의 집합에서 미분가능하다.(나) $x\\,$에 대한 방정식 $g \\,' \\left( x \\right) \\times g \\,' \\left( x-4 \\right) =0\\,$의 서로 다른 실근의 개수는 $4\\,$이다.\n$g \\left(-2 \\right)+g \\left(2 \\right)\\,$의 값은? [4점]\n① $30$ ② $32$ ③ $34$ ④ $36$ ⑤ $38$\n단답형",
@@ -33501,14 +33501,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-16",
               "number": 16,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2025-공통/item_016.png",
               "images": [],
               "body": "방정식\n $\\log\\, _{2} \\left( x-3 \\right) = \\log\\, _{4} \\left( 3x-5 \\right)$\n를 만족시키는 실수 $x\\,$의 값을 구하시오. [3점]",
@@ -33518,14 +33518,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-17",
               "number": 17,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2025-공통/item_017.png",
               "images": [],
               "body": "다항함수 $f \\left(x \\right)\\,$에 대하여 $f \\,' \\left( x \\right) =9x ^{2} +4x\\,$이고 $f \\left(1 \\right)=6\\,$일 때, $f \\left(2 \\right)\\,$의 값을 구하시오. [3점]",
@@ -33533,16 +33533,16 @@
                 "csat-2025-common-17",
                 "csat-2025-공통-17"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-18",
               "number": 18,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2025-공통/item_018.png",
               "images": [],
               "body": "수열 $\\left\\{a_{n} \\right\\}\\,$이 모든 자연수 $n\\,$에 대하여\n $a_{n}+a_{n+4}=12\\,$\n를 만족시킬 때, $\\sum_{n=1}^{16} a_{n}\\,$의 값을 구하시오. [3점]",
@@ -33552,14 +33552,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-19",
               "number": 19,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2025-공통/item_019.png",
               "images": [],
               "body": "양수 $a\\,$에 대하여 함수 $f \\left(x \\right)\\,$를\n $f \\left(x \\right)=2 x^{3}-3 a x^{2}-12 a^{2} x$\n라 하자. 함수 $f \\left(x \\right)\\,$의 극댓값이 $\\frac{7}{27}\\,$일 때, $f \\left(3 \\right)\\,$의 값을 구하시오.\n[3점]",
@@ -33567,16 +33567,16 @@
                 "csat-2025-common-19",
                 "csat-2025-공통-19"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-20",
               "number": 20,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2025-공통/item_020.png",
               "images": [],
               "body": "곡선 $y= \\left(\\frac{1}{5} \\right)^{x-3}\\,$과 직선 $y=x\\,$가 만나는 점의 $x\\,$좌표를 $k\\,$라 하자. 실수 전체의 집합에서 정의된 함수 $f \\left(x \\right)\\,$가 다음 조건을 만족시킨다.\n$x>k\\,$인 모든 실수 $x$에 대하여 $f \\left(x \\right)= \\left(\\frac{1}{5} \\right)^{x-3}\\,$이고 $f \\left(f \\left(x \\right) \\right)=3 x\\,$이다.\n$f \\left(\\frac{1}{k^{3} \\times 5^{3 k}} \\right)\\,$의 값을 구하시오. [4점]",
@@ -33586,14 +33586,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-21",
               "number": 21,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": "assets/questions/csat-2025-공통/item_021.png",
               "images": [],
               "body": "함수 $f \\left(x \\right)=x^{3}+a x^{2}+b x+4\\,$가 다음 조건을 만족시키도록 하는 두 정수 $a$, $b\\,$에 대하여 $f \\left(1 \\right)\\,$의 최댓값을 구하시오. [4점]\n모든 실수 $\\alpha\\,$에 대하여 $\\lim _{x \\,\\rightarrow\\, \\alpha} \\frac{f \\left(2 x+1 \\right)}{f \\left(x \\right)}\\,$의 값이 존재한다.",
@@ -33601,16 +33601,16 @@
                 "csat-2025-common-21",
                 "csat-2025-공통-21"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "함수의 극한과 연속",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2025-공통-22",
               "number": 22,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2025-공통/item_022.png",
               "images": [],
               "body": "모든 항이 정수이고 다음 조건을 만족시키는 모든 수열 $\\left\\{a_{n} \\right\\}\\,$에 대하여 $\\left|\\, a _{1} \\,\\right|\\,$의 값의 합을 구하시오. [4점]\n(가) 모든 자연수 $n\\,$에 대하여 $a _{n+1} = {\\begin{cases}\\,a _{n} -3&&\\left( \\left|\\, a _{n} \\,\\right| 이\\,홀수인\\,경우 \\right) \\\\ \\,\\frac{1}{2} a _{n}&&\\left( a _{n} =0\\,또는\\, \\left|\\, a _{n} \\,\\right| 이\\,짝수인\\,경우 \\right)\\end{cases}}$ 이다.(나) $\\left|\\, a _{m} \\,\\right| = \\left|\\, a _{m+2} \\,\\right|\\,$인 자연수 $m\\,$의 최솟값은 $3\\,$이다.",
@@ -33620,8 +33620,8 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             }
           ]
         },
@@ -34021,7 +34021,7 @@
               "id": "csat-2024-공통-03",
               "number": 3,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2024-공통/item_003.png",
               "images": [],
               "body": "$\\frac{3}{2} \\pi < \\theta <2 \\pi$인 $\\theta$에 대하여 $\\sin\\, \\left(- \\theta \\right)= \\frac{1}{3}$일 때, $\\tan \\theta$의 값은?\n[3점]\n① $-\\frac{ \\sqrt{2}}{2}$ ② $-\\frac{ \\sqrt{2}}{4}$ ③ $-\\frac{1}{4}$ ④ $\\frac{1}{4}$ ⑤ $\\frac{ \\sqrt{2}}{4}$",
@@ -34031,14 +34031,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-04",
               "number": 4,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": "assets/questions/csat-2024-공통/item_004.png",
               "images": [],
               "body": "함수\n $f \\left(x \\right)= {\\begin{cases}3x-a&& \\left(x<2 \\right) \\\\ x ^{2} +a&& \\left(x \\geq 2 \\right)\\end{cases}}$\n가 실수 전체의 집합에서 연속일 때, 상수 $a$의 값은? [3점]\n① $1$ ② $2$ ③ $3$ ④ $4$ ⑤ $5$",
@@ -34048,14 +34048,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "함수의 극한과 연속",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-05",
               "number": 5,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2024-공통/item_005.png",
               "images": [],
               "body": "다항함수 $f(x)$가\n $f \\,' \\left(x \\right)=3x \\left(x-2 \\right)$, $f \\left(1 \\right)=6$\n을 만족시킬 때, $f(2)$의 값은? [3점]\n① $1$ ② $2$ ③ $3$ ④ $4$ ⑤ $5$",
@@ -34063,16 +34063,16 @@
                 "csat-2024-common-05",
                 "csat-2024-공통-05"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-06",
               "number": 6,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2024-공통/item_006.png",
               "images": [],
               "body": "등비수열 $\\left\\{ a_{n} \\right\\}$의 첫째항부터 제$n$항까지의 합을 $S_{n}$이라 하자.\n $S _{4} -S _{2} =3a _{4}$, $a _{5} = \\frac{3}{4}$\n일 때, $a_{1}+a_{2}$의 값은? [3점]\n① $27$ ② $24$ ③ $21$ ④ $18$ ⑤ $15$",
@@ -34082,14 +34082,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-07",
               "number": 7,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2024-공통/item_007.png",
               "images": [],
               "body": "함수\n $f \\left(x \\right)= \\frac{1}{3} x ^{3} -2x ^{2} -12x+4$\n가 $x= \\alpha$에서 극대이고 $x= \\beta$에서 극소일 때, $\\beta- \\alpha$의 값은? (단, $\\alpha$와 $\\beta$는 상수이다.) [3점]\n① $-4$ ② $-1$ ③ $2$ ④ $5$ ⑤ $8$",
@@ -34099,14 +34099,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-08",
               "number": 8,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2024-공통/item_008.png",
               "images": [],
               "body": "삼차함수 $f(x)$가 모든 실수 $x$에 대하여\n $xf \\left(x \\right)-f \\left(x \\right)=3x ^{4} -3x$\n를 만족시킬 때, $\\int_{-2}^{2} f(x) d x$의 값은? [3점]\n① $12$ ② $16$ ③ $20$ ④ $24$ ⑤ $28$",
@@ -34116,14 +34116,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-09",
               "number": 9,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2024-공통/item_009.png",
               "images": [],
               "body": "수직선 위의 두 점 ${{P}} \\left( \\log _{5} 3 \\right)$, ${{Q}} \\left( \\log _{5} 12 \\right)$에 대하여 선분 ${{PQ}}$를 $m\\,:\\, \\left(1-m \\right)$으로 내분하는 점의 좌표가 $1$일 때, $4^{m}$의 값은? (단, $m$은 $0<m<1$인 상수이다.) [4점]\n① $\\frac{7}{6}$ ② $\\frac{4}{3}$ ③ $\\frac{3}{2}$ ④ $\\frac{5}{3}$ ⑤ $\\frac{11}{6}$",
@@ -34133,14 +34133,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-10",
               "number": 10,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2024-공통/item_010.png",
               "images": [],
               "body": "시각 $t=0$일 때 동시에 원점을 출발하여 수직선 위를 움직이는 두 점 ${{P}}$, ${{Q}}$의 시각 $t \\, \\left(t \\geq 0 \\right)$에서의 속도가 각각\n $v _{1} \\left(t \\right)=t ^{2} -6t+5$, $v _{2} \\left(t \\right)=2t-7$\n이다. 시각 $t$에서의 두 점 ${{P}}$, ${{Q}}$ 사이의 거리를 $f(t)$라 할 때, 함수 $f(t)$는 구간 $[0,\\, a]$에서 증가하고, 구간 $[a,\\, b]$에서 감소하고, 구간 $[b,\\, \\infty )$에서 증가한다. 시각 $t=a$에서 $t=b$까지 점 ${{Q}}$가 움직인 거리는? (단, $0<a<b$) [4점]\n① $\\frac{15}{2}$ ② $\\frac{17}{2}$ ③ $\\frac{19}{2}$ ④ $\\frac{21}{2}$ ⑤ $\\frac{23}{2}$",
@@ -34148,16 +34148,16 @@
                 "csat-2024-common-10",
                 "csat-2024-공통-10"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-11",
               "number": 11,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2024-공통/item_011.png",
               "images": [],
               "body": "공차가 $0$이 아닌 등차수열 $\\left\\{ a_{n} \\right\\}$에 대하여\n $\\left| a _{6} \\right| =a _{8}$, $\\sum _{k=1} ^{5} \\frac{1}{a _{k} a _{k+1}} = \\frac{5}{96}$\n일 때, $\\sum_{k=1}^{15} a_{k}$의 값은? [4점]\n① $60$ ② $65$ ③ $70$ ④ $75$ ⑤ $80$",
@@ -34167,14 +34167,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-12",
               "number": 12,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2024-공통/item_012.png",
               "images": [],
               "body": "함수 $f \\left(x \\right)= \\frac{1}{9} x \\left(x-6 \\right) \\left(x-9 \\right)$와 실수 $t \\, \\left(0<t<6 \\right)$에 대하여 함수 $g(x)$는\n $g \\left(x \\right)= {\\begin{cases}f \\left(x \\right)&& \\left(x<t \\right) \\\\ - \\left(x-t \\right)+f \\left(t \\right)&& \\left(x \\geq t \\right)\\end{cases}}$\n이다. 함수 $y=g(x)$의 그래프와 $x$축으로 둘러싸인 영역의 넓이의 최댓값은? [4점]\n① $\\frac{125}{4}$ ② $\\frac{127}{4}$ ③ $\\frac{129}{4}$ ④ $\\frac{131}{4}$ ⑤ $\\frac{133}{4}$",
@@ -34182,16 +34182,16 @@
                 "csat-2024-common-12",
                 "csat-2024-공통-12"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-13",
               "number": 13,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2024-공통/item_013.png",
               "images": [],
               "body": "그림과 같이\n ${\\overline{ AB }} =3$, ${\\overline{ BC }} = \\sqrt{13}$, ${\\overline{ AD }} \\times {\\overline{ CD }} =9$, $\\angle BAC = \\frac{\\pi }{3}$\n인 사각형 $ABCD$가 있다. 삼각형 ${{ABC}}$의 넓이를 $S_{1}$, 삼각형 ${{ACD}}$의 넓이를 $S_{2}$라 하고, 삼각형 ${{ACD}}$의 외접원의 반지름의 길이를 $R$이라 하자. $S _{2} = \\frac{5}{6} S _{1}$일 때, $\\frac{R}{\\sin\\, \\left( \\angle ADC \\right)}$의 값은? [4점]\n① $\\frac{54}{25}$ ② $\\frac{117}{50}$ ③ $\\frac{63}{25}$ ④ $\\frac{27}{10}$ ⑤ $\\frac{72}{25}$",
@@ -34201,14 +34201,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-14",
               "number": 14,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": "assets/questions/csat-2024-공통/item_014.png",
               "images": [],
               "body": "두 자연수 $a$, $b$에 대하여 함수 $f(x)$는\n $f \\left(x \\right)= {\\begin{cases}2x ^{3} -6x+1&& \\left(x \\leq 2 \\right) \\\\ a \\left(x-2 \\right) \\left(x-b \\right)+9&& \\left(x>2 \\right)\\end{cases}}$\n이다. 실수 $t$에 대하여 함수 $y=f(x)$의 그래프와 직선 $y=t$가 만나는 점의 개수를 $g(t)$라 하자.\n $g \\left(k \\right)+ \\lim _{t \\,->\\, k-} {} g \\left(t \\right)+ \\lim _{t \\,->\\, k+} {} g \\left(t \\right)=9$\n를 만족시키는 실수 $k$의 개수가 $1$이 되도록 하는 두 자연수 $a$, $b$의 순서쌍 $(a,\\, b)$에 대하여 $a+b$의 최댓값은? [4점]\n① $51$ ② $52$ ③ $53$ ④ $54$ ⑤ $55$",
@@ -34216,16 +34216,16 @@
                 "csat-2024-common-14",
                 "csat-2024-공통-14"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "함수의 극한과 연속",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-15",
               "number": 15,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2024-공통/item_015.png",
               "images": [],
               "body": "첫째항이 자연수인 수열 $\\left\\{ a_{n} \\right\\}$이 모든 자연수 $n$에 대하여\n $a _{n+1} = {\\begin{cases}2 ^{a _{n}}&& \\left( a _{n} 이 \\, 홀수인 \\, 경우 \\right) \\\\ \\frac{1}{2} a _{n}&& \\left( a _{n} 이 \\, 짝수인 \\, 경우 \\right)\\end{cases}}$\n를 만족시킬 때, $a_{6}+a_{7}=3$이 되도록 하는 모든 $a_{1}$의 값의 합은?\n[4점]\n① $139$ ② $146$ ③ $153$ ④ $160$ ⑤ $167$\n단답형",
@@ -34235,14 +34235,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-16",
               "number": 16,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2024-공통/item_016.png",
               "images": [],
               "body": "방정식 $3 ^{x-8} = \\left( \\frac{1}{27} \\right) ^{x}$을 만족시키는 실수 $x$의 값을 구하시오.\n[3점]",
@@ -34252,14 +34252,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-17",
               "number": 17,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2024-공통/item_017.png",
               "images": [],
               "body": "함수 $f \\left(x \\right)= \\left(x+1 \\right) \\left( x ^{2} +3 \\right)$에 대하여 $f \\,' \\left(1 \\right)$의 값을 구하시오.\n[3점]",
@@ -34267,16 +34267,16 @@
                 "csat-2024-common-17",
                 "csat-2024-공통-17"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-18",
               "number": 18,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2024-공통/item_018.png",
               "images": [],
               "body": "두 수열 $\\left\\{ a_{n} \\right\\}$, $\\left\\{ b_{n} \\right\\}$에 대하여\n $\\sum _{k=1} ^{10} a _{k} = \\sum _{k=1} ^{10} \\left( 2b _{k} -1 \\right)$, $\\sum _{k=1} ^{10} \\left( 3a _{k} +b _{k} \\right) =33$\n일 때, $\\sum_{k=1}^{10} b_{k}$의 값을 구하시오. [3점]",
@@ -34286,14 +34286,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-19",
               "number": 19,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2024-공통/item_019.png",
               "images": [],
               "body": "함수 $f(x)= \\sin \\frac{ \\pi}{4} x$라 할 때, $0<x<16$에서 부등식\n $f \\left(2+x \\right)f \\left(2-x \\right)< \\frac{1}{4}$\n을 만족시키는 모든 자연수 $x$의 값의 합을 구하시오. [3점]",
@@ -34303,14 +34303,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-20",
               "number": 20,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2024-공통/item_020.png",
               "images": [],
               "body": "$a> \\sqrt{2}$인 실수 $a$에 대하여 함수 $f(x)$를\n $f \\left(x \\right)=\\,-x ^{3} +ax ^{2} +2x$\n라 하자. 곡선 $y=f(x)$ 위의 점 ${{O}} (0,\\,0)$에서의 접선이 곡선 $y=f(x)$와 만나는 점 중 ${{O}}$가 아닌 점을 ${{A}}$라 하고, 곡선 $y=f(x)$ 위의 점 ${{A}}$에서의 접선이 $x$축과 만나는 점을 ${{B}}$라 하자. 점 ${{A}}$가 선분 ${{OB}}$를 지름으로 하는 원 위의 점일 때, $\\frac{}{l} i \\neq {{{OA}} } \\frac{\\times}{l} i \\neq {{{AB}} }$의 값을 구하시오. [4점]",
@@ -34320,14 +34320,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-21",
               "number": 21,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2024-공통/item_021.png",
               "images": [],
               "body": "양수 $a$에 대하여 $x \\geq-1$에서 정의된 함수 $f(x)$는\n $f \\left(x \\right)= {\\begin{cases}-x ^{2} +6x&& \\left(-1 \\leq x<6 \\right) \\\\ a \\log\\, _{4} \\left(x-5 \\right)&& \\left(x \\geq 6 \\right)\\end{cases}}$\n이다. $t \\geq 0$인 실수 $t$에 대하여 닫힌구간 $[t-1,\\, t+1]$에서의 $f(x)$의 최댓값을 $g(t)$라 하자. 구간 $[0,\\, \\infty )$에서 함수 $g(t)$의 최솟값이 $5$가 되도록 하는 양수 $a$의 최솟값을 구하시오. [4점]",
@@ -34337,14 +34337,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2024-공통-22",
               "number": 22,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2024-공통/item_022.png",
               "images": [],
               "body": "최고차항의 계수가 $1$인 삼차함수 $f(x)$가 다음 조건을 만족시킨다.\n함수 $f(x)$에 대하여 $f \\left(k-1 \\right)f \\left(k+1 \\right)<0$을 만족시키는 정수 $k$는 존재하지 않는다.\n$f \\,' \\left( - \\frac{1}{4} \\right) =\\,- \\frac{1}{4}$, $f \\,' \\left( \\frac{1}{4} \\right) <0$일 때, $f(8)$의 값을 구하시오. [4점]",
@@ -34352,10 +34352,10 @@
                 "csat-2024-common-22",
                 "csat-2024-공통-22"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             }
           ]
         },
@@ -34741,7 +34741,7 @@
               "id": "csat-2023-공통-03",
               "number": 3,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2023-공통/item_003.png",
               "images": [],
               "body": "공비가 양수인 등비수열 $\\left\\{a _{n} \\right\\}$이\n $a _{2} +a _{4} =30,\\,a _{4} +a _{6} = \\frac{15}{2}$\n를 만족시킬 때, $a _{1}$의 값은? [3점]\n① $48$ ② $56$ ③ $64$ ④ $72$ ⑤ $80$",
@@ -34751,14 +34751,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-04",
               "number": 4,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2023-공통/item_004.png",
               "images": [],
               "body": "다항함수 $f \\left( x \\right)$에 대하여 함수 $g \\left( x \\right)$를\n $g \\left( x \\right) =x ^{2} f \\left( x \\right)$\n라 하자. $f \\left( 2 \\right) =1,\\,f\\,' \\left( 2 \\right) =3$일 때, $g\\,' \\left( 2 \\right)$의 값은? [3점]\n① $12$ ② $14$ ③ $16$ ④ $18$ ⑤ $20$",
@@ -34766,16 +34766,16 @@
                 "csat-2023-common-04",
                 "csat-2023-공통-04"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-05",
               "number": 5,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2023-공통/item_005.png",
               "images": [],
               "body": "$\\tan\\,\\theta<0$이고 $\\cos\\, \\left( \\frac{\\pi}{2} +\\theta \\right) = \\frac{\\sqrt{5}}{5}$일 때, $\\cos\\,\\theta$의 값은? [3점]\n① $- \\frac{2 \\sqrt{5}}{5}$ ② $- \\frac{\\sqrt{5}}{5}$ ③ $0$\n④ $\\frac{\\sqrt{5}}{5}$ ⑤ $\\frac{2 \\sqrt{5}}{5}$",
@@ -34785,14 +34785,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-06",
               "number": 6,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2023-공통/item_006.png",
               "images": [],
               "body": "함수 $f \\left( x \\right) =2x ^{3} -9x ^{2} +ax+5$는 $x=1$에서 극대이고, $x=b$에서 극소이다. $a+b$의 값은? (단, $a,\\,b$는 상수이다.) [3점]\n① $12$ ② $14$ ③ $16$ ④ $18$ ⑤ $20$",
@@ -34802,14 +34802,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-07",
               "number": 7,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2023-공통/item_007.png",
               "images": [],
               "body": "모든 항이 양수이고 첫째항과 공차가 같은 등차수열 $\\left\\{ a_n \\right\\}$이\n $\\sum _{ k\\,=\\,1} ^{15 }\\, \\frac{1}{ \\sqrt{a_k} + \\sqrt{a_k+1} }=2$\n를 만족시킬 때, $a_4$의 값은? [3점]\n① $6$ ② $7$ ③ $8$ ④ $9$ ⑤ $10$",
@@ -34819,14 +34819,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-08",
               "number": 8,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2023-공통/item_008.png",
               "images": [],
               "body": "점 $(0,\\,4)$에서 곡선 $y = x^3 - x +2$에 그은 접선의 $x$절편은?\n[3점]\n① $- \\frac{1}{2}$ ② $-1$ ③ $- \\frac{3}{2}$ ④ $-2$ ⑤ $- \\frac{5}{2}$",
@@ -34836,14 +34836,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-09",
               "number": 9,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2023-공통/item_009.png",
               "images": [],
               "body": "함수\n $f(x)= a - \\sqrt{3} \\, \\tan \\, 2x$\n가 닫힌구간 $\\left[ \\, - \\frac{\\pi}{6} ,\\,b \\right]$에서 최댓값 $7$, 최솟값 $3$을 가질 때, $a \\times b$의 값은? (단, $a,\\,b$는 상수이다.) [4점]\n① $\\frac{\\pi}{2}$ ② $\\frac{5\\pi}{12}$ ③ $\\frac{\\pi}{3}$ ④ $\\frac{\\pi}{4}$ ⑤ $\\frac{\\pi}{6}$",
@@ -34853,14 +34853,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-10",
               "number": 10,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2023-공통/item_010.png",
               "images": [
                 "assets/questions/csat-2023-공통/item_010_fig_01.png"
@@ -34870,16 +34870,16 @@
                 "csat-2023-common-10",
                 "csat-2023-공통-10"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-11",
               "number": 11,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2023-공통/item_011.png",
               "images": [
                 "assets/questions/csat-2023-공통/item_011_fig_01.png"
@@ -34891,14 +34891,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-12",
               "number": 12,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": "assets/questions/csat-2023-공통/item_012.png",
               "images": [],
               "body": "실수 전체의 집합에서 연속인 함수 $f \\left( x \\right)$가 다음 조건을 만족시킨다.\n$n-1 \\leq x <n$일 때, $\\left| \\,f \\left( x \\right) \\,\\right| = \\left| \\,6 \\left( x-n + 1 \\right) \\left( x-n \\right) \\,\\right|$이다.(단, $n$은 자연수이다.)\n열린구간 $\\left( \\,0, \\, 4 \\, \\right)$에서 정의된 함수\n $g \\left( x \\right) = \\int _{ 0} ^{ x} { f \\left( t \\right) }\\,dt - \\int _{ x} ^{4 } {f \\left( t \\right) }\\,dt$\n가 $x=2$에서 최솟값 $0$을 가질 때, $\\int _{ \\frac{1}{2} } ^{ 4} { f \\left( x \\right) }\\,dx$의 값은? [4점]\n① $- \\frac{3}{2}$ ② $- \\frac{1}{2}$ ③ $\\frac{1}{2}$ ④ $\\frac{3}{2}$ ⑤ $\\frac{5}{2}$",
@@ -34908,14 +34908,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "함수의 극한과 연속",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-13",
               "number": 13,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2023-공통/item_013.png",
               "images": [],
               "body": "자연수 $m \\, \\left( m \\geq 2 \\right)$에 대하여 $m^12$의 $n$제곱근 중에서 정수가 존재하도록 하는 $2$ 이상의 자연수 $n$의 개수를 $f \\left( m \\right)$이라 할 때, $\\sum _{ m\\,=\\,2} ^{ 9}\\, f \\left( m \\right)$의 값은? [4점]\n① $37$ ② $42$ ③ $47$ ④ $52$ ⑤ $57$",
@@ -34925,14 +34925,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-14",
               "number": 14,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": "assets/questions/csat-2023-공통/item_014.png",
               "images": [],
               "body": "다항함수 $f \\left( x \\right)$에 대하여 함수 $g \\left( x \\right)$를 다음과 같이 정의한다.\n $g \\left( x \\right)$$=$$\\left\\{ \\pi \\leq {##} \\right.$$x$($x< -1$ 또는 $x>1$)$f \\left( x \\right)$$\\left( -1 \\leq x \\leq 1 \\right)$\n함수 $h \\left( x \\right) = \\lim _{ t\\,->\\, 0+}\\, {g \\left( x+t \\right) } \\times \\lim _{ t\\,->\\, 2+}\\, g \\left( x+t \\right)$에 대하여 <보기>에서 옳은 것만을 있는 대로 고른 것은? [4점]\n<보기> ㄱ. $h \\left( 1 \\right) = 3$ㄴ. 함수 $h \\left( x \\right)$는 실수 전체의 집합에서 연속이다.ㄷ. 함수 $g \\left( x \\right)$가 닫힌구간 $\\left[\\,-1, \\, 1 \\,\\right]$에서 감소하고 $g \\left( -1 \\right) = -2$이면 함수 $h \\left( x \\right)$는 실수 전체의 집합에서 최솟값을 갖는다.\n① ㄱ ② ㄴ ③ ㄱ, ㄴ\n④ ㄱ, ㄷ ⑤ ㄴ, ㄷ",
@@ -34942,14 +34942,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "함수의 극한과 연속",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-15",
               "number": 15,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2023-공통/item_015.png",
               "images": [],
               "body": "모든 항이 자연수이고 다음 조건을 만족시키는 모든 수열 $\\left\\{ a _{n} \\right\\}$에 대하여 $a _{9}$의 최댓값과 최솟값을 각각 $M,\\,m$이라 할 때, $M+m$의 값은? [4점]\n(가) $a _{7} =40$(나) 모든 자연수 $n$에 대하여 $a _{n+2} = {\\begin{cases}eqalign{\\,a _{n+1} +a _{n} \\, \\\\ }&eqalign{(a _{n+1} 이\\,3의\\,배수가\\,아닌\\,경우) \\\\ } \\\\ \\, \\frac{1}{3} a _{n+1}&(a _{n+1} 이\\,3의\\,배수인\\,경우)\\end{cases}}$ 이다.\n① $216$ ② $218$ ③ $220$ ④ $222$ ⑤ $224$\n단답형",
@@ -34959,14 +34959,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-16",
               "number": 16,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2023-공통/item_016.png",
               "images": [],
               "body": "방정식\n $\\log\\, _{2} \\, \\left( 3x+2 \\right) =2+\\log\\, _{2} \\, \\left( x-2 \\right)$\n를 만족시키는 실수 $x$의 값을 구하시오. [3점]",
@@ -34976,14 +34976,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-17",
               "number": 17,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2023-공통/item_017.png",
               "images": [],
               "body": "함수 $f \\left( x \\right)$에 대하여 $f\\,' \\left( x \\right) =4x ^{3} -2x$이고 $f \\left( 0 \\right) =3$일 때, $f \\left( 2 \\right)$의 값을 구하시오. [3점]",
@@ -34991,16 +34991,16 @@
                 "csat-2023-common-17",
                 "csat-2023-공통-17"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-18",
               "number": 18,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2023-공통/item_018.png",
               "images": [],
               "body": "두 수열 $\\left\\{ a_n \\right\\}$, $\\left\\{ b _{n} \\right\\}$에 대하여\n $\\sum _{k\\,=\\,1} ^{5} \\, \\left( 3a _{k} +5 \\right) =55$, $\\sum _{k\\,=\\,1} ^{5} \\, \\left( a _{k} +b _{k} \\right) =32$\n일 때, $\\sum _{k\\,=\\,1} ^{5} \\,b _{k}$의 값을 구하시오. [3점]",
@@ -35010,14 +35010,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-19",
               "number": 19,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2023-공통/item_019.png",
               "images": [],
               "body": "방정식 $2x^3 -6x^2 +k=0$의 서로 다른 양의 실근의 개수가 $2$가 되도록 하는 정수 $k$의 개수를 구하시오. [3점]",
@@ -35025,16 +35025,16 @@
                 "csat-2023-common-19",
                 "csat-2023-공통-19"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-20",
               "number": 20,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2023-공통/item_020.png",
               "images": [],
               "body": "수직선 위를 움직이는 점 $P$의 시각 $t\\,$($t \\geq0$)에서의 속도 $v \\left( t \\right)$와 가속도 $a \\left( t \\right)$가 다음 조건을 만족시킨다.\n(가) $0\\leq t \\leq 2$일 때, $v \\left( t \\right) = 2t^3 -8t$이다.(나) $t \\geq2$일 때, $a \\left( t \\right) = 6t+4$이다.\n시각 $t=0$에서 $t=3$까지 점 $P$가 움직인 거리를 구하시오. [4점]",
@@ -35044,14 +35044,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-21",
               "number": 21,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2023-공통/item_021.png",
               "images": [],
               "body": "자연수 $n$에 대하여 함수 $f \\left( x \\right)$를\n $f \\left( x \\right) = \\begin{cases}\\left|\\,3^x+2 -n\\, \\right| &\\, \\left( x<0 \\right) \\\\ \\left|\\,\\log\\,_2\\, \\left( x+4 \\right) - n \\, \\right|&\\, \\left( x \\geq 0 \\right) \\end{cases}$\n이라 하자. 실수 $t$에 대하여 $x$에 대한 방정식 $f \\left( x \\right) = t$의 서로 다른 실근의 개수를 $g \\left( t \\right)$라 할 때, 함수 $g \\left( t \\right)$의 최댓값이 $4$가 되도록 하는 모든 자연수 $n$의 값의 합을 구하시오. [4점]",
@@ -35061,14 +35061,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2023-공통-22",
               "number": 22,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2023-공통/item_022.png",
               "images": [],
               "body": "최고차항의 계수가 $1$인 삼차함수 $f \\left( x \\right)$와 실수 전체의 집합에서 연속인 함수 $g \\left( x \\right)$가 다음 조건을 만족시킬 때, $f \\left( 4 \\right)$의 값을 구하시오. [4점]\n(가) 모든 실수 $x$에 대하여 $f \\left( x \\right) = f \\left( 1 \\right)+ \\left( x-1 \\right)f\\,' \\left( g \\left( x \\right) \\right)$이다.(나) 함수 $g \\left( x \\right)$의 최솟값은 $\\frac{5}{2}$이다.(다) $f \\left( 0 \\right)= -3$, $f \\left( g \\left( 1 \\right) \\right) = 6$",
@@ -35078,8 +35078,8 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             }
           ]
         },
@@ -35485,7 +35485,7 @@
               "id": "csat-2022-공통-03",
               "number": 3,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2022-공통/item_003.png",
               "images": [],
               "body": "등차수열 $\\left\\{ a _{n} \\right\\}$에 대하여\n $a _{2}$$=6$, $a _{4} +a _{6}$$=36$\n일 때, $a _{10}$의 값은? [3점]\n① $30\\,$ ② $32\\,$ ③ $34\\,$ ④ $36\\,$ ⑤ $38\\,$",
@@ -35495,14 +35495,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-04",
               "number": 4,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": "assets/questions/csat-2022-공통/item_004.png",
               "images": [
                 "assets/questions/csat-2022-공통/item_004_fig_01.png"
@@ -35512,16 +35512,16 @@
                 "csat-2022-common-04",
                 "csat-2022-공통-04"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "함수의 극한과 연속",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-05",
               "number": 5,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2022-공통/item_005.png",
               "images": [],
               "body": "첫째항이 $1$인 수열 $\\left\\{ a _{n} \\right\\}$이 모든 자연수 $n$에 대하여\n $a _{n+1} = {\\begin{cases}2a _{n}&\\, \\left( a _{n} <7 \\right) \\\\ eqalign{ \\\\ a _{n} -7}&eqalign{ \\\\ \\left. \\, \\left( a _{n} \\geq 7 \\right. \\right)}\\end{cases}}$\n일 때, $\\sum _{k=1} ^{8} a _{k}$의 값은? [3점]\n① $30\\,$ ② $32\\,$ ③ $34\\,$ ④ $36\\,$ ⑤ $38\\,$",
@@ -35531,14 +35531,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-06",
               "number": 6,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2022-공통/item_006.png",
               "images": [],
               "body": "방정식 $2x ^{3} -3x ^{2} -12x+k$$=0$이 서로 다른 세 실근을 갖도록 하는 정수 $k$의 개수는? [3점]\n① $20\\,$ ② $23\\,$ ③ $26\\,$ ④ $29\\,$ ⑤ $32\\,$",
@@ -35546,16 +35546,16 @@
                 "csat-2022-common-06",
                 "csat-2022-공통-06"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-07",
               "number": 7,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2022-공통/item_007.png",
               "images": [],
               "body": "$\\pi< \\theta < \\frac{3}{2} \\pi$인 $\\theta$에 대하여 $\\tan\\, \\theta - \\frac{6}{\\tan\\, \\theta }$$= 1$일 때, $\\sin\\, \\theta +\\cos\\, \\theta$의 값은? [3점]\n① $- \\frac{2 \\sqrt{10}}{5}$ ② $- \\frac{\\sqrt{10}}{5}$ ③ $0$ ④ $\\frac{\\sqrt{10}}{5}$ ⑤ $\\frac{2 \\sqrt{10}}{5}$",
@@ -35565,14 +35565,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-08",
               "number": 8,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2022-공통/item_008.png",
               "images": [],
               "body": "곡선 $y$$=x ^{2} -5x$와 직선 $y$$=x$로 둘러싸인 부분의 넓이를 직선 $x$$=k$가 이등분할 때, 상수 $k$의 값은? [3점]\n① $3$ ② $\\frac{13}{4}$ ③ $\\frac{7}{2}$ ④ $\\frac{15}{4}$ ⑤ $4$",
@@ -35580,16 +35580,16 @@
                 "csat-2022-common-08",
                 "csat-2022-공통-08"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-09",
               "number": 9,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2022-공통/item_009.png",
               "images": [
                 "assets/questions/csat-2022-공통/item_009_fig_01.png"
@@ -35601,14 +35601,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-10",
               "number": 10,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2022-공통/item_010.png",
               "images": [],
               "body": "삼차함수 $f \\left( x \\right)$에 대하여 곡선 $y$$=f \\left( x \\right)$ 위의 점 $\\left( 0,\\,0 \\right)$에서의 접선과 곡선 $y$$=x\\,f \\left( x \\right)$ 위의 점 $\\left( 1,\\,2 \\right)$에서의 접선이 일치할 때, $f\\,' \\left( 2 \\right)$의 값은? [4점]\n① $-18$ ② $-17$ ③ $-16$ ④ $-15$ ⑤ $-14$",
@@ -35618,14 +35618,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-11",
               "number": 11,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2022-공통/item_011.png",
               "images": [
                 "assets/questions/csat-2022-공통/item_011_fig_01.png"
@@ -35637,14 +35637,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-12",
               "number": 12,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "함수의 극한과 연속",
               "preview": "assets/questions/csat-2022-공통/item_012.png",
               "images": [],
               "body": "실수 전체의 집합에서 연속인 함수 $f \\left( x \\right)$가 모든 실수 $x$에 대하여\n $\\left\\{ f \\left( x \\right) \\right\\} ^{3} - \\left\\{ f \\left( x \\right) \\right\\} ^{2} -x ^{2} f \\left( x \\right) +x ^{2}$$=0$\n을 만족시킨다. 함수 $f \\left( x \\right)$의 최댓값이 $1$이고 최솟값이 $0$일 때, $f \\left( - \\frac{4}{3} \\right) +f \\left( 0 \\right) +f \\left( \\frac{1}{2} \\right)$의 값은? [4점]\n① $\\frac{1}{2}$ ② $1$ ③ $\\frac{3}{2}$ ④ $2$ ⑤ $\\frac{5}{2}$",
@@ -35654,14 +35654,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "함수의 극한과 연속",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-13",
               "number": 13,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2022-공통/item_013.png",
               "images": [],
               "body": "두 상수 $a$, $b$($1<a<b$)에 대하여 좌표평면 위의 두 점 $\\left( a,\\,\\log\\, _{2} \\,a \\right)$, $\\left( b,\\,\\log\\, _{2} \\,b \\right)$를 지나는 직선의 $y$절편과 두 점 $\\left( a,\\,\\log\\, _{4} \\,a \\right)$, $\\left( b,\\,\\log\\, _{4} \\,b \\right)$를 지나는 직선의 $y$절편이 같다. 함수 $f \\left( x \\right)$$=a ^{bx} +b ^{ax}$에 대하여 $f \\left( 1 \\right)$$=40$일 때, $f \\left( 2 \\right)$의 값은? [4점]\n① $760\\,$ ② $800\\,$ ③ $840\\,$ ④ $880\\,$ ⑤ $920\\,$",
@@ -35671,14 +35671,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-14",
               "number": 14,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2022-공통/item_014.png",
               "images": [],
               "body": "수직선 위를 움직이는 점 $P$의 시각 $t$에서의 위치 $x \\left( t \\right)$가 두 상수 $a$, $b$에 대하여\n $x \\left( t \\right)$$=t \\left( t-1 \\right) \\left( at+b \\right)$ ($a != 0$)\n이다. 점 $P$의 시각 $t$에서의 속도 $v \\left( t \\right)$가 $\\int _{0} ^{1} {} \\left| \\,v \\left( t \\right) \\, \\right| \\,dt$$=2$를 만족시킬 때, <보기>에서 옳은 것만을 있는 대로 고른 것은? [4점]\n| 보기 |ㄱ. $\\int _{0} ^{1} {} v \\left( t \\right) \\,dt$$=0$ㄴ. $\\left| \\,x \\left( t _{1} \\right) \\, \\right| >1$인 $t _{1}$이 열린구간 $\\left( 0,\\,1 \\right)$에 존재한다.ㄷ. $0 \\leq t \\leq 1$인 모든 $t$에 대하여 $\\left| \\,x \\left( t \\right) \\, \\right| <1$이면 $x \\left( t _{2} \\right)$$=0$인 $t _{2}$가 열린구간 $\\left( 0,\\,1 \\right)$에 존재한다.\n① ㄱ ② ㄱ, ㄴ ③ ㄱ, ㄷ\n④ ㄴ, ㄷ ⑤ ㄱ, ㄴ, ㄷ",
@@ -35686,16 +35686,16 @@
                 "csat-2022-common-14",
                 "csat-2022-공통-14"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-15",
               "number": 15,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "삼각함수",
               "preview": "assets/questions/csat-2022-공통/item_015.png",
               "images": [
                 "assets/questions/csat-2022-공통/item_015_fig_01.png"
@@ -35707,14 +35707,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "삼각함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-16",
               "number": 16,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "지수함수와 로그함수",
               "preview": "assets/questions/csat-2022-공통/item_016.png",
               "images": [],
               "body": "$\\log\\, _{2} \\,120- \\frac{1}{\\log\\, _{15} \\,2}$의 값을 구하시오. [3점]",
@@ -35724,14 +35724,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "지수함수와 로그함수",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-17",
               "number": 17,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2022-공통/item_017.png",
               "images": [],
               "body": "함수 $f \\left( x \\right)$에 대하여 $f\\,' \\left( x \\right)$$=3x ^{2} +2x$이고 $f \\left( 0 \\right)$$=2$일 때, $f \\left( 1 \\right)$의 값을 구하시오. [3점]",
@@ -35739,16 +35739,16 @@
                 "csat-2022-common-17",
                 "csat-2022-공통-17"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-18",
               "number": 18,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2022-공통/item_018.png",
               "images": [],
               "body": "수열 $\\left\\{ a _{n} \\right\\}$에 대하여\n $\\sum _{k=1} ^{10} a _{k} - \\sum _{k=1} ^{7} \\frac{a _{k}}{2}$$=56$, $\\sum _{k=1} ^{10} 2a _{k} - \\sum _{k=1} ^{8} a _{k}$$=100$\n일 때, $a _{8}$의 값을 구하시오. [3점]",
@@ -35758,14 +35758,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-19",
               "number": 19,
               "score": 3,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2022-공통/item_019.png",
               "images": [],
               "body": "함수 $f \\left( x \\right)$$=x ^{3} +ax ^{2} - \\left( a ^{2} -8a \\right) x+3$이 실수 전체의 집합에서 증가하도록 하는 실수 $a$의 최댓값을 구하시오. [3점]",
@@ -35773,16 +35773,16 @@
                 "csat-2022-common-19",
                 "csat-2022-공통-19"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-20",
               "number": 20,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "적분",
               "preview": "assets/questions/csat-2022-공통/item_020.png",
               "images": [],
               "body": "실수 전체의 집합에서 미분가능한 함수 $f \\left( x \\right)$가 다음 조건을 만족시킨다.\n(가) 닫힌구간 $\\left[ \\,0,\\,1\\, \\right]$에서 $f \\left( x \\right)$$=x$이다.(나) 어떤 상수 $a$, $b$에 대하여 구간 $[\\,0,\\, \\infty \\,)$에서 $f \\left( x+1 \\right) -x\\,f \\left( x \\right)$$=ax+b$이다.\n$60 \\times \\int _{1} ^{2} {} f \\left( x \\right) \\,dx$의 값을 구하시오. [4점]",
@@ -35792,14 +35792,14 @@
               ],
               "courseCode": "M2",
               "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "적분",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-21",
               "number": 21,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "수열",
               "preview": "assets/questions/csat-2022-공통/item_021.png",
               "images": [],
               "body": "수열 $\\left\\{ a _{n} \\right\\}$이 다음 조건을 만족시킨다.\n(가) $\\left| \\,a _{1} \\, \\right|$$=2$(나) 모든 자연수 $n$에 대하여 $\\left| \\,a _{n+1} \\, \\right|$$=2 \\left| \\,a _{n} \\, \\right|$이다.(다) $\\sum _{k=1} ^{10} a _{n}$$= -14$\n$a _{1} +a _{3} +a _{5} +a _{7} +a _{9}$의 값을 구하시오. [4점]",
@@ -35809,14 +35809,14 @@
               ],
               "courseCode": "ALG",
               "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "bankUnit": "수열",
+              "tagSource": "verified-course-audit"
             },
             {
               "id": "csat-2022-공통-22",
               "number": 22,
               "score": 4,
-              "unit": "개념 태그 미입력",
+              "unit": "미분",
               "preview": "assets/questions/csat-2022-공통/item_022.png",
               "images": [],
               "body": "최고차항의 계수가 $\\frac{1}{2}$인 삼차함수 $f \\left( x \\right)$와 실수 $t$에 대하여 방정식 $f\\,' \\left( x \\right)$$=0$이 닫힌구간 $\\left[ \\,t,\\,t+2\\, \\right]$에서 갖는 실근의 개수를 $g \\left( t \\right)$라 할 때, 함수 $g \\left( t \\right)$는 다음 조건을 만족시킨다.\n(가) 모든 실수 $a$에 대하여 $\\lim _{t -> a+} {} g \\left( t \\right) + \\lim _{t -> a-} {} g \\left( t \\right) \\leq 2$이다.(나) $g \\left( f \\left( 1 \\right) \\right)$$=g \\left( f \\left( 4 \\right) \\right)$$=2$, $g \\left( f \\left( 0 \\right) \\right)$$=1$\n$f \\left( 5 \\right)$의 값을 구하시오. [4점]",
@@ -35824,10 +35824,10 @@
                 "csat-2022-common-22",
                 "csat-2022-공통-22"
               ],
-              "courseCode": "ALG",
-              "courseLabel": "대수(기존 수학Ⅰ)",
-              "bankUnit": "",
-              "tagSource": "problem-bank-3"
+              "courseCode": "M2",
+              "courseLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+              "bankUnit": "미분",
+              "tagSource": "verified-course-audit"
             }
           ]
         },

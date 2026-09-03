@@ -32,6 +32,7 @@ OFFICIAL_WORKS = [
 ]
 ASSETS = DASH / "assets" / "questions"
 PB3_TAGS = DASH / "problem-bank3-tags.json"
+VERIFIED_COURSES = DASH / "verified-course-classification.json"
 
 COURSE_LABELS = {
     "CM1": "공통수학Ⅰ",
@@ -63,6 +64,40 @@ def normalize_track(value: str) -> str:
     return track or "미상"
 
 
+def load_verified_course_index() -> dict[tuple[str, int, str, str, int], dict]:
+    if not VERIFIED_COURSES.exists():
+        return {}
+    payload = json.loads(VERIFIED_COURSES.read_text(encoding="utf-8"))
+    course_by_unit = payload.get("courseByUnit") or {}
+    index: dict[tuple[str, int, str, str, int], dict] = {}
+    for exam in payload.get("examMaps") or []:
+        base = (
+            exam["examType"],
+            int(exam["year"]),
+            exam["session"],
+            normalize_track(exam["track"]),
+        )
+        seen: set[int] = set()
+        for unit, numbers in (exam.get("units") or {}).items():
+            course_code = course_by_unit[unit]
+            for number in numbers:
+                number = int(number)
+                if number in seen:
+                    raise ValueError(f"검수 과목표 문항 중복: {base} {number}")
+                seen.add(number)
+                index[(*base, number)] = {"courseCode": course_code, "unit": unit}
+    for row in payload.get("overrides") or []:
+        key = (
+            row["examType"],
+            int(row["year"]),
+            row["session"],
+            normalize_track(row["track"]),
+            int(row["number"]),
+        )
+        index[key] = row
+    return index
+
+
 def load_pb3_index() -> dict[tuple[str, int, str, str, int], dict]:
     if not PB3_TAGS.exists():
         return {}
@@ -80,6 +115,21 @@ def load_pb3_index() -> dict[tuple[str, int, str, str, int], dict]:
 
 
 PB3_INDEX = load_pb3_index()
+VERIFIED_COURSE_INDEX = load_verified_course_index()
+
+
+def apply_verified_course(question: dict, exam_type: str, year: int, session: str, track: str, number: int) -> dict:
+    row = VERIFIED_COURSE_INDEX.get((exam_type, int(year), session, normalize_track(track), int(number)))
+    if not row:
+        return question
+    course_code = row["courseCode"]
+    question["courseCode"] = course_code
+    question["courseLabel"] = COURSE_LABELS[course_code]
+    if row.get("unit"):
+        question["unit"] = row["unit"]
+        question["bankUnit"] = row["unit"]
+    question["tagSource"] = "verified-course-audit"
+    return question
 
 
 def sanitize_problem_text(text: str | None) -> str | None:
@@ -178,7 +228,7 @@ def apply_pb3_meta(question: dict, exam_type: str, year: int, session: str, trac
         question.setdefault("courseCode", "")
         question.setdefault("courseLabel", "과목 미분류")
         question.setdefault("tagSource", "")
-        return question
+        return apply_verified_course(question, exam_type, year, session, track, number)
     course_code = row.get("courseCode") or ""
     question["courseCode"] = course_code
     question["courseLabel"] = row.get("courseLabel") or COURSE_LABELS.get(course_code, "과목 미분류")
@@ -186,7 +236,7 @@ def apply_pb3_meta(question: dict, exam_type: str, year: int, session: str, trac
     if row.get("unit"):
         question["unit"] = row["unit"]
     question["tagSource"] = "problem-bank-3"
-    return question
+    return apply_verified_course(question, exam_type, year, session, track, number)
 
 
 def extract_item_figures(item: dict, dest_dir: Path, number: int) -> list[str]:

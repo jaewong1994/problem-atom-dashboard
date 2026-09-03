@@ -1,0 +1,13 @@
+{
+  "schema": "problem-atom/course-classification-audit/1.0",
+  "generatedAt": "2026-09-03T16:05:50+00:00",
+  "publishedCards": 3284,
+  "verifiedRuleCount": 143,
+  "publishedMismatchCount": 0,
+  "publishedMismatches": [],
+  "sourceRowsChecked": 2380,
+  "sourceChangeCount": 0,
+  "sourceChanges": [],
+  "sourceAppliedCount": 0,
+  "sourceAppliedIds": []
+}

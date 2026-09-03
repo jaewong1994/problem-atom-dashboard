@@ -18,6 +18,9 @@ def main() -> None:
     service_worker = (ROOT / "sw.js").read_text(encoding="utf-8")
     sql = (ROOT / "realtime" / "supabase_setup.sql").read_text(encoding="utf-8")
     data = json.loads((ROOT / "dashboard-data.json").read_text(encoding="utf-8"))
+    verified_courses = json.loads(
+        (ROOT / "verified-course-classification.json").read_text(encoding="utf-8")
+    )
     vision = (ROOT / "vision.html").read_text(encoding="utf-8")
     template = ROOT / "assets" / "downloads" / "세미나분석지_초간단.hwpx"
 
@@ -46,6 +49,26 @@ def main() -> None:
     assert "sb_secret_" not in realtime_config
     assert "같은 문제를 여러 명이 맡아도 됨" not in vision
     assert template.exists() and zipfile.is_zipfile(template)
+    assert all(
+        {number for numbers in exam["units"].values() for number in numbers} == set(range(3, 23))
+        for exam in verified_courses["examMaps"]
+    )
+
+    def question(exam_id: str, section_key: str, number: int) -> dict:
+        exam = next(item for item in data["exams"] if item["id"] == exam_id)
+        section = next(
+            item for item in exam["sections"]
+            if item["id"] == section_key or item["kind"] == section_key
+        )
+        return next(item for item in section["questions"] if item["number"] == number)
+
+    # 사람이 문제 원문을 확인한 대표 회귀 사례. 문제 ID는 바꾸지 않는다.
+    assert question("csat-2022", "common", 14)["courseCode"] == "M2"
+    assert question("csat-2024", "common", 14)["courseCode"] == "M2"
+    assert question("csat-2026", "common", 14)["courseCode"] == "ALG"
+    assert question("kice-2025-9", "common", 12)["courseCode"] == "ALG"
+    assert question("kice-2022-9", "common", 21)["courseCode"] == "ALG"
+    assert question("kice-2023-9", "미적분", 27)["courseCode"] == "CALC"
     target_numbers = set(config["questionNumbers"])
     season_questions = []
     for exam in data["exams"]:
