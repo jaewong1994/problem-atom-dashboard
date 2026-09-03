@@ -35,40 +35,41 @@
       <div class="hero-copy">
         <p class="eyebrow">기출문제 분석 · 재조합 프로젝트</p>
         <h1>학생이 막힌 지점을 찾아,<br><em>그 병목을 없애는 문제를 만든다.</em></h1>
-        <p class="hero-lead">수학강사 4~5명이 기출 풀이를 개념·스킬·판단·유형·전략으로 분석합니다. AI는 검증된 요소를 조합해 같은 병목을 다양한 계산량과 난이도로 훈련하는 문항군을 만들고, 강사가 다시 설계·검수합니다.</p>
+        <p class="hero-lead">수학강사 4명이 매주 한 문제씩 깊게 풉니다. 강사는 문제·풀이과정·사용한 개념을 자연어로 남기고, 운영자가 AI로 개념·판단·스킬·전략·유형 후보와 풀이 순서를 구조화합니다.</p>
         <div class="hero-actions">
           <a class="button primary" href="#weekly">이번 주 할 일 보기</a>
           <a class="button secondary" href="dashboard.html">완료 문항 확인하기</a>
+          <a class="button secondary" href="assets/downloads/세미나분석지_초간단.hwpx" download>한글 분석지 받기</a>
         </div>
         <p class="hero-boundary"><strong>세미나 정본은 NGD2와 분리합니다.</strong> 분석 중에는 NGD2의 AI 온톨로지·이름·추천을 보지 않습니다. 강사 토론으로 만든 <code>PA-*</code> 카드가 승인되고 내용이 고정된 뒤에만 NGD2와 비교표를 만들며, 같은 요소여도 양쪽 ID와 정의를 모두 보존합니다.</p>
       </div>
 
       <aside class="operation-card" aria-label="권장 주간 운영 기준">
-        <p>권장 주간 운영 기준</p>
+        <p>시즌 1 · 2026년 9~12월</p>
         <dl class="operation-numbers">
-          <div><dt>인원</dt><dd>4~5명</dd><small>수학강사 중심</small></div>
+          <div><dt>인원</dt><dd>4명+</dd><small>1인당 주 1문항</small></div>
           <div><dt>주기</dt><dd>주 1회</dd><small>100분 세미나</small></div>
           <div><dt>처리량</dt><dd>4문항</dd><small>문항당 약 20분</small></div>
-          <div><dt>기록</dt><dd>5축</dd><small>병목과 풀이 흐름</small></div>
+          <div><dt>기록</dt><dd>3칸</dd><small>문제·풀이·개념 설명</small></div>
         </dl>
-        <p class="plain-definition"><b>분석 단위는?</b> 개념·스킬·판단·유형·전략 카드와 <strong>신호 → 판단 → 행동 → 결과</strong> 연결입니다. 학생이 어느 연결에서 멈췄는지까지 기록합니다.</p>
+        <p class="plain-definition"><b>시즌 1 대상은?</b> 2022→2027학년도 평가원 공통 13·14·15·20·21·22번의 미적분Ⅰ(기존 수학Ⅱ) 문제입니다. 현황판에서 먼저 선점한 뒤 분석합니다.</p>
       </aside>
     </section>
 
     <section class="weekly section-pad" id="weekly">
       <div class="section-heading">
         <div><p class="section-number">01 / 매주 할 일</p><h2>세미나 한 번에<br>4문항을 끝낸다</h2></div>
-        <p>구성원은 풀이와 토론에만 집중합니다. 스캔, OCR, 데이터 입력, JSON 반영은 운영자가 세미나 뒤에 처리합니다.</p>
+        <p>구성원은 문제를 선점하고 풀이·토론·한글 입력에만 집중합니다. 온톨로지 분해와 데이터 입력은 운영자가 세미나 뒤에 처리합니다.</p>
       </div>
 
       <div class="weekly-grid">
         <article>
-          <span>세미나 전 · 각자 20~30분</span>
-          <h3>맡은 문제를 풀어 온다</h3>
+          <span>세미나 전 · 구성원</span>
+          <h3>현황판에서 한 문제를 선점한다</h3>
           <ul>
-            <li>정답보다 먼저 풀이가 시작되거나 멈춘 지점을 표시</li>
-            <li>막히기 쉬운 지점과 다른 풀이를 메모</li>
-            <li>같은 문제를 여러 명이 맡아도 됨</li>
+            <li>이름과 멤버 ID로 실시간 점유</li>
+            <li>다른 사람이 선점한 문제는 선택 불가</li>
+            <li>주 1문항을 풀고 설명할 내용을 준비</li>
           </ul>
         </article>
         <article class="weekly-main">
@@ -76,25 +77,25 @@
           <h3>문항마다 결론을 남긴다</h3>
           <ol>
             <li><b>10분</b><span>오늘 다룰 4문항과 발표자 확인</span></li>
-            <li><b>80분</b><span>문항당 20분씩 풀이 비교, 5축과 병목 확정</span></li>
-            <li><b>10분</b><span>중복 카드 병합, 미해결 항목 지정</span></li>
+            <li><b>80분</b><span>문항당 20분씩 풀이의 이유, 핵심 개념, 별해 토론</span></li>
+            <li><b>10분</b><span>각 분석지의 보충 문장과 별해 파일 확인</span></li>
           </ol>
         </article>
         <article>
           <span>세미나 후 · 운영자</span>
-          <h3>종이를 검색 가능한 자료로 바꾼다</h3>
+          <h3>한글 파일을 검색 가능한 자료로 바꾼다</h3>
           <ul>
-            <li>기록지 스캔과 OCR</li>
-              <li>AI로 5축 카드와 풀이 연결 초안 입력</li>
-            <li>발표자 확인 후 JSON 일괄 반영</li>
+            <li>문제·풀이·구어체 개념 원문 보존</li>
+            <li>AI로 풀이 단계와 5축 원자 후보 추출</li>
+            <li>검토 뒤 승인 자산과 현황판에 반영</li>
           </ul>
         </article>
       </div>
 
       <div class="one-problem-output">
-        <div><span>문항 1개를 끝내면 남아야 하는 것</span><strong>기록지 2쪽 + 5축 카드 + 풀이 흐름 + 병목 + 변형 계약</strong></div>
+        <div><span>풀이 1개를 끝내면 남아야 하는 것</span><strong>한글 파일 1개 + 원문 근거가 달린 풀이 단계·원자 후보</strong></div>
         <ul>
-          <li>출처와 문항번호</li><li>5축 카드 ID</li><li>풀이 순서</li><li>주 병목</li><li>발표자 전원</li><li>관찰된 오답</li><li>3가지 난이도축</li><li>바꿔도 되는 조건</li><li>바꾸면 안 되는 조건</li><li>문항군 아이디어</li>
+          <li>파일명에서 출처 자동 판독</li><li>문제 원문</li><li>풀이 원문</li><li>개념의 구어체 설명</li><li>풀이 단계</li><li>개념·판단·스킬 후보</li><li>전략·유형 후보</li><li>계산·분기·표현·통찰 부담</li><li>원자별 근거 문장</li><li>별해와 기본 풀이 비교</li>
         </ul>
       </div>
     </section>
@@ -102,7 +103,7 @@
     <section class="plan section-pad" id="plan">
       <div class="section-heading">
         <div><p class="section-number">02 / 회차별 계획</p><h2>4문항씩 계속하면<br>여기까지 간다</h2></div>
-        <p>아래 숫자는 주 1회, 회당 4문항을 끝낸다는 기준입니다. 문항 수보다 검수 완료 여부가 우선이며, 품질이 떨어지면 다음 단계로 넘어가지 않습니다.</p>
+        <p>시즌 1은 2026년 12월까지 주 1회, 4명이 각 1문항을 맡는 기준입니다. 인원이 늘면 주간 처리량만 늘고 승인 기준은 바뀌지 않습니다.</p>
       </div>
 
       <div class="plan-table" role="table" aria-label="회차별 실행 계획">
@@ -114,7 +115,7 @@
           <b>8회<br><small>약 2개월</small></b><strong>32문항</strong><p>반복되는 5축 카드를 합치고 병목별 진단형·교정형 문항을 시험합니다.</p><em>승인 카드 25% 이상 재발견, 병목 외 오답이 과도하지 않음</em>
         </article>
         <article class="plan-focus" role="row">
-          <b>16회<br><small>약 4개월</small></b><strong>64문항</strong><p>한 병목을 진단·교정·전이·통합하는 문항 패밀리를 제작합니다.</p><em>독립 검수와 블라인드 풀이를 통과한 수업용 문항군 5세트 이상</em>
+          <b>시즌 1 종료<br><small>12월</small></b><strong>약 64풀이</strong><p>2022→2027학년도 미적분Ⅰ 집중 대상의 기본 풀이와 별해를 쌓고 반복 원자를 정리합니다.</p><em>원문 근거가 있는 reviewed 원자와 기본·별해 비교 자료 확보</em>
         </article>
         <article role="row">
           <b>32회<br><small>약 8개월</small></b><strong>128문항</strong><p>처음 보는 문항의 5축, 풀이 흐름, 학생 병목 후보를 자동 검색합니다.</p><em>미분석 50문항 중 핵심 판단 Top-5 재현율 90% 이상</em>

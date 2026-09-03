@@ -2,7 +2,7 @@
    문제은행·매칭검수·표시검수 3페이지가 각자 복사해 쓰던 수선 로직을 단일화.
    ★ 수식 문법 수선은 반드시 이 파일에만 추가할 것 — 페이지별 복사 금지(누락 사고 방지). */
 window.NGD2Math = (function(){
-  var VERSION = '2026-08-12-display-grammar-v2';
+  var VERSION = '2026-08-29-solution-math-v6';
 /* (2026-08-08b 페이블) 수식 토크나이저 (?:\\.|[^$])*? 의 [^$] 가 백슬래시를 중복 포함해
    \, 가 많은 문항(#5165 실측 무한대기)에서 지수적 역추적 발생 — [^\\$] 로 대안을 분리해 선형화.
    매칭 결과는 동일(백슬래시는 항상 \\[\s\S] 쪽이 소비). */
@@ -73,6 +73,29 @@ function repairMathSeg(m){
      ⑤ 소문자 맨몸 집합·관계어(emptyset·subset·notin·leq…): 백슬래시 누락 적재분(실측 402문항).
      ⑥ from/To 2001x·220134·3090280 파서 마커 제거. */
   m = m.replace(/(?<!\\)\$/g, " ");
+  /* (2026-08-29 재웅 신고 9건) 미러 해설의 `$...$` 안에도 HWP 원시
+     수식어가 일부 남았다. 기존 hwpInputToTex는 '사용자 입력' 경로만 타서,
+     저장 수식 경로의 alpha·prime·overroot가 이탤릭 영문으로 노출됐다.
+     의미가 확정된 토큰만 공통 수선에서 멱등적으로 복원한다. */
+  m = m.replace(/(?<![A-Za-z\\])([A-Za-z])\s*`?\s*prime\s*prime(?![A-Za-z])/gi, "$1''")
+       .replace(/(?<![A-Za-z\\])([A-Za-z])\s*`?\s*prime(?![A-Za-z])/gi, "$1'")
+       .replace(/([A-Za-z])\s*`+\s*('{1,3})(?=\s*\()/g, "$1$2")
+       .replace(/(?<![A-Za-z\\])(alpha|beta|gamma|delta|theta|lambda|sigma|phi|omega)(?![A-Za-z])/g, "\\$1")
+       .replace(/(?<![A-Za-z\\])(?:root|sqrt)\s*([0-9]+)(?![A-Za-z0-9])/gi, "\\sqrt{$1}")
+       .replace(/(?<![A-Za-z0-9}])([+\-]?)\s*1\s*over\s*\\sqrt\{([^{}]+)\}/gi,
+                function(_all, sign, body){return (sign||"")+"\\frac{1}{\\sqrt{"+body+"}}";})
+       .replace(/(?<![A-Za-z0-9}])([+\-]?)\s*1\s*overroot\s*([0-9]+)(?![A-Za-z0-9])/gi,
+                function(_all, sign, body){return (sign||"")+"\\frac{1}{\\sqrt{"+body+"}}";})
+       .replace(/(?<![A-Za-z\\])(sin|cos|tan|sec)t(?![A-Za-z])/g, "\\$1 t")
+       .replace(/(?<![A-Za-z\\])THEREFORE(?![A-Za-z])/g, "\\therefore ")
+       .replace(/(?<![A-Za-z\\])(?:INFTY|INF)(?![A-Za-z])/gi, "\\infty ");
+  /* 구 변환기가 괄호를 생략한 반복분수. 분모가 정확히 1+2x^2인
+     실측 계열만 먼저 확정해 `4x over1+2x^2`를 하나의 분수로 복원한다. */
+  m = m.replace(/([0-9A-Za-z{}'^]+)\s*over\s*1\s*\+\s*2x\s*\^\s*\{?2\}?/g,
+                "\\frac{$1}{1+2x^{2}}");
+  /* 함수값 나눗셈의 괄호가 있는 형식: f'(2) over f(2). */
+  m = m.replace(/\{?([A-Za-z](?:'{1,3})?\s*\([^(){}]*\))\}?\s*over\s*\{?([A-Za-z](?:'{1,3})?\s*\([^(){}]*\))\}?/g,
+                "\\frac{$1}{$2}");
   /* (2026-08-13 내신 미주 #23789) HWP 로만체 지시자 `rm`이 구 변환기에서
      `r m`으로 분리된 꼴. 뒤가 도형·선분 명령 또는 대문자 변수일 때만 글꼴 표식을
      제거한다. 일반 변수 곱 r m은 보존한다. */
@@ -237,6 +260,10 @@ function repairMathSeg(m){
   if (_nl !== _nr) m = m.replace(/\\(?:left|right)(?![A-Za-z])\s*/g, "");
   /* (2026-08-08b) rm C 오변환 잔재 \C */
   m = m.replace(/\\C(?![A-Za-z])/g, "C");
+  /* (2026-08-28 #15133) HWP 도형 라벨이 `\ACD`·`\CD`·`\D`처럼 알 수 없는
+     LaTeX 명령으로 들어온다. 전부 대문자인 1~6자 토큰만 점·선분 라벨로 복원한다.
+     `\Delta`·`\Gamma`처럼 소문자를 포함하는 정상 TeX 명령은 보존한다. */
+  m = m.replace(/\\([A-Z]{1,6})(?![A-Za-z])/g, "$1");
   /* (2026-08-07 NGD1 카드 검수) 수식 개체 안 실제 개행을 카드가 <br>로 바꾸면
      $...$ 구분자가 서로 다른 DOM 노드로 갈라져 KaTeX가 식 전체를 건너뛴다.
      행렬 행구분은 LaTeX의 \\ 이므로 실제 개행은 공백으로 합쳐도 의미가 보존된다.
@@ -539,12 +566,25 @@ var HWP_BARE = ['sqrt','sum','prod','int','oint','lim','log','ln','exp','sin','c
                 'cdots','ldots','vdots','ddots','partial','nabla','max','min','gcd','deg'];
 function hwpInputToTex(s){
   s = String(s == null ? '' : s);
-  s = s.replace(/(?<![A-Za-z\\])(?:rm|it|bf)\s+(?=(?:LEFT|RIGHT)\b)/gi,'');
+  /* HWP의 `rm bar PR`은 bar만 로만체라는 뜻이 아니라 PR을 로만체로 둔
+     선분 표기다. 표시 전처리가 bar를 먼저 `\overline`으로 바꾼 경로도 받는다. */
+  s = s.replace(/(?<![A-Za-z\\])rm\s+(?:bar|overline)\s*\{?\s*([A-Za-z]{1,6})\s*\}?/gi,
+                '\\overline{\\mathrm{$1}}')
+       .replace(/(?<![A-Za-z\\])rm\s+\\overline\s*\{\s*([A-Za-z]{1,6})\s*\}/gi,
+                '\\overline{\\mathrm{$1}}');
+  /* 글꼴 토큰이 괄호 전체에 붙은 `it LEFT(...)`뿐 아니라, 적재 과정에서
+     LEFT/RIGHT만 먼저 정리된 `it (...)`도 같은 의미다. 좌표식 앞의 고아
+     it/rm/bf를 제거해 리터럴 명령어가 남지 않게 한다. */
+  s = s.replace(/(?<![A-Za-z\\])(?:rm|it|bf)\s+(?=(?:LEFT|RIGHT)\b|\\(?:left|right)\b|[([{])/gi,'');
   s = s.replace(/^\s*&(?:amp;)+\s*(?==)/i,'').replace(/^\s*&\s*(?==)/,'');
   s = s.replace(/\{\s*overline\s*\{\s*(?:rm|it|bf)?\s*([A-Za-z]{1,6})\s*\}\s*\}\s*over\s*\{([^{}]*)\}/gi,
                 '\\frac{\\overline{$1}}{$2}');
   s = s.replace(/(?<![A-Za-z\\])overline\s*\{\s*(?:rm|it|bf)?\s*([A-Za-z]{1,6})\s*\}/gi,'\\overline{$1}');
   if(!HWP_SIG.test(s)) return s;                       // 이미 LaTeX — 그대로 둔다
+  /* 괄호가 생략된 1+2x^2 분모는 아래 단일 토큰 over 규칙보다
+     먼저 묶어야 `4x/1 + 2x^2`로 잘못 분리되지 않는다. */
+  s = s.replace(/([0-9A-Za-z{}'^]+)\s*over\s*1\s*\+\s*2x\s*\^\s*\{?2\}?/g,
+                '\\frac{$1}{1+2x^{2}}');
   // ① 서체: rm{...}·rm X → \mathrm, it{...}·it X → \mathit (제거하지 않는다)
   s = s.replace(/(?<![A-Za-z\\])rm\s*\{([^{}]*)\}/g, '\\mathrm{$1}')
        .replace(/(?<![A-Za-z\\])it\s*\{([^{}]*)\}/g, '\\mathit{$1}')

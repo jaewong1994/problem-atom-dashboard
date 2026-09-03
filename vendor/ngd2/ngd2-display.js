@@ -1,4 +1,56 @@
-/* 표시공통.js v3.8 (2026-08-25 Codex)
+/* 표시공통.js v4.15 (2026-09-02 Codex)
+     해설의 `(ⅰ)`·`(ⅱ)` 경우 표지와 반복되는 `$a=-1$ : ... $a=-2$ : ...`
+     열거 머리표를 원문 구조대로 독립 행으로 복원한다.
+   v4.14 (2026-09-02 Codex)
+     해설의 ㄱ.·ㄴ.·ㄷ. 보기 머리표가 앞 판정 문장에 붙은 경계를 독립 행으로
+     복원하고, 행 머리의 고아 `참)`·`거짓)` 괄호를 제한적으로 닫는다.
+   v4.13 (2026-09-02 Codex)
+     실문항 #79889의 HWP 미주 접근성 수식과 실제 수식이 중복되고 GEQ가 `ge it`로
+     풀린 정확한 손상 지문을 원본 XML의 식·등호조건에 맞춰 표시 파생층에서 복구한다.
+   v4.12 (2026-09-02 Codex)
+     수기반려 결박: 증명번호 뒤 다음 관계식, 판별식 D/4, `triangle rm PQR`,
+     한글 자모 boxed 및 1/2/xy 중첩분수의 표시 문법을 제한적으로 복원한다.
+   v4.11 (2026-09-02 Codex)
+     풀이 마지막의 `이다.$\\therefore ...$`처럼 결론 수식이 문장에 붙으면
+     `\\therefore`/`∴` 앞을 줄바꿈해 결론을 독립 행으로 복원한다.
+   v4.10 (2026-09-02 Codex)
+     선지별 판정 해설이 `참③`·`거짓④`처럼 다음 원문자 선지에 붙으면
+     판정어 뒤를 줄바꿈해 각 선지를 독립 행으로 복원한다.
+   v4.9 (2026-09-02 Codex)
+     해설에서 보기 판정 `(X)`·`(O)` 직후 다음 ㄱ~ㅎ 보기 표지가 붙은
+     `(X)ㄴ.` 경계를 줄바꿈한다. `(O)따라서` 같은 종합 결론은 유지한다.
+   v4.8 (2026-09-01 Codex)
+     인접한 완결 부등식·등식도 각각 풀이 단계로 줄바꿈하고, 수식 안의
+     `=>`/`=&gt;`를 표준 함의 화살표로 정규화한다. 로마자 경우 표지가
+     앞 문장에 붙은 `9개ⅰ)` 경계도 분리한다.
+   v4.7 (2026-09-01 Codex)
+     해설의 증명 번호 끝과 다음 경우/종합 결론이 붙은 `…㉠(ⅱ)`,
+     `…㉢㉠, ㉡, ㉢에서` 경계에만 의미 줄바꿈을 복원한다.
+     문제 본문의 단순한 ㉠·㉡·㉢ 열거는 변경하지 않는다.
+   v4.6 (2026-09-01 Codex)
+     이미 구조화된 .hchoices를 .nchoices로 다시 감싸는 이중 변환을 막고,
+     렌더 완료 DOM에서 선지 누락·빈 선지·원시 LaTeX 잔존을 확정 오류로 계측한다.
+   v4.5 (2026-08-29 Codex)
+     카드의 독립 인라인 분수를 nowrap 단위로 고정해, `\dfrac{f(x)}{x}`의
+     분자 괄호와 분모가 줄바꿈 후보로 분리되어 `f(x/x)`처럼 보이던 현상을 막는다.
+   v4.4 (2026-08-29 Codex)
+     인쇄 해설의 긴 인라인 행렬·등식도 단 폭 내로 자동 축소해 옆 단 침범을 막는다.
+   v4.3 (2026-08-28 Codex)
+     집합 닫는 중괄호 여백 처리에서 `\bigr\}` 계열의 크기 명령과 구분자 사이에
+     `\;`를 끼워 KaTeX 빨간 오류를 만들던 회귀를 차단한다.
+   v4.2 (2026-08-28 Codex)
+     HML 탭 사이 선택지 머리표가 적재 중 유실된 `① 값 값 값 / ④ 값 값` 5지선다를
+     값 다섯 개뿐인 문항 끝 패턴에 한정해 ②·③·⑤ 머리표를 표시 단계에서 복원한다.
+   v4.1 (2026-08-28 Codex)
+     정답 머리표 선분리 뒤 HWP 덤프 정리가 남긴 해설 선두 빈 줄만 제거해,
+     조판 문항번호와 첫 풀이 사이의 의도하지 않은 두 줄 공백을 없앤다.
+   v4.0 (2026-08-28 Codex)
+     구분자 밖 HWP 좌표식과 바로 뒤 `$...$` 수식이 섞인 해설을 좌표 단위로 승격하고,
+     최종 일반 텍스트의 rm·it·~ 잔존을 실제 NGD1 DB 문항으로 회귀 검증한다.
+   v3.9 (2026-08-26 Codex)
+     인접한 수식 조각이 관계기호로 이어질 때 좌변·등호·우변을 한 수식 단위로 묶어,
+     카드 줄바꿈이 등호 직후에 생기지 않게 한다. 카드보다 긴 단위는 통째로 가로 스크롤한다.
+   v3.8 (2026-08-25 Codex)
      표준 5지선다를 실제 선지 폭으로 재어 5개 한 줄을 최우선하고, 넘칠 때만 3+2,
      3+2도 넘칠 때 1개 1줄로 배치한다. 5지선다의 4열·2열 중간 배치는 사용하지 않는다.
    v3.7 (2026-08-14 Codex)
@@ -131,7 +183,10 @@ window.NGD2Display = (function(){
   const setBraceSpace = g => String(g)
     .replace(/\\right\\\}/g, "\u0001").replace(/\\left\\\{/g, "\u0002")
     .replace(/\\\{(?!\s*\\[,;:])/g, "\\{\\; ")
-    .replace(/(?<!\\[,;:]\s{0,2})\\\}/g, " \\;\\}")
+    .replace(/\\\}/g, (m,offset,source) => {
+      const prefix=source.slice(0,offset);
+      return /\\(?:bigr|Bigr|biggr|Biggr)$/.test(prefix)||/\\[,;:]\s{0,2}$/.test(prefix)?m:" \\;\\}";
+    })
     .replace(/\u0002(?!\s*\\[,;:])/g, "\\left\\{\\; ")
     .replace(/(?<!\\[,;:]\s{0,2})\u0001/g, " \\;\\right\\}")
     .replace(/\u0002/g, "\\left\\{").replace(/\u0001/g, "\\right\\}");
@@ -156,8 +211,13 @@ window.NGD2Display = (function(){
     }
     return out;
   }
-  const texInline  = g => shrinkScripts(bigOp(disp(setBraceSpace(stretchFractionCoordinateParens(rep(g))))));   // $…$ · \(…\)
-  const texDisplay = g => shrinkScripts(bigOp(setBraceSpace(stretchFractionCoordinateParens(rep(g)))));         // $$…$$ · \[…\]
+  const mathImplication = g => String(g).replace(/(?:\\[,;:!]\s*)?,?\s*(?:=\s*(?:&gt;|>)|⇒|⟹)/g," \\Rightarrow ");
+  const displayTypography = g => String(g)
+    .replace(/(?<![A-Za-z])D\s*\/\s*4(?![0-9A-Za-z])/g,"\\frac{D}{4}")
+    .replace(/\\frac\s*\{\s*\\frac\s*\{\s*1\s*\}\s*\{\s*2\s*\}\s*\}\s*\{\s*xy\s*\}/g,"\\frac{1}{2xy}")
+    .replace(/\\boxed\s*\{\s*\\,?\s*([ㄱ-ㅎ])\s*\\,?\s*\}/g,"\\boxed{\\vphantom{가}\\text{$1}}");
+  const texInline  = g => shrinkScripts(bigOp(disp(setBraceSpace(stretchFractionCoordinateParens(mathImplication(displayTypography(rep(g))))))));   // $…$ · \(…\)
+  const texDisplay = g => shrinkScripts(bigOp(setBraceSpace(stretchFractionCoordinateParens(mathImplication(displayTypography(rep(g)))))));         // $$…$$ · \[…\]
   function esc(t){const d=document.createElement("div");d.textContent=t==null?"":t;return d.innerHTML;}
   /* ── (v2.0) 수식 세그먼트 토크나이저 ──
      종전에는 `s.split(/(\$\$[\s\S]*?\$\$)/)` 로 $$…$$ 를 먼저 떼어냈다. 그런데 이 데이터는
@@ -204,15 +264,27 @@ window.NGD2Display = (function(){
           유도 단계였으므로 줄바꿈 복원(linesToHtml이 행으로 분리; 인라인 경로는 공백으로 강등)
        ③ 그 외 인접 → 공백 하나(수식공통 repairMathText의 `$ $` 분리와 동일한 강도)
      수식 내부는 건드리지 않아 연쇄등식(a=b=c) 오탐이 구조적으로 불가능. DB 원본 불변 — 표시 단계만. */
-  const ADJ_REL = /^\s*(?:=|≠|≤|≥|≒|&lt;|&gt;|[<>]|\\?(?:le|ge|leq|geq|ne|neq|approx|equiv|sim|fallingdotseq)(?![A-Za-z]))/;
+  const ADJ_REL = /^\s*(?:\\displaystyle\s*)?(?:=|≠|≤|≥|≒|&lt;|&gt;|[<>]|\\?(?:le|ge|leq|geq|ne|neq|approx|equiv|sim|fallingdotseq)(?![A-Za-z]))/;
   const ADJ_NEWSTMT = /^\s*(?:\\?therefore(?![A-Za-z])|THEREFORE|∴)/;
+  const ANY_REL = /(?:=|≠|≤|≥|≒|&lt;|&gt;|[<>]|\\(?:le|ge|leq|geq|ne|neq|approx|equiv|sim|fallingdotseq)(?![A-Za-z]))/;
+  const REL_TAIL = /(?:=|≠|≤|≥|≒|&lt;|&gt;|[<>]|\\(?:le|ge|leq|geq|ne|neq|approx|equiv|sim|fallingdotseq))\s*$/;
+  const hasRelation = s => ANY_REL.test(String(s||"")) && !REL_TAIL.test(String(s||""));
   function mergeAdjacentMath(toks){
     const out=[];
     for(const k of toks){
       const prev=out[out.length-1];
+      /* HWP 개체 경계에서 `$y$ $=\cdots$`처럼 공백만 하나 끼어든
+         관계식도 하나의 식이다. 공백 토큰을 넘어 병합해 `y` / `=`가
+         서로 다른 시각 행으로 나뉘는 것을 막는다. */
+      if(k.m==="i" && prev && prev.t!=null && /^\s*$/.test(prev.t)){
+        const before=out[out.length-2];
+        if(before&&before.m==="i"&&ADJ_REL.test(k.b)&&!ADJ_NEWSTMT.test(k.b)){
+          before.b=before.b+" "+k.b; out.pop(); continue;
+        }
+      }
       if(k.m==="i" && prev && prev.m==="i"){
         if(ADJ_REL.test(k.b) && !ADJ_NEWSTMT.test(k.b)){ prev.b=prev.b+" "+k.b; continue; }
-        if(/=/.test(prev.b) && (/=/.test(k.b) || ADJ_NEWSTMT.test(k.b))){ out.push({t:"\n"},k); continue; }
+        if(hasRelation(prev.b) && (hasRelation(k.b) || ADJ_NEWSTMT.test(k.b))){ out.push({t:"\n"},k); continue; }
         out.push({t:" "},k); continue;
       }
       out.push(k);
@@ -276,6 +348,26 @@ window.NGD2Display = (function(){
       .replace(/90\s*\\pm/g,"90^{\\circ}")
       .replace(/\$\s*‾\s*\$/g,"")
       .replace(/‾/g,"");
+  }
+  /* #79889는 HWP 미주의 접근성 대체문자(`수식입니다.`)와 실제 equation 개체가
+     한 explanation에 모두 적재됐고, GEQ가 `ge it`로 잘못 디코딩됐다. 일반 정규화로
+     문장 순서를 추측하지 않고 네 개의 독립 지문이 모두 맞는 이 원문에만, raw_xml에
+     남아 있는 식과 등호 조건을 그대로 재조립한다. DB 원문·정답은 변경하지 않는다. */
+  function solutionExactSourceRecovery(s){
+    const x=String(s==null?"":s);
+    const exact=x.includes("수식입니다. ge it -1+2 sqrt {{1} over {4}}")
+      && x.includes("산술평균과 기하평균의 관계에 의해")
+      && x.includes("a ^{2} -2a+ {a} over {b} + {b} over {4a}")
+      && x.includes("$m+n+k$$=1+2+0$$=3$");
+    if(!exact)return x;
+    return `[정답] $3$
+$$a^2-2a+\\frac{a}{b}+\\frac{b}{4a}$$
+$$=(a-1)^2-1+\\frac{a}{b}+\\frac{b}{4a}$$
+$$\\geq (a-1)^2-1+2\\sqrt{\\frac{a}{b}\\times\\frac{b}{4a}}$$
+$$=(a-1)^2-1+2\\sqrt{\\frac14}=(a-1)^2\\geq0$$
+산술평균과 기하평균의 관계에서 등호는 $\\frac{a}{b}=\\frac{b}{4a}$일 때 성립한다.
+따라서 $a=1$이고 $\\frac{a}{b}=\\frac{b}{4a}$이므로, 양수 $b$는 $2$이다. 이때 최솟값은 $0$이다.
+$\\therefore m+n+k=1+2+0=3$`;
   }
   /* NGD HWP/HWPX 미러의 의미가 확정된 파서 잔재. DB 재적재 전에도 모든 화면에서
      동일하게 보이도록 문제·해설 양쪽에 적용한다. 관계기호는 $…$ 안에서만 고친다. */
@@ -589,6 +681,72 @@ window.NGD2Display = (function(){
     });
     return html;
   }
+  /* HWP 증감표는 표 개체가 텍스트 행으로 풀려 저장된다.
+     x·f'(x)·f(x) 세 행의 칸 수가 같을 때만 의미 표로 복원하여,
+     일반적인 수식 나열을 표로 오인하지 않는다. */
+  function variationTables(html){
+    const rows=String(html||"").split(/<br\s*\/?>/i);
+    const key=v=>String(v||"").trim().replace(/^\$|\$$/g,"").replace(/[{}\s]/g,"")
+      .replace(/\\(?:displaystyle|,|;|:|!)/g,"");
+    const isX=v=>key(v)==="x";
+    const isFp=v=>/^f(?:`|')*(?:prime)*\(x\)$/.test(key(v));
+    const isF=v=>/^f\(x\)$/.test(key(v));
+    /* 구 미러에서 표 세 행이 개행 없이 한 줄로 접힌 변형도
+       같은 칸 수 계약으로 복원한다(#4422 실측). */
+    for(let i=0;i<rows.length;i++){
+      const toks=splitMath(rows[i]), mids=[];
+      toks.forEach((t,p)=>{if(t.m)mids.push({p,t});});
+      const xi=mids.findIndex(v=>isX(v.t.o+v.t.b+v.t.c));
+      if(xi<0)continue;
+      const fi=mids.findIndex((v,n)=>n>xi&&isFp(v.t.o+v.t.b+v.t.c));
+      const vi=mids.findIndex((v,n)=>n>fi&&isF(v.t.o+v.t.b+v.t.c));
+      if(fi<0||vi<0)continue;
+      const xs=mids.slice(xi+1,fi),ds=mids.slice(fi+1,vi);
+      if(xs.length<3||ds.length<1)continue;
+      let stop=mids.length;
+      for(let n=vi+1;n<mids.length;n++){
+        const nextPos=n+1<mids.length?mids[n+1].p:toks.length;
+        const tail=toks.slice(mids[n].p+1,nextPos).map(t=>t.t||"").join("");
+        if(/[가-힣]/.test(tail)){stop=n+1;break;}
+      }
+      const vals=mids.slice(vi+1,stop);
+      if(vals.length<2)continue;
+      const rawMath=v=>v.t.o+v.t.b+v.t.c;
+      const arrows=toks.map(t=>t.t||"").join("").match(/[↗↘↖↙]/g)||[];
+      let dCells=ds.map(rawMath);
+      while(dCells.length<xs.length){dCells.length%2?dCells.push(""):dCells.unshift("");}
+      let fCells=vals.map(rawMath);
+      if(fCells.length*2-1===xs.length){
+        const z=[];fCells.forEach((v,n)=>{if(n)z.push(arrows[n-1]||"");z.push(v);});fCells=z;
+      }
+      if(dCells.length!==xs.length||fCells.length!==xs.length)continue;
+      const tr=(label,cells)=>'<tr><th scope="row">'+label+'</th>'+cells.map(v=>'<td>'+v+'</td>').join("")+'</tr>';
+      const table='<table class="ngd2-variation-table"><tbody>'+tr('$x$',xs.map(rawMath))+tr("$f'(x)$",dCells)+tr('$f(x)$',fCells)+'</tbody></table>';
+      const beforeX=mids.slice(0,xi).reverse().find(v=>/f.*=.*x/i.test(v.t.b));
+      const lastVal=vals[vals.length-1],suffix=toks.slice(lastVal.p+1).map(t=>t.t!=null?t.t:rawMath({t})).join("").replace(/^[↗↘↖↙\s]+/,"");
+      rows[i]=(beforeX?rawMath(beforeX)+"<br>":"")+table+suffix;
+      /* 바로 앞의 `수식입니다.` 접근성 중복 행만 제거. 본 함수식은 보존. */
+      let b=i-1;
+      while(b>=0&&i-b<=4&&!/[가-힣]/.test(rows[b])&&!/^\s*\$?f\s*(?:\\left)?\s*\(x/i.test(rows[b])){rows.splice(b,1);i--;b--;}
+    }
+    for(let i=0;i<rows.length;i++){
+      if(!isX(rows[i]))continue;
+      let j=-1,k=-1;
+      for(let p=i+2;p<Math.min(rows.length,i+16);p++){if(isFp(rows[p])){j=p;break;}}
+      if(j<0)continue;
+      for(let p=j+2;p<Math.min(rows.length,j+16);p++){if(isF(rows[p])){k=p;break;}}
+      if(k<0)continue;
+      let end=k+1;while(end<rows.length&&rows[end].trim())end++;
+      const xs=rows.slice(i+1,j).filter(v=>v.trim());
+      const ds=rows.slice(j+1,k).filter(v=>v.trim());
+      const fs=rows.slice(k+1,end).filter(v=>v.trim());
+      if(xs.length<3||xs.length!==ds.length||xs.length!==fs.length)continue;
+      const tr=(label,cells)=>'<tr><th scope="row">'+label+'</th>'+cells.map(v=>'<td>'+v+'</td>').join("")+'</tr>';
+      const table='<table class="ngd2-variation-table"><tbody>'+tr(rows[i],xs)+tr(rows[j],ds)+tr(rows[k],fs)+'</tbody></table>';
+      rows.splice(i,end-i,table);i++;
+    }
+    return rows.join("<br>");
+  }
   /* 구조 HTML 쪽 조건 문단(<p class="hp">(가)…</p> 연속)도 동일하게 박스로.
      이미 박스(hbox)나 HWP 테두리표(htbl)로 그려진 문항은 손대지 않는다. */
   function condBoxHtml(h){
@@ -899,6 +1057,26 @@ window.NGD2Display = (function(){
     return lines.join("\n");
   }
   /* 구분자 밖에 남은 파서 잔재 — 수식 세그먼트 안은 repairMathSeg 가 이미 처리한다. */
+  /* 수식 구분자 밖에 남은 HWP 좌표식 한 개씩 복구.
+     실 DB #3은 첫 좌표만 평문이고 바로 뒤 좌표는 `$...$`인 혼합 저장형이다:
+     `. rm Q it LEFT(-a,~-b,~2b RIGHT), $rm Q ...$$rm R ...$이므로`.
+     과거의 `뒤따르는 한글` 조건은 쉼표+$ 경계에서 첫 좌표를 놓쳤다. 좌표 한 개만
+     캡처하고 rm/it/bf/~ 신호를 별도로 요구해, 혼합 경계도 처리하면서 일반 영문
+     괄호를 수식으로 오인하지 않는다. */
+  function promoteInlineHwpProse(t){
+    const rx=/(^|[\s.·])((?:(?:rm|it|bf)\s+)?[A-Z](?:\s+(?:rm|it|bf))?\s*(?:LEFT\s*)?\([^()가-힣\n$]{1,500}\))/g;
+    return String(t||'').split('\n').map(line=>line
+      .replace(/^\s*\.\s*(?=(?:rm|it|bf)\s+)/,'')
+      .replace(rx,(all,lead,run)=>{
+      if(!/(?<![A-Za-z\\])(?:rm|it|bf)(?![A-Za-z])|[~`]/.test(run))return all;
+      let tex=run.trim();
+      try{if(window.NGD2Math&&NGD2Math.hwpInputToTex)tex=NGD2Math.hwpInputToTex(tex);}catch(_e){}
+      const prefix=lead==='.'?'':lead;
+      /* 뒤에 이미 `$...$`가 붙은 혼합형에서도 닫는 `$`+여는 `$`가 `$$`로
+         재해석되지 않도록, 새로 승격하는 조각은 동등한 인라인 구분자 \(...\)를 쓴다. */
+      return prefix+'\\('+tex+'\\)';
+    })).join('\n');
+  }
   function outsideClean(s){
     /* (2026-08-08b 페이블) 표로 펴진 해설 안에 남는 HWP 대문자 토큰 — 한글이 섞인 줄이라
        수식 승격은 못 해도, 뜻이 유일한 글리프는 평문 단계에서 치환한다(실측 #813·#9979·#11109). */
@@ -920,8 +1098,8 @@ window.NGD2Display = (function(){
       .replace(/(?<![A-Za-z])therefore(?![A-Za-z])/g,"∴")
       .replace(/(?<![A-Za-z])because(?![A-Za-z])/g,"∵")
       .replace(/`/g," ");
-    const promote=t=>glyphs(t.replace(/\\text\s*\{([^{}]*)\}/g,"$1"))
-      .replace(/(?<![A-Za-z])(?:rm|it|bf)\s*(triangle|angle)\s*(?:rm|it|bf)?\s*([A-Z]{1,6})(?![A-Za-z])/gi,
+    const promote=t=>glyphs(promoteInlineHwpProse(t).replace(/\\text\s*\{([^{}]*)\}/g,"$1"))
+      .replace(/(?<![A-Za-z])(?:(?:rm|it|bf)\s*)?(triangle|angle)\s*(?:rm|it|bf)?\s*([A-Z]{1,6})(?![A-Za-z])/gi,
         (_,op,name)=>"$\\"+op.toLowerCase()+" "+name+"$")
       .replace(/(?<![A-Za-z])(?:rm|it|bf)\s*(?:bar|overline)\s*\{?\s*([A-Z]{1,6})\s*\}?/gi,
         (_,name)=>"$\\overline{"+name+"}$")
@@ -931,6 +1109,9 @@ window.NGD2Display = (function(){
       .replace(/\s+200\d\d(?![\d.])/g,"").split("\n").map(line=>{
       const z=line.trim();
       if(!z||/[가-힣]/.test(z))return line;
+      /* 앞 단계가 이미 좌표 조각을 \(...\)로 승격했다면, 줄 전체를 다시 $...$로
+         감싸지 않는다. 중첩 `$\(...\)$`는 KaTeX 오류와 원문 재노출을 만든다. */
+      if(/\\\(|\\\[/.test(z))return line;
       /* (2026-08-09c 검수 e79402) 집합 관계 토큰이 있는 줄은 = 없이도 수식으로 승격 —
          이 줄의 { } 는 HWP 의 보이는 집합 중괄호(LEFT{…RIGHT})가 벗겨진 것이라 \{ \} 로 되살린다 */
       if(/(?:SUBSET|SUPERSET|EMPTYSET|NSUBSET|NOTIN|OWNS)(?![a-z])/.test(z)){
@@ -944,6 +1125,74 @@ window.NGD2Display = (function(){
     }).join("\n");
     return joinMath(splitMath(s).map(k=> k.t!=null ? {t:promote(k.t)} : k),
                     null).replace(/\u0000/g,"");
+  }
+  /* AI/외부 해설이 줄바꿈 의미로 저장한 `\\따라서`, `\\ $$...$$` 잔재를 수식 밖에서만
+     실제 줄바꿈으로 바꾼다. 수식 안의 LaTeX 명령·집합 차·경로 표기는 건드리지 않는다. */
+  function solutionBreakResidue(s){
+    return splitMath(String(s||"")).map(k=>{
+      if(k.t==null)return k.o+k.b+k.c;
+      return k.t.replace(/\\+\s*(?=[가-힣])/g,"\n").replace(/\\+\s*$/g,"\n");
+    }).join("");
+  }
+  function solutionConclusionBreak(s){
+    let out="";
+    for(const k of splitMath(String(s||""))){
+      if(k.t!=null){
+        /* 구분자 없이 평문으로 남은 유니코드 결론 기호도 같은 행 규칙을 적용한다. */
+        out+=k.t.replace(/([^\s\n])(?=[ \t]*∴)/g,"$1\n");
+        continue;
+      }
+      const raw=k.o+k.b+k.c;
+      const head=String(k.b||"").trim().replace(/^\\(?:display|text)style\s*/,"");
+      if(/^(?:\\therefore\b|THEREFORE\b|∴)/i.test(head)
+          && out && !/(?:\n|<br\s*\/?>)\s*$/i.test(out)) out+="\n";
+      out+=raw;
+    }
+    return out
+  }
+  function solutionProofBreak(s){
+    const toks=splitMath(String(s||""));
+    for(let i=0;i<toks.length-1;i++){
+      const here=toks[i],next=toks[i+1];
+      if(here.t!=null && next.t==null && /[㉠-㉥][ \t]*$/.test(here.t)
+          && hasRelation(next.b) && !/\n[ \t]*$/.test(here.t)) here.t=here.t.replace(/[ \t]*$/,"\n");
+    }
+    return toks.map(k=>k.t!=null?k.t:k.o+k.b+k.c).join("")
+  }
+  function solutionLetterChoiceBreak(s){
+    return splitMath(String(s||"")).map(k=>{
+      if(k.t==null)return k.o+k.b+k.c;
+      return k.t
+        .replace(/([^\n])(?=[ \t]*[ㄱ-ㅎ]\s*[.．])/g,"$1\n")
+        .replace(/(^|\n)([ \t]*)(참|거짓)\)(?=[ \t]*$)/g,"$1$2($3) ");
+    }).join("");
+  }
+  function solutionCaseBreak(s){
+    let out=splitMath(String(s||"")).map(k=>{
+      if(k.t==null)return k.o+k.b+k.c;
+      /* 괄호까지 포함한 유니코드 로마자 경우 표지만 대상으로 한다.
+         일반 문장 속 ASCII (i), 변수 i, 수식 첨자는 건드리지 않는다. */
+      return k.t.replace(/([^\n])(?=[ \t]*\([ⅰ-ⅹ]+\))/g,"$1\n");
+    }).join("");
+
+    const toks=splitMath(out);
+    const caseHeads=[];
+    for(let i=0;i<toks.length;i++){
+      const k=toks[i];
+      if(k.t!=null)continue;
+      const body=String(k.b||"").replace(/^\\(?:display|text)style\s*/,"").trim();
+      const next=toks[i+1];
+      if(/^a\s*=\s*-\s*\d+$/.test(body) && next && next.t!=null && /^\s*[:：]/.test(next.t)) caseHeads.push(i);
+    }
+    /* 한 번만 등장하는 대입식은 일반 풀이일 수 있다. 같은 열거에서 사례 머리표가
+       두 번 이상 확인될 때만 각 사례를 새 행으로 분리한다. */
+    if(caseHeads.length>=2){
+      for(const i of caseHeads){
+        const prev=toks[i-1];
+        if(prev && prev.t!=null && !/(?:\n|<br\s*\/?>)\s*$/i.test(prev.t)) prev.t=prev.t.replace(/[ \t]*$/,"")+"\n";
+      }
+    }
+    return toks.map(k=>k.t!=null?k.t:k.o+k.b+k.c).join("");
   }
   /* (2026-08-14 재웅 신고: AI/미러 해설 수식 대량 파손) AI 작성 해설 정규화.
      이미 구분된 수식은 절대 재해석하지 않고 수식 밖 텍스트만 다룬다. 종전의 "생 LaTeX 런"
@@ -980,7 +1229,7 @@ window.NGD2Display = (function(){
       const prev=merged[merged.length-1];
       if(k.t==null&&k.m==="i"&&prev&&prev.t==null&&prev.m==="i"){
         if(ADJ_REL.test(k.b)&&!ADJ_NEWSTMT.test(k.b)){ prev.b += " "+k.b; continue; }
-        if(/=/.test(prev.b)&&(/=/.test(k.b)||ADJ_NEWSTMT.test(k.b))){ merged.push({t:"\n"},k); continue; }
+        if(hasRelation(prev.b)&&(hasRelation(k.b)||ADJ_NEWSTMT.test(k.b))){ merged.push({t:"\n"},k); continue; }
         merged.push({t:" "},k); continue;
       }
       merged.push(k);
@@ -1061,7 +1310,11 @@ window.NGD2Display = (function(){
   function solText(t, figs, ans){
     /* (2026-08-09 재웅 신고 "a6b50 저거 뭐야") 적재기가 미러 해설 머리에 남긴 잔재 토큰 —
        실측 6,226건이 전부 "a6b50 [정답] …" 로 시작(변형 없음). [정답] 파싱까지 막으므로 먼저 걷어낸다. */
-    t=mirrorLegacyRepair(typeonLegacyDisplayRepair(t)).replace(/(?<![0-9A-Za-z])a6b50(?![0-9A-Za-z])\s*/g,"");
+    t=mirrorLegacyRepair(typeonLegacyDisplayRepair(solutionExactSourceRecovery(t))).replace(/(?<![0-9A-Za-z])a6b50(?![0-9A-Za-z])\s*/g,"");
+    /* (2026-08-26 통합검수 #13594) `\therefore\$ 미주는`처럼 결론 기호 뒤 닫는 `$`만
+       역슬래시가 잘못 붙은 구 적재분. 일반 `\$`는 금액 리터럴일 수 있으므로, 해설에서
+       therefore 명령 직후이면서 한글 문장이 이어지는 경우에만 닫는 구분자로 복구한다. */
+    t=String(t||"").replace(/(\\therefore(?:\\[,;:!])?)\\\$(?=\s*[가-힣])/g,"$1$");
     t=solutionOcrJunk(t, ans);
     const sp=splitAnswerHead(t);
     /* 내신 서술형 복합문항에는 `[정답] (1) ... (2) ...`처럼 실제 정답 한 줄이 아니라
@@ -1079,9 +1332,38 @@ window.NGD2Display = (function(){
     s=s.replace(/^\s*\[\s*풀이\s*\]\s*/,"<div class=\"sollead\">풀이</div>\n")
        .replace(/^STEP\s+([A-Z])\s*(.*)$/gm,"<div class=\"solstep\"><span>STEP $1</span><div>$2</div></div>");
     s=stripHwpDump(s);
+    /* 조판은 [정답] 머리표를 먼저 분리한 해설을 넘길 수 있다. 그 뒤 `수식입니다.`·
+       20011 덤프를 걷으면 선두에 빈 줄만 남아 <br><br> 두 줄 여백이 생긴다.
+       풀이 내부 문단 간격은 보존하고, 실제 내용보다 앞선 빈 줄만 제거한다. */
+    s=s.replace(/^(?:[ \t]*\n)+/,"");
     s=aiSolNormalize(s);
-    s=outsideClean(s);
-    const out=solutionFigures(withSolFigures(linesToHtml(fixSegsK(s)), figs));   // 선지 격자 없음
+    s=solutionCaseBreak(solutionLetterChoiceBreak(solutionProofBreak(solutionConclusionBreak(solutionBreakResidue(outsideClean(s))))))
+       .replace(/이다(?=따라서)/g,"이다.\n");
+    /* 출판 해설은 수식 끝의 증명 번호와 다음 경우/종합 결론 사이 개행을 잃고
+       `…㉠(ⅱ)`, `…㉢㉠, ㉡, ㉢에서`처럼 저장되기도 한다. 앞쪽도 증명 번호이고
+       뒤쪽도 다음 로마자 경우 또는 ㉠부터 시작하는 종합 참조일 때만 줄을 나눈다.
+       따라서 문제 본문의 `㉠, ㉡, ㉢에 알맞은…` 같은 일반 열거는 대상이 아니다. */
+    s=s.replace(/([㉠-㉥])(?=[ \t]*\([ⅰ-ⅹ]+\))/g,"$1\n")
+       .replace(/([㉠-㉥])(?=[ \t]*㉠\s*[,，·]\s*㉡(?:\s*[,，·]\s*㉢)?\s*(?:에서|로부터|에\s*(?:의하여|의해)))/g,"$1\n");
+    /* 보기별 풀이를 한 문단으로 저장한 자료는 앞 보기의 판정과 다음 머리표가
+       `(X)ㄴ.`처럼 붙는다. 수식 밖에서 판정기호 뒤에 ㄱ~ㅎ+마침표가 확인될 때만
+       경계를 복원한다. `(O)따라서` 같은 최종 결론과 수식 괄호는 바꾸지 않는다. */
+    s=splitMath(s).map(k=>k.t==null?k.o+k.b+k.c:k.t.replace(/([（(]\s*(?:O|X|○|×)\s*[)）])(?=[ \t]*[ㄱ-ㅎ]\s*[.．])/g,"$1\n")).join("");
+    /* 선지마다 참/거짓을 판정한 해설에서 구분 공백·개행이 유실된 `참③` 경계.
+       수식 밖의 완전한 판정어 뒤에 다음 원문자 선지가 붙을 때만 분리한다. */
+    s=splitMath(s).map(k=>k.t==null?k.o+k.b+k.c:k.t.replace(/(참|거짓)(?=[ \t]*[①-⑳])/g,"$1\n")).join("");
+    /* 경우 표지(ⅰ), ⅱ), …)가 앞 문장·단위에 붙은 `9개ⅰ)`만 분리한다.
+       수식 토큰 안의 로마자는 건드리지 않아 첨자·기호 오인 가능성을 차단한다. */
+    s=splitMath(s).map(k=>k.t==null?k.o+k.b+k.c:k.t.replace(/([^\n(])(?=[ \t]*[ⅰ-ⅹ]\))/g,"$1\n")).join("");
+    /* 일부 적재 해설은 Markdown 굵게 표기(**…**)를 보존한다. esc() 이후의 평문에서만,
+       앞 문자가 식별자가 아닌 완결 표기만 허용해 x**2 같은 수식·연산 표기는 건드리지 않는다. */
+    s=s.replace(/(?<![0-9A-Za-z가-힣])\*\*([^*\n]{1,200})\*\*/g,(all,body)=>
+      /[0-9A-Za-z가-힣]/.test(body)?"<strong>"+body+"</strong>":all);
+    let body=variationTables(linesToHtml(fixSegsK(s)));
+    /* 파서 마커를 제거한 자리에 남은 연속 빈 행은 풀이 단계가 아니다.
+       해설은 본문 행간이 이미 넓으므로 연속 <br>을 하나로 정규화한다. */
+    body=body.replace(/(?:<br>\s*){2,}/g,"<br>").replace(/^\s*<br>|<br>\s*$/g,"");
+    const out=solutionFigures(withSolFigures(body, figs));   // 선지 격자 없음
     return (answer!=null?ansHead(answer):"")+out;
   }
   /* 평문(raw_text 계열) 표시 보정 — (v1.2) 구조 HTML 경로와 동일 규칙(분수·lim·조건 박스·선지) 적용.
@@ -1107,8 +1389,21 @@ window.NGD2Display = (function(){
      오른쪽으로 밀려 찍히던 문제. 선지 조각에서 블록 태그(<p>·<br>)와 조판 공백을 걷어낸다. */
   const CH_CLEAN = p => p.replace(/<\/?p\b[^>]*>/gi," ").replace(/<br\s*\/?>/gi," ")
                          .replace(/&emsp;|&ensp;|&nbsp;/gi," ").replace(/\s+/g," ").trim();
+  /* HML 원문은 탭 사이에도 ②·③·⑤가 있지만 일부 공식시험 적재본은 탭 정리 때
+     머리표만 빠졌다. 일반 수식 나열을 선지로 오인하지 않도록 문항 맨 끝에 수식값이
+     정확히 3개+2개이고 남은 머리표가 ①·④뿐인 형식만 복원한다(2027 6월 실측 3건). */
+  function restoreTabbedFiveChoices(html){
+    if(/[②③⑤]/.test(html)||!/[①④]/.test(html))return html;
+    const tex='(\\$(?!\\$)(?:\\\\.|[^$])*?\\$)';
+    const rx=new RegExp('(①\\s*)'+tex+'\\s*'+tex+'\\s*'+tex+'\\s*(?:<br\\s*\\/?>)\\s*(④\\s*)'+tex+'\\s*'+tex+'\\s*$','s');
+    return String(html||'').replace(rx,(_all,one,a,b,c,four,d,e)=>`${one}${a} ② ${b} ③ ${c}<br>${four}${d} ⑤ ${e}`);
+  }
   function choiceGrid(html){
-    if(/class=["'][^"']*nchoices/.test(html))return html;
+    html=restoreTabbedFiveChoices(String(html||''));
+    /* 구조 HTML은 이미 .hchoices>.hch라는 정본 선지 구조를 가진다. .nchoices만
+       보호하면 hchoices 내부의 ①~⑤를 다시 nchoices로 감싸 invalid span>div가 되고,
+       브라우저 재봉합 뒤 빈 hch와 폭 28px짜리 세로 선지가 생긴다(items #20739). */
+    if(/class=["'][^"']*(?:nchoices|hchoices)/.test(html))return html;
     const found=[...new Set(html.match(/[①②③④⑤]/g)||[])];
     if(found.length<3) return html;
     const first=html.indexOf('①'); if(first<0) return html;
@@ -1238,14 +1533,37 @@ window.NGD2Display = (function(){
       if(!k)return;
       k.style.fontSize="";
       const html=k.querySelector(".katex-html")||k;
-      const available=Math.max(0,d.clientWidth-2);
+      const cs=getComputedStyle(d);
+      const ecs=getComputedStyle(el);
+      const rootWidth=Math.max(0,el.clientWidth-parseFloat(ecs.paddingLeft||0)-parseFloat(ecs.paddingRight||0)-2);
+      const available=Math.min(rootWidth||Infinity,Math.max(0,d.clientWidth-parseFloat(cs.paddingLeft||0)-parseFloat(cs.paddingRight||0)-2));
       const natural=Math.max(html.scrollWidth,html.getBoundingClientRect().width);
       if(!available||!natural||natural<=available+1)return;
       const parentSize=parseFloat(getComputedStyle(d).fontSize)||16;
       const currentSize=parseFloat(getComputedStyle(k).fontSize)||parentSize;
       const currentEm=currentSize/parentSize;
-      const fitted=Math.max(.46,currentEm*(available/natural)*.985);
+      const fitted=Math.max(.20,currentEm*(available/natural)*.985);
       k.style.fontSize=fitted.toFixed(4)+"em";
+    });
+  }
+  /* 해설의 긴 인라인 행렬·등식도 인쇄 단 밖으로 침범하지 않게 한다.
+     일반 인라인 수식은 건드리지 않고, 단 폭을 실제로 넘는 한 수식만 최소 46%까지
+     축소한다. PDF에서 스크롤바나 옆 단 침범은 인쇄될 수 없다. */
+  function fitPrintInlineMath(el){
+    el.querySelectorAll(".ngd2-inherit .katex:not(.katex-display .katex)").forEach(k=>{
+      if(k.parentElement&&k.parentElement.closest(".katex"))return;
+      k.style.fontSize="";
+      k.style.display="";
+      const cs=getComputedStyle(el);
+      const available=Math.max(0,el.clientWidth-parseFloat(cs.paddingLeft||0)-parseFloat(cs.paddingRight||0)-2);
+      const natural=k.getBoundingClientRect().width;
+      if(!available||!natural||natural<=available+1)return;
+      const parentSize=parseFloat(getComputedStyle(k.parentElement||el).fontSize)||16;
+      const currentSize=parseFloat(getComputedStyle(k).fontSize)||parentSize;
+      const fitted=Math.max(.20,(currentSize/parentSize)*(available/natural)*.985);
+      k.style.display="inline-block";
+      k.style.fontSize=fitted.toFixed(4)+"em";
+      k.style.maxWidth="100%";
     });
   }
   /* 통합 렌더: KaTeX 4구분자 + 선지 레이아웃 + 긴 수식 행간 */
@@ -1298,6 +1616,7 @@ window.NGD2Display = (function(){
   function layoutInlineFractions(el){
     if(!el||!el.querySelectorAll)return;
     el.querySelectorAll('.ngd2-inline-frac').forEach(k=>k.classList.remove('ngd2-inline-frac'));
+    el.querySelectorAll('.ngd2-tall-inline').forEach(k=>k.classList.remove('ngd2-tall-inline'));
     el.querySelectorAll('.ngd2-frac-line').forEach(line=>line.classList.remove('ngd2-frac-line'));
     el.querySelectorAll('.katex .mfrac').forEach(frac=>{
       const math=frac.closest('.katex');
@@ -1306,23 +1625,105 @@ window.NGD2Display = (function(){
       const line=math.closest('.hp,.solstep>div,.cpb-worked-problem,.cpb-worked-steps>li,.cpb-worked-answer,.cpb-callout-body,.cpb-check-item,p,li,td');
       if(line&&el.contains(line))line.classList.add('ngd2-frac-line');
     });
+    el.querySelectorAll('.katex').forEach(math=>{
+      if(math.closest('.katex-display'))return;
+      const size=parseFloat(getComputedStyle(math).fontSize)||16;
+      const height=math.getBoundingClientRect().height;
+      if(math.querySelector('.array,.mfrac')||height>size*1.65)math.classList.add('ngd2-tall-inline');
+    });
+  }
+  const UNIT_REL=/^\s*(?:=|≠|≤|≥|≒|<|>|\\(?:le|ge|leq|geq|ne|neq|approx|equiv|sim|fallingdotseq)(?![A-Za-z]))/;
+  const UNIT_REL_END=/(?:=|≠|≤|≥|≒|<|>|\\(?:le|ge|leq|geq|ne|neq|approx|equiv|sim|fallingdotseq))\s*$/;
+  function rawHeqTex(n){
+    return String(n&&n.textContent||"").trim()
+      .replace(/^\\\(/,"").replace(/\\\)$/,"").replace(/^\$+|\$+$/g,"").trim();
+  }
+  function groupEquationUnits(el){
+    if(!el||!el.querySelectorAll)return;
+    [...el.querySelectorAll('.heq:not(.ngd2-unit-done)')].forEach(first=>{
+      if(first.closest('.ngd2-math-unit'))return;
+      let between=[],n=first.nextSibling;
+      while(n&&n.nodeType===3&&!String(n.textContent||"").trim()){between.push(n);n=n.nextSibling;}
+      if(!n||n.nodeType!==1||!n.classList.contains('heq'))return;
+      /* 관계기호가 다음 조각의 시작뿐 아니라 앞 조각의 끝에 붙은 OCR도 한 식 단위로 묶는다.
+         예: `BP =` + `3`이 카드 경계에서 갈라지는 것을 막는다. */
+      if(!UNIT_REL.test(rawHeqTex(n))&&!UNIT_REL_END.test(rawHeqTex(first)))return;
+      const unit=document.createElement('span'); unit.className='ngd2-math-unit';
+      first.parentNode.insertBefore(unit,first); unit.appendChild(first);
+      between.forEach(x=>unit.appendChild(x)); unit.appendChild(n);
+      first.classList.add('ngd2-unit-done'); n.classList.add('ngd2-unit-done');
+    });
+  }
+  function layoutEquationUnits(el){
+    if(!el||!el.querySelectorAll)return;
+    el.querySelectorAll('.ngd2-math-unit').forEach(unit=>{
+      unit.classList.remove('ngd2-math-unit-long');
+      if(unit.clientWidth&&unit.scrollWidth>unit.clientWidth+1)unit.classList.add('ngd2-math-unit-long');
+    });
+  }
+  /* 원문 정규식이 아니라 사용자가 실제로 보는 최종 DOM을 검사한다. KaTeX는 닫히지
+     않은 `$`를 .katex-error로 만들지 않고 평문으로 남기므로 별도 리터럴 검사가 필요하다.
+     선택지 검사는 이미 선택지 구조가 존재하는 카드에만 적용해 서술형을 오탐하지 않는다. */
+  function displayDiagnostics(el){
+    const issues=[];
+    const add=(code,detail)=>{if(!issues.some(x=>x.code===code&&x.detail===detail))issues.push({code,detail});};
+    const choiceBoxes=[...el.querySelectorAll('.nchoices,.hchoices')];
+    choiceBoxes.forEach((box,index)=>{
+      const direct=[...box.children].filter(k=>k.matches('.nchoice,.hch'));
+      const marks=direct.flatMap(k=>(k.textContent||'').match(/[①②③④⑤]/g)||[]);
+      const unique=[...new Set(marks)];
+      if(box.parentElement&&box.parentElement.matches('.nchoice,.hch'))
+        add('choice_container_nested_in_choice',`선지 컨테이너 ${index+1}이 선지 안에 중첩됨`);
+      const blank=direct.filter(k=>!(k.textContent||'').replace(/\s+/g,'').replace(/[①②③④⑤]/g,'')&&!k.querySelector('img,svg,math,.katex'));
+      if(blank.length)add('empty_choice_nodes',`빈 선택지 ${blank.length}개`);
+      if(unique.includes('①')&&unique.length>=3&&(!unique.includes('⑤')||unique.some((m,i)=>m!=='①②③④⑤'[i])))
+        add('incomplete_choice_sequence',`선지 번호 ${unique.join('')||'없음'}`);
+      if(unique.length>=5&&el.clientWidth>=300&&box.clientWidth>0&&box.clientWidth<Math.min(120,el.clientWidth*.25))
+        add('collapsed_choice_container',`선지 폭 ${Math.round(box.clientWidth)}px / 카드 ${Math.round(el.clientWidth)}px`);
+    });
+    /* SHOW_TEXT=4. 일부 검수 DOM(linkedom·WebView)은 전역 NodeFilter를 노출하지 않는다. */
+    const walker=document.createTreeWalker(el,4);
+    const literal=[];let node;
+    while((node=walker.nextNode())){
+      const parent=node.parentElement;
+      if(!parent||parent.closest('.katex,.katex-mathml,script,style,textarea,code,pre'))continue;
+      const text=node.nodeValue||'';
+      if(/\$|\\(?:int|frac|sqrt|left|right|displaystyle|sum|lim|overline|begin|end)\b/.test(text))literal.push(text.trim().slice(0,80));
+    }
+    if(literal.length)add('literal_math_residue',literal[0]||'원시 수식 구분자/명령 잔존');
+    return issues;
   }
   function render(el){
-    if(!el) return;
+    if(!el) return {errors:["missing_root"],katexErrorCount:0,displayIssues:[]};
+    const errors=[];
     /* (2026-08-06 전수검수 #4664·#4669) 저장 원문에 src가 없는 장식용 img가 섞여
        브라우저의 깨진 이미지 아이콘으로 노출된다. 실제 이미지 URL이 있는 노드는 건드리지 않는다. */
     el.querySelectorAll('img:not([src]),img[src=""],img[src=" "]').forEach(img=>img.remove());
+    groupEquationUnits(el);
     try{ renderMathInElement(el,{delimiters:[
       {left:"$$",right:"$$",display:true},{left:"\\[",right:"\\]",display:true},
       {left:"\\(",right:"\\)",display:false},{left:"$",right:"$",display:false}],
-      throwOnError:false,strict:false}); }catch(e){}
+      throwOnError:false,strict:false,errorCallback:function(message){errors.push(String(message||"katex_error"));}}); }
+    catch(e){errors.push(String(e&&e.message||e));}
     layoutInlineFractions(el);
+    layoutEquationUnits(el);
     layoutLead(el);
     layoutChoices(el);
     layoutMathDetails(el);
     fitPrintDisplayMath(el);
+    fitPrintInlineMath(el);
     layoutFigures(el);
     if(typeof requestAnimationFrame!=="undefined") requestAnimationFrame(()=>layoutFigures(el));
+    const errorNodes=Array.from(el.querySelectorAll('.katex-error'));
+    errorNodes.forEach(node=>{
+      const detail=node.getAttribute('title')||node.textContent||'katex_error';
+      if(!errors.includes(detail))errors.push(detail);
+    });
+    el.dataset.ngdKatexErrors=String(errorNodes.length);
+    const displayIssues=displayDiagnostics(el);
+    el.dataset.ngdDisplayIssueCount=String(displayIssues.length);
+    el.dataset.ngdDisplayIssues=displayIssues.map(x=>x.code).join(',');
+    return {errors:errors,katexErrorCount:errorNodes.length,displayIssues};
   }
   function html(bodyHtml){ return problemFigures(choices(condBoxHtml(fix(bodyHtml)))); }
 
@@ -1337,9 +1738,13 @@ window.NGD2Display = (function(){
    class="ngd2-body ngd2-inherit" 로 쓰면 구조 규격(선지·박스·그림·수식)만 받고 서체·크기는 그 화면 것을 따른다. */
 .ngd2-body.ngd2-inherit{font-family:inherit;font-size:inherit;line-height:inherit;letter-spacing:inherit;word-spacing:inherit;color:inherit}
 .ngd2-body .katex{white-space:normal;font-size:1.06em}
+.ngd2-body .ngd2-math-unit{display:inline-block;white-space:nowrap;max-width:100%;vertical-align:baseline}
+.ngd2-body .ngd2-math-unit .katex{white-space:nowrap}
+.ngd2-body .ngd2-math-unit-long{display:block;overflow-x:auto;overflow-y:hidden;padding:2px 0;scrollbar-width:thin}
 /* (v3.5) 인라인 분수는 글자 몸체보다 위아래가 크다. 분수가 있는 줄만 자동으로
    높여 다음 행과 분자·분모가 맞닿지 않게 한다. display 수식은 기존 문단 여백을 유지한다. */
-.ngd2-body .katex.ngd2-inline-frac,.cpb-wrap .katex.ngd2-inline-frac{display:inline-block;padding:.14em 0 .22em;vertical-align:-.06em}
+.ngd2-body .katex.ngd2-inline-frac,.cpb-wrap .katex.ngd2-inline-frac{display:inline-block;white-space:nowrap!important;padding:.14em 0 .22em;vertical-align:-.06em}
+.ngd2-body .katex.ngd2-tall-inline,.cpb-wrap .katex.ngd2-tall-inline{display:inline-block;white-space:nowrap!important;padding:.28em 0 .34em;vertical-align:middle}
 .ngd2-body:not(.ngd2-inherit) .ngd2-frac-line{line-height:2.04!important}
 .ngd2-body.ngd2-inherit .ngd2-frac-line{line-height:calc(var(--body-leading,1.9) + .12)!important}
 .cpb-wrap .ngd2-frac-line{line-height:2.04!important}
@@ -1375,6 +1780,12 @@ window.NGD2Display = (function(){
 .detailsolution.ngd2-body:not(.ngd2-inherit) .katex-display,
 .sol.ngd2-body:not(.ngd2-inherit) .katex-display{margin:.55em 0 .7em}
 .ngd2-body .hdisp{display:block;margin:.35em 0 .35em 1.4em}
+/* 해설의 HWP 증감표 복원. 칸 넓이를 같게 나누고 기준값·부호·함수값을
+   행으로 묶어 세로 텍스트 나열로 붕괴하지 않게 한다. */
+.ngd2-body .ngd2-variation-table{width:100%;max-width:34em;margin:.65em auto;border-collapse:collapse;table-layout:fixed;font-size:.96em;line-height:1.55}
+.ngd2-body .ngd2-variation-table th,.ngd2-body .ngd2-variation-table td{border:1px solid #8f99a8;padding:.42em .34em;text-align:center;vertical-align:middle;white-space:nowrap}
+.ngd2-body .ngd2-variation-table th{width:4.5em;background:#f4f6f9;font-weight:700;color:#243451}
+.ngd2-body .ngd2-variation-table .katex{white-space:nowrap}
 .ngd2-body .hflow{display:block}
 .ngd2-body .htbl{border-collapse:collapse;margin:8px auto;font-size:.95em}
 .ngd2-body .htbl td{border:1px solid #333;padding:4px 10px;text-align:center}
@@ -1491,7 +1902,7 @@ window.NGD2Display = (function(){
     }
   }catch(e){} },0); }catch(e){}
 
-  return {fix,mathText,solText,inline,clip,choices,render,html,esc,layoutChoices,layoutLead,condBoxHtml,linesToHtml,casesTable,flowBreaks,
+  return {fix,mathText,solText,inline,clip,choices,render,html,esc,layoutChoices,layoutLead,displayDiagnostics,condBoxHtml,linesToHtml,casesTable,flowBreaks,
           figures,withFigures,withSolFigures,problemFigures,solutionFigures,figSlots,dropSlots,stripHwpDump,splitMath,solutionOcrJunk};
 })();
 

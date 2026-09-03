@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v3`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v4`;
 const SHELL = [
   "./",
   "./index.html",
@@ -8,7 +8,11 @@ const SHELL = [
   "./dashboard.html",
   "./styles.css",
   "./grouped.css",
+  "./season.css",
   "./app.js",
+  "./realtime-config.js",
+  "./realtime.js",
+  "./season-config.json",
   "./vision.html",
   "./vision.css",
   "./vision.js",

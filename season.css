@@ -1,0 +1,142 @@
+.season-panel {
+  margin-bottom: 18px;
+  padding: 20px;
+  border: 2px solid #d39a32;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fffaf0 0%, #fff 58%);
+  box-shadow: 0 12px 36px rgba(94, 62, 12, .08);
+}
+
+.season-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.season-header p {
+  margin: 0 0 5px;
+  color: #996209;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .09em;
+}
+
+.season-header h2 {
+  margin: 0;
+  font-size: clamp(23px, 4vw, 36px);
+  letter-spacing: -.05em;
+}
+
+.season-header span,
+.season-summary span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.season-summary {
+  min-width: 110px;
+  text-align: right;
+}
+
+.season-summary strong {
+  font-size: 24px;
+}
+
+.season-rule {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin: 16px 0;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: #f7ecd5;
+  color: #715424;
+  font-size: 12px;
+}
+
+.season-rule i { margin-left: auto; font-style: normal; }
+.season-rule a { color: #78510e; font-weight: 900; text-underline-offset: 3px; }
+.season-grid { display: grid; gap: 9px; }
+
+.season-year {
+  overflow: hidden;
+  border: 1px solid #e5cf9f;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, .86);
+}
+
+.season-year > summary {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  align-items: center;
+  min-height: 54px;
+  padding: 10px 14px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.season-year > summary::-webkit-details-marker { display: none; }
+.season-year > summary strong { font-size: 15px; }
+.season-year > summary span { color: var(--muted); font-size: 11px; }
+.season-year > summary b { color: #8d5d0d; font-size: 12px; }
+.season-year-body { display: grid; gap: 12px; padding: 0 14px 14px; border-top: 1px solid #f0e3c7; }
+.season-exam { padding-top: 12px; }
+.season-exam > header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.season-exam > header strong { font-size: 12px; }
+.season-exam > header span { color: var(--muted); font-size: 10px; }
+.season-question-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 7px; }
+
+.season-question {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+}
+
+.season-question.claimed { border-color: #d9b565; background: #fffaf0; }
+.season-question.completed { border-color: #82c6ba; background: #f2faf8; }
+.season-question-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.season-question-head strong { font-size: 14px; }
+.season-state { min-height: 32px; margin: 7px 0; color: var(--muted); font-size: 10px; line-height: 1.45; }
+.season-state b { display: block; color: var(--ink); font-size: 11px; }
+.claim-actions { display: flex; flex-wrap: wrap; gap: 5px; }
+.claim-actions button {
+  min-width: 0;
+  min-height: 36px;
+  padding: 0 9px;
+  border: 1px solid #d9c69f;
+  border-radius: 7px;
+  background: #fff;
+  color: #72531d;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: normal;
+}
+.claim-actions button.primary { border-color: #9a6700; background: #9a6700; color: #fff; }
+.claim-actions button.complete { border-color: var(--accent); color: var(--accent); }
+.claim-actions button:disabled { cursor: not-allowed; opacity: .55; }
+.member-field small { display: block; margin-top: 5px; color: var(--muted); font-size: 10px; }
+.member-field small.live { color: var(--accent); font-weight: 800; }
+.presenter-chip.claimed { border-color: #dfbf77; background: #fff6df; color: #7a5819; }
+
+@media (max-width: 920px) {
+  .season-question-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .season-panel { padding: 14px; }
+  .season-header { align-items: flex-start; flex-direction: column; }
+  .season-summary { text-align: left; }
+  .season-rule i { width: 100%; margin-left: 0; }
+  .season-year > summary { grid-template-columns: 78px 1fr; }
+  .season-year > summary b { grid-column: 2; }
+  .season-question-grid { grid-template-columns: 1fr; }
+  .claim-actions button { min-height: 44px; }
+}

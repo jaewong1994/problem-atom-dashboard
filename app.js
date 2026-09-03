@@ -1,5 +1,6 @@
 const state = {
   data: null,
+  seasonConfig: null,
   merged: new Map(),
   aliases: new Map(),
   actor: localStorage.getItem("seminar-actor") || "",
@@ -10,6 +11,10 @@ const state = {
   lastProgress: "",
   lastData: "",
   staticMode: false,
+  claims: new Map(),
+  realtimeReady: false,
+  realtimeUserId: "",
+  memberCode: "",
   publishedSources: [],
   draftEvents: JSON.parse(localStorage.getItem("seminar-progress-draft") || "[]"),
 };
@@ -24,6 +29,8 @@ const els = {
   syncDot: $("#syncDot"),
   syncLabel: $("#syncLabel"),
   syncDetail: $("#syncDetail"),
+  memberIdentity: $("#memberIdentity"),
+  seasonGrid: $("#seasonGrid"),
 };
 
 const escapeHtml = (value) =>
@@ -110,7 +117,18 @@ function mergeAllProgress() {
 }
 
 function questionState(questionId) {
-  return state.merged.get(questionId) || { done: false, presenters: [], actorEvents: new Map() };
+  const stored = state.merged.get(questionId) || { done: false, presenters: [], actorEvents: new Map() };
+  const claim = state.claims.get(questionId);
+  if (!claim || claim.status !== "completed" || stored.presenters.includes(claim.owner_name)) return stored;
+  return { ...stored, done: true, presenters: [...stored.presenters, claim.owner_name] };
+}
+
+function questionClaim(questionId) {
+  return state.claims.get(questionId) || null;
+}
+
+function applyClaims(rows) {
+  state.claims = new Map((rows || []).map((row) => [row.question_id, row]));
 }
 
 function isPresentedBy(questionId, actor) {
@@ -147,17 +165,205 @@ function examMetrics(exam) {
 
 function presenterMarkup(question) {
   const presenters = questionState(question.id).presenters;
-  if (!presenters.length) return '<span class="presenter-empty">발표자 미정</span>';
-  return presenters.map((name) => `<span class="presenter-chip">${escapeHtml(name)}</span>`).join("");
+  const claim = questionClaim(question.id);
+  const completed = presenters.map((name) => `<span class="presenter-chip">${escapeHtml(name)} · 완료</span>`).join("");
+  const reserved = claim && claim.status === "claimed"
+    ? `<span class="presenter-chip claimed">${escapeHtml(claim.owner_name)} · 선점</span>`
+    : "";
+  return completed || reserved || '<span class="presenter-empty">미선점</span>';
 }
 
-function renderMathBody(container, text) {
+function academicYear(exam) {
+  return exam.session === "수능" ? Number(exam.year) : Number(exam.year) + 1;
+}
+
+function seasonQuestionNumbers() {
+  return new Set(state.seasonConfig?.activeSeason?.questionNumbers || [13, 14, 15, 20, 21, 22]);
+}
+
+function seasonExamsFor(year) {
+  const order = { "6월": 0, "9월": 1, "수능": 2 };
+  const found = (state.data?.exams || [])
+    .filter((exam) => examInGroup(exam, "kice") && academicYear(exam) === year)
+    .sort((a, b) => (order[a.session] ?? 9) - (order[b.session] ?? 9));
+  const bySession = new Map(found.map((exam) => [exam.session, exam]));
+  const numbers = [...seasonQuestionNumbers()];
+  return ["6월", "9월", "수능"].map((session) => {
+    if (bySession.has(session)) return bySession.get(session);
+    const calendarYear = session === "수능" ? year : year - 1;
+    const examId = session === "수능" ? `csat-${year}` : `kice-${calendarYear}-${session[0]}`;
+    const sectionCode = session === "수능" ? "공통" : "기하";
+    return {
+      id: examId,
+      examGroup: session === "수능" ? "csat" : "mock",
+      organizer: "평가원",
+      year: calendarYear,
+      session,
+      title: session === "수능" ? `${year}학년도 대학수학능력시험` : `${session} 평가원`,
+      assetStatus: "scheduled",
+      seasonPlaceholder: true,
+      sections: [{
+        id: "common",
+        title: "공통 문항",
+        kind: "common",
+        questions: numbers.map((number) => ({
+          id: `${examId}-${sectionCode}-${String(number).padStart(2, "0")}`,
+          number,
+          score: 4,
+          unit: "미적분Ⅰ 시즌 1",
+          preview: null,
+          images: [],
+          body: null,
+          legacyIds: [],
+        })),
+      }],
+    };
+  });
+}
+
+function seasonQuestions(exam) {
+  const targets = seasonQuestionNumbers();
+  const section = (exam.sections || []).find((item) => item.kind === "common") || exam.sections?.[0];
+  return (section?.questions || []).filter((question) => targets.has(Number(question.number)));
+}
+
+function claimStateMarkup(claim) {
+  if (!claim) return '<span>아직 선점하지 않음</span>';
+  const label = claim.status === "completed" ? "분석 완료" : "선점 중";
+  return `<b>${escapeHtml(claim.owner_name)}</b><span>${label}</span>`;
+}
+
+function seasonActionMarkup(question) {
+  const claim = questionClaim(question.id);
+  const mine = Boolean(claim && claim.owner_id === state.realtimeUserId);
+  if (!state.realtimeReady) {
+    return '<button type="button" disabled>실시간 연결 대기</button>';
+  }
+  if (!claim) {
+    return `<button class="primary" type="button" data-claim-action="claim" data-question-id="${escapeHtml(question.id)}">선점하기</button>`;
+  }
+  if (!mine) {
+    return `<button type="button" disabled>${escapeHtml(claim.owner_name)} 선점</button>`;
+  }
+  if (claim.status === "completed") {
+    return '<button type="button" disabled>내 분석 완료</button>';
+  }
+  return `
+    <button type="button" data-claim-action="release" data-question-id="${escapeHtml(question.id)}">선점 취소</button>
+    <button class="complete" type="button" data-claim-action="complete" data-question-id="${escapeHtml(question.id)}">분석 완료</button>`;
+}
+
+function renderSeasonQuestion(exam, question) {
+  const claim = questionClaim(question.id);
+  const card = document.createElement("article");
+  card.className = `season-question${claim ? ` ${claim.status}` : ""}`;
+  card.innerHTML = `
+    <div class="season-question-head"><strong>${question.number}번</strong><span class="badge ${question.score === 4 ? "four" : ""}">${question.score ? `${question.score}점` : "-"}</span></div>
+    <div class="season-state">${claimStateMarkup(claim)}</div>
+    <div class="claim-actions">
+      ${seasonActionMarkup(question)}
+      <button type="button" data-season-preview="${escapeHtml(question.id)}" ${question.preview ? "" : "disabled"}>문제 보기</button>
+    </div>`;
+  card.querySelectorAll("[data-claim-action]").forEach((button) => {
+    button.addEventListener("click", () => updateClaim(button.dataset.claimAction, question.id, button));
+  });
+  const preview = card.querySelector("[data-season-preview]");
+  if (question.preview) {
+    const section = (exam.sections || []).find((item) => item.kind === "common") || exam.sections?.[0];
+    preview.addEventListener("click", () => showPreview(exam, section, question));
+  }
+  return card;
+}
+
+function renderSeason() {
+  if (!els.seasonGrid || !state.data) return;
+  const openYears = new Set([...els.seasonGrid.querySelectorAll("details[open]")].map((node) => Number(node.dataset.year)));
+  els.seasonGrid.innerHTML = "";
+  let total = 0;
+  let completed = 0;
+  let claimed = 0;
+  let firstPending = null;
+  const years = state.seasonConfig?.activeSeason?.academicYears || [2022, 2023, 2024, 2025, 2026, 2027];
+  for (const year of years) {
+    const exams = seasonExamsFor(year);
+    const questions = exams.flatMap(seasonQuestions);
+    const yearCompleted = questions.filter((question) => questionClaim(question.id)?.status === "completed" || questionState(question.id).done).length;
+    const yearClaimed = questions.filter((question) => questionClaim(question.id)?.status === "claimed").length;
+    total += questions.length;
+    completed += yearCompleted;
+    claimed += yearClaimed;
+    if (firstPending == null && yearCompleted < questions.length && questions.length) firstPending = year;
+    const details = document.createElement("details");
+    details.className = "season-year";
+    details.dataset.year = String(year);
+    details.open = openYears.has(year) || (!openYears.size && year === (firstPending || 2022));
+    details.innerHTML = `<summary><strong>${year}학년도</strong><span>${exams.length ? `${exams.length}개 시험 · ${questions.length}문항` : "문항 적재 대기"}</span><b>${yearCompleted}/${questions.length || 0} 완료${yearClaimed ? ` · ${yearClaimed} 선점` : ""}</b></summary><div class="season-year-body"></div>`;
+    const body = details.querySelector(".season-year-body");
+    if (!exams.length) {
+      body.innerHTML = '<div class="season-exam"><header><strong>자료 적재 대기</strong><span>해당 학년도 6·9월 평가원 또는 수능 원문이 연결되면 자동 표시됩니다.</span></header></div>';
+    }
+    for (const exam of exams) {
+      const wrap = document.createElement("section");
+      wrap.className = "season-exam";
+      const questionsForExam = seasonQuestions(exam);
+      wrap.innerHTML = `<header><strong>${escapeHtml(exam.session === "수능" ? `${year}학년도 수능` : `${exam.year}년 ${exam.session} 평가원`)}</strong><span>${exam.seasonPlaceholder ? "원문 적재 대기 · " : ""}${questionsForExam.length}문항</span></header><div class="season-question-grid"></div>`;
+      const grid = wrap.querySelector(".season-question-grid");
+      questionsForExam.forEach((question) => grid.append(renderSeasonQuestion(exam, question)));
+      body.append(wrap);
+    }
+    els.seasonGrid.append(details);
+  }
+  $("#seasonProgress").textContent = `${completed} / ${total}`;
+  $("#seasonProgressDetail").textContent = `분석 완료${claimed ? ` · ${claimed}문항 선점 중` : ""}`;
+}
+
+async function updateClaim(action, questionId, button) {
+  const actor = els.actor.value.trim();
+  if (!actor) {
+    els.actor.focus();
+    els.notice.hidden = false;
+    els.notice.textContent = "먼저 이름을 입력해 주세요.";
+    return;
+  }
+  if (!state.realtimeReady) {
+    els.notice.hidden = false;
+    els.notice.textContent = "실시간 저장소 연결 전이라 선점할 수 없습니다. 운영자가 Problem Atom 전용 Supabase 설정을 완료해야 합니다.";
+    return;
+  }
+  button.disabled = true;
+  button.setAttribute("aria-busy", "true");
+  try {
+    if (action === "claim") await window.PARealtime.claim(questionId, actor);
+    if (action === "release") await window.PARealtime.release(questionId);
+    if (action === "complete") await window.PARealtime.complete(questionId);
+    applyClaims(await window.PARealtime.listClaims());
+    render();
+    els.notice.hidden = false;
+    els.notice.textContent = action === "claim" ? "선점했습니다. 모든 구성원의 화면에 바로 표시됩니다." : action === "release" ? "선점을 취소했습니다." : "분석 완료로 표시했습니다.";
+    if (navigator.vibrate) navigator.vibrate(10);
+  } catch (error) {
+    els.notice.hidden = false;
+    els.notice.textContent = error.message || "실시간 저장에 실패했습니다.";
+  } finally {
+    button.disabled = false;
+    button.removeAttribute("aria-busy");
+  }
+}
+
+function renderMathBody(container, text, images = []) {
   if (window.NGD2Display?.mathText && window.NGD2Display?.render) {
-    container.innerHTML = window.NGD2Display.mathText(text);
+    container.innerHTML = window.NGD2Display.mathText(text, images);
     window.NGD2Display.render(container);
     return;
   }
   container.textContent = text;
+  for (const src of images) {
+    const figure = document.createElement("img");
+    figure.src = src;
+    figure.alt = "문제에 포함된 그림";
+    figure.className = "problem-figure-fallback";
+    container.append(figure);
+  }
   if (typeof window.renderMathInElement !== "function") return;
   window.renderMathInElement(container, {
     delimiters: [
@@ -178,7 +384,7 @@ function setProblemBody(card, question, open) {
   button.textContent = open ? "문제 접기" : "문제 펼치기";
   button.setAttribute("aria-expanded", String(open));
   if (open && !body.dataset.rendered) {
-    renderMathBody(body, question.body);
+    renderMathBody(body, question.body, question.images || []);
     body.dataset.rendered = "true";
   }
 }
@@ -225,6 +431,7 @@ function renderQuestion(exam, section, question) {
 
 function render() {
   if (!state.data) return;
+  renderSeason();
   const openIds = new Set(
     [...els.list.querySelectorAll("details[open]")].map((element) => element.dataset.examId),
   );
@@ -252,7 +459,7 @@ function render() {
     node.querySelector(".title").textContent = exam.title;
     node.querySelector(".asset-label").textContent =
       exam.assetStatus === "ready"
-        ? `${exam.organizer || "평가원"} · LaTeX 본문과 원본 이미지 연결됨`
+        ? `${exam.organizer || "평가원"} · LaTeX 본문·도형·원본 이미지 연결됨`
         : exam.assetStatus === "source-only"
           ? `${exam.organizer || "평가원"} · 원문 HWP ${exam.sourceFiles?.length || 1}개 확인, 문항별 분리 대기`
           : `${exam.organizer || "평가원"} · 원본 HWP 있음, 문항 메타 등록 대기`;
@@ -321,7 +528,7 @@ function updateStats() {
   const bodies = questions.filter((question) => question.body).length;
   const previews = questions.filter((question) => question.preview).length;
   $("#previewStat").textContent = `${bodies} / ${previews}`;
-  $("#assetStatDetail").textContent = "LaTeX 본문 / 원본 이미지";
+  $("#assetStatDetail").textContent = "LaTeX 본문·도형 / 원본 이미지";
   $("#yearStat").textContent = `${new Set(exams.map((exam) => exam.year)).size}개년`;
   $("#yearStatDetail").textContent = state.group === "kice" ? "평가원 6·9월 모의평가 · 수능" : "교육청 학력평가";
   for (const group of ["kice", "education"]) {
@@ -460,7 +667,39 @@ async function refreshData() {
   }
 }
 
+async function initRealtime() {
+  if (!window.PARealtime) {
+    els.memberIdentity.textContent = "실시간 모듈을 읽지 못했습니다";
+    return;
+  }
+  try {
+    const result = await window.PARealtime.init(state.actor, (rows) => {
+      applyClaims(rows);
+      render();
+      sync(true, "실시간 연결됨", `${rows.length}개 문항 상태 · 방금 갱신`);
+    });
+    if (!result.enabled) {
+      els.memberIdentity.textContent = "실시간 저장소 설정 전 · 선점 비활성";
+      return;
+    }
+    state.realtimeReady = true;
+    state.realtimeUserId = result.userId;
+    state.memberCode = result.memberCode;
+    applyClaims(result.claims);
+    els.memberIdentity.textContent = `멤버 ID ${result.memberCode} · 실시간 연결`;
+    els.memberIdentity.classList.add("live");
+    render();
+    sync(true, "실시간 연결됨", "선점 상태를 즉시 공유합니다");
+  } catch (error) {
+    state.realtimeReady = false;
+    els.memberIdentity.textContent = "실시간 연결 실패";
+    els.notice.hidden = false;
+    els.notice.textContent = `실시간 저장소 연결 실패: ${error.message}`;
+  }
+}
+
 async function init() {
+  state.seasonConfig = await api("season-config.json").catch(() => null);
   els.actor.value = state.actor;
   els.actor.addEventListener("input", () => {
     const nextActor = els.actor.value.trim();
@@ -468,6 +707,15 @@ async function init() {
     state.actor = nextActor;
     if (state.staticMode) mergeAllProgress();
     render();
+  });
+  els.actor.addEventListener("change", async () => {
+    if (!state.realtimeReady || !els.actor.value.trim()) return;
+    try {
+      await window.PARealtime.saveProfile(els.actor.value.trim());
+    } catch (error) {
+      els.notice.hidden = false;
+      els.notice.textContent = `이름 저장 실패: ${error.message}`;
+    }
   });
   els.search.addEventListener("input", (event) => {
     state.query = event.target.value.trim().toLowerCase();
@@ -511,6 +759,7 @@ async function init() {
       els.notice.textContent = "현황판 자료를 읽지 못했습니다. 페이지를 새로고침해 주세요.";
     }
   }
+  await initRealtime();
 }
 
 init();

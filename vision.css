@@ -177,7 +177,7 @@ main, footer { max-width: 1240px; margin: 0 auto; }
 .vector-wrap > div:first-child { display: flex; justify-content: space-between; gap: 12px; }
 .vector-wrap span { color: #9fb2ae; font-size: 10px; }
 .vector-wrap strong { color: #8bd3c8; font-size: 11px; }
-.vector { display: grid; grid-template-columns: repeat(6,1fr); gap: 5px; margin-top: 12px; }
+.vector { display: grid; grid-template-columns: repeat(4,1fr); gap: 5px; margin-top: 12px; }
 .vector div { display: grid; gap: 5px; text-align: center; }
 .vector b { display: grid; place-items: end center; height: 42px; border-radius: 4px; background: #29403b; color: white; font-size: 10px; overflow: hidden; }
 .vector b::before { content: ""; width: 100%; height: calc(var(--score) * 25%); background: #5eb5a9; }

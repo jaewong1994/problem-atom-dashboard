@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "activeSeason": {
+    "id": "season-1",
+    "label": "시즌 1",
+    "status": "active",
+    "startsOn": "2026-09-02",
+    "endsOn": "2026-12-31",
+    "baseMemberCount": 4,
+    "weeklyQuestionsPerMember": 1,
+    "weeklyBaseTarget": 4,
+    "academicYears": [2022, 2023, 2024, 2025, 2026, 2027],
+    "subjectCode": "미적1",
+    "subjectLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+    "questionNumbers": [13, 14, 15, 20, 21, 22],
+    "order": "academic_year_ascending"
+  }
+}

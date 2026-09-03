@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="vendor/katex/katex.min.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="grouped.css">
+  <link rel="stylesheet" href="season.css">
   <link rel="stylesheet" href="pwa-install.css">
 </head>
 <body>
@@ -23,7 +24,7 @@
     <div>
       <p class="eyebrow">기출문제 분석 · 재조합 시스템</p>
       <h1>세미나 자산 현황판</h1>
-      <a class="vision-link" href="vision.html">프로젝트 비전 · 원자 조합 데모 →</a>
+      <a class="vision-link" href="vision.html">프로젝트 계획 →</a> · <a class="vision-link" href="asset-library.html">공유 연구 자산 →</a>
     </div>
     <div class="sync-box" aria-live="polite">
       <span id="syncDot" class="sync-dot"></span>
@@ -32,6 +33,15 @@
   </header>
 
   <main>
+    <section id="seasonOne" class="season-panel" aria-labelledby="seasonTitle">
+      <header class="season-header">
+        <div><p>SEASON 1 · 2026.09—12</p><h2 id="seasonTitle">미적분Ⅰ 집중 분석</h2><span>2022학년도부터 2027학년도까지 · 13·14·15·20·21·22번 · 매주 4문항</span></div>
+        <div class="season-summary"><strong id="seasonProgress">0 / 0</strong><span id="seasonProgressDetail">분석 완료</span></div>
+      </header>
+      <div class="season-rule"><b>운영 순서</b><span>22학년도 → 23 → 24 → 25 → 26 → 27학년도</span><i>구성원 1인당 매주 1문항</i><a href="assets/downloads/세미나분석지_초간단.hwpx" download>초간단 한글 분석지 받기</a></div>
+      <div id="seasonGrid" class="season-grid" aria-live="polite"></div>
+    </section>
+
     <nav class="source-tabs" aria-label="시험 유형">
       <button class="source-tab active" type="button" data-group="kice"><strong>평가원</strong><span data-tab-count="kice">0</span><small>6·9월 모의평가 · 수능</small></button>
       <button class="source-tab" type="button" data-group="education"><strong>교육청 학력평가</strong><span data-tab-count="education">0</span><small>추후 적재</small></button>
@@ -41,6 +51,7 @@
       <div class="member-field">
         <label for="actor">현재 발표자</label>
         <input id="actor" maxlength="20" placeholder="발표자 이름 또는 별칭" autocomplete="off">
+        <small id="memberIdentity">실시간 멤버 ID 확인 중</small>
       </div>
       <div class="search-field">
         <label for="search">문제 찾기</label>
@@ -91,8 +102,10 @@
 
   <script src="vendor/katex/katex.min.js" defer></script>
   <script src="vendor/katex/auto-render.min.js" defer></script>
-  <script src="vendor/ngd2/ngd2-math.js?v=20260824k" defer></script>
-  <script src="vendor/ngd2/ngd2-display.js?v=20260825" defer></script>
+  <script src="vendor/ngd2/ngd2-math.js?v=20260902" defer></script>
+  <script src="vendor/ngd2/ngd2-display.js?v=20260902" defer></script>
+  <script src="realtime-config.js" defer></script>
+  <script src="realtime.js" defer></script>
   <script src="app.js" defer></script>
   <script src="pwa-install.js" defer></script>
 </body>

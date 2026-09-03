@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import io
 import json
 import re
 import shutil
+import zipfile
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+
+from PIL import Image
 
 DASH = Path(__file__).resolve().parent
 NGD2 = Path(r"C:\Users\jaewo\OneDrive\바탕 화면\학원\NGD2_새폴더_풀세트\공장")
@@ -14,6 +18,38 @@ OLD_ROOT = SOURCE_ROOT / "[년도별] 모의고사 고3 (2003-2025년)"
 CSAT_ROOT = SOURCE_ROOT / "[기출] 수능기출 (1983-2026학년도)"
 OFFICIAL_WORK = NGD2.parent / "회귀자료" / "공식시험_적재_20260825"
 ASSETS = DASH / "assets" / "questions"
+
+
+def extract_item_figures(item: dict, dest_dir: Path, number: int) -> list[str]:
+    """Resolve HWPX meta.image_refs and publish browser-safe PNG figures."""
+    refs = [str(ref) for ref in (item.get("meta") or {}).get("image_refs") or [] if ref]
+    origin = Path(item.get("origin_path") or "")
+    if not refs or not origin.exists() or origin.suffix.lower() != ".hwpx":
+        return []
+
+    outputs: list[str] = []
+    try:
+        with zipfile.ZipFile(origin) as archive:
+            members = {
+                Path(name).stem.lower(): name
+                for name in archive.namelist()
+                if name.lower().startswith("bindata/")
+            }
+            for index, ref in enumerate(refs, 1):
+                member = members.get(ref.lower())
+                if not member:
+                    continue
+                with Image.open(io.BytesIO(archive.read(member))) as image:
+                    image.load()
+                    if image.mode not in {"RGB", "RGBA"}:
+                        image = image.convert("RGBA" if "transparency" in image.info else "RGB")
+                    dest_dir.mkdir(parents=True, exist_ok=True)
+                    dest = dest_dir / f"item_{number:03d}_fig_{index:02d}.png"
+                    image.save(dest, format="PNG", optimize=True)
+                    outputs.append(dest.relative_to(DASH).as_posix())
+    except (OSError, zipfile.BadZipFile):
+        return []
+    return outputs
 
 
 def track_from_name(name: str) -> str:
@@ -50,12 +86,14 @@ def read_source(source: Path) -> dict | None:
                 dest = dest_dir / src_img.name
                 shutil.copy2(src_img, dest)
                 preview = dest.relative_to(DASH).as_posix()
+            images = extract_item_figures(item, ASSETS / legacy_exam_id, number)
             questions.append({
                 "id": question_id,
                 "number": number,
                 "score": score,
                 "unit": item.get("unit") or "개념 태그 미입력",
                 "preview": preview,
+                "images": images,
                 "body": item.get("raw_text") or None,
                 "legacyIds": [question_id],
             })
@@ -123,6 +161,7 @@ def pending_exams() -> list[dict]:
                 "score": None,
                 "unit": "메타 등록 대기",
                 "preview": None,
+                "images": [],
                 "body": None,
                 "legacyIds": [f"{legacy_exam_id}-{n:02d}"],
             } for n in range(1, 31)]
@@ -151,6 +190,7 @@ def csat_question(exam_id: str, number: int) -> dict:
         "score": None,
         "unit": "메타 등록 대기",
         "preview": None,
+        "images": [],
         "body": None,
         "legacyIds": [question_id],
     }
@@ -272,12 +312,14 @@ def csat_ready_exams() -> list[dict]:
                     dest = dest_dir / src_img.name
                     shutil.copy2(src_img, dest)
                     preview = dest.relative_to(DASH).as_posix()
+                images = extract_item_figures(item, ASSETS / f"csat-{year}-{section_id}", number)
                 questions.append({
                     "id": question_id,
                     "number": number,
                     "score": score,
                     "unit": item.get("unit") or "개념 태그 미입력",
                     "preview": preview,
+                    "images": images,
                     "body": item.get("raw_text") or None,
                     "legacyIds": sorted(set(legacy_ids)),
                 })
@@ -323,7 +365,8 @@ def main() -> None:
     (DASH / "dashboard-data.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     questions = [q for e in exams for s in e["sections"] for q in s["questions"]]
     previews = sum(bool(q["preview"]) for q in questions)
-    print(f"완료: 시험 박스 {len(exams)}개, 고유 체크 문항 {len(questions)}개, 실제 미리보기 {previews}문항")
+    figures = sum(len(q.get("images") or []) for q in questions)
+    print(f"완료: 시험 박스 {len(exams)}개, 고유 체크 문항 {len(questions)}개, 실제 미리보기 {previews}문항, LaTeX 본문 그림 {figures}개")
 
 
 if __name__ == "__main__":
