@@ -5,6 +5,9 @@ const state = {
   aliases: new Map(),
   actor: localStorage.getItem("seminar-actor") || "",
   score: "all",
+  subject: localStorage.getItem("seminar-subject-filter") || "all",
+  academicYear: localStorage.getItem("seminar-year-filter") || "all",
+  sortOrder: localStorage.getItem("seminar-sort-order") || "newest",
   group: localStorage.getItem("seminar-exam-group") === "education" ? "education" : "kice",
   query: "",
   openBodies: new Set(),
@@ -14,7 +17,6 @@ const state = {
   claims: new Map(),
   realtimeReady: false,
   realtimeUserId: "",
-  memberCode: "",
   publishedSources: [],
   draftEvents: JSON.parse(localStorage.getItem("seminar-progress-draft") || "[]"),
 };
@@ -24,6 +26,9 @@ const els = {
   list: $("#examList"),
   actor: $("#actor"),
   search: $("#search"),
+  subjectFilter: $("#subjectFilter"),
+  yearFilter: $("#yearFilter"),
+  sortOrder: $("#sortOrder"),
   notice: $("#notice"),
   empty: $("#empty"),
   syncDot: $("#syncDot"),
@@ -118,22 +123,42 @@ function mergeAllProgress() {
 
 function questionState(questionId) {
   const stored = state.merged.get(questionId) || { done: false, presenters: [], actorEvents: new Map() };
-  const claim = state.claims.get(questionId);
-  if (!claim || claim.status !== "completed" || stored.presenters.includes(claim.owner_name)) return stored;
-  return { ...stored, done: true, presenters: [...stored.presenters, claim.owner_name] };
+  const completedNames = questionClaims(questionId)
+    .filter((claim) => claim.status === "completed")
+    .map((claim) => claim.owner_name)
+    .filter(Boolean);
+  if (!completedNames.length) return stored;
+  const presenters = [...new Set([...stored.presenters, ...completedNames])]
+    .sort((a, b) => a.localeCompare(b, "ko"));
+  return { ...stored, done: true, presenters };
 }
 
-function questionClaim(questionId) {
-  return state.claims.get(questionId) || null;
+function questionClaims(questionId) {
+  return state.claims.get(questionId) || [];
+}
+
+function ownClaim(questionId) {
+  return questionClaims(questionId).find((claim) => claim.owner_id === state.realtimeUserId) || null;
 }
 
 function applyClaims(rows) {
-  state.claims = new Map((rows || []).map((row) => [row.question_id, row]));
+  const grouped = new Map();
+  for (const row of rows || []) {
+    if (!grouped.has(row.question_id)) grouped.set(row.question_id, []);
+    grouped.get(row.question_id).push(row);
+  }
+  for (const claims of grouped.values()) {
+    claims.sort((a, b) => String(a.claimed_at).localeCompare(String(b.claimed_at)));
+  }
+  state.claims = grouped;
 }
 
 function isPresentedBy(questionId, actor) {
   if (!actor) return false;
-  return Boolean(questionState(questionId).actorEvents.get(actor)?.done);
+  return Boolean(
+    questionState(questionId).actorEvents.get(actor)?.done
+    || questionClaims(questionId).some((claim) => claim.owner_id === state.realtimeUserId && claim.status === "completed"),
+  );
 }
 
 function percent(done, total) {
@@ -144,12 +169,13 @@ function questionVisible(question, exam, section) {
   const scoreMatches =
     state.score === "all" ||
     (state.score === "unknown" ? question.score == null : Number(question.score) === Number(state.score));
-  const searchText = `${exam.year} ${exam.session} ${exam.title} ${section.title} ${question.number}번 ${question.unit || ""}`.toLowerCase();
-  return scoreMatches && (!state.query || searchText.includes(state.query));
+  const subjectMatches = state.subject === "all"
+    || (state.subject === "unknown" ? !question.courseCode : question.courseCode === state.subject);
+  const searchText = `${exam.year} ${academicYear(exam)}학년도 ${exam.session} ${exam.title} ${section.title} ${question.number}번 ${question.courseLabel || ""} ${question.unit || ""}`.toLowerCase();
+  return scoreMatches && subjectMatches && (!state.query || searchText.includes(state.query));
 }
 
-function examMetrics(exam) {
-  const questions = allQuestions(exam);
+function examMetrics(exam, questions = allQuestions(exam)) {
   const completed = questions.filter((question) => questionState(question.id).done);
   const fourPoint = questions.filter((question) => question.score === 4);
   const fourPointDone = fourPoint.filter((question) => questionState(question.id).done);
@@ -165,12 +191,15 @@ function examMetrics(exam) {
 
 function presenterMarkup(question) {
   const presenters = questionState(question.id).presenters;
-  const claim = questionClaim(question.id);
   const completed = presenters.map((name) => `<span class="presenter-chip">${escapeHtml(name)} · 완료</span>`).join("");
-  const reserved = claim && claim.status === "claimed"
-    ? `<span class="presenter-chip claimed">${escapeHtml(claim.owner_name)} · 선점</span>`
-    : "";
-  return completed || reserved || '<span class="presenter-empty">미선점</span>';
+  const reservedNames = [...new Set(questionClaims(question.id)
+    .filter((claim) => claim.status === "claimed" && !presenters.includes(claim.owner_name))
+    .map((claim) => claim.owner_name)
+    .filter(Boolean))];
+  const reserved = reservedNames
+    .map((name) => `<span class="presenter-chip claimed">${escapeHtml(name)} · 분석 중</span>`)
+    .join("");
+  return `${completed}${reserved}` || '<span class="presenter-empty">미선점</span>';
 }
 
 function academicYear(exam) {
@@ -187,12 +216,10 @@ function seasonExamsFor(year) {
     .filter((exam) => examInGroup(exam, "kice") && academicYear(exam) === year)
     .sort((a, b) => (order[a.session] ?? 9) - (order[b.session] ?? 9));
   const bySession = new Map(found.map((exam) => [exam.session, exam]));
-  const numbers = [...seasonQuestionNumbers()];
   return ["6월", "9월", "수능"].map((session) => {
     if (bySession.has(session)) return bySession.get(session);
     const calendarYear = session === "수능" ? year : year - 1;
     const examId = session === "수능" ? `csat-${year}` : `kice-${calendarYear}-${session[0]}`;
-    const sectionCode = session === "수능" ? "공통" : "기하";
     return {
       id: examId,
       examGroup: session === "수능" ? "csat" : "mock",
@@ -202,21 +229,7 @@ function seasonExamsFor(year) {
       title: session === "수능" ? `${year}학년도 대학수학능력시험` : `${session} 평가원`,
       assetStatus: "scheduled",
       seasonPlaceholder: true,
-      sections: [{
-        id: "common",
-        title: "공통 문항",
-        kind: "common",
-        questions: numbers.map((number) => ({
-          id: `${examId}-${sectionCode}-${String(number).padStart(2, "0")}`,
-          number,
-          score: 4,
-          unit: "미적분Ⅰ 시즌 1",
-          preview: null,
-          images: [],
-          body: null,
-          legacyIds: [],
-        })),
-      }],
+      sections: [],
     };
   });
 }
@@ -224,28 +237,35 @@ function seasonExamsFor(year) {
 function seasonQuestions(exam) {
   const targets = seasonQuestionNumbers();
   const section = (exam.sections || []).find((item) => item.kind === "common") || exam.sections?.[0];
-  return (section?.questions || []).filter((question) => targets.has(Number(question.number)));
+  return (section?.questions || []).filter((question) =>
+    targets.has(Number(question.number)) && question.courseCode === "M2",
+  );
 }
 
-function claimStateMarkup(claim) {
-  if (!claim) return '<span>아직 선점하지 않음</span>';
-  const label = claim.status === "completed" ? "분석 완료" : "선점 중";
-  return `<b>${escapeHtml(claim.owner_name)}</b><span>${label}</span>`;
+function claimStateMarkup(claims) {
+  if (!claims.length) return '<span>아직 참여한 강사 없음</span>';
+  const byName = new Map();
+  for (const claim of claims) {
+    const previous = byName.get(claim.owner_name);
+    if (!previous || claim.status === "completed") byName.set(claim.owner_name, claim);
+  }
+  return [...byName.values()].map((claim) => {
+    const label = claim.status === "completed" ? "완료" : "분석 중";
+    return `<span class="season-person ${escapeHtml(claim.status)}"><b>${escapeHtml(claim.owner_name)}</b> · ${label}</span>`;
+  }).join("");
 }
 
 function seasonActionMarkup(question) {
-  const claim = questionClaim(question.id);
-  const mine = Boolean(claim && claim.owner_id === state.realtimeUserId);
+  const claims = questionClaims(question.id);
+  const mine = ownClaim(question.id);
   if (!state.realtimeReady) {
     return '<button type="button" disabled>실시간 연결 대기</button>';
   }
-  if (!claim) {
-    return `<button class="primary" type="button" data-claim-action="claim" data-question-id="${escapeHtml(question.id)}">선점하기</button>`;
-  }
   if (!mine) {
-    return `<button type="button" disabled>${escapeHtml(claim.owner_name)} 선점</button>`;
+    const label = claims.length ? "교차분석 참여" : "선점하기";
+    return `<button class="primary" type="button" data-claim-action="claim" data-question-id="${escapeHtml(question.id)}">${label}</button>`;
   }
-  if (claim.status === "completed") {
+  if (mine.status === "completed") {
     return '<button type="button" disabled>내 분석 완료</button>';
   }
   return `
@@ -254,12 +274,13 @@ function seasonActionMarkup(question) {
 }
 
 function renderSeasonQuestion(exam, question) {
-  const claim = questionClaim(question.id);
+  const claims = questionClaims(question.id);
+  const status = claims.some((claim) => claim.status === "completed") ? "completed" : claims.length ? "claimed" : "";
   const card = document.createElement("article");
-  card.className = `season-question${claim ? ` ${claim.status}` : ""}`;
+  card.className = `season-question${status ? ` ${status}` : ""}`;
   card.innerHTML = `
     <div class="season-question-head"><strong>${question.number}번</strong><span class="badge ${question.score === 4 ? "four" : ""}">${question.score ? `${question.score}점` : "-"}</span></div>
-    <div class="season-state">${claimStateMarkup(claim)}</div>
+    <div class="season-state">${claimStateMarkup(claims)}</div>
     <div class="claim-actions">
       ${seasonActionMarkup(question)}
       <button type="button" data-season-preview="${escapeHtml(question.id)}" ${question.preview ? "" : "disabled"}>문제 보기</button>
@@ -287,8 +308,12 @@ function renderSeason() {
   for (const year of years) {
     const exams = seasonExamsFor(year);
     const questions = exams.flatMap(seasonQuestions);
-    const yearCompleted = questions.filter((question) => questionClaim(question.id)?.status === "completed" || questionState(question.id).done).length;
-    const yearClaimed = questions.filter((question) => questionClaim(question.id)?.status === "claimed").length;
+    const yearCompleted = questions.filter((question) =>
+      questionClaims(question.id).some((claim) => claim.status === "completed") || questionState(question.id).done,
+    ).length;
+    const yearClaimed = questions.filter((question) =>
+      questionClaims(question.id).some((claim) => claim.status === "claimed"),
+    ).length;
     total += questions.length;
     completed += yearCompleted;
     claimed += yearClaimed;
@@ -306,9 +331,15 @@ function renderSeason() {
       const wrap = document.createElement("section");
       wrap.className = "season-exam";
       const questionsForExam = seasonQuestions(exam);
-      wrap.innerHTML = `<header><strong>${escapeHtml(exam.session === "수능" ? `${year}학년도 수능` : `${exam.year}년 ${exam.session} 평가원`)}</strong><span>${exam.seasonPlaceholder ? "원문 적재 대기 · " : ""}${questionsForExam.length}문항</span></header><div class="season-question-grid"></div>`;
+      const statusText = exam.seasonPlaceholder
+        ? "원문·과목 태그 적재 대기"
+        : questionsForExam.length
+          ? `미적분Ⅰ ${questionsForExam.length}문항`
+          : "지정 번호 내 미적분Ⅰ 문항 없음";
+      wrap.innerHTML = `<header><strong>${escapeHtml(exam.session === "수능" ? `${year}학년도 수능` : `${exam.year}년 ${exam.session} 평가원`)}</strong><span>${statusText}</span></header><div class="season-question-grid"></div>`;
       const grid = wrap.querySelector(".season-question-grid");
       questionsForExam.forEach((question) => grid.append(renderSeasonQuestion(exam, question)));
+      if (!questionsForExam.length) grid.innerHTML = '<p class="season-empty">표시할 미적분Ⅰ 문항이 없습니다.</p>';
       body.append(wrap);
     }
     els.seasonGrid.append(details);
@@ -400,7 +431,10 @@ function renderQuestion(exam, section, question) {
       aria-label="${escapeHtml(`${exam.year} ${exam.session} ${section.title} ${question.number}번 발표 기록`)}">
     <div class="q-info">
       <strong>${question.number}번</strong>
-      <small>${escapeHtml(question.unit || "개념 태그 미입력")}</small>
+      <div class="question-tags">
+        <span class="course-chip ${question.courseCode ? "" : "unknown"}">${escapeHtml(question.courseLabel || "과목 미분류")}</span>
+        <small>${escapeHtml(question.unit || "단원 태그 미입력")}</small>
+      </div>
       <div class="presenter-list" aria-label="발표자">${presenterMarkup(question)}</div>
     </div>
     <span class="badge ${question.score === 4 ? "four" : ""}">${question.score ? `${question.score}점` : "미분류"}</span>
@@ -438,25 +472,31 @@ function render() {
   els.list.innerHTML = "";
   let shown = 0;
 
+  const sessionOrder = { "6월": 0, "9월": 1, "수능": 2 };
+  const direction = state.sortOrder === "oldest" ? 1 : -1;
   const activeExams = state.data.exams
     .filter((exam) => examInGroup(exam))
-    .sort((a, b) => b.year - a.year || ({ "6월": 0, "9월": 1, "수능": 2 }[a.session] ?? 9) - ({ "6월": 0, "9월": 1, "수능": 2 }[b.session] ?? 9));
+    .filter((exam) => state.academicYear === "all" || academicYear(exam) === Number(state.academicYear))
+    .sort((a, b) => direction * (academicYear(a) - academicYear(b)) || (sessionOrder[a.session] ?? 9) - (sessionOrder[b.session] ?? 9));
   for (const exam of activeExams) {
     const visibleSections = (exam.sections || [])
       .map((section) => ({
         ...section,
-        visibleQuestions: (section.questions || []).filter((question) => questionVisible(question, exam, section)),
+        visibleQuestions: (section.questions || [])
+          .filter((question) => questionVisible(question, exam, section))
+          .sort((a, b) => Number(a.number) - Number(b.number)),
       }))
       .filter((section) => section.visibleQuestions.length);
     if (!visibleSections.length) continue;
 
     shown += 1;
     const node = $("#examTemplate").content.firstElementChild.cloneNode(true);
-    const metrics = examMetrics(exam);
+    const visibleQuestions = visibleSections.flatMap((section) => section.visibleQuestions);
+    const metrics = examMetrics(exam, visibleQuestions);
     node.dataset.examId = exam.id;
     node.open = openIds.has(exam.id);
-    node.querySelector(".year").textContent = exam.year;
-    node.querySelector(".title").textContent = exam.title;
+    node.querySelector(".year").textContent = academicYear(exam);
+    node.querySelector(".title").textContent = exam.session === "수능" ? exam.title : `${exam.year}년 ${exam.title}`;
     node.querySelector(".asset-label").textContent =
       exam.assetStatus === "ready"
         ? `${exam.organizer || "평가원"} · LaTeX 본문·도형·원본 이미지 연결됨`
@@ -470,8 +510,8 @@ function render() {
       : "대기";
     node.querySelector(".mini-meter i").style.width = `${percent(metrics.fourDone, metrics.four)}%`;
 
-    const threes = allQuestions(exam).filter((question) => question.score === 3).length;
-    const unknown = allQuestions(exam).filter((question) => question.score == null).length;
+    const threes = visibleQuestions.filter((question) => question.score === 3).length;
+    const unknown = visibleQuestions.filter((question) => question.score == null).length;
     node.querySelector(".score-breakdown").textContent =
       `4점 ${metrics.four}문항 · 3점 ${threes}문항${unknown ? ` · 미분류 ${unknown}문항` : ""}`;
     node.querySelector(".expand-previews").addEventListener("click", () => {
@@ -488,11 +528,11 @@ function render() {
     for (const section of visibleSections) {
       const sectionNode = document.createElement("section");
       sectionNode.className = `question-section ${section.kind || "track"}`;
-      const complete = section.questions.filter((question) => questionState(question.id).done).length;
+      const complete = section.visibleQuestions.filter((question) => questionState(question.id).done).length;
       sectionNode.innerHTML = `
         <header class="section-heading">
           <div><strong>${escapeHtml(section.title)}</strong><small>${section.kind === "common" ? "모든 선택과목 공통" : "해당 과정만 표시"}</small></div>
-          <span>${complete}/${section.questions.length} 완료</span>
+          <span>${complete}/${section.visibleQuestions.length} 완료</span>
         </header>
         <div class="question-grid"></div>
       `;
@@ -517,8 +557,12 @@ function render() {
 }
 
 function updateStats() {
-  const exams = state.data.exams.filter((exam) => examInGroup(exam));
-  const questions = exams.flatMap(allQuestions);
+  const exams = state.data.exams
+    .filter((exam) => examInGroup(exam))
+    .filter((exam) => state.academicYear === "all" || academicYear(exam) === Number(state.academicYear));
+  const questions = exams.flatMap((exam) => (exam.sections || []).flatMap((section) =>
+    (section.questions || []).filter((question) => questionVisible(question, exam, section)),
+  ));
   const fourPoint = questions.filter((question) => question.score === 4);
   const completed = questions.filter((question) => questionState(question.id).done);
   const fourPointDone = fourPoint.filter((question) => questionState(question.id).done);
@@ -529,8 +573,9 @@ function updateStats() {
   const previews = questions.filter((question) => question.preview).length;
   $("#previewStat").textContent = `${bodies} / ${previews}`;
   $("#assetStatDetail").textContent = "LaTeX 본문·도형 / 원본 이미지";
-  $("#yearStat").textContent = `${new Set(exams.map((exam) => exam.year)).size}개년`;
-  $("#yearStatDetail").textContent = state.group === "kice" ? "평가원 6·9월 모의평가 · 수능" : "교육청 학력평가";
+  $("#yearStat").textContent = `${new Set(exams.map(academicYear)).size}개년`;
+  const activeSubject = els.subjectFilter?.selectedOptions?.[0]?.textContent || "전체 과목";
+  $("#yearStatDetail").textContent = `${activeSubject} · ${state.group === "kice" ? "평가원 6·9월·수능" : "교육청 학력평가"}`;
   for (const group of ["kice", "education"]) {
     const count = state.data.exams.filter((exam) => examInGroup(exam, group)).length;
     const target = document.querySelector(`[data-tab-count="${group}"]`);
@@ -633,6 +678,7 @@ async function loadStaticMode() {
   state.publishedSources = progress.sources || [];
   state.lastData = `${data.generatedAt}|${data.schemaVersion}|${data.exams?.length}`;
   buildAliases();
+  populateYearFilter();
   mergeAllProgress();
   $("#staticActions").hidden = false;
   els.notice.hidden = false;
@@ -659,6 +705,7 @@ async function refreshData() {
     if (state.lastData && signature !== state.lastData) {
       state.data = next;
       buildAliases();
+      populateYearFilter();
       await refreshProgress(true);
     }
     state.lastData = signature;
@@ -684,9 +731,8 @@ async function initRealtime() {
     }
     state.realtimeReady = true;
     state.realtimeUserId = result.userId;
-    state.memberCode = result.memberCode;
     applyClaims(result.claims);
-    els.memberIdentity.textContent = `멤버 ID ${result.memberCode} · 실시간 연결`;
+    els.memberIdentity.textContent = state.actor ? `${state.actor} 강사 · 실시간 연결` : "강사 이름 입력 후 선점 가능";
     els.memberIdentity.classList.add("live");
     render();
     sync(true, "실시간 연결됨", "선점 상태를 즉시 공유합니다");
@@ -698,6 +744,19 @@ async function initRealtime() {
   }
 }
 
+function populateYearFilter() {
+  const years = [...new Set((state.data?.exams || []).map(academicYear))].sort((a, b) => b - a);
+  els.yearFilter.querySelectorAll("option:not(:first-child)").forEach((option) => option.remove());
+  for (const year of years) {
+    const option = document.createElement("option");
+    option.value = String(year);
+    option.textContent = `${year}학년도`;
+    els.yearFilter.append(option);
+  }
+  if (![...els.yearFilter.options].some((option) => option.value === state.academicYear)) state.academicYear = "all";
+  els.yearFilter.value = state.academicYear;
+}
+
 async function init() {
   state.seasonConfig = await api("season-config.json").catch(() => null);
   els.actor.value = state.actor;
@@ -705,13 +764,17 @@ async function init() {
     const nextActor = els.actor.value.trim();
     localStorage.setItem("seminar-actor", nextActor);
     state.actor = nextActor;
+    els.memberIdentity.textContent = state.realtimeReady && nextActor ? `${nextActor} 강사 · 실시간 연결` : "강사 이름 입력 후 선점 가능";
     if (state.staticMode) mergeAllProgress();
-    render();
   });
   els.actor.addEventListener("change", async () => {
-    if (!state.realtimeReady || !els.actor.value.trim()) return;
+    if (!state.realtimeReady || !els.actor.value.trim()) {
+      render();
+      return;
+    }
     try {
       await window.PARealtime.saveProfile(els.actor.value.trim());
+      render();
     } catch (error) {
       els.notice.hidden = false;
       els.notice.textContent = `이름 저장 실패: ${error.message}`;
@@ -719,6 +782,23 @@ async function init() {
   });
   els.search.addEventListener("input", (event) => {
     state.query = event.target.value.trim().toLowerCase();
+    render();
+  });
+  els.subjectFilter.value = state.subject;
+  els.sortOrder.value = state.sortOrder;
+  els.subjectFilter.addEventListener("change", () => {
+    state.subject = els.subjectFilter.value;
+    localStorage.setItem("seminar-subject-filter", state.subject);
+    render();
+  });
+  els.yearFilter.addEventListener("change", () => {
+    state.academicYear = els.yearFilter.value;
+    localStorage.setItem("seminar-year-filter", state.academicYear);
+    render();
+  });
+  els.sortOrder.addEventListener("change", () => {
+    state.sortOrder = els.sortOrder.value;
+    localStorage.setItem("seminar-sort-order", state.sortOrder);
     render();
   });
   document.querySelectorAll(".filter").forEach((button) => {
@@ -747,6 +827,7 @@ async function init() {
     state.data = await api("/api/data");
     state.lastData = `${state.data.generatedAt}|${state.data.schemaVersion}|${state.data.exams?.length}`;
     buildAliases();
+    populateYearFilter();
     await refreshProgress(true);
     setInterval(refreshProgress, 5000);
     setInterval(refreshData, 5000);

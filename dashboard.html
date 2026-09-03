@@ -35,7 +35,7 @@
   <main>
     <section id="seasonOne" class="season-panel" aria-labelledby="seasonTitle">
       <header class="season-header">
-        <div><p>SEASON 1 · 2026.09—12</p><h2 id="seasonTitle">미적분Ⅰ 집중 분석</h2><span>2022학년도부터 2027학년도까지 · 13·14·15·20·21·22번 · 매주 4문항</span></div>
+        <div><p>SEASON 1 · 2026.09—12</p><h2 id="seasonTitle">미적분Ⅰ 집중 분석</h2><span>2022~2027학년도 · 지정 번호 중 문제은행3에서 미적분Ⅰ로 분류된 문항만 · 매주 4문항</span></div>
         <div class="season-summary"><strong id="seasonProgress">0 / 0</strong><span id="seasonProgressDetail">분석 완료</span></div>
       </header>
       <div class="season-rule"><b>운영 순서</b><span>22학년도 → 23 → 24 → 25 → 26 → 27학년도</span><i>구성원 1인당 매주 1문항</i><a href="assets/downloads/세미나분석지_초간단.hwpx" download>초간단 한글 분석지 받기</a></div>
@@ -49,13 +49,32 @@
 
     <section class="control-panel" aria-label="현황판 필터">
       <div class="member-field">
-        <label for="actor">현재 발표자</label>
-        <input id="actor" maxlength="20" placeholder="발표자 이름 또는 별칭" autocomplete="off">
-        <small id="memberIdentity">실시간 멤버 ID 확인 중</small>
+        <label for="actor">강사 이름</label>
+        <input id="actor" maxlength="20" placeholder="본인 이름 입력" autocomplete="name">
+        <small id="memberIdentity">실시간 연결 확인 중</small>
       </div>
       <div class="search-field">
         <label for="search">문제 찾기</label>
         <input id="search" type="search" placeholder="연도, 6월, 수능, 미적분, 문항 번호">
+      </div>
+      <div class="filter-selects">
+        <div><label for="subjectFilter">과목</label><select id="subjectFilter">
+          <option value="all">전체 과목</option>
+          <option value="CM1">공통수학Ⅰ</option>
+          <option value="CM2">공통수학Ⅱ</option>
+          <option value="ALG">대수(기존 수학Ⅰ)</option>
+          <option value="M2">미적분Ⅰ(기존 수학Ⅱ)</option>
+          <option value="CALC">미적분Ⅱ(기존 미적분)</option>
+          <option value="PRST">확률과 통계</option>
+          <option value="GEO">기하</option>
+          <option value="unknown">과목 미분류</option>
+        </select></div>
+        <div><label for="yearFilter">학년도</label><select id="yearFilter"><option value="all">전체 학년도</option></select></div>
+        <div><label for="sortOrder">정렬</label><select id="sortOrder">
+          <option value="newest">최신 학년도순</option>
+          <option value="oldest">오래된 학년도순</option>
+          <option value="question">문항번호순</option>
+        </select></div>
       </div>
       <div class="filter-group" aria-label="배점 필터">
         <button class="filter active" data-score="all" type="button">전체</button>

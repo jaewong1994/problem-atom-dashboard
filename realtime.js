@@ -25,10 +25,6 @@
     });
   }
 
-  function shortId(id) {
-    return `PA-${String(id).replaceAll("-", "").slice(0, 8).toUpperCase()}`;
-  }
-
   async function init(displayName, onChange) {
     if (!enabled()) return { enabled: false, reason: "실시간 저장소 설정 대기" };
     await loadLibrary();
@@ -50,17 +46,23 @@
         onChange(await listClaims());
       })
       .subscribe();
-    return { enabled: true, userId: user.id, memberCode: shortId(user.id), claims };
+    return { enabled: true, userId: user.id, claims };
   }
 
   async function saveProfile(displayName) {
-    if (!client || !user || !displayName) return;
+    const cleanName = String(displayName || "").trim();
+    if (!client || !user || !cleanName) return;
     const { error } = await client.from("pa_members").upsert({
       user_id: user.id,
-      display_name: displayName,
+      display_name: cleanName,
       updated_at: new Date().toISOString(),
     });
     if (error) throw error;
+    const { error: claimError } = await client.from("pa_question_claims").update({
+      owner_name: cleanName,
+      updated_at: new Date().toISOString(),
+    }).eq("owner_id", user.id);
+    if (claimError) throw claimError;
   }
 
   async function listClaims() {
@@ -79,8 +81,7 @@
       status: "claimed",
     }).select().single();
     if (error?.code === "23505") {
-      const existing = await client.from("pa_question_claims").select("owner_name,status").eq("question_id", questionId).maybeSingle();
-      throw new Error(existing.data ? `${existing.data.owner_name}님이 먼저 선점했습니다.` : "다른 구성원이 먼저 선점했습니다.");
+      throw new Error("이미 이 문항의 분석에 참여하고 있습니다.");
     }
     if (error) throw error;
     return data;
@@ -103,4 +104,3 @@
 
   window.PARealtime = { enabled, init, saveProfile, claim, release, complete, listClaims };
 })();
-

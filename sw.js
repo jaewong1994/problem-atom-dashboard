@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v5`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v6`;
 const SHELL = [
   "./",
   "./index.html",

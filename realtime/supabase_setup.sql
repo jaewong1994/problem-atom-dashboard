@@ -8,13 +8,17 @@ create table if not exists public.pa_members (
 );
 
 create table if not exists public.pa_question_claims (
-  question_id text primary key,
+  question_id text not null,
   owner_id uuid not null references auth.users(id) on delete cascade,
   owner_name text not null check (char_length(owner_name) between 1 and 20),
   status text not null default 'claimed' check (status in ('claimed', 'completed')),
   claimed_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+  primary key (question_id, owner_id)
 );
+
+create index if not exists pa_question_claims_question_id_idx
+  on public.pa_question_claims (question_id);
 
 alter table public.pa_members enable row level security;
 alter table public.pa_question_claims enable row level security;
@@ -61,4 +65,3 @@ begin
     alter publication supabase_realtime add table public.pa_question_claims;
   end if;
 end $$;
-

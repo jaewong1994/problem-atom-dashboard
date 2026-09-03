@@ -10,8 +10,10 @@
     "weeklyQuestionsPerMember": 1,
     "weeklyBaseTarget": 4,
     "academicYears": [2022, 2023, 2024, 2025, 2026, 2027],
-    "subjectCode": "미적1",
+    "subjectCode": "M2",
     "subjectLabel": "미적분Ⅰ(기존 수학Ⅱ)",
+    "tagSource": "problem-bank-3",
+    "targetMode": "target-numbers-intersect-course",
     "questionNumbers": [13, 14, 15, 20, 21, 22],
     "order": "academic_year_ascending"
   }

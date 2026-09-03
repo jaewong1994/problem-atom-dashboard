@@ -18,6 +18,81 @@ OLD_ROOT = SOURCE_ROOT / "[년도별] 모의고사 고3 (2003-2025년)"
 CSAT_ROOT = SOURCE_ROOT / "[기출] 수능기출 (1983-2026학년도)"
 OFFICIAL_WORK = NGD2.parent / "회귀자료" / "공식시험_적재_20260825"
 ASSETS = DASH / "assets" / "questions"
+PB3_TAGS = DASH / "problem-bank3-tags.json"
+
+COURSE_LABELS = {
+    "CM1": "공통수학Ⅰ",
+    "CM2": "공통수학Ⅱ",
+    "ALG": "대수(기존 수학Ⅰ)",
+    "M2": "미적분Ⅰ(기존 수학Ⅱ)",
+    "CALC": "미적분Ⅱ(기존 미적분)",
+    "PRST": "확률과 통계",
+    "GEO": "기하",
+}
+
+
+def normalize_track(value: str) -> str:
+    track = re.sub(r"\s+", "", value or "")
+    track = re.sub(r"^(수학|수리)", "", track)
+    if "확률통계" in track or "확통" in track:
+        return "확통"
+    if "미분과적분" in track:
+        return "가형미분과적분"
+    if "공통" in track:
+        return "가형공통" if "가형" in track else "공통"
+    if "미적분" in track:
+        return "미적분"
+    if "기하" in track:
+        return "기하"
+    for legacy in ("가형", "나형", "A형", "B형"):
+        if legacy in track:
+            return legacy
+    return track or "미상"
+
+
+def load_pb3_index() -> dict[tuple[str, int, str, str, int], dict]:
+    if not PB3_TAGS.exists():
+        return {}
+    payload = json.loads(PB3_TAGS.read_text(encoding="utf-8"))
+    return {
+        (
+            row["examType"],
+            int(row["year"]),
+            row["session"],
+            normalize_track(row["track"]),
+            int(row["number"]),
+        ): row
+        for row in payload.get("records", [])
+    }
+
+
+PB3_INDEX = load_pb3_index()
+
+
+def apply_pb3_meta(question: dict, exam_type: str, year: int, session: str, track: str, number: int) -> dict:
+    normalized = normalize_track(track)
+    row = PB3_INDEX.get((exam_type, int(year), session, normalized, int(number)))
+    if not row and exam_type == "csat":
+        fallbacks = [
+            candidate
+            for key, candidate in PB3_INDEX.items()
+            if key[0] == exam_type and key[1] == int(year) and key[2] == session and key[4] == int(number)
+            and (key[3].startswith(normalized) or normalized.startswith(key[3]))
+        ]
+        row = fallbacks[0] if len(fallbacks) == 1 else None
+    if not row:
+        question.setdefault("courseCode", "")
+        question.setdefault("courseLabel", "과목 미분류")
+        question.setdefault("tagSource", "")
+        return question
+    course_code = row.get("courseCode") or ""
+    question["courseCode"] = course_code
+    question["courseLabel"] = row.get("courseLabel") or COURSE_LABELS.get(course_code, "과목 미분류")
+    question["bankUnit"] = row.get("unit") or ""
+    if row.get("unit"):
+        question["unit"] = row["unit"]
+    question["tagSource"] = "problem-bank-3"
+    return question
 
 
 def extract_item_figures(item: dict, dest_dir: Path, number: int) -> list[str]:
@@ -87,7 +162,7 @@ def read_source(source: Path) -> dict | None:
                 shutil.copy2(src_img, dest)
                 preview = dest.relative_to(DASH).as_posix()
             images = extract_item_figures(item, ASSETS / legacy_exam_id, number)
-            questions.append({
+            question = {
                 "id": question_id,
                 "number": number,
                 "score": score,
@@ -96,7 +171,8 @@ def read_source(source: Path) -> dict | None:
                 "images": images,
                 "body": item.get("raw_text") or None,
                 "legacyIds": [question_id],
-            })
+            }
+            questions.append(apply_pb3_meta(question, "mock", year, session, track, number))
     return {"year": year, "session": session, "track": track, "questions": questions}
 
 
@@ -193,6 +269,9 @@ def csat_question(exam_id: str, number: int) -> dict:
         "images": [],
         "body": None,
         "legacyIds": [question_id],
+        "courseCode": "",
+        "courseLabel": "과목 미분류",
+        "tagSource": "",
     }
 
 
@@ -292,7 +371,8 @@ def csat_ready_exams() -> list[dict]:
         with Path(spec["items_path"]).open(encoding="utf-8") as handle:
             for line in handle:
                 item = json.loads(line)
-                score_match = re.search(r"\[([234])점\]", item.get("raw_text", ""))
+                score_source = f"{item.get('raw_text', '')} {item.get('raw_xml', '')}"
+                score_match = re.search(r"\[([234])점\]", score_source)
                 score = int(score_match.group(1)) if score_match else None
                 if score not in (3, 4):
                     continue
@@ -313,7 +393,7 @@ def csat_ready_exams() -> list[dict]:
                     shutil.copy2(src_img, dest)
                     preview = dest.relative_to(DASH).as_posix()
                 images = extract_item_figures(item, ASSETS / f"csat-{year}-{section_id}", number)
-                questions.append({
+                question = {
                     "id": question_id,
                     "number": number,
                     "score": score,
@@ -322,7 +402,8 @@ def csat_ready_exams() -> list[dict]:
                     "images": images,
                     "body": item.get("raw_text") or None,
                     "legacyIds": sorted(set(legacy_ids)),
-                })
+                }
+                questions.append(apply_pb3_meta(question, "csat", year, "수능", section_id, number))
         if questions:
             grouped[year].append({
                 "id": section_id,
@@ -351,13 +432,94 @@ def csat_ready_exams() -> list[dict]:
     return exams
 
 
+def official_mock_ready_exams() -> list[dict]:
+    """공식시험 manifest에만 있는 최신 평가원 회차를 현황판에 연결한다."""
+    manifest_path = OFFICIAL_WORK / "manifest.json"
+    if not manifest_path.exists():
+        return []
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if manifest.get("status") != "verified":
+        return []
+
+    grouped: dict[tuple[int, str], list[dict]] = defaultdict(list)
+    for spec in manifest.get("sessions", []):
+        match = re.match(r"(\d{4})_(6월|9월)_평가원_(.+)", spec.get("key", ""))
+        if spec.get("org") != "평가원" or not match:
+            continue
+        academic_year, session, raw_section = int(match.group(1)), match.group(2), match.group(3)
+        calendar_year = academic_year - 1
+        section_id = normalize_track(raw_section)
+        render_dir = Path(spec["renders_dir"]) if spec.get("renders_dir") else None
+        questions = []
+        with Path(spec["items_path"]).open(encoding="utf-8") as handle:
+            for line in handle:
+                item = json.loads(line)
+                score_source = f"{item.get('raw_text', '')} {item.get('raw_xml', '')}"
+                score_match = re.search(r"\[([234])점\]", score_source)
+                score = int(score_match.group(1)) if score_match else None
+                if score not in (3, 4):
+                    continue
+                meta = item.get("meta") or {}
+                number = int(meta.get("question_no") or item["origin_seq"])
+                id_track = "기하" if section_id == "공통" else section_id
+                question_id = f"kice-{calendar_year}-{session[:-1]}-{id_track}-{number:02d}"
+                preview = None
+                src_img = render_dir / f"item_{number:03d}.png" if render_dir else None
+                if src_img and src_img.exists():
+                    dest_dir = ASSETS / f"kice-{calendar_year}-{session[:-1]}-{section_id}"
+                    dest_dir.mkdir(parents=True, exist_ok=True)
+                    dest = dest_dir / src_img.name
+                    shutil.copy2(src_img, dest)
+                    preview = dest.relative_to(DASH).as_posix()
+                question = {
+                    "id": question_id,
+                    "number": number,
+                    "score": score,
+                    "unit": item.get("unit") or "개념 태그 미입력",
+                    "preview": preview,
+                    "images": extract_item_figures(item, ASSETS / f"kice-{calendar_year}-{session[:-1]}-{section_id}", number),
+                    "body": item.get("raw_text") or None,
+                    "legacyIds": [question_id],
+                    "courseCode": item.get("course") if item.get("course") in COURSE_LABELS else "",
+                    "courseLabel": COURSE_LABELS.get(item.get("course"), "과목 미분류"),
+                    "tagSource": "official-header" if item.get("course") in COURSE_LABELS else "",
+                }
+                questions.append(apply_pb3_meta(question, "mock", calendar_year, session, section_id, number))
+        if questions:
+            grouped[(calendar_year, session)].append({
+                "id": "common" if section_id == "공통" else section_id,
+                "title": "공통 문항" if section_id == "공통" else f"{section_id} 선택",
+                "kind": "common" if section_id == "공통" else "choice",
+                "questions": questions,
+            })
+
+    exams = []
+    section_order = {"common": 0, "기하": 1, "미적분": 2, "확통": 3}
+    for (year, session), sections in grouped.items():
+        sections.sort(key=lambda section: section_order.get(section["id"], 9))
+        exams.append({
+            "id": f"kice-{year}-{session[:-1]}",
+            "examGroup": "mock",
+            "organizer": "평가원",
+            "year": year,
+            "session": session,
+            "title": f"{session} 평가원",
+            "assetStatus": "ready",
+            "sections": sections,
+        })
+    return exams
+
+
 def main() -> None:
     ASSETS.mkdir(parents=True, exist_ok=True)
     csat = csat_ready_exams() or csat_scaffold_exams()
-    exams = pending_exams() + ready_exams() + csat
+    legacy_mock = ready_exams()
+    official_mock = official_mock_ready_exams()
+    official_ids = {exam["id"] for exam in official_mock}
+    exams = pending_exams() + [exam for exam in legacy_mock if exam["id"] not in official_ids] + official_mock + csat
     exams.sort(key=lambda x: ({"mock": 0, "csat": 1, "education": 2}.get(x["examGroup"], 9), -x["year"], x["session"]))
     payload = {
-        "schemaVersion": 3,
+        "schemaVersion": 4,
         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "scope": "평가원 2006~2025년 6·9월 및 수능 2007~2026학년도, 교육청 탭 준비",
         "exams": exams,
