@@ -12,6 +12,11 @@ from pathlib import Path
 
 from PIL import Image
 
+try:
+    import numpy as np
+except ImportError:  # The normal site build does not require NumPy.
+    np = None
+
 DASH = Path(__file__).resolve().parent
 LOCAL_SOURCE_FILE = DASH / "source-bank-root.local.txt"
 _source_root = os.environ.get("PROBLEM_BANK_ROOT", "").strip()
@@ -21,7 +26,10 @@ SOURCE_BANK = Path(_source_root) if _source_root else DASH / "_source_bank_not_c
 SOURCE_ROOT = Path(r"C:\Users\jaewo\OneDrive\바탕 화면\학원\입실론\한글자료\모의고사 [20260216]\모의고사 [2026] HWP")
 OLD_ROOT = SOURCE_ROOT / "[년도별] 모의고사 고3 (2003-2025년)"
 CSAT_ROOT = SOURCE_ROOT / "[기출] 수능기출 (1983-2026학년도)"
-OFFICIAL_WORK = SOURCE_BANK.parent / "회귀자료" / "공식시험_적재_20260825"
+OFFICIAL_WORKS = [
+    SOURCE_BANK.parent / "회귀자료" / "공식시험_적재_20260825",
+    SOURCE_BANK.parent / "회귀자료" / "공식시험_적재_20260903_9월평가원_재파싱",
+]
 ASSETS = DASH / "assets" / "questions"
 PB3_TAGS = DASH / "problem-bank3-tags.json"
 
@@ -72,6 +80,87 @@ def load_pb3_index() -> dict[tuple[str, int, str, str, int], dict]:
 
 
 PB3_INDEX = load_pb3_index()
+
+
+def sanitize_problem_text(text: str | None) -> str | None:
+    """Remove a following test-paper cover accidentally captured after a question."""
+    if not text:
+        return None
+    cover_start = text.find("사각형입니다.")
+    if cover_start >= 0:
+        tail = text[cover_start:]
+        if all(marker in tail for marker in ("문제지", "제 2 교시", "수학 영역")):
+            return text[:cover_start].rstrip()
+    return text
+
+
+def detect_following_cover_y(image: Image.Image) -> int | None:
+    """Locate the distinctive title/subject-title pair of a following exam cover."""
+    gray = image.convert("L")
+    width, height = gray.size
+    if np is not None:
+        row_ink = (np.asarray(gray) < 200).sum(axis=1).tolist()
+    else:
+        row_ink = [0] * height
+        pixels = gray.get_flattened_data() if hasattr(gray, "get_flattened_data") else gray.getdata()
+        for index, value in enumerate(pixels):
+            if value < 200:
+                row_ink[index // width] += 1
+
+    runs: list[tuple[int, int]] = []
+    start = None
+    for y, count in enumerate(row_ink + [0]):
+        if count > 15 and start is None:
+            start = y
+        elif count <= 15 and start is not None:
+            if y - start >= 15:
+                runs.append((start, y))
+            start = None
+
+    for current, following in zip(runs, runs[1:]):
+        current_height = current[1] - current[0]
+        following_height = following[1] - following[0]
+        gap = following[0] - current[1]
+        if 48 <= current_height <= 56 and 45 <= gap <= 70 and 92 <= following_height <= 102:
+            return max(1, current[0] - 12)
+    return None
+
+
+def publish_preview(src: Path, dest: Path, raw_text: str | None) -> str:
+    """Copy a preview and crop only when text and pixels both prove cover contamination."""
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dest)
+    clean_text = sanitize_problem_text(raw_text)
+    if clean_text != raw_text or dest.stem == "item_022":
+        with Image.open(dest) as opened:
+            opened.load()
+            crop_y = detect_following_cover_y(opened)
+            if crop_y:
+                cropped = opened.crop((0, 0, opened.width, crop_y))
+                cropped.save(dest, format="PNG", optimize=True)
+    return dest.relative_to(DASH).as_posix()
+
+
+def eligible_manifest(path: Path) -> dict | None:
+    if not path.exists():
+        return None
+    manifest = json.loads(path.read_text(encoding="utf-8"))
+    if manifest.get("status") == "verified":
+        return manifest
+    # Prepared data is accepted only after every declared item exists.
+    sessions = manifest.get("sessions") or []
+    expected = {"공통": 22, "확통": 8, "미적분": 8, "기하": 8}
+    if manifest.get("status") != "prepared" or len(sessions) != 4:
+        return None
+    for spec in sessions:
+        section = spec.get("key", "").rsplit("_", 1)[-1]
+        item_path = Path(spec.get("items_path") or "")
+        if section not in expected or not item_path.exists():
+            return None
+        with item_path.open(encoding="utf-8") as handle:
+            if sum(1 for line in handle if line.strip()) != expected[section]:
+                return None
+    return manifest
 
 
 def apply_pb3_meta(question: dict, exam_type: str, year: int, session: str, track: str, number: int) -> dict:
@@ -162,10 +251,8 @@ def read_source(source: Path) -> dict | None:
             preview = None
             if src_img.exists():
                 dest_dir = ASSETS / legacy_exam_id
-                dest_dir.mkdir(parents=True, exist_ok=True)
                 dest = dest_dir / src_img.name
-                shutil.copy2(src_img, dest)
-                preview = dest.relative_to(DASH).as_posix()
+                preview = publish_preview(src_img, dest, item.get("raw_text"))
             images = extract_item_figures(item, ASSETS / legacy_exam_id, number)
             question = {
                 "id": question_id,
@@ -174,7 +261,7 @@ def read_source(source: Path) -> dict | None:
                 "unit": item.get("unit") or "개념 태그 미입력",
                 "preview": preview,
                 "images": images,
-                "body": item.get("raw_text") or None,
+                "body": sanitize_problem_text(item.get("raw_text")),
                 "legacyIds": [question_id],
             }
             questions.append(apply_pb3_meta(question, "mock", year, session, track, number))
@@ -357,11 +444,8 @@ def csat_section_title(section_id: str) -> str:
 
 def csat_ready_exams() -> list[dict]:
     """검증 완료된 공식시험 JSONL과 렌더를 읽기 전용으로 현황판에 연결한다."""
-    manifest_path = OFFICIAL_WORK / "manifest.json"
-    if not manifest_path.exists():
-        return []
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if manifest.get("status") != "verified":
+    manifest = eligible_manifest(OFFICIAL_WORKS[0] / "manifest.json")
+    if not manifest:
         return []
 
     grouped: dict[int, list[dict]] = defaultdict(list)
@@ -395,8 +479,7 @@ def csat_ready_exams() -> list[dict]:
                     dest_dir = ASSETS / f"csat-{year}-{section_id}"
                     dest_dir.mkdir(parents=True, exist_ok=True)
                     dest = dest_dir / src_img.name
-                    shutil.copy2(src_img, dest)
-                    preview = dest.relative_to(DASH).as_posix()
+                    preview = publish_preview(src_img, dest, item.get("raw_text"))
                 images = extract_item_figures(item, ASSETS / f"csat-{year}-{section_id}", number)
                 question = {
                     "id": question_id,
@@ -405,7 +488,7 @@ def csat_ready_exams() -> list[dict]:
                     "unit": item.get("unit") or "개념 태그 미입력",
                     "preview": preview,
                     "images": images,
-                    "body": item.get("raw_text") or None,
+                    "body": sanitize_problem_text(item.get("raw_text")),
                     "legacyIds": sorted(set(legacy_ids)),
                 }
                 questions.append(apply_pb3_meta(question, "csat", year, "수능", section_id, number))
@@ -439,15 +522,13 @@ def csat_ready_exams() -> list[dict]:
 
 def official_mock_ready_exams() -> list[dict]:
     """공식시험 manifest에만 있는 최신 평가원 회차를 현황판에 연결한다."""
-    manifest_path = OFFICIAL_WORK / "manifest.json"
-    if not manifest_path.exists():
-        return []
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if manifest.get("status") != "verified":
-        return []
-
     grouped: dict[tuple[int, str], list[dict]] = defaultdict(list)
-    for spec in manifest.get("sessions", []):
+    specs = []
+    for work in OFFICIAL_WORKS:
+        manifest = eligible_manifest(work / "manifest.json")
+        if manifest:
+            specs.extend(manifest.get("sessions", []))
+    for spec in specs:
         match = re.match(r"(\d{4})_(6월|9월)_평가원_(.+)", spec.get("key", ""))
         if spec.get("org") != "평가원" or not match:
             continue
@@ -469,21 +550,31 @@ def official_mock_ready_exams() -> list[dict]:
                 id_track = "기하" if section_id == "공통" else section_id
                 question_id = f"kice-{calendar_year}-{session[:-1]}-{id_track}-{number:02d}"
                 preview = None
+                inline_images = []
                 src_img = render_dir / f"item_{number:03d}.png" if render_dir else None
                 if src_img and src_img.exists():
                     dest_dir = ASSETS / f"kice-{calendar_year}-{session[:-1]}-{section_id}"
                     dest_dir.mkdir(parents=True, exist_ok=True)
                     dest = dest_dir / src_img.name
-                    shutil.copy2(src_img, dest)
-                    preview = dest.relative_to(DASH).as_posix()
+                    published_asset = publish_preview(src_img, dest, item.get("raw_text"))
+                    if Path(item.get("origin_path") or "").suffix.lower() == ".hml" and meta.get("image_refs"):
+                        inline_images = [published_asset]
+                    else:
+                        preview = published_asset
+                if not inline_images:
+                    inline_images = extract_item_figures(
+                        item,
+                        ASSETS / f"kice-{calendar_year}-{session[:-1]}-{section_id}",
+                        number,
+                    )
                 question = {
                     "id": question_id,
                     "number": number,
                     "score": score,
                     "unit": item.get("unit") or "개념 태그 미입력",
                     "preview": preview,
-                    "images": extract_item_figures(item, ASSETS / f"kice-{calendar_year}-{session[:-1]}-{section_id}", number),
-                    "body": item.get("raw_text") or None,
+                    "images": inline_images,
+                    "body": sanitize_problem_text(item.get("raw_text")),
                     "legacyIds": [question_id],
                     "courseCode": item.get("course") if item.get("course") in COURSE_LABELS else "",
                     "courseLabel": COURSE_LABELS.get(item.get("course"), "과목 미분류"),
@@ -526,7 +617,7 @@ def main() -> None:
     payload = {
         "schemaVersion": 4,
         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "scope": "평가원 2006~2025년 6·9월 및 수능 2007~2026학년도, 교육청 탭 준비",
+        "scope": "평가원 2006~2026년 6·9월 및 수능 2007~2026학년도, 교육청 탭 준비",
         "exams": exams,
     }
     (DASH / "dashboard-data.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -54,6 +54,19 @@ def main() -> None:
         )
     assert season_questions and all(question["courseCode"] == "M2" for question in season_questions)
     assert any(exam["id"] == "kice-2026-6" for exam in data["exams"])
+    september = next(exam for exam in data["exams"] if exam["id"] == "kice-2026-9")
+    assert {section["id"]: len(section["questions"]) for section in september["sections"]} == {
+        "common": 20,
+        "기하": 7,
+        "미적분": 7,
+        "확통": 7,
+    }
+    assert all(
+        question.get("courseCode")
+        for section in september["sections"]
+        for question in section["questions"]
+    )
+    assert sum(len(question.get("images") or []) for section in september["sections"] for question in section["questions"]) == 9
     print(f"PASS dashboard season/realtime contract: {len(season_questions)} M2 season questions")
 
 
