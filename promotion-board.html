@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#0d7469">
+  <meta name="description" content="강사별 세미나 후보 자산을 확인·댓글·승격 단계로 관리합니다. 초안 문항 전문은 싣지 않습니다.">
+  <title>승격 대기 자산 · Problem Atom</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/pwa/apple-touch-icon.png">
+  <link rel="icon" sizes="192x192" href="assets/pwa/icon-192.png">
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="promotion-board.css?v=1">
+  <link rel="stylesheet" href="site-shell.css">
+  <link rel="stylesheet" href="pwa-install.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="global-header">
+    <a class="global-brand" href="index.html"><b>PA</b><span>문항 연구 시스템</span></a>
+    <nav class="global-nav" aria-label="주요 페이지">
+      <a href="index.html">입장</a>
+      <a href="dashboard.html">기출 현황</a>
+      <a href="promotion-board.html" aria-current="page">승격 대기 자산</a>
+      <a href="asset-library.html">공유 자산</a>
+      <a href="pilot-review.html">파일럿 회귀</a>
+      <a href="vision.html">프로젝트 계획</a>
+    </nav>
+    <div class="instructor-field">
+      <label for="actor">강사 이름</label>
+      <input id="actor" maxlength="20" placeholder="본인 이름" autocomplete="name">
+      <small id="boardSync">이름을 입력하면 내 후보와 댓글이 연결됩니다</small>
+    </div>
+  </header>
+
+  <main id="main">
+    <div id="loadError" class="error-banner" role="alert" hidden aria-hidden="true">
+      <h2>데이터를 읽지 못했습니다</h2>
+      <p>페이지를 새로고침하거나 운영자에게 알려 주세요.</p>
+    </div>
+
+    <section class="page-intro" aria-labelledby="boardTitle">
+      <p>PROMOTION BOARD</p>
+      <h1 id="boardTitle">승격 대기 자산</h1>
+      <span>강사별 결과지에서 뽑은 개념·판단·스킬·전략·유형 후보입니다. 작성 강사가 확인하고, 모두가 댓글을 달고, 운영자가 댓글을 읽어 합침·고도화·승격을 결정합니다. 초안 문항 전문은 이 화면에 없습니다.</span>
+    </section>
+
+    <ol id="stageStrip" class="stage-strip" aria-label="승격 단계"></ol>
+
+    <section class="board-toolbar" aria-label="내 검토">
+      <div>
+        <p class="toolbar-kicker">MY REVIEW</p>
+        <p id="reviewSummary" class="review-summary"></p>
+        <p class="toolbar-help">후보 상자에서 <b>확인 · 정정 필요 · 보류</b>를 누르고, 이름 수정안이나 빠진 전제는 <b>댓글</b>로 남깁니다. 검토 표시와 이 브라우저의 댓글은 JSON으로 운영자에게 보냅니다. 승격은 결정 파일로만 일어납니다.</p>
+      </div>
+      <div class="toolbar-actions">
+        <button id="exportReviews" type="button">검토 JSON 내보내기</button>
+        <button id="exportComments" type="button">댓글 JSON 내보내기</button>
+        <button id="clearLocal" type="button">이 브라우저 기록 지우기</button>
+      </div>
+    </section>
+    <div id="boardError" class="field-error" role="alert" hidden></div>
+
+    <section class="instructor-tabs" aria-label="강사 선택">
+      <div id="instructorTabs" class="tab-row" role="tablist"></div>
+      <div class="filter-row">
+        <div id="stageFilters" class="chip-row" aria-label="단계 필터"></div>
+        <div id="kindFilters" class="chip-row" aria-label="종류 필터"></div>
+        <label class="toggle"><input id="handwritingOnly" type="checkbox"> 손글씨·여백 유래만</label>
+      </div>
+    </section>
+
+    <section id="questionPanel" class="question-panel" aria-label="문항과 풀이"></section>
+
+    <section class="candidate-section" aria-labelledby="candTitle">
+      <div class="block-head">
+        <h2 id="candTitle">후보 자산</h2>
+        <p id="candCount"></p>
+      </div>
+      <div id="candidateList" class="candidate-list"></div>
+      <p id="candEmpty" class="empty-note" hidden>표시할 후보가 없습니다.</p>
+    </section>
+
+    <section class="ratified-section" aria-labelledby="ratTitle">
+      <div class="block-head">
+        <h2 id="ratTitle">비준 자산과 정본 ID</h2>
+        <p id="ratMeta"></p>
+      </div>
+      <div id="ratifiedList" class="ratified-list"></div>
+    </section>
+  </main>
+
+  <script src="vendor/katex/katex.min.js"></script>
+  <script src="vendor/katex/auto-render.min.js"></script>
+  <script src="math-text.js?v=1"></script>
+  <script src="realtime-config.js"></script>
+  <script src="realtime.js"></script>
+  <script src="promotion-board.js?v=2" defer></script>
+  <script src="pwa-install.js" defer></script>
+</body>
+</html>

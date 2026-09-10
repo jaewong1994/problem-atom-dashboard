@@ -23,6 +23,7 @@ def main() -> None:
     )
     vision = (ROOT / "vision.html").read_text(encoding="utf-8")
     template = ROOT / "assets" / "downloads" / "세미나분석지_초간단.hwpx"
+    assets = (ROOT / "asset-library.html").read_text(encoding="utf-8")
 
     assert config["academicYears"] == [2022, 2023, 2024, 2025, 2026, 2027]
     assert config["questionNumbers"] == [13, 14, 15, 20, 21, 22]
@@ -34,7 +35,20 @@ def main() -> None:
     assert html.count('id="actor"') == 1
     assert 'class="global-nav"' in html and 'aria-current="page"' in html
     assert "min-height: 44px" in shell_css and "prefers-reduced-motion" in shell_css
-    assert '"./site-shell.css"' in service_worker
+    assert "./realtime.js" in service_worker
+    assert "shell-v14" in service_worker and "./math-text.js" in service_worker
+    assert "./promotion-board.html" in service_worker and 'url.pathname.endsWith("promotion-board.json")' in service_worker
+    assert "promotion-board.html" in html and "승격 대기 자산" in html
+    assert 'url.pathname.endsWith("pilot-review.json")' in service_worker
+    pages = (ROOT / "prepare_pages.py").read_text(encoding="utf-8")
+    assert '"pilot-review.json"' in pages and '"pilot-review.html"' in pages
+    json.loads((ROOT / "manifest.webmanifest").read_text(encoding="utf-8"))
+    assert "기록지와 검토 쟁점" in (ROOT / "pilot-review.html").read_text(encoding="utf-8")
+    assert '"promotion-board.json"' in pages
+    assert "사용된 곳" in (ROOT / "pilot-review.js").read_text(encoding="utf-8")
+    assert "./pilot-review.html" in service_worker
+    assert "pilot-review.html" in html
+    assert "파일럿 회귀" in html
     assert "세미나분석지_초간단.hwpx" in html
     assert "seasonPlaceholder" in app
     assert 'question.courseCode === "M2"' in app
@@ -46,6 +60,9 @@ def main() -> None:
     assert "primary key (question_id, owner_id)" in sql
     assert "enable row level security" in sql
     assert "auth.uid() = owner_id" in sql
+    assert "pa_asset_comments" in sql
+    assert "댓글 JSON 내보내기" in assets
+    assert 'id="exportComments"' in assets
     assert "sb_secret_" not in realtime_config
     assert "같은 문제를 여러 명이 맡아도 됨" not in vision
     assert template.exists() and zipfile.is_zipfile(template)

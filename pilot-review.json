@@ -1,0 +1,1630 @@
+{
+  "schemaVersion": 3,
+  "pilot_id": "SEMINAR-01",
+  "updatedAt": "2026-09-10",
+  "visibility": "instructor_review_not_ratified",
+  "headline": "세미나 후보는 저장되고, 승격 전에만 조합한다.",
+  "form_model": "김연수 기록지의 이름·설명·사용된 곳",
+  "pipeline": [
+    {
+      "id": "store",
+      "label": "원본 해시 저장"
+    },
+    {
+      "id": "operate",
+      "label": "5축 후보 운영"
+    },
+    {
+      "id": "compose",
+      "label": "랜덤 조합 초안"
+    },
+    {
+      "id": "review",
+      "label": "강사 검토"
+    },
+    {
+      "id": "promote",
+      "label": "승격",
+      "blocked": true
+    }
+  ],
+  "counts": {
+    "analyses": 4,
+    "reviewAssets": 39,
+    "reviewQuestions": 4,
+    "reviewIssues": 12,
+    "instructorReviews": 0,
+    "authorConfirmed": 0,
+    "ratified": 0,
+    "publishedItems": 0
+  },
+  "byAuthor": {
+    "민재웅": {
+      "candidates": 16,
+      "author_confirmed": 0
+    },
+    "김상범": {
+      "candidates": 7,
+      "author_confirmed": 0
+    },
+    "이광훈": {
+      "candidates": 6,
+      "author_confirmed": 0
+    },
+    "김연수": {
+      "candidates": 10,
+      "author_confirmed": 0
+    }
+  },
+  "issueLabels": {
+    "cross_check": "교차 대조",
+    "precondition": "전제 조건",
+    "transcription_note": "전사 메모",
+    "omitted_margin_note": "여백 손글씨 누락",
+    "safety_condition": "안전조건",
+    "structure": "칸 구분",
+    "missing_role": "조건 역할 누락",
+    "missing_condition_use": "조건 사용처 누락",
+    "verification": "독립 재계산"
+  },
+  "verdicts": {
+    "confirm": "확인",
+    "fix": "정정 필요",
+    "hold": "보류"
+  },
+  "sheets": [
+    {
+      "author": "민재웅",
+      "member_id": "PA-M-000001",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "official_answer": "8",
+      "form_kind": "official_three_section",
+      "model": false,
+      "question_text": "실수 $a$와 함수 $f(x)=x^3-12x^2+45x+3$에 대하여 함수 $g(x)=\\int_a^x \\{f(x)-f(t)\\}\\{f(t)\\}^4\\,dt$가 오직 하나의 극값을 갖도록 하는 모든 $a$의 값의 합을 구하시오. [4점]",
+      "solution_text": "① $f'(x)$를 인수분해한다. 먼저 $f'(x)=3x^2-24x+45$이므로 $f'(x)=3(x-3)(x-5)$이다.\n② 라이프니츠 미분법을 적용한다. 적분의 위끝과 피적분함수에 모두 $x$가 들어 있으므로 라이프니츠 미분법을 적용한다. 위끝에서 생기는 경계항은 $(f(x)-f(x))f(x)^4=0$이 되어 사라진다. 따라서 $g'(x)=f'(x)\\int_a^x f(t)^4\\,dt$이다.\n③ $I(x)$의 부호를 읽는다. $I(x)=\\int_a^x f(t)^4\\,dt$라 두면 $I'(x)=f(x)^4\\ge 0$이고 $I(a)=0$이므로 $x$절편이 $a$로 유일한 단조증가 함수이다. 즉 $I(x)$는 $x-a$와 부호변화가 같다.\n④ 부호표로 극값 개수를 센다. 그러므로 $g'(x)$의 부호는 $3(x-3)(x-5)$와 $x-a$의 부호를 곱하여 판단한다. 후보점은 $x=3,5,a$이다. 두 인수의 부호가 동시에 바뀌면 곱의 부호는 바뀌지 않고, 한 인수의 부호만 바뀌면 곱의 부호가 바뀐다.\n⑤ $a$를 고정 영점에 충돌시킨다. $a=3$이면 $x=3$에서 극값이 생기지 않고 $x=5$에서만 생긴다. $a=5$이면 $x=5$에서는 생기지 않고 $x=3$에서만 생긴다. 그 밖의 $a$에서는 극값이 하나가 아니다. 따라서 $a=3,5$이고 합은 $8$이다.",
+      "concept_boxes": [
+        {
+          "slot": 1,
+          "name": "위끝과 피적분에 변수가 함께 있는 정적분의 미분",
+          "description": "라이프니츠 법칙에서 경계항이 0이면 적분 내부를 미분한 항만 남는다.",
+          "used_in": "② 라이프니츠 미분법"
+        },
+        {
+          "slot": 2,
+          "name": "비음수 피적분의 정적분 부호",
+          "description": "피적분이 음이 아니고 항등적으로 0이 아니면 a에서 x까지 적분의 부호는 x-a의 부호와 같다.",
+          "used_in": "③ I(x)의 부호"
+        },
+        {
+          "slot": 3,
+          "name": "곱의 부호변화 상쇄",
+          "description": "두 인수의 부호가 동시에 바뀌면 곱의 부호는 바뀌지 않고, 한쪽만 변하면 곱이 변한다.",
+          "used_in": "④ 부호표"
+        }
+      ],
+      "form_lesson": "",
+      "margin_notes": [
+        "2쪽 손글씨: h(x)=∫_a^x f(x,t)dt의 도함수를 극한 정의로 유도한 증명. 적분 구간을 나누고 경계항 f(x,x)=0을 따로 표시했다.",
+        "3쪽: 연속·미분가능·단조증가·극값·부호변화 곱 규칙에 관한 일반론 목록(개념 2번 칸)."
+      ],
+      "review_issues": [
+        {
+          "id": "MIN-Q20-01",
+          "type": "cross_check",
+          "text": "손풀이 intake 후보 5건(PA-CAND-*-20260908-*)과 이 분석지 후보 6건은 같은 풀이 가족이다. 이름이 다른 쌍(예: '매개변수가 들어 있는 정적분의 미분' ↔ '위끝과 피적분에 변수가 함께 있는 정적분의 미분')은 강사가 하나를 고른다.",
+          "candidate_ids": [
+            "PA-CAND-CON-20260908-001",
+            "PA-CAND-CON-20260910-001"
+          ],
+          "label": "교차 대조"
+        },
+        {
+          "id": "MIN-Q20-02",
+          "type": "precondition",
+          "text": "3쪽 일반론 '연속, 단조증가 ⇒ 도함수 ≥ 0'은 미분가능 전제가 빠져 있다. 원자 정의로 올릴 때 전제 조건을 붙일지 확인한다.",
+          "candidate_ids": [],
+          "label": "전제 조건"
+        },
+        {
+          "id": "MIN-Q20-03",
+          "type": "transcription_note",
+          "text": "2쪽 손글씨 라이프니츠 증명은 개념 1의 근거로만 전사했고 별도 후보를 만들지 않았다. 증명 자체를 스킬 후보로 둘지 결정한다.",
+          "candidate_ids": [
+            "PA-CAND-CON-20260910-001"
+          ],
+          "label": "전사 메모"
+        }
+      ],
+      "blockers": [
+        "화면 전사 수식의 강사 확인",
+        "손풀이 intake PA-INTAKE-20260908-001과 동일 풀이 가족인지 확인",
+        "작성 강사 reviewed"
+      ],
+      "candidate_count": 11
+    },
+    {
+      "author": "김상범",
+      "member_id": "PA-M-000002",
+      "source_question_id": "KICE-2021-06-Q14",
+      "exam_label": "2021년 6월 평가원 14번",
+      "official_answer": "8",
+      "form_kind": "official_three_section",
+      "model": false,
+      "question_text": "두 양수 $p,q$가 함수 $f(x)=x^3-3x^2-9x-12$에 대하여 실수 전체의 집합에서 연속인 함수 $g(x)$가 다음 조건을 만족시킬 때, $p+q$의 값은? [4점]\n(가) 모든 실수 $x$에 대하여 $xg(x)=|xf(x-p)+qx|$이다.\n(나) 함수 $g(x)$가 $x=a$에서 미분가능하지 않은 실수 $a$의 개수는 1이다.",
+      "solution_text": "① 연속 함수는 혼자 두고 분석한다. $g(x)=(|x|/x)|f(x-p)+q|$로 두고 연속성 조건을 본다.\n② $|\\star|/\\star$ 꼴을 본다. $|\\star|/\\star$ 꼴은 $\\star$의 부호에 따라 $\\pm 1$이고, $x=0$에서 불연속이므로 $|f(x-p)+q|$는 원점을 지나야 한다.\n③ $|다항식|$의 미분가능성을 본다. 다항함수 $f$에 대해 $|f|$가 미분가능하려면 단순근이 원점을 통과하면 안 된다. 미분불가점이 1개가 되려면 $x$축을 단순근으로 통과하는 곳이 하나뿐이어야 하므로 극대 또는 극소가 원점으로 오도록 평행이동해야 한다. 원점이 아닌 곳에서 접하면 원점 통과 때 미분가능해져 미분불가점이 사라진다.\n④ 양수 $p,q$로 극대를 원점으로 옮긴다. 양수 $p,q$이므로 극대였던 $(-1,-7)$을 원점으로 이동해야 한다. $p=1$, $q=7$이므로 $p+q=8$.",
+      "concept_boxes": [
+        {
+          "slot": 1,
+          "name": "연속 인수는 혼자 두고 보기",
+          "description": "연속인 부분은 미분불가 분석에서 분리하고, 불연속·꺾임을 만드는 인자만 남긴다.",
+          "used_in": "① 연속 함수는 혼자 두고 분석"
+        },
+        {
+          "slot": 2,
+          "name": "부호함수 |x|/x",
+          "description": "x=0에서 불연속이므로 곱해진 절댓값 인수가 원점을 지나야 전체가 연속이다.",
+          "used_in": "② |★|/★ 꼴"
+        },
+        {
+          "slot": 3,
+          "name": "|다항식|의 미분가능성",
+          "description": "단순근이 x축을 통과하면 꺾이고, 중근·극값이 원점에 오면 접해 미분가능해질 수 있다.",
+          "used_in": "③ |다항식|의 미분가능성"
+        }
+      ],
+      "form_lesson": "",
+      "margin_notes": [
+        "2쪽 여백 손글씨: '|★|/★ 꼴, |★|±★ 꼴 → 아는 함수'.",
+        "2쪽 각주: 정답 ③. [출제의도] 절댓값을 포함한 함수의 미분가능성을 판단할 수 있는가?",
+        "3쪽: 증감표·g(x) 그래프·평행이동 서술(공식 해설 형식)."
+      ],
+      "review_issues": [
+        {
+          "id": "KIM-Q14-01",
+          "type": "omitted_margin_note",
+          "text": "여백 손글씨 '|★|±★ 꼴 → 아는 함수'는 후보로 만들지 않았다. '절댓값이 섞인 식은 아는 함수 꼴로 바꾼다'를 스킬 후보로 올릴지 작성 강사가 확인한다.",
+          "candidate_ids": [],
+          "label": "여백 손글씨 누락"
+        },
+        {
+          "id": "KIM-Q14-02",
+          "type": "safety_condition",
+          "text": "극소 (3,-39)를 원점으로 보내면 p=-3<0이라 제외된다는 근거가 풀이에 없다. 판단 후보 '연속 인수를 분리한 뒤 미분불가점만 센다'의 안전조건(양수 조건 검사)으로 적을지 확인한다.",
+          "candidate_ids": [
+            "PA-CAND-DEC-20260910-009"
+          ],
+          "label": "안전조건"
+        },
+        {
+          "id": "KIM-Q14-03",
+          "type": "structure",
+          "text": "3쪽 증감표·그래프는 공식 해설 형식이다. 본풀이(2쪽)와 개념란의 경계를 강사가 확정한다.",
+          "candidate_ids": [],
+          "label": "칸 구분"
+        }
+      ],
+      "blockers": [
+        "3쪽 증감표·그래프가 본풀이인지 개념란인지 구분 확인",
+        "작성 강사 reviewed",
+        "교차검토"
+      ],
+      "candidate_count": 7
+    },
+    {
+      "author": "이광훈",
+      "member_id": "PA-M-000003",
+      "source_question_id": "KICE-2021-09-Q14",
+      "exam_label": "2021년 9월 평가원 14번",
+      "official_answer": "⑤",
+      "form_kind": "official_three_section",
+      "model": false,
+      "question_text": "최고차항의 계수가 1이고 $f'(0)=f'(2)=0$인 삼차함수 $f(x)$와 양수 $p$에 대하여 함수 $g(x)$를 $x\\le 0$일 때 $f(x)-f(0)$, $x>0$일 때 $f(x+p)-f(p)$라 하자. 보기에서 옳은 것만을 있는 대로 고른 것은? [4점]\nㄱ. $p=1$일 때 $g'(1)=0$이다.\nㄴ. $g(x)$가 실수 전체에서 미분가능하도록 하는 양수 $p$의 개수는 1이다.\nㄷ. $p\\ge 2$일 때 $\\int_{-1}^{1} g(x)\\,dx \\ge 0$이다.",
+      "solution_text": "① $g$를 정적분으로 다시 쓴다. $f'(x)=3x(x-2)$이다. $g$를 정적분으로 다시 쓰면 $x\\le 0$에서 $\\int_0^x f'(t)\\,dt$, $x>0$에서 $\\int_p^{x+p} f'(t)\\,dt$이고, $g'(x)$는 $x\\le 0$에서 $f'(x)$, $x>0$에서 $f'(x+p)$이다.\n② ㄱ. $p=1$이면 $g'(1)=f'(2)=0$ (참).\n③ ㄴ. $x=0$에서 연속은 자동이고, 좌미분 $0$, 우미분 $f'(p)=3p(p-2)$이므로 $p=0$ 또는 $p=2$일 때 미분가능. 양수이므로 $p=2$ 하나 (참).\n④ ㄷ. 구간을 나눠 계산하면 $\\int_{-1}^{1}g=(1/2)(3p+2)(p-2)$이므로 $p\\ge 2$일 때 0 이상 (참).",
+      "concept_boxes": [
+        {
+          "slot": 1,
+          "name": "정적분으로 조각함수 다시 쓰기",
+          "description": "함숫값의 차를 정적분으로 바꿔 g'를 f' 또는 f'(x+p)로 읽는다.",
+          "used_in": "① g를 정적분으로 다시 쓰기"
+        },
+        {
+          "slot": 2,
+          "name": "좌우 미분계수로 미분가능성 판정",
+          "description": "x=0에서 연속을 확인한 뒤 좌·우 미분계수가 같아지는 p만 남긴다.",
+          "used_in": "③ ㄴ. 미분가능성"
+        }
+      ],
+      "form_lesson": "",
+      "margin_notes": [],
+      "review_issues": [
+        {
+          "id": "LEE-Q14-01",
+          "type": "precondition",
+          "text": "개념 2 '좌·우 미분계수를 도함수의 좌·우극한으로 구한다'는 g가 x=0에서 연속이고 도함수의 한쪽 극한이 존재할 때만 성립한다. 원자 정의에 '연속 확인 선행' 전제를 넣을지 교차검토한다.",
+          "candidate_ids": [
+            "PA-CAND-CON-20260910-014"
+          ],
+          "label": "전제 조건"
+        },
+        {
+          "id": "LEE-Q14-02",
+          "type": "missing_role",
+          "text": "보기 ㄷ에서 조건 p≥2의 역할(인수 (p-2)의 부호 결정)이 개념 박스에 없다. 조건 역할 표를 세미나에서 채운다.",
+          "candidate_ids": [
+            "PA-CAND-SKL-20260910-016"
+          ],
+          "label": "조건 역할 누락"
+        },
+        {
+          "id": "LEE-Q14-03",
+          "type": "structure",
+          "text": "3번 칸이 2번 풀이의 재서술이다. 새 원자가 아니라 풀이 단계 라벨일 수 있으므로 강사가 판단한다.",
+          "candidate_ids": [],
+          "label": "칸 구분"
+        }
+      ],
+      "blockers": [
+        "개념란이 풀이 재라벨인지 새 원자인지 강사 확인",
+        "작성 강사 reviewed",
+        "교차검토"
+      ],
+      "candidate_count": 6
+    },
+    {
+      "author": "김연수",
+      "member_id": "PA-M-000004",
+      "source_question_id": "KICE-2021-06-Q22",
+      "exam_label": "2021년 6월 평가원 22번",
+      "official_answer": "61",
+      "form_kind": "named_concept_boxes",
+      "model": true,
+      "question_text": "최고차항의 계수가 0이 아닌 삼차함수 $f(x)$가 다음 조건을 만족시킨다.\n(가) 방정식 $f(x)=0$은 서로 다른 실근을 2개 갖는다.\n(나) 방정식 $f(x-f(x))=0$은 서로 다른 실근을 3개 갖는다.\n$f(1)=4$, $f'(1)=1$, $f'(0)>1$이고 $f(0)=q/p$ ($p,q$는 서로소인 자연수)일 때 $p+q$의 값을 구하시오.",
+      "solution_text": "① (가): 서로 다른 실근 2개이므로 한 실근과 한 중근. $f(x)=k(x-\\alpha)(x-\\beta)^2$.\n② (나): $x-f(x)=t$로 치환하면 $f(t)=0$의 근으로 갈라져 $f(x)=x-\\alpha$ 또는 $f(x)=x-\\beta$. 기울기 1인 두 직선과 곡선의 서로 다른 교점 수가 합 3.\n③ $f'(1)=1$, $f(1)=4$이므로 (1,4)에서 기울기 1 접선. 접선이 교점 2개, 나머지 직선이 1개가 되게 개형을 잡으면 $y=x+3$이 x=1에서 접하고 x=-3에서 다시 만나 $\\beta=-3$.\n④ $f(x)-(x+3)=k(x+3)(x-1)^2$에서 $(x+3)$이 한 번 더 나와야 하므로 인수정리로 $k=-1/16$.\n⑤ $f(0)=45/16$이므로 $p+q=61$.",
+      "concept_boxes": [
+        {
+          "slot": 1,
+          "name": "삼차함수의 실근의 개수와 중근",
+          "description": "서로 다른 실근이 2개라는 조건은 $f(x)=k(x-\\alpha)(x-\\beta)^2$ 꼴로 나타낼 수 있다는 뜻이다.",
+          "used_in": "① 조건 (가) 분석"
+        },
+        {
+          "slot": 2,
+          "name": "미분계수와 접선의 기울기",
+          "description": "$f'(1)=1$은 x=1에서 기울기 1인 직선과 곡선이 접할 가능성을 연다.",
+          "used_in": "③ 접선 조건 확인"
+        },
+        {
+          "slot": 3,
+          "name": "합성형 방정식의 치환 풀이",
+          "description": "f(g(x))=0을 g(x)가 f의 근이 되는 여러 방정식으로 바꾼다. 여기서는 기울기 1 직선과 곡선의 교점 문제가 된다.",
+          "used_in": "② 조건 (나) 분석"
+        },
+        {
+          "slot": 4,
+          "name": "접선(중근)과 서로 다른 교점 개수",
+          "description": "접점은 대수적으로 중근이지만 서로 다른 x좌표로는 1개다. 접선 2개+다른 직선 1개로 합 3을 맞춘다.",
+          "used_in": "③ 접선 조건 확인"
+        },
+        {
+          "slot": 5,
+          "name": "인수정리",
+          "description": "이미 나온 (x+3)이 한 번 더 있으려면 나머지 인자에 x=-3을 대입해 0이어야 하고, 그것으로 k를 구한다.",
+          "used_in": "④ k 값 구하기"
+        }
+      ],
+      "form_lesson": "이름+설명+사용된 곳 박스는 AI 추출 품질이 가장 높았다. 공식 한글 양식 3번의 정본 형태다.",
+      "margin_notes": [
+        "1쪽 여백: '허근 관계'와 삼차 곡선 스케치.",
+        "1쪽 풀이 ① 옆: '합성함수 → 치환, f(t)=0, t=x-f(x)'.",
+        "2쪽 ⑤ 옆: 삼차 곡선과 두 평행선 스케치, 'α+β+γ = α'+β'+γ''."
+      ],
+      "review_issues": [
+        {
+          "id": "YEON-Q22-01",
+          "type": "missing_condition_use",
+          "text": "조건 f'(0)>1이 풀이 ①~⑤와 개념 박스 어디에도 쓰이지 않았다. 기울기 1 접선이 x=1이 아닌 다른 점(f'(x)=1의 다른 근)에 생기는 경우를 배제하는 데 필요한지 세미나에서 확정한다. 현재 풀이는 접선을 x=1로 둔 근거가 없다.",
+          "candidate_ids": [
+            "PA-CAND-DEC-20260910-024"
+          ],
+          "label": "조건 사용처 누락"
+        },
+        {
+          "id": "YEON-Q22-02",
+          "type": "omitted_margin_note",
+          "text": "여백 손글씨 'α+β+γ = α'+β'+γ''(삼차함수와 평행한 두 직선의 교점 x좌표 합이 같다)은 후보로 만들지 않았다. 스킬 후보로 올릴지 작성 강사가 확인한다.",
+          "candidate_ids": [],
+          "label": "여백 손글씨 누락"
+        },
+        {
+          "id": "YEON-Q22-03",
+          "type": "verification",
+          "text": "독립 재계산: f(x)=-(1/16)(x+3)²(x-5), f(1)=4, f'(1)=1, f'(0)=21/16>1, f(0)=45/16. 정답 61 일치. α=5, β=-3.",
+          "candidate_ids": [],
+          "label": "독립 재계산"
+        }
+      ],
+      "blockers": [
+        "작성 강사 reviewed",
+        "교차검토"
+      ],
+      "candidate_count": 10
+    }
+  ],
+  "assets": [
+    {
+      "id": "PA-CAND-CON-20260908-001",
+      "kind": "concept",
+      "name": "매개변수가 들어 있는 정적분의 미분",
+      "definition": "적분의 위끝과 피적분함수에 변수가 함께 들어 있을 때 라이프니츠 법칙으로 미분한다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20"
+      ],
+      "updatedAt": "2026-09-08",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "origin": "handwritten",
+      "evidence": [],
+      "epistemic": "",
+      "analysis_id": "PA-INTAKE-20260908-001",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-DEC-20260908-001",
+      "kind": "decision",
+      "name": "비음수 적분 인수의 부호를 적분 방향으로 판단",
+      "definition": "피적분함수가 음이 아니고 항등적으로 0이 아니면, a에서 x까지의 적분 부호는 x-a의 부호와 일치한다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20"
+      ],
+      "updatedAt": "2026-09-08",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "origin": "handwritten",
+      "evidence": [],
+      "epistemic": "",
+      "analysis_id": "PA-INTAKE-20260908-001",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-SKL-20260908-001",
+      "kind": "skill",
+      "name": "곱으로 분해된 도함수의 통합 부호표",
+      "definition": "각 인수의 영점과 부호 변화를 같은 수직선에 놓아 도함수 전체의 부호 변화를 계산한다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20"
+      ],
+      "updatedAt": "2026-09-08",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "origin": "handwritten",
+      "evidence": [],
+      "epistemic": "",
+      "analysis_id": "PA-INTAKE-20260908-001",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-STR-20260908-001",
+      "kind": "strategy",
+      "name": "영점 충돌로 극값 개수 줄이기",
+      "definition": "두 인수의 부호 변화점이 겹치면 곱의 부호 변화가 상쇄된다는 점을 이용해 매개변수를 결정한다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20"
+      ],
+      "updatedAt": "2026-09-08",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "origin": "handwritten",
+      "evidence": [],
+      "epistemic": "",
+      "analysis_id": "PA-INTAKE-20260908-001",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-PAT-20260908-001",
+      "kind": "problem_pattern",
+      "name": "도함수 인수의 영점 충돌로 극값 개수 제어",
+      "definition": "매개변수가 정하는 영점과 고정된 영점을 충돌시켜 요구된 극값 개수를 만드는 유형이다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20"
+      ],
+      "updatedAt": "2026-09-08",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "origin": "handwritten",
+      "evidence": [],
+      "epistemic": "",
+      "analysis_id": "PA-INTAKE-20260908-001",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-001",
+      "kind": "concept",
+      "name": "위끝과 피적분함수에 같은 변수가 있는 정적분의 미분",
+      "definition": "g(x)=∫_a^x F(x,t)dt이면 g'(x)=∫_a^x ∂F/∂x dt + F(x,x)이다. 이 문항은 F(x,x)={f(x)-f(x)}f(x)^4=0이라 경계항이 사라지고, 적분 내부를 x로 미분한 f'(x)∫_a^x f(t)^4dt만 남는다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20",
+        "민재웅"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": true,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "evidence": [
+        "위끝에서 생기는 경계항은 (f(x)-f(x))f(x)^4=0이 되어 사라진다"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q20-M000001-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-002",
+      "kind": "concept",
+      "name": "부호가 일정한 피적분함수의 정적분은 x-a와 부호가 같다",
+      "definition": "f(t)≥0이고 항등적으로 0이 아니면 I(x)=∫_a^x f(t)dt는 증가함수이고 I(a)=0이다. 따라서 I(x)는 x>a에서 양, x<a에서 음, 즉 x-a와 부호가 같다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20",
+        "민재웅"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "evidence": [
+        "I(x)는 x-a와 부호변화가 같다"
+      ],
+      "epistemic": "derived",
+      "analysis_id": "PA-A-KICE-2021-06-Q20-M000001-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-DEC-20260910-003",
+      "kind": "decision",
+      "name": "곱 인수의 영점이 겹치면 극값이 상쇄된다는 판단",
+      "definition": "g'(x)=3(x-3)(x-5)·I(x)의 부호 변화점 3, 5, a 중 두 인수의 영점이 겹치면 부호 변화가 상쇄된다. 극값이 하나만 남으려면 a를 3 또는 5에 겹쳐야 한다고 판단한다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20",
+        "민재웅"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "evidence": [
+        "두 인수의 부호가 동시에 바뀌면 곱의 부호는 바뀌지 않는다"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q20-M000001-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-004",
+      "kind": "skill",
+      "name": "도함수 인수들의 영점을 한 수직선에 올려 부호표 만들기",
+      "definition": "고정 영점 3, 5와 매개변수 영점 a를 같은 수직선에 놓고 구간별 부호 곱을 읽어 a 위치(a<3, 3<a<5, a>5, a=3, a=5)마다 극값 개수를 센다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20",
+        "민재웅"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "evidence": [
+        "후보점은 x=3,5,a이다"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q20-M000001-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-STR-20260910-005",
+      "kind": "strategy",
+      "name": "극값 개수 조건을 매개변수 영점의 충돌 문제로 바꾸기",
+      "definition": "'오직 하나의 극값'을 '부호 변화점이 하나만 남도록 하한 a를 고정 영점에 겹친다'로 번역한다. 경계항 소거 → I의 부호 → 부호표 → 충돌 선택을 한 덩어리로 묶는다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20",
+        "민재웅"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "evidence": [
+        "a=3이면 x=5에서만 생긴다"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q20-M000001-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-PAT-20260910-006",
+      "kind": "problem_pattern",
+      "name": "정적분 인수를 품은 도함수의 극값 개수로 하한 a 결정",
+      "definition": "g(x)=∫_a^x{f(x)-f(t)}h(t)dt, h≥0 꼴에서 극값 개수 조건으로 하한 a의 값(합)을 구하는 골격.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20",
+        "민재웅"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "evidence": [
+        "오직 하나의 극값을 갖도록 하는 모든 a"
+      ],
+      "epistemic": "hypothesis",
+      "analysis_id": "PA-A-KICE-2021-06-Q20-M000001-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-007",
+      "kind": "concept",
+      "name": "부호함수 |x|/x의 값과 x=0 불연속",
+      "definition": "|x|/x는 x>0에서 1, x<0에서 -1이고 x=0에서 불연속이다. 이것과 곱한 함수가 연속이려면 곱해진 인수가 x=0에서 0이어야 한다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q14",
+        "김상범"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": true,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q14",
+      "exam_label": "2021년 6월 평가원 14번",
+      "author": "김상범",
+      "author_member_id": "PA-M-000002",
+      "evidence": [
+        "|★|/★ 꼴인 함수는 ★의 부호에 따라 ±1"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q14-M000002-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-008",
+      "kind": "concept",
+      "name": "|다항식|의 미분불가점은 단순근으로 x축을 통과하는 점뿐",
+      "definition": "|f(x)|는 f가 홀수 차수 근으로 x축을 통과하는 점에서만 꺾여 미분불가이고, 극값이 x축에 접하는 점(중근)에서는 미분가능하다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q14",
+        "김상범"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q14",
+      "exam_label": "2021년 6월 평가원 14번",
+      "author": "김상범",
+      "author_member_id": "PA-M-000002",
+      "evidence": [
+        "원점이 아닌 다른 곳에서 접하면 원점을 통과할 때 미분가능하게 돼서 미분불가지점이 없음"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q14-M000002-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-DEC-20260910-009",
+      "kind": "decision",
+      "name": "연속인 인수를 분리하고 꺾임 개수만으로 이동량 정하기",
+      "definition": "g=(|x|/x)·|f(x-p)+q|로 분리해 연속 조건은 '원점 통과', 미분불가점 1개 조건은 '극값이 원점에 온다'로 환원한다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q14",
+        "김상범"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q14",
+      "exam_label": "2021년 6월 평가원 14번",
+      "author": "김상범",
+      "author_member_id": "PA-M-000002",
+      "evidence": [
+        "연속 함수는 혼자두고 분석하자"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q14-M000002-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-010",
+      "kind": "skill",
+      "name": "극점을 원점으로 옮기는 평행이동량 읽기",
+      "definition": "f의 극점 (-1,-7), (3,-39)를 원점으로 보내는 (p,q)=(1,7), (-3,39)를 계산하고 부호 제약으로 (1,7)을 고른다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q14",
+        "김상범"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q14",
+      "exam_label": "2021년 6월 평가원 14번",
+      "author": "김상범",
+      "author_member_id": "PA-M-000002",
+      "evidence": [
+        "양수 p,q이므로 극대였던 (-1,-7)을 원점으로 이동"
+      ],
+      "epistemic": "derived",
+      "analysis_id": "PA-A-KICE-2021-06-Q14-M000002-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-STR-20260910-011",
+      "kind": "strategy",
+      "name": "절댓값 미분불가점 개수를 극값 위치 하나로 맞추기",
+      "definition": "연속·미분가능 두 조건을 '어느 극값을 원점에 두는가'라는 단일 선택으로 압축한다. 인수 분리 → 원점 통과 → 극값 원점 → 이동량.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q14",
+        "김상범"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q14",
+      "exam_label": "2021년 6월 평가원 14번",
+      "author": "김상범",
+      "author_member_id": "PA-M-000002",
+      "evidence": [
+        "미분불가가 1개이려면 x축을 인수 1개를 가지고 통과하는 게 하나뿐"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q14-M000002-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-PAT-20260910-012",
+      "kind": "problem_pattern",
+      "name": "부호함수×|평행이동 삼차식|의 연속·미분가능 조건으로 이동량 결정",
+      "definition": "xg(x)=|xf(x-p)+qx|, g 연속, 미분불가점 개수 1에서 p+q를 구하는 골격.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q14",
+        "김상범"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q14",
+      "exam_label": "2021년 6월 평가원 14번",
+      "author": "김상범",
+      "author_member_id": "PA-M-000002",
+      "evidence": [
+        "xg(x)=|xf(x-p)+qx|"
+      ],
+      "epistemic": "hypothesis",
+      "analysis_id": "PA-A-KICE-2021-06-Q14-M000002-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-013",
+      "kind": "concept",
+      "name": "함숫값의 차를 도함수의 정적분으로 쓰기",
+      "definition": "f(x)-f(c)=∫_c^x f'(t)dt이므로 f(x+p)-f(p)=∫_p^{x+p}f'(t)dt이고, 이를 미분하면 g'(x)=f'(x+p)다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-09-Q14",
+        "이광훈"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-09-Q14",
+      "exam_label": "2021년 9월 평가원 14번",
+      "author": "이광훈",
+      "author_member_id": "PA-M-000003",
+      "evidence": [
+        "g를 정적분으로 다시 쓰면 x>0에서 ∫_p^{x+p} f'(t)dt"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-09-Q14-M000003-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-014",
+      "kind": "concept",
+      "name": "조각함수의 한 점 미분가능성: 연속과 좌·우 미분계수 일치",
+      "definition": "x=0에서 연속이고 좌미분계수와 우미분계수가 같으면 미분가능하다. 다항식 조각이므로 도함수의 좌·우극한으로 대체할 수 있지만, 연속 확인과 도함수 극한의 존재가 전제다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-09-Q14",
+        "이광훈"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-09-Q14",
+      "exam_label": "2021년 9월 평가원 14번",
+      "author": "이광훈",
+      "author_member_id": "PA-M-000003",
+      "evidence": [
+        "좌미분 0, 우미분 f'(p)=3p(p-2)"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-09-Q14-M000003-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-DEC-20260910-015",
+      "kind": "decision",
+      "name": "양수 조건으로 p=0을 버리고 p=2만 남기기",
+      "definition": "우미분계수 f'(p)=3p(p-2)=0의 두 근 중 문제의 양수 조건으로 p=0을 제외하고 p=2 하나만 센다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-09-Q14",
+        "이광훈"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-09-Q14",
+      "exam_label": "2021년 9월 평가원 14번",
+      "author": "이광훈",
+      "author_member_id": "PA-M-000003",
+      "evidence": [
+        "양수이므로 p=2 하나"
+      ],
+      "epistemic": "derived",
+      "analysis_id": "PA-A-KICE-2021-09-Q14-M000003-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-016",
+      "kind": "skill",
+      "name": "이동된 조각별로 정적분을 나누어 p의 식 만들기",
+      "definition": "∫_{-1}^0(x³-3x²)dx + ∫_0^1{f(x+p)-f(p)}dx를 전개해 (1/2)(3p+2)(p-2)로 인수분해하고 p≥2에서 부호를 읽는다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-09-Q14",
+        "이광훈"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-09-Q14",
+      "exam_label": "2021년 9월 평가원 14번",
+      "author": "이광훈",
+      "author_member_id": "PA-M-000003",
+      "evidence": [
+        "∫_{-1}^{1}g=(1/2)(3p+2)(p-2)"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-09-Q14-M000003-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-STR-20260910-017",
+      "kind": "strategy",
+      "name": "g의 정적분 표현 하나를 세 보기에 재사용",
+      "definition": "정의 재작성(①)을 한 번만 하고 ㄱ 도함수값, ㄴ 경계 미분가능, ㄷ 적분 부호를 같은 표현으로 처리한다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-09-Q14",
+        "이광훈"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-09-Q14",
+      "exam_label": "2021년 9월 평가원 14번",
+      "author": "이광훈",
+      "author_member_id": "PA-M-000003",
+      "evidence": [
+        "g'(x)는 x≤0에서 f'(x), x>0에서 f'(x+p)"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-09-Q14-M000003-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-PAT-20260910-018",
+      "kind": "problem_pattern",
+      "name": "이동 붙임 삼차 조각함수의 미분가능·정적분 부호 보기 문항",
+      "definition": "g=f(x)-f(0)(x≤0), f(x+p)-f(p)(x>0), f'(0)=f'(2)=0에서 한 점 미분가능과 대칭 구간 적분 부호를 묻는 골격.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-09-Q14",
+        "이광훈"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-09-Q14",
+      "exam_label": "2021년 9월 평가원 14번",
+      "author": "이광훈",
+      "author_member_id": "PA-M-000003",
+      "evidence": [
+        "보기에서 옳은 것만을 있는 대로 고른 것은"
+      ],
+      "epistemic": "hypothesis",
+      "analysis_id": "PA-A-KICE-2021-09-Q14-M000003-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-019",
+      "kind": "concept",
+      "name": "삼차함수 실근 2개는 단순근 1개와 중근 1개",
+      "definition": "최고차항이 0이 아닌 삼차함수가 서로 다른 실근을 정확히 2개 가지면 f(x)=k(x-α)(x-β)² 꼴이다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q22",
+        "김연수"
+      ],
+      "domain": "FUN",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q22",
+      "exam_label": "2021년 6월 평가원 22번",
+      "author": "김연수",
+      "author_member_id": "PA-M-000004",
+      "evidence": [
+        "서로 다른 실근 2개이므로 한 실근과 한 중근"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q22-M000004-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-020",
+      "kind": "concept",
+      "name": "미분계수는 접선의 기울기",
+      "definition": "f'(1)=1은 점 (1,4)에서 접선 y=x+3의 기울기가 1이라는 뜻이며, 기울기 1인 직선과 곡선이 접할 가능성을 연다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q22",
+        "김연수"
+      ],
+      "domain": "FUN",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q22",
+      "exam_label": "2021년 6월 평가원 22번",
+      "author": "김연수",
+      "author_member_id": "PA-M-000004",
+      "evidence": [
+        "(1,4)에서 기울기 1 접선"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q22-M000004-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-021",
+      "kind": "concept",
+      "name": "합성형 방정식 f(g(x))=0의 치환 분해",
+      "definition": "f(t)=0의 근이 α, β일 때 f(x-f(x))=0 ⇔ x-f(x)=α 또는 β ⇔ f(x)=x-α 또는 f(x)=x-β. 기울기 1인 두 직선과 곡선의 교점 문제가 된다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q22",
+        "김연수"
+      ],
+      "domain": "FUN",
+      "origin": "sheet",
+      "fromHandwriting": true,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q22",
+      "exam_label": "2021년 6월 평가원 22번",
+      "author": "김연수",
+      "author_member_id": "PA-M-000004",
+      "evidence": [
+        "x-f(x)=t로 치환하면 f(t)=0의 근으로 갈라져"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q22-M000004-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-022",
+      "kind": "concept",
+      "name": "접점은 중근이지만 서로 다른 교점 수로는 1개",
+      "definition": "직선이 곡선에 접하면 대수적으로 중근이지만 서로 다른 x좌표 개수로는 1개다. 접선은 삼차곡선과 접점 1개 + 다른 교점 1개 = 2개에서 만난다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q22",
+        "김연수"
+      ],
+      "domain": "FUN",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q22",
+      "exam_label": "2021년 6월 평가원 22번",
+      "author": "김연수",
+      "author_member_id": "PA-M-000004",
+      "evidence": [
+        "접점은 대수적으로 중근이지만 서로 다른 x좌표로는 1개"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q22-M000004-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-023",
+      "kind": "concept",
+      "name": "인수정리로 남은 인수의 근 조건 만들기",
+      "definition": "P(x)가 (x-a)를 인수로 가질 필요충분조건은 P(a)=0. f(x)=(x+3){k(x-1)²+1}이 (x+3)²을 가지려면 k(-3-1)²+1=0이다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q22",
+        "김연수"
+      ],
+      "domain": "FUN",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q22",
+      "exam_label": "2021년 6월 평가원 22번",
+      "author": "김연수",
+      "author_member_id": "PA-M-000004",
+      "evidence": [
+        "나머지 인자에 x=-3을 대입해 0이어야 하고, 그것으로 k를 구한다"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q22-M000004-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-DEC-20260910-024",
+      "kind": "decision",
+      "name": "교점 3개를 접선 2개 + 다른 직선 1개로 나누는 개형 선택",
+      "definition": "기울기 1인 두 직선과 삼차곡선의 서로 다른 교점 합이 3이므로 한 직선은 접선(2개), 다른 직선은 1개다. 점 (1,4)의 접선 y=x+3을 그 접선으로 두고 β=-3을 얻는다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q22",
+        "김연수"
+      ],
+      "domain": "FUN",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q22",
+      "exam_label": "2021년 6월 평가원 22번",
+      "author": "김연수",
+      "author_member_id": "PA-M-000004",
+      "evidence": [
+        "접선이 교점 2개, 나머지 직선이 1개가 되게 개형을 잡으면"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q22-M000004-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-025",
+      "kind": "skill",
+      "name": "접선 인수를 중근으로 두고 인수정리로 계수 k 구하기",
+      "definition": "f(x)-(x+3)=k(x-1)²(x+3)을 f(x)=(x+3){k(x-1)²+1}로 정리하고 x=-3을 대입해 k=-1/16을 얻는다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q22",
+        "김연수"
+      ],
+      "domain": "FUN",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q22",
+      "exam_label": "2021년 6월 평가원 22번",
+      "author": "김연수",
+      "author_member_id": "PA-M-000004",
+      "evidence": [
+        "k(-3-1)²+1=0 ⇒ k=-1/16"
+      ],
+      "epistemic": "derived",
+      "analysis_id": "PA-A-KICE-2021-06-Q22-M000004-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-STR-20260910-026",
+      "kind": "strategy",
+      "name": "근 구조 → 기울기 1 직선 → 접선 개형 → 인수 복원",
+      "definition": "조건 (가)(나)와 접선 정보를 하나의 개형으로 묶고, 계수 k는 마지막에 인수정리로 정한다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q22",
+        "김연수"
+      ],
+      "domain": "FUN",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q22",
+      "exam_label": "2021년 6월 평가원 22번",
+      "author": "김연수",
+      "author_member_id": "PA-M-000004",
+      "evidence": [
+        "①~⑤ 전체 흐름"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q22-M000004-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-PAT-20260910-027",
+      "kind": "problem_pattern",
+      "name": "f(x-f(x))=0의 근 개수를 평행 직선 교점 수로 묻는 삼차함수 계수 결정",
+      "definition": "실근 2개, f(x-f(x))=0의 실근 3개, f(1), f'(1), f'(0) 부등식으로 f(0)을 정하는 골격.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q22",
+        "김연수"
+      ],
+      "domain": "FUN",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q22",
+      "exam_label": "2021년 6월 평가원 22번",
+      "author": "김연수",
+      "author_member_id": "PA-M-000004",
+      "evidence": [
+        "f(0)=q/p일 때 p+q"
+      ],
+      "epistemic": "hypothesis",
+      "analysis_id": "PA-A-KICE-2021-06-Q22-M000004-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-028",
+      "kind": "skill",
+      "name": "정적분으로 정의된 함수의 도함수 공식을 극한 정의로 유도하기",
+      "definition": "h(x)=∫_a^x f(x,t)dt에서 h(x+h)-h(x)를 구간 분할로 나누고 극한을 적분 안으로 보내 h'(x)=∫_a^x ∂_x f dt + f(x,x)를 얻는다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20",
+        "민재웅"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": true,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "evidence": [
+        "2쪽 손글씨 증명: 적분 구간 분할 후 경계항 f(x,x)=0"
+      ],
+      "epistemic": "derived",
+      "analysis_id": "PA-A-KICE-2021-06-Q20-M000001-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-029",
+      "kind": "concept",
+      "name": "극값이면 도함수의 부호가 바뀐다(도함수가 불연속이어도 성립)",
+      "definition": "f가 x=a에서 연속이고 극값을 가지면 f'는 x=a 양쪽에서 부호가 바뀐다. f'가 x=a에서 불연속이어도 성립하며, 미분가능하면 추가로 f'(a)=0이다. 역은 성립하지 않는다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20",
+        "민재웅"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "evidence": [
+        "3쪽: f(x)가 x=a에서 연속, 극값 ⇒ f'(x)가 x=a에서 부호가 바뀜(f'가 불연속이어도 성립)"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q20-M000001-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-030",
+      "kind": "concept",
+      "name": "도함수가 0 이상이고 0인 열린구간이 없으면 증가",
+      "definition": "미분가능한 f에 대해 f'≥0이고 f'=0인 열린구간이 없으면 f는 증가함수다. 역으로 미분가능하고 증가하면 f'≥0이다(연속·증가만으로는 도함수를 말할 수 없다).",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20",
+        "민재웅"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "evidence": [
+        "3쪽: 도함수≥0, y=0인 열린구간 존재하지 않음 ⇒ 단조증가"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q20-M000001-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-031",
+      "kind": "concept",
+      "name": "항등식은 미분·적분해도 항등식",
+      "definition": "f(x)=g(x)가 x에 대한 항등식이고 미분가능하면 f'(x)=g'(x)도 항등식이며, ∫_a^x f(t)dt=∫_a^x g(t)dt도 항등식이다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20",
+        "민재웅"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "evidence": [
+        "3쪽: f=g가 x에 대한 항등식 ⇒ f'=g'가 항등식, ∫_a^x f=∫_a^x g가 항등식"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q20-M000001-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-032",
+      "kind": "concept",
+      "name": "곱의 부호변화 규칙: 동시 변화는 상쇄, 한쪽만 변하면 변한다",
+      "definition": "x=a에서 두 인수가 모두 부호를 바꾸면 곱은 부호가 바뀌지 않고, 한 인수만 바꾸면 곱의 부호가 바뀌며, 둘 다 안 바뀌면 곱도 안 바뀐다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q20",
+        "민재웅"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": false,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q20",
+      "exam_label": "2021년 6월 평가원 20번",
+      "author": "민재웅",
+      "author_member_id": "PA-M-000001",
+      "evidence": [
+        "3쪽: (부호변화)×(부호변화)=(부호변화x), (부호변화)×(부호변화x)=(부호변화)"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q20-M000001-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-033",
+      "kind": "skill",
+      "name": "|★|/★, |★|±★ 꼴을 아는 함수로 바꾸기",
+      "definition": "절댓값이 섞인 |★|/★, |★|±★ 꼴을 ★의 부호에 따라 ±1, 2★ 또는 0으로 고쳐 이미 아는 구간별 함수로 바꾼다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q14",
+        "김상범"
+      ],
+      "domain": "CAL",
+      "origin": "sheet",
+      "fromHandwriting": true,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q14",
+      "exam_label": "2021년 6월 평가원 14번",
+      "author": "김상범",
+      "author_member_id": "PA-M-000002",
+      "evidence": [
+        "2쪽 여백 손글씨 '|★|/★ 꼴, |★|±★ 꼴 → 아는 함수'"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q14-M000002-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-034",
+      "kind": "skill",
+      "name": "삼차곡선과 평행한 두 직선의 교점 x좌표 합 보존으로 검산하기",
+      "definition": "f(x)-(x-c)의 근의 합은 -b/a로 c와 무관하다. 접선 y=x+3의 교점 1, 1, -3(합 -1)과 다른 직선의 교점 합이 같아야 하므로 미지 교점을 구하거나 검산한다.",
+      "status": "ai_candidate",
+      "sourceCount": 1,
+      "tags": [
+        "KICE-2021-06-Q22",
+        "김연수"
+      ],
+      "domain": "FUN",
+      "origin": "sheet",
+      "fromHandwriting": true,
+      "updatedAt": "2026-09-10",
+      "source_question_id": "KICE-2021-06-Q22",
+      "exam_label": "2021년 6월 평가원 22번",
+      "author": "김연수",
+      "author_member_id": "PA-M-000004",
+      "evidence": [
+        "2쪽 ⑤ 옆 손글씨 'α+β+γ = α'+β'+γ''"
+      ],
+      "epistemic": "observed",
+      "analysis_id": "PA-A-KICE-2021-06-Q22-M000004-S00",
+      "review_status": "ai_candidate",
+      "instructor_reviews": []
+    }
+  ],
+  "questions": [
+    {
+      "id": "KICE-2021-06-Q20",
+      "kind": "question",
+      "title": "2021년 6월 평가원 20번",
+      "status": "ai_candidate",
+      "flow": "손풀이 intake와 민재웅 공식 분석지 후보. 비준 전.",
+      "tags": [
+        "미적분Ⅰ",
+        "4점",
+        "민재웅"
+      ]
+    },
+    {
+      "id": "KICE-2021-06-Q14",
+      "kind": "question",
+      "title": "2021년 6월 평가원 14번",
+      "status": "ai_candidate",
+      "flow": "김상범 세미나 1회차 결과지. 비준 전.",
+      "tags": [
+        "미적분Ⅰ",
+        "4점",
+        "김상범"
+      ]
+    },
+    {
+      "id": "KICE-2021-09-Q14",
+      "kind": "question",
+      "title": "2021년 9월 평가원 14번",
+      "status": "ai_candidate",
+      "flow": "이광훈 세미나 1회차 결과지. 비준 전.",
+      "tags": [
+        "미적분Ⅰ",
+        "4점",
+        "이광훈"
+      ]
+    },
+    {
+      "id": "KICE-2021-06-Q22",
+      "kind": "question",
+      "title": "2021년 6월 평가원 22번",
+      "status": "ai_candidate",
+      "flow": "김연수 세미나 1회차 결과지. 비준 전.",
+      "tags": [
+        "미적분Ⅰ",
+        "4점",
+        "김연수"
+      ]
+    }
+  ],
+  "composition": {
+    "seed": 20260910,
+    "attempt": 1,
+    "source_questions": [
+      "KICE-2021-06-Q14",
+      "KICE-2021-06-Q20"
+    ],
+    "assets": [
+      {
+        "id": "PA-CAND-CON-20260910-001",
+        "kind": "concept",
+        "name": "위끝과 피적분에 변수가 함께 있는 정적분의 미분",
+        "definition": "라이프니츠 법칙에서 경계항이 0이면 적분 내부를 미분한 항만 남는다.",
+        "tags": [
+          "KICE-2021-06-Q20",
+          "민재웅"
+        ]
+      },
+      {
+        "id": "PA-CAND-CON-20260910-008",
+        "kind": "concept",
+        "name": "절댓값 다항식의 꺾임과 접함",
+        "definition": "|f|는 단순근에서 미분불가이고, 극값이 원점에 오면 그 점은 접해 미분가능해질 수 있다.",
+        "tags": [
+          "KICE-2021-06-Q14",
+          "김상범"
+        ]
+      },
+      {
+        "id": "PA-CAND-DEC-20260908-001",
+        "kind": "decision",
+        "name": "비음수 적분 인수의 부호를 적분 방향으로 판단",
+        "definition": "피적분함수가 음이 아니고 항등적으로 0이 아니면, a에서 x까지의 적분 부호는 x-a의 부호와 일치한다.",
+        "tags": [
+          "KICE-2021-06-Q20"
+        ]
+      },
+      {
+        "id": "PA-CAND-SKL-20260910-004",
+        "kind": "skill",
+        "name": "도함수 인수를 한 수직선에 올려 부호표를 만든다",
+        "definition": "고정 영점과 매개변수 영점을 같은 축에 놓고 동시 변화와 단독 변화를 구분한다.",
+        "tags": [
+          "KICE-2021-06-Q20",
+          "민재웅"
+        ]
+      },
+      {
+        "id": "PA-CAND-STR-20260910-011",
+        "kind": "strategy",
+        "name": "미분불가점 개수를 이동량 하나로 맞춘다",
+        "definition": "절댓값 그래프의 꺾임 개수를 조건 (나)의 1개에 맞추기 위해 어느 극값을 원점에 둘지 고른다.",
+        "tags": [
+          "KICE-2021-06-Q14",
+          "김상범"
+        ]
+      },
+      {
+        "id": "PA-CAND-PAT-20260910-012",
+        "kind": "problem_pattern",
+        "name": "부호함수와 |평행이동한 삼차식|의 미분가능성",
+        "definition": "xg(x)=|x f(x-p)+qx| 꼴에서 연속과 미분불가점 개수로 이동량을 결정한다.",
+        "tags": [
+          "KICE-2021-06-Q14",
+          "김상범"
+        ]
+      }
+    ],
+    "asset_item": {
+      "id": "PA-PILOT-ITEM-001",
+      "condition": "with_assets",
+      "title": "자산 조합 초안",
+      "course": "미적분Ⅰ(기존 수학Ⅱ)",
+      "score": 4,
+      "answer": "4",
+      "elapsed_minutes": 24,
+      "used_asset_ids": [
+        "PA-CAND-CON-20260910-001",
+        "PA-CAND-CON-20260910-008",
+        "PA-CAND-DEC-20260908-001",
+        "PA-CAND-SKL-20260910-004",
+        "PA-CAND-STR-20260910-011",
+        "PA-CAND-PAT-20260910-012"
+      ],
+      "defects": [
+        "조건 (가)와 (나)가 매개변수를 공유하지 않아 한 문항 안에서 두 유형이 병렬로 붙었다.",
+        "원천 2021-06 20번·14번의 골격이 드러난다."
+      ],
+      "summary": "자산 조합 초안 · 자산 6개 사용 · 전문은 archive/pilot/seminar-01/composition/regression.json",
+      "stem": "",
+      "solution": ""
+    },
+    "blank_item": {
+      "id": "PA-PILOT-ITEM-BLANK-001",
+      "condition": "no_assets",
+      "title": "공백 초안",
+      "course": "미적분Ⅰ(기존 수학Ⅱ)",
+      "score": 4,
+      "answer": "-4",
+      "elapsed_minutes": 16,
+      "used_asset_ids": [],
+      "defects": [
+        "겨냥 병목이 없고 계수 읽기만으로 끝난다.",
+        "4점 문법보다 3점 확인 문항에 가깝다."
+      ],
+      "summary": "공백 초안 · 자산 0개 사용 · 전문은 archive/pilot/seminar-01/composition/regression.json",
+      "stem": "",
+      "solution": ""
+    },
+    "drafts_included": false
+  },
+  "regression": {
+    "rubric": [
+      {
+        "id": "curriculum",
+        "label": "교육과정 언어"
+      },
+      {
+        "id": "uniqueness",
+        "label": "정답 유일성"
+      },
+      {
+        "id": "calculation",
+        "label": "계산량"
+      },
+      {
+        "id": "shortcut",
+        "label": "의도하지 않은 지름길 차단"
+      },
+      {
+        "id": "bottleneck",
+        "label": "병목·판단 선명도"
+      },
+      {
+        "id": "csat_grammar",
+        "label": "평가원 표면 문법"
+      },
+      {
+        "id": "clone_distance",
+        "label": "원천 문항과 거리"
+      },
+      {
+        "id": "coupling",
+        "label": "조건 결합"
+      }
+    ],
+    "scores": {
+      "with_assets": {
+        "curriculum": 2,
+        "uniqueness": 2,
+        "calculation": 2,
+        "shortcut": 1,
+        "bottleneck": 2,
+        "csat_grammar": 2,
+        "clone_distance": 1,
+        "coupling": 0
+      },
+      "no_assets": {
+        "curriculum": 2,
+        "uniqueness": 2,
+        "calculation": 1,
+        "shortcut": 1,
+        "bottleneck": 0,
+        "csat_grammar": 1,
+        "clone_distance": 2,
+        "coupling": 1
+      }
+    },
+    "totals": {
+      "with_assets": 12,
+      "no_assets": 10,
+      "max": 16
+    },
+    "time": {
+      "with_assets": 24,
+      "no_assets": 16,
+      "unit": "minutes"
+    },
+    "findings": [
+      "자산이 있으면 4점 골격과 판단 지점을 더 빨리 붙인다. 이번 초안은 24분, 공백은 16분이었다.",
+      "공백 초안이 더 짧았지만 병목이 없고 3점처럼 읽힌다. 점수 합은 자산 12, 공백 10 (각 항목 0~2).",
+      "시드 첫 추출이 적분 미분과 절댓값 미분가능성을 병렬로 붙였다. 다음 추출은 공유 매개변수가 있는 조합만 남긴다.",
+      "숫자만 바꾼 복제와 자동 승격은 하지 않았다. 두 초안 모두 배포 금지 후보다."
+    ],
+    "next_upgrades": [
+      "추출 시 한 매개변수가 두 축에 동시에 걸리게 강제한다.",
+      "원천 문항과 같은 식 골격이면 폐기하고 다시 뽑는다.",
+      "강사가 조합 초안의 이름·정의를 확인한 뒤에만 다음 초안을 만든다."
+    ]
+  },
+  "forbidden": [
+    "reviewed 또는 ratified 자동 승격",
+    "숫자만 바꾼 대량생산",
+    "NGD2 온톨로지 검색으로 이름 붙이기",
+    "검수 없는 배포"
+  ]
+}

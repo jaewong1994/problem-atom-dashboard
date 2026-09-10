@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#0d7469">
+  <meta name="description" content="세미나 기록지 양식·검토 쟁점과 자산 조합 대 공백 초안의 회귀를 봅니다. 초안 전문은 싣지 않습니다.">
+  <title>파일럿 회귀 · Problem Atom</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/pwa/apple-touch-icon.png">
+  <link rel="icon" sizes="192x192" href="assets/pwa/icon-192.png">
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="pilot-review.css?v=13">
+  <link rel="stylesheet" href="site-shell.css">
+  <link rel="stylesheet" href="pwa-install.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="global-header">
+    <a class="global-brand" href="index.html"><b>PA</b><span>문항 연구 시스템</span></a>
+    <nav class="global-nav" aria-label="주요 페이지">
+      <a href="index.html">입장</a>
+      <a href="dashboard.html">기출 현황</a>
+      <a href="promotion-board.html">승격 대기 자산</a>
+      <a href="asset-library.html">공유 자산</a>
+      <a href="pilot-review.html" aria-current="page">파일럿 회귀</a>
+      <a href="vision.html">프로젝트 계획</a>
+    </nav>
+    <div class="instructor-field">
+      <label for="actor">강사 이름</label>
+      <input id="actor" maxlength="20" placeholder="본인 이름" autocomplete="name">
+      <small id="reviewSync">검토 표시는 승격 대기 자산 탭에서 합니다</small>
+    </div>
+  </header>
+
+  <main id="main">
+    <div id="loadError" class="error-banner" role="alert" hidden aria-hidden="true">
+      <h2>데이터를 읽지 못했습니다</h2>
+      <p>페이지를 새로고침하거나 운영자에게 알려 주세요.</p>
+    </div>
+
+    <section class="page-intro" aria-labelledby="pilotTitle">
+      <p>SEMINAR-01 파일럿</p>
+      <h1 id="pilotTitle">기록지 양식과 조합 회귀</h1>
+      <span>결과지 4장의 양식·검토 쟁점과, 후보를 조합한 초안과 공백 초안의 시간·품질 회귀만 봅니다. 후보 확인·댓글·승격은 <a href="promotion-board.html">승격 대기 자산</a>에서 합니다. 초안 문항 전문은 공개 화면에 싣지 않습니다.</span>
+    </section>
+
+    <ol class="pilot-flow" aria-label="자산 운영 경로">
+      <li><b>저장</b><span>원본 PDF와 SHA-256</span></li>
+      <li><b>운영</b><span>5축 후보 큐</span></li>
+      <li><b>조합</b><span>시드 고정 추출</span></li>
+      <li><b>검토</b><span>강사 확인</span></li>
+      <li class="blocked"><b>승격</b><span>지금은 잠김</span></li>
+    </ol>
+
+    <section id="stats" class="pilot-stats" aria-label="파일럿 집계"></section>
+
+    <section class="record-sheet" aria-labelledby="sheetTitle">
+      <div class="block-head">
+        <h2 id="sheetTitle">기록지와 검토 쟁점</h2>
+        <p>김연수 기록지의 이름·설명·사용된 곳을 공식 3번 칸으로 씁니다. 풀이 ①②③과 박스가 연결되고, PDF 대조에서 나온 쟁점이 아래에 붙습니다.</p>
+      </div>
+      <p class="sheet-download">
+        <a href="assets/downloads/세미나분석지_초간단.hwpx" download>김연수식 3칸 한글 양식 받기</a>
+      </p>
+      <div id="sheetFilters" class="kind-filters" aria-label="기록지 작성자"></div>
+      <article id="sheetView" class="sheet-view"></article>
+    </section>
+
+    <section class="review-board" aria-labelledby="queueTitle">
+      <div class="block-head">
+        <h2 id="queueTitle">승격 대기 자산</h2>
+        <p id="queueCount"></p>
+      </div>
+      <p class="handoff">후보별 확인·정정·보류, 댓글, 병합 제안, 정본 ID는 <a href="promotion-board.html">승격 대기 자산 탭</a>에서 봅니다. 쟁점의 후보 ID를 누르면 그 탭의 해당 후보로 이동합니다.</p>
+    </section>
+
+    <section class="compose" aria-labelledby="composeTitle">
+      <h2 id="composeTitle">이번 조합</h2>
+      <p class="compose-meta" id="composeMeta"></p>
+      <div id="pickedAssets" class="picked-assets"></div>
+      <div class="item-compare">
+        <article class="item-panel" aria-labelledby="assetItemTitle">
+          <header>
+            <h3 id="assetItemTitle">자산이 있을 때</h3>
+            <p id="assetItemMeta"></p>
+          </header>
+          <p id="assetItemStem" class="item-stem"></p>
+          <details>
+            <summary>구성 메모</summary>
+            <p id="assetItemSolution" class="item-solution"></p>
+          </details>
+        </article>
+        <article class="item-panel" aria-labelledby="blankItemTitle">
+          <header>
+            <h3 id="blankItemTitle">자산이 없을 때</h3>
+            <p id="blankItemMeta"></p>
+          </header>
+          <p id="blankItemStem" class="item-stem"></p>
+          <details>
+            <summary>구성 메모</summary>
+            <p id="blankItemSolution" class="item-solution"></p>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section class="regression" aria-labelledby="regTitle">
+      <h2 id="regTitle">시간과 품질 회귀</h2>
+      <div id="timeCompare" class="time-compare"></div>
+      <div class="table-wrap">
+        <table>
+          <caption>각 항목 0~2점. 높을수록 다음 초안에 쓸 만하다.</caption>
+          <thead>
+            <tr>
+              <th scope="col">항목</th>
+              <th scope="col">자산 조합</th>
+              <th scope="col">공백</th>
+            </tr>
+          </thead>
+          <tbody id="scoreBody"></tbody>
+        </table>
+      </div>
+      <ul id="findings" class="findings"></ul>
+      <div class="upgrade">
+        <h3>다음에 고칠 것</h3>
+        <ol id="upgrades"></ol>
+      </div>
+    </section>
+
+    <section class="review-actions" aria-labelledby="markTitle">
+      <h2 id="markTitle">이 초안 표시</h2>
+      <p>표시는 이 브라우저에만 남습니다. 승격이나 배포가 아닙니다.</p>
+      <div id="markError" class="field-error" role="alert" hidden></div>
+      <div class="mark-row">
+        <button type="button" data-mark="hold">보류</button>
+        <button type="button" data-mark="fix">정정 필요</button>
+        <button type="button" data-mark="compose_ok">조합은 가능</button>
+      </div>
+      <p id="markStatus" class="mark-status"></p>
+    </section>
+  </main>
+
+  <script src="vendor/katex/katex.min.js"></script>
+  <script src="vendor/katex/auto-render.min.js"></script>
+  <script src="math-text.js?v=1"></script>
+  <script src="pilot-review.js?v=14" defer></script>
+  <script src="pwa-install.js" defer></script>
+</body>
+</html>

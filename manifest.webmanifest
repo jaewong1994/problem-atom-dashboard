@@ -10,7 +10,10 @@
   "background_color": "#f4f6f2",
   "theme_color": "#0d7469",
   "orientation": "any",
-  "categories": ["education", "productivity"],
+  "categories": [
+    "education",
+    "productivity"
+  ],
   "icons": [
     {
       "src": "assets/pwa/icon-192.png",
@@ -37,14 +40,24 @@
       "short_name": "현황판",
       "description": "연도별 기출 분석 진행률 확인",
       "url": "./dashboard.html",
-      "icons": [{ "src": "assets/pwa/icon-192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "assets/pwa/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     },
     {
-      "name": "프로젝트 계획",
-      "short_name": "계획",
-      "description": "프로젝트 계획과 원자 조합 데모",
-      "url": "./vision.html",
-      "icons": [{ "src": "assets/pwa/icon-192.png", "sizes": "192x192" }]
+      "name": "승격 대기 자산",
+      "short_name": "승격 대기",
+      "description": "강사별 후보 확인·댓글·승격",
+      "url": "./promotion-board.html",
+      "icons": [
+        {
+          "src": "assets/pwa/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }

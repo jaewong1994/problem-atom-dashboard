@@ -102,5 +102,77 @@
     if (error) throw error;
   }
 
-  window.PARealtime = { enabled, init, saveProfile, claim, release, complete, listClaims };
+  function mapComment(row) {
+    return {
+      commentId: row.comment_id,
+      assetId: row.asset_id,
+      actor: row.owner_name,
+      ownerId: row.owner_id,
+      kind: row.kind,
+      body: row.body,
+      createdAt: row.created_at,
+      status: "open",
+    };
+  }
+
+  function commentsUnavailable(error) {
+    const text = `${error?.code || ""} ${error?.message || ""}`.toLowerCase();
+    return text.includes("pa_asset_comments") || error?.code === "42P01" || error?.code === "PGRST205";
+  }
+
+  async function listComments() {
+    if (!client) throw new Error("실시간 로그인이 필요합니다.");
+    const { data, error } = await client.from("pa_asset_comments")
+      .select("comment_id,asset_id,owner_id,owner_name,kind,body,created_at")
+      .order("created_at", { ascending: true });
+    if (error) {
+      if (commentsUnavailable(error)) return { unavailable: true, comments: [] };
+      throw error;
+    }
+    return { unavailable: false, comments: (data || []).map(mapComment) };
+  }
+
+  async function addComment(assetId, kind, body, ownerName) {
+    if (!client || !user) throw new Error("실시간 로그인이 필요합니다.");
+    await saveProfile(ownerName);
+    const { data, error } = await client.from("pa_asset_comments").insert({
+      asset_id: assetId,
+      owner_id: user.id,
+      owner_name: ownerName,
+      kind,
+      body,
+    }).select("comment_id,asset_id,owner_id,owner_name,kind,body,created_at").single();
+    if (error) throw error;
+    return mapComment(data);
+  }
+
+  async function deleteComment(commentId) {
+    if (!client || !user) throw new Error("실시간 로그인이 필요합니다.");
+    const { error } = await client.from("pa_asset_comments")
+      .delete()
+      .eq("comment_id", commentId)
+      .eq("owner_id", user.id);
+    if (error) throw error;
+  }
+
+  async function initComments(displayName, onChange) {
+    const started = await init(displayName, () => {});
+    if (!started.enabled) return started;
+    const listed = await listComments();
+    if (listed.unavailable) {
+      return { enabled: false, reason: "댓글 테이블 설정 대기", comments: [], userId: user.id };
+    }
+    client.channel("pa-asset-comments")
+      .on("postgres_changes", { event: "*", schema: "public", table: "pa_asset_comments" }, async () => {
+        const next = await listComments();
+        onChange(next.comments || []);
+      })
+      .subscribe();
+    return { enabled: true, userId: user.id, comments: listed.comments };
+  }
+
+  window.PARealtime = {
+    enabled, init, saveProfile, claim, release, complete, listClaims,
+    initComments, listComments, addComment, deleteComment,
+  };
 })();
