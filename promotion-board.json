@@ -1,32 +1,32 @@
 {
   "schemaVersion": 1,
   "pilot_id": "SEMINAR-01",
-  "updatedAt": "2026-09-10T12:49:33.404299+00:00",
+  "updatedAt": "2026-09-10T13:20:06.622182+00:00",
   "visibility": "instructor_review_public_site_no_drafts",
   "stages": [
     {
       "id": "ai_candidate",
-      "label": "AI 후보",
+      "label": "확인 전",
       "who": "도구",
-      "how": "결과지 전사에서 추출. 근거 문장·축별 필드 포함"
+      "how": "결과지에서 뽑아 둔 후보. 아직 아무도 확인 안 함"
     },
     {
       "id": "author_confirmed",
-      "label": "작성자 확인",
-      "who": "작성 강사",
-      "how": "이 탭에서 확인·정정·보류 표시 → JSON 회수"
+      "label": "작성자 확인함",
+      "who": "쓴 강사",
+      "how": "이 탭에서 맞아요·고쳐야 해요·보류를 눌러 보냄"
     },
     {
       "id": "reviewed",
-      "label": "reviewed",
+      "label": "1차 승인",
       "who": "운영자",
-      "how": "댓글·검토를 읽고 결정 파일로 승격. 합침·고도화·폐기도 여기서"
+      "how": "남긴 말을 읽고 합칠지·보강할지·올릴지 정함"
     },
     {
       "id": "ratified",
-      "label": "ratified · 정본 ID",
-      "who": "교차검토 강사 + 운영자",
-      "how": "다른 강사 확인 후 정본 ID 발급·해시 동결 → 공유 자산 탭"
+      "label": "정본 확정",
+      "who": "다른 강사 + 운영자",
+      "how": "다른 강사도 맞다고 하면 정본 번호를 붙여 공유 자산에 올림"
     }
   ],
   "verdicts": {

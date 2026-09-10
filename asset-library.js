@@ -9,7 +9,7 @@ const labels = {
   family: "문항군",
   mockExam: "모의고사",
 };
-const kindLabels = { addition: "추가", correction: "정정", question: "질문" };
+const kindLabels = { addition: "덧붙임", correction: "고칠 점", question: "질문" };
 const STORAGE_COMMENTS = "pa-asset-comments";
 const STORAGE_ACTOR = "seminar-actor";
 
@@ -65,7 +65,7 @@ function commentsFor(assetId) {
 function renderComments(assetId) {
   const rows = commentsFor(assetId);
   if (!rows.length) {
-    return `<p class="comment-empty">아직 댓글이 없습니다. 추가할 내용이나 정정을 남겨 주세요.</p>`;
+    return `<p class="comment-empty">아직 없어요. 고칠 점이나 덧붙일 내용을 적어 주세요.</p>`;
   }
   return rows.map((row) => `
     <article class="comment-item">
@@ -80,7 +80,7 @@ function renderComments(assetId) {
 
 function cardHtml(item) {
   const id = item.id || item.questionId;
-  const review = item.status === "ai_candidate" ? "검토 대기" : item.status;
+  const review = { ai_candidate: "확인 전", reviewed: "1차 승인", approved: "정본", ratified: "정본" }[item.status] || item.status;
   return `
     <article class="asset-card" data-id="${esc(id)}">
       <header>
@@ -91,22 +91,22 @@ function cardHtml(item) {
       <p>${tex(item.definition || item.flow || "설명 준비 중")}</p>
       <div class="chips">${[...(item.tags || []), ...(item.bottlenecks || [])].slice(0, 6).map((tag) => `<span>${esc(tag)}</span>`).join("")}</div>
       <section class="comment-thread" aria-label="${esc(id)} 댓글">
-        <h4>댓글</h4>
+        <h4>이 자산에 남긴 말</h4>
         <div class="comment-list">${renderComments(id)}</div>
         <form class="comment-form" data-asset="${esc(id)}">
           <label>
             <span class="visually-hidden">댓글 종류</span>
             <select name="kind" aria-label="댓글 종류">
-              <option value="addition">추가</option>
-              <option value="correction">정정</option>
+              <option value="correction">고칠 점</option>
+              <option value="addition">덧붙임</option>
               <option value="question">질문</option>
             </select>
           </label>
           <label>
             <span class="visually-hidden">댓글 내용</span>
-            <textarea name="body" required maxlength="2000" placeholder="추가할 내용이나 정정할 문장을 적어 주세요."></textarea>
+            <textarea name="body" required maxlength="2000" placeholder="예: 이름을 ○○로 바꾸자"></textarea>
           </label>
-          <button type="submit">댓글 달기</button>
+          <button type="submit">남기기</button>
         </form>
       </section>
     </article>
@@ -120,7 +120,7 @@ function render() {
     const haystack = `${JSON.stringify(item)} ${commentsFor(id).map((row) => row.body).join(" ")}`.toLowerCase();
     return (active === "all" || item.kind === active) && haystack.includes(query);
   });
-  $("resultCount").textContent = `${shown.length}개 표시`;
+  $("resultCount").textContent = `${shown.length}개`;
   $("assetGrid").innerHTML = shown.map(cardHtml).join("");
   $("empty").hidden = shown.length > 0;
   if (window.PAMath) window.PAMath.render($("assetGrid"));
@@ -138,7 +138,7 @@ async function submitComment(assetId, kind, body) {
   const target = String(assetId || "").trim();
   if (!actor) {
     $("actor").focus();
-    setSync("댓글을 남기려면 강사 이름을 먼저 입력해 주세요.");
+    setSync("먼저 위에 강사 이름을 넣어 주세요.");
     return;
   }
   if (!target || !text) return;
@@ -160,14 +160,14 @@ async function submitComment(assetId, kind, body) {
       const saved = await window.PARealtime.addComment(target, kind, text, actor);
       saveLocalComments(local.filter((row) => row.commentId !== localRow.commentId));
       mergeComments([saved, ...comments.filter((row) => row.commentId !== localRow.commentId)]);
-      setSync("실시간 댓글 저장됨", true);
+      setSync("댓글이 모두에게 공유됐어요", true);
     } catch (error) {
       mergeComments(comments);
       setSync(`로컬에 저장됨 · ${error.message || "실시간 저장 실패"}`);
     }
   } else {
     mergeComments(comments);
-    setSync("이 브라우저에 임시 저장됨. JSON으로 내보내 주세요.");
+    setSync("이 기기에만 저장됐어요. 끝나면 댓글 파일 저장을 눌러 주세요.");
   }
   render();
 }
@@ -188,11 +188,11 @@ function downloadComments() {
 }
 
 function clearLocal() {
-  if (!loadLocalComments().length || !window.confirm("이 브라우저에만 있는 임시 댓글을 지울까요? 이미 보낸 JSON은 그대로입니다.")) return;
+  if (!loadLocalComments().length || !window.confirm("이 기기에만 있는 댓글을 지울까요? 이미 보낸 파일은 그대로예요.")) return;
   saveLocalComments([]);
   mergeComments(comments.filter((row) => !String(row.commentId).startsWith("local-")));
   render();
-  setSync("임시 댓글을 지웠습니다.");
+  setSync("이 기기의 댓글을 지웠어요.");
 }
 
 async function start() {
@@ -202,11 +202,6 @@ async function start() {
   });
   $("exportComments").addEventListener("click", downloadComments);
   $("clearLocalComments").addEventListener("click", clearLocal);
-  $("idCommentForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-    submitComment($("manualAssetId").value, $("manualKind").value, $("manualBody").value);
-    $("manualBody").value = "";
-  });
   mergeComments([]);
   try {
     const data = await fetch("asset-library.json", { cache: "no-store" }).then((response) => {
@@ -215,10 +210,10 @@ async function start() {
     });
     const summary = data.summary || {};
     $("stats").innerHTML = [
-      ["승인·검토 5축 카드", summary.entities || 0],
-      ["분석 문항", summary.questions || 0],
-      ["검토 대기", summary.reviewQueue || 0],
-      ["완성 모의고사", summary.mockExams || 0],
+      ["확정된 자산", summary.entities || 0],
+      ["분석한 문항", summary.questions || 0],
+      ["확인 전 후보", summary.reviewQueue || 0],
+      ["만든 모의고사", summary.mockExams || 0],
     ].map(([label, count]) => `<article class="stat"><span>${label}</span><strong>${count}</strong></article>`).join("");
     records = [
       ...(data.entities || []),
@@ -241,7 +236,7 @@ async function start() {
     render();
   } catch (_error) {
     $("empty").hidden = false;
-    $("empty").querySelector("strong").textContent = "공유 자산 파일을 읽지 못했습니다.";
+    $("empty").querySelector("strong").textContent = "자산 파일을 읽지 못했어요.";
   }
 
   if (window.PARealtime?.initComments) {
@@ -249,21 +244,21 @@ async function start() {
       const result = await window.PARealtime.initComments(actorName(), (rows) => {
         mergeComments(rows);
         render();
-        setSync("실시간 댓글 연결됨", true);
+        setSync("댓글 실시간 공유 중", true);
       });
       remoteEnabled = Boolean(result.enabled);
       remoteUserId = result.userId || "";
       if (result.enabled) {
         mergeComments(result.comments || []);
-        setSync("실시간 댓글 연결됨", true);
+        setSync("댓글 실시간 공유 중", true);
         render();
       } else {
         mergeComments([]);
-        setSync(result.reason || "실시간 댓글 대기 · 로컬 JSON으로 보낼 수 있습니다.");
+        setSync(result.reason || "댓글은 이 기기에 저장되고 파일로 보낼 수 있어요.");
       }
     } catch (error) {
       mergeComments([]);
-      setSync(`로컬 댓글 모드 · ${error.message || "실시간 연결 실패"}`);
+      setSync("댓글은 이 기기에 저장돼요. 끝나면 파일로 보내 주세요.");
     }
   }
 }
