@@ -2,12 +2,26 @@
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0d7469"><title>조합 예시 · Problem Atom</title>
 <link rel="stylesheet" href="site-shell.css"><link rel="stylesheet" href="motif-library.css">
+<link rel="stylesheet" href="sandbox.css">
 <link rel="stylesheet" href="vendor/katex/katex.min.css">
-<script defer src="vendor/katex/katex.min.js"></script><script defer src="motif-library.js"></script>
+<script defer src="vendor/katex/katex.min.js"></script><script defer src="motif-library.js"></script><script defer src="combination-examples.js"></script>
 </head><body>
 <header class="global-header"><a class="global-brand" href="index.html"><b>PA</b><span>문항 연구 시스템</span></a>
 <nav class="global-nav" aria-label="주요 페이지"><a href="dashboard.html">기출 현황</a><a href="promotion-board.html">승격 대기 자산</a><a href="asset-library.html">공유 자산</a><a href="motif-library.html" aria-current="page">조합 예시</a></nav></header>
 <main><p class="eyebrow">SEMINAR 01 · 풀이의 연결을 재사용하기</p><h1>조합 예시</h1>
+<section class="experiment-panel" aria-labelledby="experimentTitle">
+<h2 id="experimentTitle">요소를 조합한 실험 문항</h2>
+<p>검산한 생성 규칙 안에서 요소와 수치를 바꾼 문항입니다. 구조를 선택하거나 포함할 요소를 골라 결과를 비교해 보세요. 성립 검산과 고품질 출제 승인은 별도입니다.</p>
+<div class="experiment-controls">
+<label>조합 구조<select id="exampleFamily"><option value="">전체 구조</option></select></label>
+<label>포함할 요소<select id="exampleElement"><option value="">전체 요소</option></select></label>
+<button id="randomExample" type="button">다시 랜덤 조합</button><button id="saveExample" type="button">이 문항 저장</button>
+</div>
+<p id="exampleStatus" role="status" aria-live="polite">검산된 문항을 불러오는 중입니다.</p><div id="generatedExample"></div>
+<div class="experiment-controls"><label>재현 번호<input id="exampleSeed" type="text"></label><button id="replayExample" type="button">같은 문항 보기</button></div>
+<details><summary>자산 갱신과 아직 연결되지 않은 요소</summary><p id="adapterStatus"></p><div id="unadapted"></div></details>
+</section>
+<h2>원문에서 추출한 조립 예시</h2>
 <p class="intro">기존 문제에서 요소들이 연결되는 방식을 분석한 예시입니다. 핵심 발견과 각 풀이 묶음의 전제·역할·변경 가능한 부분을 확인하세요.</p>
 <div class="notice"><strong>원형 레시피 4개 · 풀이 묶음 13개</strong><span>AI 재분석 · 사람 검수 대기</span><p>원형 검증 35개 통과. 실제 조합에는 새 문항의 풀이와 검수가 필요합니다.</p></div>
 <section class="filters" aria-label="자산 검색"><label for="search">내용 찾기<input id="search" type="search" placeholder="원점, 적분, 부등식, 원자 ID"></label><label for="author">분석지<select id="author"><option value="">전체 분석지</option></select></label></section>

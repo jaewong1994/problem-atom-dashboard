@@ -501,6 +501,7 @@ async function boot() {
   renderRatified();
   renderMath($("ratifiedList"));
   bind();
+  window.PAGroupReview?.init();
   connectComments();
 }
 

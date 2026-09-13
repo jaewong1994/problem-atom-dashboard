@@ -1,6 +1,8 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v17`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v18`;
 const SHELL = [
+  "./review-groups.json", "./group-review-ledger.json", "./group-review.js", "./sandbox.css",
+  "./combination-examples.json", "./combination-examples.js",
   "./motif-library.html",
   "./motif-library.css",
   "./motif-library.js",
@@ -62,7 +64,7 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (request.mode === "navigate" || url.pathname.endsWith("motif-library.json") || url.pathname.endsWith("dashboard-data.json") || url.pathname.endsWith("progress-summary.json") || url.pathname.endsWith("asset-library.json") || url.pathname.endsWith("promotion-board.json") || url.pathname.endsWith("realtime-config.js")) {
+  if (request.mode === "navigate" || /\/(review-groups|group-review-ledger|combination-examples)\.json$/.test(url.pathname) || url.pathname.endsWith("motif-library.json") || url.pathname.endsWith("dashboard-data.json") || url.pathname.endsWith("progress-summary.json") || url.pathname.endsWith("asset-library.json") || url.pathname.endsWith("promotion-board.json") || url.pathname.endsWith("realtime-config.js")) {
     event.respondWith(networkFirst(request));
     return;
   }

@@ -14,6 +14,8 @@ ROOT = Path(__file__).resolve().parent
 SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
+    "review-groups.json", "group-review-ledger.json", "group-review.js", "sandbox.css",
+    "combination-examples.json", "combination-examples.js",
     "motif-library.html",
     "motif-library.css",
     "motif-library.js",
@@ -69,6 +71,14 @@ def merge_progress() -> None:
 
 
 def build_site() -> None:
+    from build_sandbox import build
+    build(ROOT)
+    # The published bank must pass independent symbolic checks on every build.
+    import unittest
+    from test_sandbox import SandboxTests
+    result = unittest.TextTestRunner(verbosity=1).run(unittest.defaultTestLoader.loadTestsFromTestCase(SandboxTests))
+    if not result.wasSuccessful():
+        raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")
     if SITE.exists():
         if SITE.parent != ROOT or SITE.name != "_site":
             raise RuntimeError("빌드 폴더 경로 검증 실패")

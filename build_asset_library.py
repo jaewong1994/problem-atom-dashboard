@@ -48,6 +48,8 @@ def build() -> None:
         "reviewQueue": review_entities + review_questions,
     }
     OUTPUT.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    from build_sandbox import build as rebuild_sandbox
+    rebuild_sandbox(ROOT)
     print(
         f"공유 자산 생성: 엔터티 {len(entities)}, 문항 {len(questions)}, "
         f"문항군 {len(families)}, 모의고사 {len(mock_exams)}, 검토 대기 {len(review_entities) + len(review_questions)}"
