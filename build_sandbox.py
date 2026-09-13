@@ -24,8 +24,8 @@ GROUPS = [
   '다항식 F,w에 대해 G(x)=∫ₐˣ(F(x)−F(t))w(t)dt이면 G′(x)=F′(x)∫ₐˣw(t)dt. 곱의 미분과 정적분의 미분으로 유도한다.',
   '일반적인 이변수 함수의 미분 공식과 다항식 가족에서의 유도는 적용 범위가 다르다. 공식·유도·항등식 근거의 역할을 유지한다.'),
  ('sign','정적분의 부호와 엄격한 증가', [('CON',2),('DEC',1,True),('CON',30)],
-  'w가 비음수 다항식이고 영다항식이 아니면 모든 양의 길이 구간의 적분이 양수이므로 ∫ₐˣw(t)dt의 부호는 x−a와 같다.',
-  '임의의 비음수 함수에는 그대로 확장하지 않는다. 일정 구간에서 0인 함수는 구간 전체의 적분도 0일 수 있다. 성질과 적용 판단은 별도 역할이다.'),
+  '다항식 w의 값이 모든 x에서 0보다 크거나 같고, w가 항상 0인 것은 아니라고 하자. 그러면 길이가 0보다 큰 모든 구간에서 적분값이 0보다 크다. 따라서 ∫ₐˣw(t)dt는 x>a일 때 양수, x<a일 때 음수, x=a일 때 0이다.',
+  '함숫값이 0보다 크거나 같다는 조건만으로는 충분하지 않다. 어떤 구간에서 함수가 계속 0이면 그 구간의 적분도 0이다. 여기서는 w가 다항식이고 항상 0인 것은 아니라는 조건을 함께 사용한다.'),
  ('collision','영점 충돌과 극값 개수', [('DEC',3),('SKL',4),('STR',5),('PAT',6),('CON',32),('SKL',1,True),('STR',1,True),('PAT',1,True),('CON',29)],
   '도함수의 부호가 (x−r)(x−s)(x−a)의 부호와 같고 r<s이면 a=r 또는 a=s일 때만 극값이 1개이다. 서로 다른 세 영점에서는 3개이다.',
   '도함수 부호가 각 영점 사이에서 일정한 이 가족으로 제한한다. 극값에서 도함수 부호가 바뀐다는 문장을 임의 함수의 일반 명제로 승인하지 않는다. 부호표·판단·전략·유형은 연결하되 하나로 합치지 않는다.'),
@@ -112,6 +112,8 @@ def make_examples(candidates, motifs, fingerprint):
     return bank
 
 def build(root=ROOT):
+    from plain_language import readable, refresh_public
+    refresh_public(root)
     read=lambda n:json.loads((root/n).read_text(encoding='utf-8'))
     board=read('promotion-board.json'); assets=read('asset-library.json'); motifs=read('motif-library.json')
     candidates={c['id']:{**c,'author':a['name']} for a in board['instructors'] for c in a['candidates']}
@@ -139,13 +141,15 @@ def build(root=ROOT):
           'composition':['24개 합성 다항식을 독립 인수분해하여 서로 다른 실근 4개와 단순근 1개 확인'],
           'tangent':['x³−3x의 같은 기울기 후보 −1,1 모두 확인','x³의 원점 접선은 삼중 접촉이므로 일반적인 두 교점 규칙에서 제외']
         }[key]
+        group=readable(group)
         group['revision']=digest(group); groups.append(group); used.update(ids)
     for i,c in candidates.items():
         if i in used: continue
         independent=i in {'PA-CAND-SKL-20260910-033','PA-CAND-SKL-20260914-001'}
         group=dict(id=i,title=c['name'],proposal=c['definition'],guard='비율은 u=0 제외, 합·차는 u=0 포함. |u|−u는 u<0에서 −2u입니다.' if independent else '신규 자산: 의미 비교와 연결 규칙 검토가 필요합니다.',members=[{k:c.get(k) for k in ('id','name','definition','kind','author','stage','fields','source_question_id')}],relation='독립 스킬 · 분리 요청 반영' if independent else '신규 개별 검토',reason='부호만 남기는 변환과 크기가 남는 변환은 적용 전제와 출력이 달라 따로 보관합니다.' if independent else '아직 검증된 묶음 규칙이 없습니다.')
+        group=readable(group)
         group['revision']=digest(group);groups.append(group)
-    report=checks()
+    report=readable(checks())
     approved={e['id']:e for e in assets.get('entities',[]) if e.get('status')=='approved'}
     adapted={};invalid=[]
     known_motifs={m['id'] for r in motifs['recipes'] for m in r['motifs']}

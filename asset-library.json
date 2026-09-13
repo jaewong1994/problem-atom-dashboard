@@ -36,11 +36,11 @@
     {
       "status": "ai_candidate",
       "id": "PA-CAND-DEC-20260908-001",
-      "name": "비음수 적분 인수의 부호를 적분 방향으로 판단",
+      "name": "0보다 크거나 같은 함수를 적분할 때 구간 방향으로 부호 판단",
       "tags": [
         "KICE-2021-06-Q20"
       ],
-      "definition": "피적분함수가 음이 아니고 항등적으로 0이 아니면, a에서 x까지의 적분 부호는 x-a의 부호와 일치한다.",
+      "definition": "피적분함수가 음이 아니고 모든 입력에서 0이 아니면, a에서 x까지의 적분 부호는 x-a의 부호와 일치한다.",
       "updatedAt": "2026-09-08",
       "kind": "decision",
       "sourceCount": 1
@@ -107,7 +107,7 @@
         "KICE-2021-06-Q20",
         "민재웅"
       ],
-      "definition": "f(t)≥0이고 항등적으로 0이 아니면 I(x)=∫_a^x f(t)dt는 증가함수이고 I(a)=0이다. 따라서 I(x)는 x>a에서 양, x<a에서 음, 즉 x-a와 부호가 같다.",
+      "definition": "f(t)≥0이고 모든 입력에서 0이 아니면 I(x)=∫_a^x f(t)dt는 증가함수이고 I(a)=0이다. 따라서 I(x)는 x>a에서 양, x<a에서 음, 즉 x-a와 부호가 같다.",
       "updatedAt": "2026-09-10",
       "origin": "sheet",
       "kind": "concept",
