@@ -115,3 +115,5 @@ code { font-family: var(--font-mono); }
   * { transition: none !important; }
   button:active { transform: none; }
 }
+
+.empty[hidden]{display:none}

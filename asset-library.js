@@ -123,6 +123,7 @@ function render() {
   $("resultCount").textContent = `${shown.length}개`;
   $("assetGrid").innerHTML = shown.map(cardHtml).join("");
   $("empty").hidden = shown.length > 0;
+  $("empty").querySelector("strong").textContent = records.length ? "조건에 맞는 자산이 없어요." : "아직 확정된 자산이 없어요.";
   if (window.PAMath) window.PAMath.render($("assetGrid"));
   $("assetGrid").querySelectorAll(".comment-form").forEach((form) => {
     form.addEventListener("submit", (event) => {
@@ -220,7 +221,7 @@ async function start() {
       ...(data.questions || []).map((item) => ({ ...item, kind: "question" })),
       ...(data.families || []).map((item) => ({ ...item, kind: "family" })),
       ...(data.mockExams || []).map((item) => ({ ...item, kind: "mockExam" })),
-      ...(data.reviewQueue || []),
+      // Pending candidates belong exclusively to promotion-board.html.
     ];
     const kinds = ["all", "concept", "skill", "decision", "problem_pattern", "strategy", "question", "family", "mockExam"];
     $("filters").innerHTML = kinds.map((kind) => `<button class="filter${kind === "all" ? " active" : ""}" data-kind="${kind}" type="button">${labels[kind]}</button>`).join("");
