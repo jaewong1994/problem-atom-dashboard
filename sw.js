@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v16`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v17`;
 const SHELL = [
   "./motif-library.html",
   "./motif-library.css",
