@@ -9,28 +9,29 @@
 </head><body>
 <header class="global-header"><a class="global-brand" href="index.html"><b>PA</b><span>문항 연구 시스템</span></a>
 <nav class="global-nav" aria-label="주요 페이지"><a href="dashboard.html">기출 현황</a><a href="promotion-board.html">승격 대기 자산</a><a href="asset-library.html">공유 자산</a><a href="motif-library.html" aria-current="page">조합 예시</a></nav></header>
-<main><p class="eyebrow">SEMINAR 01 · 풀이의 연결을 재사용하기</p><h1>조합 예시</h1>
-<section class="experiment-panel" aria-labelledby="cpTitle">
-<h2 id="cpTitle">박스를 선택해서 문제 만들기</h2>
-<p>첫 개발 범위는 ‘정적분의 부호로 극값 개수 판단하기’입니다. 아래 선택은 실제 조건과 풀이를 바꿉니다. 계산 부담과 추론 단계를 먼저 비교한 뒤 문항을 만들어 보세요.</p>
-<div id="cpOptions">
-<fieldset><legend>어떤 형태로 함수를 알려줄까요?</legend>
-<label><input type="radio" name="cpPresentation" value="factored" checked> 도함수를 곱으로 정리해서 주기 — 계산을 줄임</label>
-<label><input type="radio" name="cpPresentation" value="expanded"> 전개된 함수 식 주기 — 미분하고 방정식 풀기</label>
-<label><input type="radio" name="cpPresentation" value="conditions"> 두 미분계수 조건 주기 — 도함수의 계수를 먼저 찾기</label>
+<main class="composer-page"><p class="eyebrow">PROBLEM ATOM · 문항 제작</p><h1>생각을 고르고, 문제를 만드세요.</h1>
+<p class="intro">계산은 가볍게, 생각은 깊게. 선택할 때마다 예상 풀이가 달라집니다.</p>
+<section class="experiment-panel composer" aria-labelledby="cpTitle">
+<div class="composer-heading"><div><span class="cp-kicker">지금 만들 수 있는 문제</span><h2 id="cpTitle">정적분으로 정의된 함수의 극값</h2></div><span class="cp-badge">첫 번째 제작 구조</span></div>
+<div class="composer-layout"><div class="composer-settings"><div id="cpOptions">
+<fieldset><legend><span class="step-number">1</span> 계산을 얼마나 맡길까요?</legend>
+<label class="choice"><input type="radio" name="cpPresentation" value="factored" checked><span><strong>핵심 판단에 집중</strong><small>도함수를 인수분해한 식으로 줍니다.</small><em>학생은 두 근을 바로 읽고 시작합니다.</em></span></label>
+<label class="choice"><input type="radio" name="cpPresentation" value="expanded"><span><strong>미분부터 직접</strong><small>전개된 삼차함수를 줍니다.</small><em>학생이 미분하고, 도함수가 0이 되는 값을 찾습니다.</em></span></label>
+<label class="choice"><input type="radio" name="cpPresentation" value="conditions"><span><strong>주어진 조건으로 식 찾기</strong><small>두 지점에서의 미분계수를 줍니다.</small><em>학생이 도함수의 계수를 구한 뒤 두 근을 찾습니다.</em></span></label>
 </fieldset>
-<fieldset><legend>학생이 직접 연결할 생각을 선택하세요</legend>
-<label><input id="cpSign" type="checkbox" checked> 적분의 부호를 스스로 판단하기 — 끄면 풀이 도움 제공</label>
-<label><input id="cpSelect" type="checkbox"> 추가 도함수 조건으로 두 후보 중 하나 제외하기</label>
+<fieldset><legend><span class="step-number">2</span> 어떤 생각을 더 요구할까요?</legend>
+<label class="choice"><input id="cpSign" type="checkbox" checked><span><strong>적분값을 계산하지 않고 부호 판단</strong><small>적분 구간의 방향으로 양수·음수를 판단하게 합니다.</small><em>선택 해제하면 부호 판단 힌트를 줍니다.</em></span></label>
+<label class="choice"><input id="cpSelect" type="checkbox"><span><strong>두 후보 중 하나를 골라내기</strong><small>한 점에서 도함수가 음수라는 조건을 추가합니다.</small><em>선택하면 답 1개 · 해제하면 가능한 값 2개를 모두 묻습니다.</em></span></label>
 </fieldset>
-<label>숫자 번호 <input id="cpSeed" type="number" min="0" max="999999" step="1" value="14"></label>
-</div>
-<button id="cpRandom" type="button">다른 숫자 사용</button>
-<div id="cpPreview" class="generated-example"></div>
+<details class="cp-number"><summary>문제의 숫자 바꾸기</summary><label>재현 번호 <input id="cpSeed" type="number" min="0" max="999999" step="1" value="14"></label><p>같은 번호와 선택이면 같은 문제가 만들어집니다.</p><button id="cpRandom" type="button">다른 숫자로 바꾸기</button></details>
+</div></div>
+<div class="composer-output"><div id="cpPreview"></div>
+<button id="cpCreate" class="cp-primary" type="button">이 설정으로 문제 만들기 <span aria-hidden="true">→</span></button>
 <p id="cpStatus" role="status" aria-live="polite"></p>
-<div class="experiment-controls"><button id="cpCreate" type="button">이 조합으로 문제 만들기</button><button id="cpSave" type="button" disabled>문항과 선택 설정 저장</button></div>
-<div id="cpResult" class="generated-example"></div>
-</section>
+<div id="cpResult" class="cp-paper"><div class="cp-empty"><span class="cp-kicker">문항 미리보기</span><h3>어떤 생각을 담을까요?</h3><p>왼쪽에서 선택한 뒤 문제를 만들어 보세요.<br>문항과 정답·풀이가 여기에 나타납니다.</p></div></div>
+<button id="cpSave" type="button" disabled>문항·풀이 저장</button>
+</div></div></section>
+<details class="cp-archive"><summary>기존 조합 예시와 원문 분석 둘러보기 <span>검산한 문항 72개 · 원형 분석 4개</span></summary>
 <section class="experiment-panel" aria-labelledby="experimentTitle">
 <h2 id="experimentTitle">이전에 검산한 문항 둘러보기</h2>
 <p>검산한 생성 규칙 안에서 요소와 수치를 바꾼 문항입니다. 구조를 선택하거나 포함할 요소를 골라 결과를 비교해 보세요. 성립 검산과 고품질 출제 승인은 별도입니다.</p>
@@ -49,5 +50,5 @@
 <section class="filters" aria-label="자산 검색"><label for="search">내용 찾기<input id="search" type="search" placeholder="원점, 적분, 부등식, 원자 ID"></label><label for="author">분석지<select id="author"><option value="">전체 분석지</option></select></label></section>
 <p id="result-count" role="status" aria-live="polite">자산을 불러오는 중입니다.</p><section id="recipes" aria-label="원형 레시피"></section>
 <section class="transfers"><h2>다른 묶음과 연결할 때</h2><p>다음은 재사용 방향입니다. 바로 연결되는 완성 문항을 뜻하지 않습니다.</p><div id="transfers"></div></section>
-<footer>2026.09.14 반영 · 원문과 전체 재검산 풀이는 운영자 보관 자료에서 확인합니다.</footer></main>
+</details><footer>2026.09.14 반영 · 원문과 전체 재검산 풀이는 운영자 보관 자료에서 확인합니다.</footer></main>
 </body></html>
