@@ -1,5 +1,5 @@
 {
-  "version": "f0153e613bc1629e19f334ce16642448f706363b06ff00ec4f7dd8842140e123",
+  "version": "9d8178c27fbe7b53593176e404b50a8fac68610bc79365f686f4b6e73e7a30f4",
   "groups": [
     {
       "id": "derivative",
@@ -420,24 +420,6 @@
             "failure_cost": "wrong_answer"
           },
           "source_question_id": "KICE-2021-06-Q14"
-        },
-        {
-          "id": "PA-CAND-SKL-20260910-033",
-          "name": "|★|/★, |★|±★ 꼴을 아는 함수로 바꾸기",
-          "definition": "절댓값이 섞인 |★|/★, |★|±★ 꼴을 ★의 부호에 따라 ±1, 2★ 또는 0으로 고쳐 이미 아는 구간별 함수로 바꾼다.",
-          "kind": "skill",
-          "author": "김상범",
-          "stage": "ai_candidate",
-          "fields": {
-            "input": "절댓값이 포함된 식 |★|/★, |★|±★",
-            "action": "★의 부호로 경우를 나눠 절댓값을 없앤 익숙한 함수로 다시 쓴다",
-            "output": "구간별로 정의된 아는 함수",
-            "action_type": "representation_change",
-            "error_conditions": [
-              "★=0에서의 정의 누락"
-            ]
-          },
-          "source_question_id": "KICE-2021-06-Q14"
         }
       ],
       "relation": "검토 단위 · 개념/판단/스킬/전략의 역할 유지",
@@ -447,7 +429,7 @@
         "|x|, |x²|, |x³|의 좌우 미분계수 비교",
         "24개 합성 문항에서 합성 후 단순근만 선택"
       ],
-      "revision": "00859e62a662ef13d38e693f886626b6dd7197e5999bde758f195ca28b0e1924"
+      "revision": "78369f9fb7a70121fa3fe1301c145e90578a7a7b1dbab46888155f138bb0c555"
     },
     {
       "id": "shift",
@@ -903,6 +885,67 @@
         "x³의 원점 접선은 삼중 접촉이므로 일반적인 두 교점 규칙에서 제외"
       ],
       "revision": "15c3972fc35f916c1c4d822e263ea010aa92fddd0571703bb4bb854f2ee73687"
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-033",
+      "title": "절댓값 비율 |u|/u를 부호함수로 바꾸기",
+      "proposal": "u>0이면 |u|/u=1, u<0이면 |u|/u=−1이다. u=0에서는 원래 식이 정의되지 않으므로 정의역에서 제외하고, 별도로 함숫값이 주어진 경우 그 정의를 따른다.",
+      "guard": "비율은 u=0 제외, 합·차는 u=0 포함. |u|−u는 u<0에서 −2u입니다.",
+      "members": [
+        {
+          "id": "PA-CAND-SKL-20260910-033",
+          "name": "절댓값 비율 |u|/u를 부호함수로 바꾸기",
+          "definition": "u>0이면 |u|/u=1, u<0이면 |u|/u=−1이다. u=0에서는 원래 식이 정의되지 않으므로 정의역에서 제외하고, 별도로 함숫값이 주어진 경우 그 정의를 따른다.",
+          "kind": "skill",
+          "author": "김상범",
+          "stage": "ai_candidate",
+          "fields": {
+            "input": "|u(x)|/u(x), 단 u(x)≠0",
+            "action": "u(x)의 양수·음수 구간을 구해 각각 1과 −1로 치환한다.",
+            "output": "u의 크기는 사라지고 부호만 남는 구간별 상수함수",
+            "action_type": "representation_change",
+            "error_conditions": [
+              "u(x)=0에 임의로 0을 대입하지 않는다.",
+              "u(x)=0이라는 사실만으로 좌우 부호가 바뀐다고 판단하지 않는다."
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q14"
+        }
+      ],
+      "relation": "독립 스킬 · 분리 요청 반영",
+      "reason": "부호만 남기는 변환과 크기가 남는 변환은 적용 전제와 출력이 달라 따로 보관합니다.",
+      "revision": "8b491502b61bcb2cfb6613c8ace2cd52b83803c196b17d500598aa704a50cc56"
+    },
+    {
+      "id": "PA-CAND-SKL-20260914-001",
+      "title": "절댓값 합·차 |u|±u를 구간별 식으로 바꾸기",
+      "proposal": "|u|+u는 u≥0에서 2u, u<0에서 0이다. |u|−u는 u≥0에서 0, u<0에서 −2u이다. 두 식 모두 u=0에서 0이며, u가 실수로 정의되는 모든 곳에서 사용할 수 있다.",
+      "guard": "비율은 u=0 제외, 합·차는 u=0 포함. |u|−u는 u<0에서 −2u입니다.",
+      "members": [
+        {
+          "id": "PA-CAND-SKL-20260914-001",
+          "name": "절댓값 합·차 |u|±u를 구간별 식으로 바꾸기",
+          "definition": "|u|+u는 u≥0에서 2u, u<0에서 0이다. |u|−u는 u≥0에서 0, u<0에서 −2u이다. 두 식 모두 u=0에서 0이며, u가 실수로 정의되는 모든 곳에서 사용할 수 있다.",
+          "kind": "skill",
+          "author": "김상범",
+          "stage": "ai_candidate",
+          "fields": {
+            "input": "|u(x)|+u(x) 또는 |u(x)|−u(x)",
+            "action": "u(x)의 부호로 구간을 나누어 한쪽 구간은 0, 다른 쪽은 2u(x) 또는 −2u(x)로 쓴다.",
+            "output": "부호에 따라 한쪽 부분만 남긴 구간별 함수; 각각 2max(u,0), 2max(−u,0)",
+            "action_type": "representation_change",
+            "error_conditions": [
+              "u<0에서 |u|−u=−2u이다. 2u로 쓰면 부호 오류다.",
+              "u(x)=0은 정의역에서 제외하지 않는다.",
+              "u 자체의 정의역 제한은 그대로 유지한다."
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q14"
+        }
+      ],
+      "relation": "독립 스킬 · 분리 요청 반영",
+      "reason": "부호만 남기는 변환과 크기가 남는 변환은 적용 전제와 출력이 달라 따로 보관합니다.",
+      "revision": "f88927dbe4522820dd89530976d41c4497cb8ca04e55f465f15f3e3086778605"
     }
   ],
   "checks": [

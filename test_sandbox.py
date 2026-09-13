@@ -77,6 +77,13 @@ class SandboxTests(unittest.TestCase):
         w=s.Piecewise((0,x<=1),((x-1)**2,True))
         self.assertEqual(s.integrate(w,(x,0,1)),0)
 
+    def test_absolute_transform_split(self):
+        for value in (-9,-1,s.Rational(-1,3),0,s.Rational(1,3),1,9):
+            self.assertEqual(abs(value)+value,2*value if value>=0 else 0)
+            self.assertEqual(abs(value)-value,0 if value>=0 else -2*value)
+            if value:self.assertEqual(abs(value)/value,1 if value>0 else -1)
+        self.assertNotEqual(abs(-3)-(-3),2*(-3))
+
     def test_shift_and_contact_candidates(self):
         x=s.symbols('x',real=True);F=x**3-3*x*x-9*x-12
         self.assertEqual({(-v,-F.subs(x,v)) for v in s.solve(s.diff(F,x),x)},{(1,7),(-3,39)})

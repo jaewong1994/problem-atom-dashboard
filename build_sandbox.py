@@ -29,7 +29,7 @@ GROUPS = [
  ('collision','영점 충돌과 극값 개수', [('DEC',3),('SKL',4),('STR',5),('PAT',6),('CON',32),('SKL',1,True),('STR',1,True),('PAT',1,True),('CON',29)],
   '도함수의 부호가 (x−r)(x−s)(x−a)의 부호와 같고 r<s이면 a=r 또는 a=s일 때만 극값이 1개이다. 서로 다른 세 영점에서는 3개이다.',
   '도함수 부호가 각 영점 사이에서 일정한 이 가족으로 제한한다. 극값에서 도함수 부호가 바뀐다는 문장을 임의 함수의 일반 명제로 승인하지 않는다. 부호표·판단·전략·유형은 연결하되 하나로 합치지 않는다.'),
- ('absolute','원점 상쇄와 절댓값 꺾임', [('CON',7),('CON',8),('DEC',9),('SKL',33)],
+ ('absolute','원점 상쇄와 절댓값 꺾임', [('CON',7),('CON',8),('DEC',9)],
   '다항식 P의 |P|는 단순근에서만 미분 불가능하다. sgn(x)|P(x)|는 원점의 연속성을 맞춰 P(0)=0이면 원점에서 미분 가능하므로 원점 밖 단순근을 따로 센다.',
   '삼중근도 부호가 바뀌지만 |P|의 꺾임은 아니다. sgn(x)의 원점 규칙을 원점 밖에 적용하지 않는다.'),
  ('shift','이동량 후보를 만들고 선택', [('SKL',10),('STR',11),('PAT',12)],
@@ -142,7 +142,8 @@ def build(root=ROOT):
         group['revision']=digest(group); groups.append(group); used.update(ids)
     for i,c in candidates.items():
         if i in used: continue
-        group=dict(id=i,title=c['name'],proposal=c['definition'],guard='신규 자산: 의미 비교와 연결 규칙 검토가 필요합니다.',members=[{k:c.get(k) for k in ('id','name','definition','kind','author','stage','fields','source_question_id')}],relation='신규 개별 검토',reason='아직 검증된 묶음 규칙이 없습니다.')
+        independent=i in {'PA-CAND-SKL-20260910-033','PA-CAND-SKL-20260914-001'}
+        group=dict(id=i,title=c['name'],proposal=c['definition'],guard='비율은 u=0 제외, 합·차는 u=0 포함. |u|−u는 u<0에서 −2u입니다.' if independent else '신규 자산: 의미 비교와 연결 규칙 검토가 필요합니다.',members=[{k:c.get(k) for k in ('id','name','definition','kind','author','stage','fields','source_question_id')}],relation='독립 스킬 · 분리 요청 반영' if independent else '신규 개별 검토',reason='부호만 남기는 변환과 크기가 남는 변환은 적용 전제와 출력이 달라 따로 보관합니다.' if independent else '아직 검증된 묶음 규칙이 없습니다.')
         group['revision']=digest(group);groups.append(group)
     report=checks()
     approved={e['id']:e for e in assets.get('entities',[]) if e.get('status')=='approved'}
