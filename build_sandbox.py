@@ -158,7 +158,7 @@ def build(root=ROOT):
         if not asset or role not in known_motifs or asset_revision(asset)!=binding.get('asset_revision'):
             invalid.append(binding.get('asset_id'));continue
         adapted.setdefault(role,[]).append(dict(id=asset['id'],name=asset['name'],source_motif_id=role,approved=True))
-    examples=make_examples(adapted,motifs,fingerprint)
+    examples=readable(make_examples(adapted,motifs,fingerprint))
     # A mapping manifest is rebuilt on every asset-data update. Unsupported assets stay visible.
     represented={m['source_motif_id'] for e in examples for m in e['elements']}
     unadapted=[{'id':m['id'],'name':m['name']} for r in motifs['recipes'] for m in r['motifs'] if m['id'] not in represented]
