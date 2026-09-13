@@ -1,6 +1,10 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v15`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v16`;
 const SHELL = [
+  "./motif-library.html",
+  "./motif-library.css",
+  "./motif-library.js",
+  "./motif-library.json",
   "./",
   "./index.html",
   "./entry.css",
@@ -58,7 +62,7 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (request.mode === "navigate" || url.pathname.endsWith("dashboard-data.json") || url.pathname.endsWith("progress-summary.json") || url.pathname.endsWith("asset-library.json") || url.pathname.endsWith("promotion-board.json") || url.pathname.endsWith("realtime-config.js")) {
+  if (request.mode === "navigate" || url.pathname.endsWith("motif-library.json") || url.pathname.endsWith("dashboard-data.json") || url.pathname.endsWith("progress-summary.json") || url.pathname.endsWith("asset-library.json") || url.pathname.endsWith("promotion-board.json") || url.pathname.endsWith("realtime-config.js")) {
     event.respondWith(networkFirst(request));
     return;
   }

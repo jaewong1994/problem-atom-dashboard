@@ -14,6 +14,10 @@ ROOT = Path(__file__).resolve().parent
 SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
+    "motif-library.html",
+    "motif-library.css",
+    "motif-library.js",
+    "motif-library.json",
     "index.html",
     "entry.css",
     "entry.js",
