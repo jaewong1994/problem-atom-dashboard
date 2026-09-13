@@ -117,7 +117,7 @@ def build(root=ROOT):
     candidates={c['id']:{**c,'author':a['name']} for a in board['instructors'] for c in a['candidates']}
     binding_path=root/'combination-bindings.json'
     bindings=read('combination-bindings.json') if binding_path.exists() else {'bindings':[]}
-    engine_revision=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    engine_revision=digest(Path(__file__).read_text(encoding='utf-8'))
     fingerprint=digest([board,assets,motifs,bindings,engine_revision])
     groups=[]; used=set()
     for key,title,refs,proposal,guard in GROUPS:
@@ -145,7 +145,7 @@ def build(root=ROOT):
         group=dict(id=i,title=c['name'],proposal=c['definition'],guard='신규 자산: 의미 비교와 연결 규칙 검토가 필요합니다.',members=[{k:c.get(k) for k in ('id','name','definition','kind','author','stage','fields','source_question_id')}],relation='신규 개별 검토',reason='아직 검증된 묶음 규칙이 없습니다.')
         group['revision']=digest(group);groups.append(group)
     report=checks()
-    approved={e['id']:e for e in assets.get('entities',[]) if e.get('status') in {'approved','reviewed'}}
+    approved={e['id']:e for e in assets.get('entities',[]) if e.get('status')=='approved'}
     adapted={};invalid=[]
     known_motifs={m['id'] for r in motifs['recipes'] for m in r['motifs']}
     for binding in bindings.get('bindings',[]):
@@ -160,7 +160,7 @@ def build(root=ROOT):
     supported={m['id'] for role,items in adapted.items() if role in represented for m in items}
     unadapted += [{'id':e['id'],'name':e.get('name',e['id'])+(' · 내용 변경으로 연결 재검토' if e['id'] in invalid else '')} for e in assets.get('entities',[]) if e['id'] not in supported]
     output={'version':fingerprint,'groups':groups,'checks':report,'example_count':len(examples)}
-    bank={'version':fingerprint,'examples':examples,'unadapted':unadapted,'approved_count':len(assets.get('entities',[])),
+    bank={'version':fingerprint,'examples':examples,'unadapted':unadapted,'approved_count':len(approved),
           'policy':'현재 세미나 후보 기반 실험입니다. 신규 자산은 데이터 갱신 때 다시 검색하며, 미지원 자산은 연결 규칙을 만든 뒤 사용합니다.'}
     for name,value in [('review-groups.json',output),('combination-examples.json',bank)]:
         (root/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
