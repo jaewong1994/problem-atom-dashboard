@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parent
 SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
+    "composer-engine.js", "composer-ui.js",
     "review-groups.json", "group-review-ledger.json", "group-review.js", "sandbox.css",
     "combination-examples.json", "combination-examples.js",
     "motif-library.html",
@@ -76,7 +77,9 @@ def build_site() -> None:
     # The published bank must pass independent symbolic checks on every build.
     import unittest
     from test_sandbox import SandboxTests
-    result = unittest.TextTestRunner(verbosity=1).run(unittest.defaultTestLoader.loadTestsFromTestCase(SandboxTests))
+    from test_composer import ComposerTests
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(SandboxTests),unittest.defaultTestLoader.loadTestsFromTestCase(ComposerTests)])
+    result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")
     if SITE.exists():

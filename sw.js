@@ -1,6 +1,7 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v18`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v19`;
 const SHELL = [
+  "./composer-engine.js", "./composer-ui.js",
   "./review-groups.json", "./group-review-ledger.json", "./group-review.js", "./sandbox.css",
   "./combination-examples.json", "./combination-examples.js",
   "./motif-library.html",
