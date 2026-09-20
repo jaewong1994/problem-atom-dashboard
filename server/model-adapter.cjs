@@ -11,7 +11,7 @@ function requestBody(job,registry){
   instructions:contract.INSTRUCTIONS,
   input:JSON.stringify({request_id:canonical.request_id,registry_revision:canonical.registry_revision,
    brief:canonical.brief,seed_plan:canonical.seed_plan,knowledge:canonical.knowledge}),
-  text:{format:{type:'json_schema',name:'math_item',strict:true,schema:contract.RESULT_SCHEMA}}};
+  text:{format:{type:'json_schema',name:'math_item',strict:true,schema:canonical.response_schema}}};
 }
 async function generate(job,registry,{apiKey=process.env.OPENAI_API_KEY,fetcher=fetch}={}){
  if(!apiKey)throw Error('서버의 OPENAI_API_KEY 설정이 필요합니다.');

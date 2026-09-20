@@ -1,7 +1,8 @@
 {
-  "mode": "codex_handoff",
+  "mode": "codex_chatgpt_session",
+  "session_model": "gpt-5.6-sol",
   "api_model": "gpt-5.6-sol",
   "api_endpoint": null,
   "automatic_model_fallback": false,
-  "status": "API 서버와 키 설정 전. Codex 아스트라에 요청 파일을 전달하는 방식은 사용 가능."
+  "status": "이 PC의 연결 도우미에서 Codex ChatGPT 로그인으로 제작. API 키 불필요. 현재 대화 이력은 자동 전달하지 않음."
 }

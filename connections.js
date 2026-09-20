@@ -1,97 +1,82 @@
 (async()=>{'use strict';
 const $=id=>document.getElementById(id),el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!=null)e.textContent=text;if(cls)e.className=cls;return e;};
-const button=(text,fn,cls)=>{const b=el('button',text,cls);b.type='button';b.onclick=fn;return b;};
+const btn=(text,fn,cls)=>{const b=el('button',text,cls);b.type='button';b.onclick=fn;return b;};
+const clone=x=>structuredClone(x),factKey=f=>JSON.stringify([f.type,f.subject,f.object||null,f.scope]);
+function save(value,name,type='application/json'){const url=URL.createObjectURL(new Blob([typeof value==='string'?value:JSON.stringify(value,null,2)],{type})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function math(text){const p=el('p'),pattern=/\$\$([\s\S]+?)\$\$|\$([^$\n]+?)\$/g;let at=0;for(const m of text.matchAll(pattern)){p.append(document.createTextNode(text.slice(at,m.index)));const span=el('span');katex.render(m[1]||m[2],span,{displayMode:Boolean(m[1]),throwOnError:false,trust:false,maxExpand:1000});p.append(span);at=m.index+m[0].length;}p.append(document.createTextNode(text.slice(at)));return p;}
 try{
- const response=await fetch('connection-registry.json?v=c2');if(!response.ok)throw Error('자산 파일을 읽지 못했습니다.');
- const registry=await response.json(),engine=PAConnections.create(registry),ops=new Map(registry.operations.map(o=>[o.id,o]));
- let plan={facts:[],nodes:[],revision:registry.revision},choices=[],active='',advice=null;
- const bindings=()=>({f:$('bindF').value.trim(),h:$('bindH').value.trim(),a:$('bindA').value.trim()});
- const scope=()=> $('bindScope').value.trim();
- const label=f=>`${registry.types[f.type]} · ${f.subject}${f.object?' ↔ '+f.object:''}${f.scope==='main'?'':' / '+f.scope}`;
- const kinds={concept:'개념',decision:'판단',skill:'방법',strategy:'풀이 전략',problem_pattern:'문제 골격',recipe:'원문 조합',motif:'풀이 묶음',condition:'조건 카드',skeleton:'설계 골격'};
- function chosenFacts(){return choices.filter(c=>c.enabled).map(c=>c.fact);}
- function loadPreset(id){const p=registry.presets.find(p=>p.id===id);active=id;choices=p.facts.map(f=>({fact:f,enabled:true}));plan={facts:chosenFacts(),nodes:structuredClone(p.nodes),revision:registry.revision};$('planTitle').textContent=p.description;renderGivens();render();}
- function renderGivens(){const host=$('givens');host.replaceChildren();choices.forEach((c,i)=>{const l=el('label',null,'given'),input=el('input');input.type='checkbox';input.checked=c.enabled;input.onchange=()=>{choices[i].enabled=input.checked;render();};const text=el('span',registry.types[c.fact.type]);text.append(el('small',`대상 ${c.fact.subject} · 가정 ${c.fact.scope}`));l.append(input,text);host.append(l);});if(!choices.length)host.append(el('p','시작 조건을 직접 추가하거나 위의 출발점을 선택하세요.','muted'));}
- function render(){
-  plan.facts=chosenFacts();const result=engine.run(plan);advice=null;
-  document.querySelectorAll('.preset').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.id===active)));
-  $('verdict').className=result.status;
-  $('verdict').textContent=result.status==='connected'?'연결 조건 충족 · 실제 식과 정답은 별도 검산':result.status==='blocked'?'연결 금지 또는 잘못된 대상 지정이 있습니다.':'필요한 조건이나 가교가 아직 빠져 있습니다.';
-  const flow=$('flow');flow.replaceChildren();
-  for(const [i,step]of result.trace.entries()){
-   const op=ops.get(step.id),li=el('li',null,'flow-node'+(op?.kind==='bridge'?' bridge':'')),top=el('div',null,'node-top'),title=el('div',null,'node-title');
-   title.append(el('span',String(i+1).padStart(2,'0'),'number'),el('h3',step.name));top.append(title,el('span',step.status==='direct'?(step.redundant?'이미 얻은 결과':'연결 조건 충족'):step.status==='conditional'?'조건 부족':'연결 금지','status '+step.status));li.append(top);
-   if(step.outputs.length)li.append(el('p','다음에 건넬 정보: '+step.outputs.map(label).join(' / '),'node-result'));
-   if(step.missing.length)li.append(el('p','필요한 정보: '+step.missing.map(label).join(' / '),'missing'));
-   step.reasons.forEach(t=>{if(step.status==='blocked')li.append(el('p',t,'missing'));});
-   const details=el('details');details.append(el('summary','이 단계의 조건과 대상'));details.append(el('p',op?.guard_note||'미등록 단계','muted'));
-   const fields=el('div');const slots=[...new Set([...(op?.requires||[]),...(op?.provides||[]),...(op?.forbids||[])].map(p=>p.subject.slice(1)))];
-   slots.forEach(slot=>{const l=el('label',slot==='f'?'이 단계에서 다룰 함수/식':slot==='h'?'변환한 함수 이름':'값을 찾을 매개변수'),input=el('input');input.value=plan.nodes[i].bindings[slot]||'';input.maxLength=100;input.onchange=()=>{plan.nodes[i].bindings[slot]=input.value.trim();render();};l.append(input);fields.append(l);});
-   const sl=el('label','이 단계의 가정 범위'),si=el('input');si.value=plan.nodes[i].scope;si.onchange=()=>{plan.nodes[i].scope=si.value.trim();render();};sl.append(si);fields.append(sl);details.append(fields);li.append(details);
-   const controls=el('div',null,'node-tools');const up=button('위로',()=>{[plan.nodes[i-1],plan.nodes[i]]=[plan.nodes[i],plan.nodes[i-1]];render();});up.disabled=i===0;up.setAttribute('aria-label',step.name+' 위로');
-   const down=button('아래로',()=>{[plan.nodes[i+1],plan.nodes[i]]=[plan.nodes[i],plan.nodes[i+1]];render();});down.disabled=i===result.trace.length-1;down.setAttribute('aria-label',step.name+' 아래로');
-   const remove=button('빼기',()=>{plan.nodes.splice(i,1);render();});remove.setAttribute('aria-label',step.name+' 빼기');controls.append(up,down,remove);li.append(controls);flow.append(li);
-  }
-  if(!plan.nodes.length)flow.append(el('li','아래 통합 자산에서 연결할 단계를 골라 넣으세요.','muted'));
-  const adviceHost=$('bridgeAdvice');adviceHost.replaceChildren();
-  if(result.errors.length)adviceHost.append(el('p',result.errors.join(' '),'missing'));
-  const at=result.trace.findIndex(s=>s.status!=='direct');
-  if(at>=0){
-   let state=engine.prepare(plan.facts);for(let i=0;i<at;i++)state=engine.apply(state,plan.nodes[i]).facts;
-   const found=engine.suggest(state,plan.nodes[at],{bindings:bindings(),maxDepth:3,limit:1});
-   if(found.status==='bridge'){
-    advice={at,nodes:found.paths[0]};const box=el('div',null,'bridge-advice');box.append(el('strong','사이에 이 가교를 넣으면 이어집니다.'),el('p',advice.nodes.map(n=>ops.get(n.id).name).join(' → ')));
-    box.append(el('p','가교마다 필요한 계산이 추가됩니다. 아직 없는 조건은 자동으로 채우지 않습니다.','muted'),button('추천 가교 넣기',()=>{plan.nodes.splice(advice.at,0,...structuredClone(advice.nodes));render();},'primary'));adviceHost.append(box);
-   }else if(found.status!=='blocked')adviceHost.append(el('p','현재 정보만으로 사용할 가교가 없습니다. 표시된 조건이 문제에 실제로 주어지는지 확인하세요.','muted'));
-  }
-  $('workNote').textContent=result.work?`계획된 큰 작업: 식 계산 ${result.work.algebra}단위 · 경우 나누기 ${result.work.branches}단위. 원자에 적힌 잠정 작업량이며 실제 사칙연산 횟수나 난도 점수가 아닙니다.`:'';
-  renderLibrary();
+ const response=await fetch('connection-registry.json',{cache:'no-store'});if(!response.ok)throw Error('자산을 읽지 못했습니다.');
+ const registry=await response.json(),engine=PAConnections.create(registry),ops=new Map(registry.operations.map(o=>[o.id,o])),session=PASession.create(),S=PASelection;
+ let plan=S.blank(registry),disabled=new Set(),category='all',source='',onlySelected=false,calculation=0,reasoning=1,pending=null,activeJob=null,pollTimer=null,busy=false,sessionReady=false;
+ const origins=op=>[...new Set(registry.records.filter(r=>op.supports.includes(r.id)).map(r=>r.origin))];
+ const originName=o=>o==='seminar-01'?'1차 세미나':o==='seminar-02'?'2차 세미나':o==='shared'?'공유 자산':o;
+ const calcChoices=[['가볍게','전개와 큰 수 계산 줄이기'],['적당히','핵심 식을 세운 뒤 계산'],['충분히','여러 단계 계산 허용']];
+ const reasonChoices=[['바로 적용','배운 방법을 찾아 적용'],['생각 연결','두 가지 생각을 이어 풀기'],['관계 발견','숨은 관계와 경우 찾아내기']];
+ const effective=()=>({...clone(plan),facts:plan.facts.filter(f=>!disabled.has(factKey(f))).map(clone)});
+ function message(t){$('selectionMessage').textContent=t;}
+ function remember(){try{localStorage.setItem('pa-compose-boxes-v1',JSON.stringify({plan,disabled:[...disabled],brief:$('brief').value,calculation,reasoning}));}catch(_){}}
+ function acceptPlan(p){if(!p||p.revision!==registry.revision||!Array.isArray(p.nodes)||p.nodes.some(n=>!ops.has(n.id)))throw Error('자산이 바뀌었거나 알 수 없는 재료가 있습니다. 새 구성으로 시작하세요.');engine.run(p);plan={revision:p.revision,nodes:clone(p.nodes),facts:clone(p.facts)};disabled.clear();}
+ try{const d=JSON.parse(localStorage.getItem('pa-compose-boxes-v1')||'null');if(d){acceptPlan(d.plan);disabled=new Set(d.disabled||[]);$('brief').value=d.brief||'';calculation=d.calculation||0;reasoning=d.reasoning??1;}}catch(_){$('loadStatus').textContent='이전 구성의 판본이 달라 새 구성으로 시작했습니다.';}
+ if(location.hash.startsWith('#draft=')){try{const d=JSON.parse(decodeURIComponent(location.hash.slice(7)));if(d.schema!=='problem-atom/selection-draft/1')throw Error('선택 구성 오류');acceptPlan(d.plan);$('brief').value=String(d.brief||'').slice(0,5000);calculation=d.calculation||0;reasoning=d.reasoning??1;history.replaceState(null,'',location.pathname);$('loadStatus').textContent='선택한 재료를 연결 도우미로 가져왔습니다.';}catch(e){$('loadStatus').textContent=e.message;}}
+ if(![0,1,2].includes(calculation))calculation=0;if(![0,1,2].includes(reasoning))reasoning=1;
+ function renderChoices(){for(const [host,items,current,set]of [['calculationOptions',calcChoices,calculation,v=>calculation=v],['reasoningOptions',reasonChoices,reasoning,v=>reasoning=v]]){const box=$(host);box.replaceChildren();items.forEach(([name,description],i)=>{const label=el('label',null,'choice-box'),input=el('input');input.type='radio';input.name=host;input.value=String(i);input.checked=current===i;input.onchange=()=>{set(i);remember();};label.append(input,el('b',name),el('small',description));box.append(label);});}}
+ function renderFilters(){const host=$('categoryFilters');host.replaceChildren();S.categories.forEach(([key,name])=>{const count=registry.operations.filter(o=>key==='all'||S.category(o)===key).length;const b=btn('',()=>{category=key;renderFilters();renderCards();},'category');b.setAttribute('aria-pressed',String(category===key));b.append(el('span',name),el('small',String(count)));host.append(b);});const sources=$('sourceFilters');sources.replaceChildren();[['','전체'],...Array.from(new Set(registry.records.map(r=>r.origin))).map(o=>[o,originName(o)])].forEach(([value,name])=>{const b=btn(name,()=>{source=value;renderFilters();renderCards();});b.setAttribute('aria-pressed',String(source===value));sources.append(b);});}
+ function renderCards(focusId){
+  const term=$('search').value.trim().toLowerCase(),selected=new Set(plan.nodes.map(n=>n.id));
+  const rows=registry.operations.filter(o=>(category==='all'||S.category(o)===category)&&(!source||origins(o).includes(source))&&(!onlySelected||selected.has(o.id))&&(!term||[o.name,o.guard_note,...o.requires.map(p=>registry.types[p.type]),...o.provides.map(p=>registry.types[p.type])].join(' ').toLowerCase().includes(term)));
+  $('catalogTitle').textContent=S.categories.find(c=>c[0]===category)[1];$('resultCount').textContent=rows.length+'개 재료 · 선택 '+plan.nodes.length+'개';$('showAll').setAttribute('aria-pressed',String(!onlySelected));$('showSelected').setAttribute('aria-pressed',String(onlySelected));
+  const host=$('cards');host.replaceChildren();for(const o of rows){
+   const checked=selected.has(o.id),card=el('article',null,'atom-card'+(checked?' selected':'')),label=el('label',null,'card-select'),top=el('div',null,'card-top'),input=el('input');
+   input.type='checkbox';input.checked=checked;input.dataset.atom=o.id;input.setAttribute('aria-label',o.name+' 선택');input.onchange=()=>{S.toggle(plan,o.id,registry);render(o.id);};
+   top.append(el('span',S.categories.find(c=>c[0]===S.category(o))[1],'card-category'),input);label.append(top,el('h3',o.name));const [description,formula]=S.describe(o,registry);label.append(el('p',description,'card-desc'));
+   if(formula){const pv=el('div',null,'card-preview');katex.render(formula,pv,{throwOnError:false,displayMode:true,trust:false});label.append(pv);}
+   label.append(el('p','얻는 정보 · '+registry.types[o.provides[0].type],'card-result'));card.append(label);
+   const detail=el('div',null,'card-details');detail.hidden=true;detail.id='detail-'+o.id;detail.append(el('p','필요한 것: '+o.requires.map(p=>registry.types[p.type]).join(' · ')),el('p',o.guard_note));if(o.forbids.length)detail.append(el('p','함께 쓰면 안 되는 조건: '+o.forbids.map(p=>registry.types[p.type]).join(' · ')));detail.append(el('p','검토 전 자산 · '+o.supports.length+'개 원본 기록 연결'),el('code',o.id));
+   const meta=el('div',null,'card-meta'),more=btn('사용 조건',()=>{detail.hidden=!detail.hidden;more.setAttribute('aria-expanded',String(!detail.hidden));});more.setAttribute('aria-expanded','false');more.setAttribute('aria-controls',detail.id);more.setAttribute('aria-label',o.name+' 사용 조건');meta.append(el('span',origins(o).map(originName).join(' · ')),more);card.append(meta,detail);host.append(card);
+  }if(!rows.length)host.append(el('p','검색 조건에 맞는 재료가 없습니다. 다른 분류나 검색어를 골라 주세요.','empty-selection'));
+  if(focusId)host.querySelector('[data-atom="'+CSS.escape(focusId)+'"]')?.focus({preventScroll:true});
  }
- function renderLibrary(){
-  const term=$('search').value.trim().toLowerCase(),view=$('view').value,origin=$('origin').value,host=$('libraryRows');host.replaceChildren();
-  let rows=view==='records'?registry.records:registry.operations.filter(o=>view!=='bridges'||o.kind==='bridge');
-  rows=rows.filter(r=>{
-   const origins=r.origin?[r.origin]:registry.records.filter(a=>r.supports.includes(a.id)).map(a=>a.origin);
-   return (!origin||origins.includes(origin))&&(!term||JSON.stringify(r).toLowerCase().includes(term));
-  });
-  $('resultCount').textContent=`${rows.length}개 · 사람 검토 상태는 원본 그대로 유지됩니다.`;
-  for(const r of rows){
-   if(view==='records'){
-    const d=el('details',null,'record-row');d.append(el('summary',`${r.name} · ${kinds[r.kind]||r.kind}`));
-    d.append(el('p',`${r.id} · ${r.origin} · 원본 상태: ${r.source_status}`));
-    d.append(el('p',r.connection_ids.length?'연결 단계: '+r.connection_ids.map(id=>ops.get(id).name).join(' / '):'참고용으로 보존. 실행할 연결 조건은 아직 없으므로 조합에 자동 사용하지 않습니다.'));
-    d.append(el('p','원문 기록에는 수정 전 표현이 남아 있을 수 있습니다. 실제 연결은 적용 범위를 다시 적은 연결 단계로 검사합니다.','muted'));
-    const raw=el('details');raw.append(el('summary','원본 기록과 출처'),el('pre',JSON.stringify(r.payload||r,null,2)));d.append(raw);host.append(d);continue;
-   }
-   const row=el('article',null,'asset-row'),left=el('div'),right=el('div');left.append(el('h3',r.name),el('p',(r.kind==='bridge'?'가교':'풀이 단계')+' · 검토 전','meta'));
-   right.append(el('p','필요: '+r.requires.map(p=>registry.types[p.type]+(p.object?' (대응 대상 확인)':'')).join(' · ')),el('p','결과: '+r.provides.map(p=>registry.types[p.type]).join(' · ')));
-   const add=button('연결 끝에 넣기',()=>{plan.nodes.push({id:r.id,bindings:bindings(),scope:scope()});render();$('actionStatus').textContent=r.name+' 단계를 넣었습니다.';});
-   const details=el('details');details.append(el('summary','사용 조건 · 붙이면 안 되는 경우 · 출처'),el('p',r.guard_note));
-   if(r.forbids.length)details.append(el('p','금지 조건: '+r.forbids.map(p=>registry.types[p.type]).join(', ')));
-   details.append(el('p','역할: '+({representation:'표현을 바꾸는 역할',constraint:'가능한 경우를 줄이는 역할',enabler:'다른 풀이로 이어 주는 역할'}[r.influence.role]||'풀이 단계')));
-   details.append(el('p','관련 원본: '+r.supports.join(', '),'meta'));row.append(left,right,add,details);host.append(row);
-  }
+ function renderGivens(){const host=$('givenFacts');host.replaceChildren();$('factCount').textContent=effective().facts.length+'개';for(const f of plan.facts){const l=el('label',null,'given'),input=el('input');input.type='checkbox';input.checked=!disabled.has(factKey(f));input.onchange=()=>{input.checked?disabled.delete(factKey(f)):disabled.add(factKey(f));render();};l.append(input,el('span',registry.types[f.type]+' · '+f.subject+(f.object?' ↔ '+f.object:'')));host.append(l);}if(!plan.facts.length)host.append(el('p','아직 지정한 조건이 없습니다. 필요한 조건은 모델이 제안할 수 있습니다.','muted'));}
+ function render(focusId){
+  const a=S.advice(effective(),engine),result=a.result;renderCards(focusId);$('selectedCount').textContent=plan.nodes.length;$('dockCount').textContent=plan.nodes.length;$('jumpProduction').disabled=!plan.nodes.length;const host=$('selectedNodes');host.replaceChildren();
+  plan.nodes.forEach((node,i)=>{const op=ops.get(node.id),li=el('li',null,'selected-node'),title=el('div',null,'selected-title');title.append(el('span',String(i+1),'node-number'),el('h3',op.name));li.append(title);const controls=el('div',null,'selected-tools');
+   const up=btn('↑',()=>{[plan.nodes[i-1],plan.nodes[i]]=[plan.nodes[i],plan.nodes[i-1]];render();});up.disabled=i===0;up.setAttribute('aria-label',op.name+' 위로');
+   const down=btn('↓',()=>{[plan.nodes[i+1],plan.nodes[i]]=[plan.nodes[i],plan.nodes[i+1]];render();});down.disabled=i===plan.nodes.length-1;down.setAttribute('aria-label',op.name+' 아래로');const remove=btn('빼기',()=>{plan.nodes.splice(i,1);render();},'remove');remove.setAttribute('aria-label',op.name+' 빼기');controls.append(up,down,remove);li.append(controls);
+   const details=el('details');details.append(el('summary','대상·순서 세부 설정'));const fields=el('div',null,'binding-fields');const slots=[...new Set([...op.requires,...op.provides,...op.forbids].flatMap(p=>[p.subject,p.object].filter(Boolean).map(v=>v.slice(1))))];
+   slots.forEach(slot=>{const l=el('label',slot==='f'?'다룰 함수':slot==='h'?'변환한 함수':'매개변수'),input=el('input');input.value=node.bindings[slot]||'';input.maxLength=100;input.onchange=()=>{node.bindings[slot]=input.value.trim();render();};l.append(input);fields.append(l);});const l=el('label','가정 범위'),input=el('input');input.value=node.scope;input.maxLength=100;input.onchange=()=>{node.scope=input.value.trim();render();};l.append(input);fields.append(l);details.append(fields);li.append(details);host.append(li);
+  });if(!plan.nodes.length)host.append(el('li','왼쪽 카드의 체크박스를 눌러 재료를 담아 주세요.','empty-selection'));
+  const verdict=$('connectionStatus');verdict.hidden=!plan.nodes.length;verdict.className=result.status;verdict.textContent=result.status==='connected'?'연결 조건이 갖춰졌습니다. 실제 문항은 별도 검산합니다.':result.status==='blocked'?'충돌하는 조건이 있습니다. 대상을 확인해 주세요.':'조건을 보충하거나 이어 주는 요소가 필요합니다.';
+  const suggestions=$('suggestions');suggestions.replaceChildren();
+  if(a.nodes.length){const box=el('div',null,'suggestion');box.append(el('b','사이에 넣으면 연결되는 재료'),el('p',a.nodes.map(n=>ops.get(n.id).name).join(' → ')),btn('추천 연결 '+a.nodes.length+'개 넣기',()=>{plan.nodes.splice(a.at,0,...clone(a.nodes));render();}));suggestions.append(box);}
+  if(!a.nodes.length&&a.missing.length){const d=el('details');d.append(el('summary','필요한 조건 '+a.missing.length+'개 확인'));a.missing.forEach(f=>{const row=el('div',null,'missing-fact');row.append(el('span',registry.types[f.type]+' · '+f.subject),btn('조건으로 주기',()=>{S.declare(plan,f);disabled.delete(factKey(f));render();}));d.append(row);});suggestions.append(d);}
+  if(result.errors.length)suggestions.append(el('p',result.errors.join(' '),'muted'));for(const t of result.trace.filter(t=>t.status==='blocked'))suggestions.append(el('p',t.reasons.join(' '),'muted'));
+  const selectedOps=[...new Set(plan.nodes.map(n=>n.id))].map(id=>ops.get(id));const algebra=selectedOps.reduce((n,o)=>n+o.work.algebra,0),branches=selectedOps.reduce((n,o)=>n+o.work.branches,0);
+  $('workPreview').textContent=plan.nodes.length?'식 정리 '+algebra+'단위 · 경우 살피기 '+branches+'단위':'재료를 고르면 확인할 수 있어요.';$('goToMake').disabled=!plan.nodes.length;$('generate').disabled=busy||!plan.nodes.length||result.status==='blocked';renderGivens();remember();
  }
- registry.presets.forEach(p=>{const b=button('',()=>loadPreset(p.id),'preset');b.dataset.id=p.id;b.append(el('strong',p.name),el('small',p.description));$('presets').append(b);});
- for(const origin of [...new Set(registry.records.map(r=>r.origin))]){if(![...$('origin').options].some(o=>o.value===origin)){const o=el('option',origin==='shared'?'공유 자산':origin);o.value=origin;$('origin').append(o);}}
- for(const [value,text]of Object.entries(registry.types)){const option=el('option',text);option.value=value;$('factType').append(option);}
- $('addFact').onsubmit=e=>{e.preventDefault();const f={type:$('factType').value,subject:$('factSubject').value.trim(),scope:$('factScope').value.trim(),origin:'given'};if(f.type==='height_identity'){f.object=$('factObject').value.trim();if(!f.object)return;}if(!f.subject||!f.scope)return;if(!choices.some(c=>JSON.stringify(c.fact)===JSON.stringify(f)))choices.push({fact:f,enabled:true});renderGivens();render();};
- $('factType').onchange=()=>{$('factObjectLabel').hidden=$('factType').value!=='height_identity';};
- $('blank').onclick=()=>{active='';choices=[];plan={facts:[],nodes:[],revision:registry.revision};$('planTitle').textContent='원자와 조건을 골라 새로운 연결을 설계하세요.';renderGivens();render();};
- for(const id of ['search','view','origin'])$(id).addEventListener(id==='search'?'input':'change',renderLibrary);
- for(const id of ['bindF','bindH','bindA','bindScope'])$(id).addEventListener('change',render);
- $('exportPlan').onclick=()=>{const result=engine.run(plan),payload={schema:'problem-atom/connection-plan/1',...plan,result};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=el('a');a.href=url;a.download='원자_연결_설계.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
- $('importPlan').onchange=async()=>{try{const file=$('importPlan').files[0];if(!file)return;if(file.size>1000000)throw Error('1MB 이하의 설계 파일만 열 수 있습니다.');const p=JSON.parse(await file.text());if(p.schema!=='problem-atom/connection-plan/1')throw Error('연결 설계 파일이 아닙니다.');engine.run(p);plan={facts:p.facts,nodes:p.nodes,revision:registry.revision};choices=p.facts.map(f=>({fact:f,enabled:true}));active='';renderGivens();render();$('actionStatus').textContent='설계를 불러와 현재 자산으로 다시 검사했습니다.';}catch(e){$('actionStatus').textContent=e.message;}};
- registry.rules.forEach(r=>{const d=el('article',null,'rule');d.append(el('h3',r.name),el('p',r.reason));$('rules').append(d);});
- const witnesses=[
-  ['합성방정식 → 두 수평선',String.raw`f(x)=x(x-2)^2`,String.raw`f(x-f(x))=0`, '서로 다른 실근의 개수는 6입니다.',String.raw`H(x)=f(x)-x=x(x-1)(x-3)`,String.raw`H(x)+2=(x-2)(x^2-2x-1)`, '각각 0과 −2인 높이에서 근이 3개씩이고 두 목록은 겹치지 않습니다.'],
-  ['극값 조건 → 정수 선택',String.raw`F(x)=x^3-9x^2+15x`,String.raw`G_a(x)=\int_a^x(F(x)-F(t))(t^2+1)\,dt`, '극값이 하나가 되는 정수 a는 1, 5이고 합은 6입니다.',String.raw`G_a'(x)=3(x-1)(x-5)\int_a^x(t^2+1)\,dt`,'', '적분 인수는 x−a와 부호가 같습니다. a를 1 또는 5에 놓으면 두 부호 변화가 겹칩니다.'],
-  ['도함수 복원 → 이동거리',String.raw`X'(t)=3t^2-12t+9,\quad X(0)=0`,String.raw`0\le t\le4`, '총 이동거리는 12, 출발점에서 가장 먼 거리는 4입니다.',String.raw`X(t)=t(t-3)^2`,String.raw`X(0)=0,\ X(1)=4,\ X(3)=0,\ X(4)=4`, '방향은 1초와 3초에서 바뀝니다. 4+4+4로 거리를 더합니다.']
- ];
- for(const w of witnesses){const d=el('details');d.append(el('summary',w[0]));w.slice(1).forEach((s,i)=>{if(!s)return;const p=el('p');if([0,1,3,4].includes(i)){p.className='math';katex.render(s,p,{throwOnError:false,displayMode:true});}else p.textContent=s;d.append(p);});$('witnesses').append(d);}
- $('counts').textContent=`원본 ${registry.records.length}개 · 연결 ${registry.operations.length}개 · 가교 ${registry.operations.filter(o=>o.kind==='bridge').length}개`;
- $('loadStatus').textContent='기존 자료와 새 자료를 하나의 자산 목록으로 통합했습니다.';
- const preset=new URLSearchParams(location.search).get('plan');loadPreset(registry.presets.some(p=>p.id===preset)?preset:registry.presets[0].id);
- await PAModelWorkspace.mount({registry,engine,getPlan:()=>structuredClone(plan)});
-}catch(e){$('loadStatus').textContent='연결 설계실을 열지 못했습니다: '+e.message;}
+ function renderConditionBoxes(){const host=$('conditionBoxes'),term=$('conditionSearch').value.trim();host.replaceChildren();for(const [type,name]of Object.entries(registry.types).filter(([k,v])=>v.includes(term)||k.includes(term))){const b=btn(name,()=>{const subject=$('conditionSubject').value.trim(),scope=$('conditionScope').value.trim();if(!subject||!scope)return;const f={type,subject,scope,origin:'given'};if(type==='height_identity')f.object=$('conditionObject').value.trim();if(type==='height_identity'&&!f.object)return;S.declare(plan,f);disabled.delete(factKey(f));render();renderConditionBoxes();},'condition-box');b.setAttribute('aria-pressed',String(plan.facts.some(f=>f.type===type&&f.subject===$('conditionSubject').value.trim()&&!disabled.has(factKey(f)))));host.append(b);}}
+ registry.presets.forEach((p,i)=>{const b=btn('',()=>{plan=S.preset(registry,p.id);disabled.clear();render();message('시작 구성과 필요한 연결을 함께 담았습니다. 카드에서 자유롭게 바꿔 보세요.');},'preset');b.append(el('span',p.name),el('small',['4개 재료','5개 재료','5개 재료'][i]||'시작 구성'));$('presets').append(b);});
+ $('search').oninput=()=>renderCards();$('showAll').onclick=()=>{onlySelected=false;renderCards();};$('showSelected').onclick=()=>{onlySelected=true;renderCards();};$('clearPlan').onclick=()=>{plan=S.blank(registry);disabled.clear();render();message('선택한 재료와 시작 조건을 비웠습니다.');};
+ $('jumpSelection').onclick=()=>{document.querySelector('.selection-panel').scrollIntoView({block:'start'});$('selectionTitle').setAttribute('tabindex','-1');$('selectionTitle').focus({preventScroll:true});};$('jumpProduction').onclick=()=>$('goToMake').click();
+ $('addCondition').onclick=()=>{renderConditionBoxes();$('conditionDialog').showModal();$('conditionSearch').focus();};$('closeConditions').onclick=()=>$('conditionDialog').close();$('conditionSearch').oninput=renderConditionBoxes;for(const id of ['conditionSubject','conditionScope'])$(id).oninput=renderConditionBoxes;
+ $('goToMake').onclick=()=>{$('production').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});$('productionTitle').setAttribute('tabindex','-1');$('productionTitle').focus({preventScroll:true});};
+ $('savePlan').onclick=()=>save({schema:'problem-atom/connection-plan/1',...effective()},'문항_재료_구성.json');$('loadPlanButton').onclick=()=>$('importPlan').click();
+ async function fileValue(input){const file=input.files[0];if(!file)return null;if(file.size>2000000)throw Error('2MB 이하 JSON 파일만 열 수 있습니다.');return JSON.parse(await file.text());}
+ $('importPlan').onchange=async()=>{try{const value=await fileValue($('importPlan'));if(!value)return;if(value.schema!=='problem-atom/connection-plan/1')throw Error('구성 파일이 아닙니다.');acceptPlan(value);render();message('저장한 구성을 불러왔습니다.');}catch(e){message(e.message);}};
+ function request(){const p=effective();if(engine.run(p).status==='blocked')throw Error('충돌한 조건을 먼저 수정해 주세요.');return PAModelContract.makeRequest(registry,p,'선택한 재료를 실제로 함께 사용하는 고등학교 수학 문항 한 개를 제작하세요. 필요한 조건과 가교를 보완하되 선택한 생각을 장식으로 붙이지 마세요.\n계산 부담: '+calcChoices[calculation].join(' — ')+'\n추론 요구: '+reasonChoices[reasoning].join(' — ')+'\n'+$('brief').value,'REQ-'+crypto.randomUUID());}
+ function generationStatus(text){$('generationStatus').textContent=text;}
+ $('brief').oninput=remember;
+ $('saveRequest').onclick=()=>{try{pending=request();save(pending,'제작요청_'+pending.request_id+'.json');generationStatus('요청 파일을 저장했습니다. 이 번호에 맞는 결과를 불러올 수 있습니다.');}catch(e){generationStatus(e.message);}};
+ $('savePrompt').onclick=async()=>{try{pending=request();await navigator.clipboard.writeText(PAModelContract.handoff(pending));generationStatus('현재 Codex 대화에 붙여 넣을 제작 요청을 복사했습니다.');}catch(e){generationStatus(e.message);}};
+ $('importRequest').onchange=async()=>{try{if(busy)throw Error('진행 중인 제작이 끝난 뒤 다른 요청을 열어 주세요.');const v=await fileValue($('importRequest'));if(!v)return;if(v.schema!=='problem-atom/model-request/1'||v.registry_revision!==registry.revision)throw Error('요청 형식 또는 자산 판본이 다릅니다.');pending=PAModelContract.makeRequest(registry,v.seed_plan,v.brief,v.request_id);acceptPlan(v.seed_plan);render();generationStatus('제작 요청을 열었습니다. 같은 번호의 결과를 검사할 수 있습니다.');}catch(e){generationStatus(e.message);}};
+ function showResult(output,job=pending){if(!job)throw Error('해당 문항의 제작 요청 파일을 먼저 열어 주세요.');const data=output.result||output,v=PAModelContract.validateResult(data,job,registry,engine),host=$('modelResult');host.replaceChildren();$('reviewBadge').textContent='독립 검산 대기';const notice=el('p',v.accepted?'형식·연결 검사 통과 · 수학 검산과 사람 검토 대기':'수정할 내용이 있습니다 · 아직 출제할 수 없습니다.','result-notice'+(v.accepted?' passed':''));host.append(notice);if(v.errors.length){const ul=el('ul',null,'result-errors');v.errors.forEach(e=>ul.append(el('li',e)));host.append(ul);}if(PAModelContract.schemaErrors(data,PAModelContract.RESULT_SCHEMA).length)return;host.append(el('h3',data.title));data.question.forEach(t=>host.append(math(t)));
+  const details=(name,lines)=>{const d=el('details');d.append(el('summary',name));lines.forEach(t=>d.append(math(t)));host.append(d);};details('정답과 풀이',[data.answer,...data.solution]);details('각 조건을 넣은 이유',data.condition_roles.map(c=>c.condition+' → '+c.used_in+' / 빼면: '+c.removal_effect));details('실제 풀이의 계산과 추론',[data.work_estimate.calculation,data.work_estimate.reasoning,data.work_estimate.bottleneck]);details('사용한 재료',data.plan.nodes.map(n=>(ops.get(n.id)?.name||n.id)+' · '+n.scope));details('모델 자체 점검 · 독립 검산 아님',data.self_checks.map(c=>c.check+': '+c.result));if(data.new_bridge_proposals.length)details('새 연결 제안 · 검토 전',data.new_bridge_proposals.map(p=>p.name+': '+p.mathematical_argument));host.append(btn('문항과 풀이 저장',()=>save({result:data,validation:v},'제작결과_'+job.request_id+'.json')));}
+ $('importResult').onchange=async()=>{try{if(busy)throw Error('제작이 끝난 뒤 다른 결과를 열어 주세요.');const data=await fileValue($('importResult'));if(data)showResult(data);}catch(e){generationStatus(e.message);}};
+ $('connectSession').onclick=async()=>{if(session.local){await checkSession();generationStatus(sessionReady?'Codex 로그인 연결을 확인했습니다. 재료를 골라 제작하세요.':'Codex 로그인 또는 연결 도우미 상태를 확인하세요.');}else $('sessionDialog').showModal();};$('closeSession').onclick=()=>$('sessionDialog').close();$('openCompanion').onclick=()=>{session.open(effective(),$('brief').value,calculation,reasoning);$('sessionDialog').close();};
+ async function checkSession(){if(!session.local){$('sessionBadge').textContent='Codex 연결';$('sessionDescription').textContent='API 키 없이 Codex 로그인으로 제작합니다. 먼저 이 PC의 연결 도우미 화면을 열어 주세요.';return;}try{const s=await session.status();sessionReady=s.ready&&s.revision===registry.revision;$('sessionBadge').textContent=sessionReady?'Codex 연결됨 · Sol':'로그인 확인 필요';$('connectSession').classList.toggle('connected',sessionReady);$('sessionDescription').textContent=s.revision!==registry.revision?'화면과 연결 도우미의 자산이 다릅니다. 도우미를 다시 시작하세요.':s.reason+' · Codex 이용 한도를 사용합니다.';if(s.activeJob&&!activeJob){activeJob=s.activeJob;busy=true;poll();}}catch(e){sessionReady=false;$('sessionBadge').textContent='연결 끊김';$('sessionDescription').textContent=e.message;}}
+ async function historyList(){if(!session.local)return;try{const response=await session.jobs(),host=$('jobHistory');host.replaceChildren();if(!response.jobs.length)host.append(el('p','아직 제작 기록이 없습니다.','muted'));for(const j of response.jobs){const row=el('div',null,'job-row');row.append(el('span',new Date(j.createdAt).toLocaleString('ko-KR')+' · '+({running:'제작 중',completed:'결과 도착',failed:'실패',cancelled:'취소',interrupted:'중단'}[j.status]||j.status)),btn('열기',async()=>{try{const full=await session.job(j.id);pending=full.request;if(full.output)showResult(full.output,full.request);else generationStatus(full.message);if(full.status==='running'){activeJob=full.id;busy=true;poll();}}catch(e){generationStatus(e.message);}}));host.append(row);}}catch(e){$('jobHistory').textContent=e.message;}}
+ async function poll(){clearTimeout(pollTimer);if(!activeJob)return;try{const j=await session.job(activeJob);pending=j.request;generationStatus(j.message);if(j.status==='running'){busy=true;$('cancelJob').hidden=false;$('generate').disabled=true;pollTimer=setTimeout(poll,2000);}else{busy=false;activeJob=null;$('cancelJob').hidden=true;if(j.output)showResult(j.output,j.request);render();historyList();}}catch(e){generationStatus(e.message+' 제작 기록에서 완료 여부를 확인하세요.');busy=false;$('cancelJob').hidden=true;render();}}
+ $('generate').onclick=async()=>{if(busy)return;if(!session.local){$('sessionDialog').showModal();return;}try{if(!sessionReady)await checkSession();if(!sessionReady)throw Error('Codex에서 ChatGPT 로그인 상태를 확인하세요.');pending=request();busy=true;render();generationStatus('선택한 원자를 Codex Sol에 전달하고 있습니다.');const j=await session.submit(pending);activeJob=j.id;poll();}catch(e){busy=false;render();generationStatus(e.message);}};
+ $('cancelJob').onclick=async()=>{try{if(activeJob){await session.cancel(activeJob);generationStatus('취소를 요청했습니다.');poll();}}catch(e){generationStatus(e.message);}};
+ $('assetCount').textContent='연결 재료 '+registry.operations.length+'개 · 원본 '+registry.records.length+'개';renderFilters();renderChoices();render();await checkSession();await historyList();if(!$('loadStatus').textContent)$('loadStatus').textContent='선택한 재료와 목표는 이 브라우저에 자동 저장됩니다.';
+}catch(e){$('loadStatus').textContent='제작실을 열지 못했습니다: '+e.message;}
 })();

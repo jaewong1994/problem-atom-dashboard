@@ -15,7 +15,7 @@ SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
     "studio.html", "connections.html", "connections.css", "connections.js", "connection-engine.js", "connection-registry.json", "connection-validation.json", "composition-catalog.json",
-    "model-contract.js", "model-workspace.js", "model-provider.json",
+    "model-contract.js", "selection-model.js", "session-client.js", "model-provider.json",
     "review-groups.json", "group-review-ledger.json", "group-review.js", "sandbox.css",
     "combination-examples.json", "combination-examples.js",
     "motif-library.html",
@@ -83,7 +83,9 @@ def build_site() -> None:
     build_connections()
     from test_connections import ConnectionTests
     from test_model import ModelTests
-    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests)])
+    from test_session import SessionTests
+    from test_session_math import SessionMathTests
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests)])
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")
@@ -99,6 +101,7 @@ def build_site() -> None:
         'cross_seminar_witnesses':3, 'legacy_generated_cases':192,
         'checks':['every contract requirement removed','forbidden conditions','object and scope isolation','bridge paths and removal','unknown and stale assets','new asset ingestion','independent algebra witnesses','retired UI','Sol request and result contract','mock API failure handling','service access controls'],
         'model_api_default':'gpt-5.6-sol','live_api_tested':False,'model_adapter_tested_with_mock':True,
+        'generation_mode':'codex_chatgpt_session','session_model':'gpt-5.6-sol','session_service_regressions':True,
         'local_item_generator_enabled':False,'human_approved':False,'difficulty_calibrated':False
     },ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     if SITE.exists():

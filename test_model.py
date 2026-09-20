@@ -23,7 +23,9 @@ function sample(){return {
 """
 
 def run_js(source):
-    subprocess.run([NODE, '-e', PREFIX + "\n(async()=>{" + source + "\n})().catch(e=>{console.error(e);process.exitCode=1;});"], cwd=ROOT, check=True, capture_output=True, text=True, encoding='utf-8', timeout=30)
+    result = subprocess.run([NODE, '-e', PREFIX + "\n(async()=>{" + source + "\n})().catch(e=>{console.error(e);process.exitCode=1;});"], cwd=ROOT, capture_output=True, text=True, encoding='utf-8', timeout=30)
+    if result.returncode:
+        raise AssertionError(result.stderr or result.stdout)
 
 class ModelTests(unittest.TestCase):
     def test_canonical_sol_request_and_no_untrusted_policy(self):

@@ -1,8 +1,8 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v24`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v25`;
 const SHELL = [
-  "./studio.html", "./connections.html", "./connections.css?v=c2", "./connections.js?v=c2", "./connection-engine.js?v=c2", "./connection-registry.json",
-  "./model-contract.js?v=c2", "./model-workspace.js?v=c2", "./model-provider.json",
+  "./studio.html", "./connections.html", "./connections.css?v=boxes1", "./connections.js?v=boxes1", "./connection-engine.js?v=c2", "./connection-registry.json",
+  "./model-contract.js?v=boxes1", "./selection-model.js?v=boxes1", "./session-client.js?v=boxes1", "./model-provider.json",
   "./review-groups.json", "./group-review-ledger.json", "./group-review.js", "./sandbox.css",
   "./combination-examples.json", "./combination-examples.js",
   "./motif-library.html",
@@ -65,6 +65,7 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
+  if (url.pathname.startsWith('/session/') || url.hostname === '127.0.0.1' || url.hostname === 'localhost') return;
 
   if (request.mode === "navigate" || /\/(review-groups|group-review-ledger|combination-examples|connection-registry|connection-validation|model-provider)\.json$/.test(url.pathname) || url.pathname.endsWith("motif-library.json") || url.pathname.endsWith("dashboard-data.json") || url.pathname.endsWith("progress-summary.json") || url.pathname.endsWith("asset-library.json") || url.pathname.endsWith("promotion-board.json") || url.pathname.endsWith("realtime-config.js")) {
     event.respondWith(networkFirst(request));

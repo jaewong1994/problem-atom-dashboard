@@ -1,4 +1,6 @@
-# Sol 문항 제작 API
+# Sol 문항 제작 API · 선택적 대안
+
+현재 제작실은 **API 키 없이 Codex ChatGPT 로그인 세션**으로 작동합니다. [연결 도우미 사용법](../SESSION_WORKSPACE.md)을 먼저 읽으세요. 아래 API 경로는 별도 서버 운영을 위한 대안이며 현재 프런트엔드에서 호출하지 않습니다.
 
 API 기본 모델은 `gpt-5.6-sol`, 추론 노력은 `high`다. 매 호출 1문항, 출력 상한 16,000토큰, `store:false`를 사용한다. 모델은 서버에 고정한다. 실패 시 자동 재시도·Astra 전환은 없다. API 요금은 별도이며 Codex 이용 한도와 다르다.
 
@@ -9,12 +11,12 @@ API 기본 모델은 `gpt-5.6-sol`, 추론 노력은 `high`다. 매 호출 1문�
 1. Node 22 이상을 실행할 서버에 저장소를 배치한다. `server/`, `model-contract.js`, `connection-engine.js`, `connection-registry.json`이 함께 있어야 한다.
 2. 서버의 비밀 환경변수에 `OPENAI_API_KEY`, 충분히 긴 임의 `PA_SERVICE_TOKEN`을 설정한다. `PA_ALLOWED_ORIGIN`은 `https://jaewong1994.github.io`로 설정한다. 키를 Git·공개 JSON·브라우저에 넣지 않는다.
 3. `node server/service.cjs`를 실행한다. 기본 수신 주소는 127.0.0.1:8788이다. 관리형 호스팅에서는 해당 환경에 맞춰 `HOST`와 `PORT`를 설정하고 HTTPS 주소를 연결한다. 인터넷에 평문 HTTP로 공개하지 않는다.
-4. `model-provider.json`의 `mode`를 `api`, `api_endpoint`를 실제 HTTPS `/v1/compose` URL로 바꾼다. `api_model`은 `gpt-5.6-sol`로 유지한다.
-5. 화면에서 제작 요청을 준비하고 **서비스 접근 토큰**을 입력해 1문항 제작한다. OpenAI API 키는 서버에만 존재한다. 브라우저는 접근 토큰을 저장하지 않는다.
+4. 별도 인증된 클라이언트에서 `/v1/compose`로 요청 JSON을 전달한다. 서비스 접근 토큰과 허용 출처를 함께 검사한다.
+5. 반환된 결과 JSON은 현재 제작실의 파일 가져오기로 검토할 수 있다. 현재 화면에 API 토큰 입력란은 없으며 설정 JSON만 바꿔 API 모드가 켜지지 않는다.
 
 프로세스 하나당 동시 요청은 1개다. 분산 서버·다중 사용자 운영으로 늘릴 때는 공통 작업 큐, 사용자별 인증과 할당량, 요청 번호 기반 중복 방지를 먼저 추가한다. 현재 서비스는 초기 운영용 단일 프로세스이며 작업 큐나 재시작 후 결과 보관을 제공하지 않는다. 응답을 잃은 요청은 자동으로 다시 보내지 않는다.
 
-사이트는 GitHub Pages이고 API 서버는 별도다. 서버가 설정되지 않은 동안에도 요청 JSON·Codex 전달문을 저장해 현재 Codex 작업에서 제작하고, 받은 결과 JSON을 사이트에서 열 수 있다. Codex 전달에 Astra를 쓴다는 것과 유료 API 모델을 Sol로 고정하는 것은 별개다.
+사이트는 GitHub Pages이고 API 서버는 별도다. 요청 JSON·Codex 전달문을 저장해 현재 Codex 작업에서 제작하고, 받은 결과 JSON을 사이트에서 여는 방식도 유지한다. 기본 세션 제작과 이 API는 모두 Sol을 사용하며 이용 한도와 과금 방식은 서로 다르다.
 
 ## 운영자 단건 실행
 

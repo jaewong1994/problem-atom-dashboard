@@ -12,3 +12,4 @@ reviews/*.json
 .env
 .env.*
 !.env.example
+.pa-session/
