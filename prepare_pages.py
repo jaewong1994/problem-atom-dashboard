@@ -16,7 +16,7 @@ SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
     "studio.html", "connections.html", "connections.css", "connections.js", "connection-engine.js", "connection-registry.json", "connection-validation.json", "composition-catalog.json",
     "curriculum-model.js", "unit-ui.js", "units.css", "judgment-bundles.js", "authoring-model.js", "authoring-ui.js", "authoring.css", "authoring-lessons.json", "web-handoff.js", "production-io.js", "composition-graph.js", "mindmap-ui.js", "box-copy.js", "box-examples.js", "model-contract.js", "composition-planner.js", "selection-model.js", "session-client.js", "model-provider.json",
-    "review-groups.json", "group-review-ledger.json", "group-review.js", "sandbox.css",
+    "review-groups.json", "review-catalog.json", "review-model.js", "review-client.js", "review-link.css", "group-review-ledger.json", "group-review.js", "sandbox.css",
     "combination-examples.json", "combination-examples.js",
     "motif-library.html",
     "motif-library.css",
@@ -84,6 +84,8 @@ def build_site() -> None:
     from test_composer import ComposerTests
     from build_connections import build as build_connections
     build_connections()
+    import subprocess
+    subprocess.run(["node", "-e", "const fs=require('fs'),M=require('./review-model.js');fs.writeFileSync('review-catalog.json',JSON.stringify(M.catalog(require('./connection-registry.json'),require('./review-groups.json'),require('./box-examples.js')),null,2)+'\\n');"],cwd=ROOT,check=True)
     from test_connections import ConnectionTests
     from test_model import ModelTests
     from test_session import SessionTests
@@ -95,7 +97,8 @@ def build_site() -> None:
     from test_authoring import AuthoringTests
     from test_curriculum import CurriculumTests
     from test_box_examples import BoxExampleTests
-    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests)])
+    from test_review_link import ReviewLinkTests
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests,ReviewLinkTests)])
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")

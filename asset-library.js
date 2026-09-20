@@ -1,5 +1,6 @@
 const labels = {
   all: "전체",
+  reviewed: "검수 정리문",
   concept: "개념",
   skill: "스킬",
   decision: "판단",
@@ -79,6 +80,8 @@ function renderComments(assetId) {
 }
 
 function cardHtml(item) {
+  if(item.kind==='reviewed')return `<article class="asset-card"><header><em>검수 완료 · 정리문</em></header><h3>${esc(item.name)}</h3><p>${tex(item.definition)}</p><p>검토자 ${esc(item.reviewer)}</p><div class="review-ready-links">${item.operations.map(id=>`<a class="review-operation-link" href="connections.html?reviewed=${encodeURIComponent(id)}">${esc(item.operationNames[id])} · 제작에 쓰기</a>`).join('')}</div><a href="promotion-board.html#review-${encodeURIComponent(item.groupId)}">검수 기록 보기</a></article>`;
+
   const id = item.id || item.questionId;
   const review = { ai_candidate: "확인 전", reviewed: "1차 승인", approved: "정본", ratified: "정본" }[item.status] || item.status;
   return `
@@ -210,18 +213,22 @@ async function start() {
       return response.json();
     });
     const summary = data.summary || {};
+    let reviewed=[];
+    try{const registry=await fetch('connection-registry.json',{cache:'no-store'}).then(r=>r.json()),store=PAReviewClient.create(PASession.create());await store.load();reviewed=store.attach(registry).map(r=>({id:r.id,kind:'reviewed',name:r.title,definition:r.summary,reviewer:r.reviewer,groupId:r.group_id,operations:r.operation_ids,operationNames:Object.fromEntries(registry.operations.map(o=>[o.id,PABoxExamples.get(o.id)?.name||o.name]))}));}catch(error){setSync('검수 원장 연결을 확인해 주세요. '+error.message);}
+
     $("stats").innerHTML = [
-      ["검수된 재료", summary.entities || 0],
+      ["검수된 재료", (summary.entities || 0)+reviewed.length],
       ["검수 중인 후보", summary.reviewQueue || 0],
     ].map(([label, count]) => `<article class="stat"><span>${label}</span><strong>${count}</strong></article>`).join("");
     records = [
+      ...reviewed,
       ...(data.entities || []),
       ...(data.questions || []).map((item) => ({ ...item, kind: "question" })),
       ...(data.families || []).map((item) => ({ ...item, kind: "family" })),
       ...(data.mockExams || []).map((item) => ({ ...item, kind: "mockExam" })),
       // Pending candidates belong exclusively to promotion-board.html.
     ];
-    const kinds = ["all", "concept", "skill", "decision", "problem_pattern", "strategy", "question", "family", "mockExam"].filter(kind => kind === "all" || records.some(row => row.kind === kind));
+    const kinds = ["all", "reviewed", "concept", "skill", "decision", "problem_pattern", "strategy", "question", "family", "mockExam"].filter(kind => kind === "all" || records.some(row => row.kind === kind));
     document.querySelector('.controls').hidden = records.length === 0;
     $("filters").innerHTML = kinds.map((kind) => `<button class="filter${kind === "all" ? " active" : ""}" data-kind="${kind}" type="button">${labels[kind]}</button>`).join("");
     document.querySelectorAll(".filter").forEach((button) => {

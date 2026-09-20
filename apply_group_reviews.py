@@ -32,7 +32,16 @@ def validate(payload,catalog):
 
 def run(source,root=ROOT,dry_run=False):
     catalog,_=build(root)
-    incoming=validate(json.loads(source.read_text(encoding='utf-8-sig')),catalog)
+    if (root/'review-catalog.json').exists():
+        catalog=json.loads((root/'review-catalog.json').read_text(encoding='utf-8'))
+    payload=json.loads(source.read_text(encoding='utf-8-sig'))
+    if payload.get('schema')=='problem-atom/review-transfer/1':
+        incoming=[]
+        for row in payload.get('groups',[]):
+            incoming.extend(validate(dict(schema='problem-atom/group-review/1.0',actor=row.get('actor'),groups=[row]),catalog))
+        if not incoming: raise ValueError('반영할 검수가 없습니다')
+    else:
+        incoming=validate(payload,catalog)
     path=root/'group-review-ledger.json'
     ledger=json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'groups':[]}
     rows={(r['actor'],r['groupId']):r for r in ledger['groups']}

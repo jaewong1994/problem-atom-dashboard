@@ -3,8 +3,10 @@ const http=require('node:http'),fs=require('node:fs'),path=require('node:path'),
 const C=require('../model-contract.js'),{create}=require('../connection-engine.js');
 const {generateSession,loginStatus,MODEL}=require('./codex-session.cjs');
 const Hwp=require('./export-hwpx.cjs');
+const {createReviewStore}=require('./review-store.cjs'),Review=require('../review-model.js');
 const ROOT=path.resolve(__dirname,'..');
-function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir=path.join(ROOT,'.pa-session'),token=crypto.randomBytes(32).toString('hex'),generate=generateSession,auth=loginStatus,exporter=Hwp.exportHwpx,port=8987}={}){
+function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir=path.join(ROOT,'.pa-session'),token=crypto.randomBytes(32).toString('hex'),generate=generateSession,auth=loginStatus,exporter=Hwp.exportHwpx,port=8987,reviewStore=null}={}){
+ const reviews=reviewStore||createReviewStore({registry,stateDir,catalog:Review.catalog(registry,require('../review-groups.json'),require('../box-examples.js')),baseLedger:JSON.parse(fs.readFileSync(path.join(ROOT,'group-review-ledger.json'),'utf8'))});
  const jobs=new Map();let active=null;
  fs.mkdirSync(stateDir,{recursive:true});
  for(const name of fs.readdirSync(stateDir).filter(n=>/^REQ-[a-zA-Z0-9-]+\.json$/.test(n))){try{const j=JSON.parse(fs.readFileSync(path.join(stateDir,name),'utf8'));if(j.status==='running'){j.status='interrupted';j.message='연결 도우미가 종료되어 제작이 중단됐습니다.';}jobs.set(j.id,j);}catch(_){}}
@@ -22,6 +24,11 @@ function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir
   if(url.pathname.startsWith('/session/')){
    const given=Buffer.from(req.headers['x-pa-session']||''),expected=Buffer.from(token);
    if(given.length!==expected.length||!crypto.timingSafeEqual(given,expected))return send(401,{error:'연결 도우미에서 화면을 다시 열어 주세요.'});
+   if(url.pathname==='/session/reviews'){
+    if(req.method==='GET')return send(200,reviews.snapshot());
+    if(req.method==='POST'){try{let bytes=0;const chunks=[];for await(const chunk of req){bytes+=chunk.length;if(bytes>1000000)return send(413,{error:'검수 파일은 1MB 이하로 준비하세요.'});chunks.push(chunk);}return send(200,reviews.save(JSON.parse(Buffer.concat(chunks).toString('utf8'))));}catch(e){return send(409,{error:e.message});}}
+    return send(405,{error:'지원하지 않는 요청'});
+   }
    if(req.method==='GET'&&url.pathname==='/session/status')return send(200,{...(await auth()),model:MODEL,revision:registry.revision,design_intent_version:1,reasoning_graph_version:1,authoring_blueprint_version:1,judgment_bundle_version:1,curriculum_scope_version:1,web_import_version:1,hwpx_export_version:1,hwpx:Hwp.status(),activeJob:active});
    if(req.method==='POST'&&['/session/export-hwpx','/session/import-result'].includes(url.pathname)){
     try{
@@ -34,7 +41,8 @@ function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir
      if(!['gemini','chatgpt','claude'].includes(body.provider))throw Error('웹 AI 종류를 확인하세요.');
      const request=body.request;if(!/^REQ-[a-zA-Z0-9-]{1,90}$/.test(request?.request_id||''))throw Error('제작 요청 번호 오류');
      Hwp.validateBundle({schema:'problem-atom/document-bundle/1',items:[body]},registry);
-     const canonical=C.makeRequest(registry,request.seed_plan,request.brief,request.request_id,request.design_intent);
+     const canonical=C.makeRequest(reviews.reviewedRegistry(),request.seed_plan,request.brief,request.request_id,request.design_intent);
+     if(JSON.stringify(request.knowledge?.reviewed_assets||[])!==JSON.stringify(canonical.knowledge.reviewed_assets||[]))throw Error('검수 내용이 바뀌었습니다. 검수 기록과 제작 요청을 확인한 뒤 가져와 주세요.');
      const digest=crypto.createHash('sha256').update(JSON.stringify({request:canonical,result:body.result,provider:body.provider})).digest('hex'),old=jobs.get(canonical.request_id);
      if(old)return old.digest===digest?send(200,publicJob(old)):send(409,{error:'이 요청 번호의 기록이 이미 있습니다. 기존 결과를 덮어쓰지 않았습니다.'});
      const j={id:canonical.request_id,digest,provider:body.provider,status:'completed',message:'웹에서 가져온 결과 · 독립 검산 대기',createdAt:new Date().toISOString(),request:canonical,output:{result:body.result,validation:C.validateResult(body.result,canonical,registry,create(registry))}};
@@ -51,7 +59,9 @@ function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir
      if(body.schema!=='problem-atom/model-request/1')return send(400,{error:'제작 요청 형식이 다릅니다.'});
      if(!/^REQ-[a-zA-Z0-9-]{1,90}$/.test(body.request_id))return send(400,{error:'제작 요청 번호 오류'});
      if(body.registry_revision!==registry.revision)return send(409,{error:'자산이 바뀌었습니다. 새로고침 후 요청해 주세요.'});
-     const job=C.makeRequest(registry,body.seed_plan,body.brief,body.request_id,body.design_intent);
+     const reviewedRegistry=reviews.reviewedRegistry();
+     const job=C.makeRequest(reviewedRegistry,body.seed_plan,body.brief,body.request_id,body.design_intent);
+     if(JSON.stringify(body.knowledge?.reviewed_assets||[])!==JSON.stringify(job.knowledge.reviewed_assets||[]))return send(409,{error:'검수 내용이 바뀌었습니다. 새로고침 후 제작해 주세요.'});
      if(create(registry).run(job.seed_plan).status==='blocked')return send(400,{error:'금지 연결을 먼저 수정해 주세요.'});
      const digest=crypto.createHash('sha256').update(JSON.stringify(job)).digest('hex'),old=jobs.get(job.request_id);
      if(old)return old.digest===digest?send(200,publicJob(old)):send(409,{error:'같은 요청 번호의 내용이 달라졌습니다.'});
@@ -61,7 +71,7 @@ function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir
      if(active)return send(409,{error:'현재 제작 중입니다.'});
      const j={id:job.request_id,digest,status:'running',message:'제작을 시작했습니다.',createdAt:new Date().toISOString(),request:job};
      Object.defineProperty(j,'controller',{value:new AbortController(),enumerable:false});persist(j);jobs.set(j.id,j);active=j.id;send(202,publicJob(j));
-     Promise.resolve().then(()=>generate(job,registry,{signal:j.controller.signal,onProgress:message=>{j.message=message;persist(j);}})).then(output=>{j.output=output;j.status='completed';j.message='문항이 도착했습니다. 풀이와 조건을 검토해 주세요.';}).catch(e=>{j.status=j.controller.signal.aborted?'cancelled':'failed';j.message=e.message;}).finally(()=>{j.updatedAt=new Date().toISOString();active=null;persist(j);});
+     Promise.resolve().then(()=>generate(job,reviewedRegistry,{signal:j.controller.signal,onProgress:message=>{j.message=message;persist(j);}})).then(output=>{j.output=output;j.status='completed';j.message='문항이 도착했습니다. 풀이와 조건을 검토해 주세요.';}).catch(e=>{j.status=j.controller.signal.aborted?'cancelled':'failed';j.message=e.message;}).finally(()=>{j.updatedAt=new Date().toISOString();active=null;persist(j);});
     }catch(_){send(400,{error:'제작 요청 형식이 다릅니다.'});}return;
    }return send(404,{error:'지원하지 않는 경로'});
   }
@@ -71,7 +81,7 @@ function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir
   if(!file.startsWith(path.resolve(siteDir)+path.sep)||relative.includes('..')||!fs.existsSync(file)||!fs.statSync(file).isFile())return send(404,{error:'파일이 없습니다.'});
   const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.woff2':'font/woff2','.woff':'font/woff','.ttf':'font/ttf','.png':'image/png','.svg':'image/svg+xml'};
   res.setHeader('Content-Type',mime[path.extname(file)]||'application/octet-stream');res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');
-  if(relative==='connections.html'){let html=fs.readFileSync(file,'utf8');html=html.replace('<!--SESSION_BOOTSTRAP-->',`<script id="sessionBootstrap" type="application/json">${JSON.stringify({token,model:MODEL})}</script>`);return res.end(html);}
+  if(['connections.html','promotion-board.html','asset-library.html'].includes(relative)){let html=fs.readFileSync(file,'utf8');html=html.replace('<!--SESSION_BOOTSTRAP-->',`<script id="sessionBootstrap" type="application/json">${JSON.stringify({token,model:MODEL})}</script>`);return res.end(html);}
   res.end(fs.readFileSync(file));
  }
  app.on('close',()=>{for(const j of jobs.values())j.controller?.abort();});return app;

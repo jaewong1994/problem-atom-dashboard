@@ -502,7 +502,7 @@ async function boot() {
   renderMath($("ratifiedList"));
   bind();
   window.PAGroupReview?.init();
-  connectComments();
+  // Legacy comments are separate from the shared authoring-review ledger.
 }
 
 boot();

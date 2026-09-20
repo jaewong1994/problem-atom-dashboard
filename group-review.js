@@ -1,66 +1,74 @@
 'use strict';
-// Group decisions have a separate ledger: approving a revised summary must never
-// silently approve the old, potentially incorrect individual definitions.
-window.PAGroupReview = (() => {
- const KEY='pa-group-reviews-v1';let catalog, persisted={}, host;
- const node=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
- const actor=()=>document.getElementById('actor').value.trim();
- const load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch{return {};}};
- const identity=g=>`${actor()}|${g.id}`;
- const fresh=g=>({groupId:g.id,revision:g.revision,actor:actor(),parts:[{memberIds:g.members.map(m=>m.id),proposal:g.proposal,verdict:'pending'}]});
- const record=g=>{const local=load()[identity(g)],remote=persisted[identity(g)];const options=[local,remote].filter(r=>r?.revision===g.revision).sort((a,b)=>(b.at||'').localeCompare(a.at||''));return options.length?structuredClone(options[0]):fresh(g);};
- function save(g,r){r.actor=actor();r.at=new Date().toISOString();const s=load();s[identity(g)]=r;localStorage.setItem(KEY,JSON.stringify(s));}
- function feedback(text){document.getElementById('groupStatus').textContent=text;}
- function render(){
-  if(!catalog)return;host.replaceChildren();
-  const q=document.getElementById('groupSearch').value.trim().toLowerCase();let shown=0;
-  catalog.groups.filter(g=>!q||JSON.stringify(g).toLowerCase().includes(q)).forEach(g=>{
-   const r=record(g);const card=node('article');card.className='review-group';card.append(node('h3',g.title),node('p',g.relation),node('p',g.reason));
-   const caution=node('p',g.guard);caution.className='group-guard';card.append(caution);
-   (g.duplicate_pairs||[]).forEach(pair=>card.append(node('p','중복 정리 추천: '+pair.names.join(' ↔ ')+' · 적용 범위를 맞춘 뒤 대표 항목으로 정리')));
-   const detail=node('details');detail.append(node('summary','검증 범위와 제외 사례'));
-   detail.append(node('p','아래는 연결 규칙의 검산입니다. 묶음 전체의 의미 동등성이나 원문 일반론을 자동 승인하는 검사가 아닙니다.'));
-   (g.regression_notes||[]).forEach(text=>detail.append(node('p','이 묶음의 검사 · '+text)));
-   catalog.checks.forEach(c=>detail.append(node('p',`${c.passed?'통과':'실패'} · ${c.name}: ${c.detail}`)));card.append(detail);
-   r.parts.forEach((part,index)=>{
-    const box=node('section');box.className='group-part';const names=part.memberIds.map(id=>g.members.find(m=>m.id===id));
-    const heading=node('h4',`${r.parts.length>1?`분리 묶음 ${index+1} · `:''}${names.length}개 항목 · ${{pending:'검수 대기',approve:'묶음 승인',hold:'보류'}[part.verdict]||'검수 대기'}`);box.append(heading);
-    const label=node('label','승인할 정리문');const text=node('textarea');text.value=part.proposal;text.rows=3;label.append(text);box.append(label);
-    text.onchange=()=>{if(actor()&&text.value.trim()){part.proposal=text.value.trim();part.verdict='pending';heading.textContent=`${names.length}개 항목 · 수정됨 · 검수 대기`;try{save(g,r);feedback('정리문 수정을 저장했습니다. 변경된 내용은 다시 승인해 주세요.');}catch{feedback('정리문 저장에 실패했습니다.');}}};
-    const items=node('details');items.open=r.parts.length>1;items.append(node('summary','원래 항목 비교 · 분리할 항목 선택'));
-    const selected=[];
-    names.forEach(m=>{const row=node('div');row.className='group-member';const l=node('label');const check=node('input');check.type='checkbox';check.value=m.id;selected.push(check);l.append(check,document.createTextNode(`${m.name} · ${m.author}`));row.append(l,node('p',m.definition),node('small',m.id));const a=node('button','개별 검토에서 보기');a.type='button';a.onclick=()=>{document.getElementById('individualReview').hidden=false;jumpTo(m.id);};row.append(a);items.append(row);});box.append(items);
-    const actions=node('div');actions.className='group-actions';
-    const apply=(action)=>{if(!actor()){feedback('강사 이름을 먼저 입력해 주세요.');document.getElementById('actor').focus();return;}
-     part.proposal=text.value.trim();if(!part.proposal){feedback('승인할 정리문을 입력해 주세요.');return;}
-     if(action==='approve'&&part.proposal.includes('분리 후 정리문을 검토해 주세요.')){feedback('분리한 항목의 정리문을 작성한 뒤 승인해 주세요.');return;}
-     if(action==='split'){
-      const ids=selected.filter(c=>c.checked).map(c=>c.value);
-      if(!ids.length||ids.length===part.memberIds.length){feedback('현재 묶음 중 일부 항목을 선택해 주세요. 전체 선택은 분리가 아닙니다.');return;}
-      part.memberIds=part.memberIds.filter(id=>!ids.includes(id));part.verdict='pending';
-      r.parts.push({memberIds:ids,proposal:ids.map(id=>g.members.find(m=>m.id===id).name).join(' / ')+' — 분리 후 정리문을 검토해 주세요.',verdict:'pending'});
-     }else part.verdict=action;
-     try{save(g,r);render();feedback(action==='split'?'선택 항목을 별도 묶음으로 분리했습니다. 두 묶음의 정리문을 다시 확인해 주세요.':'이 기기에 검토를 저장했습니다. 묶음 검토 보내기로 운영 원장에 반영할 수 있습니다.');}catch{feedback('저장 공간에 기록하지 못했습니다. 기존 기록을 확인해 주세요.');}
-    };
-    [['approve','이 묶음 승인'],['split','선택 항목 분리'],['hold','보류']].forEach(([action,title])=>{const b=node('button',title);b.type='button';b.onclick=()=>apply(action);actions.append(b);});box.append(actions);card.append(box);
-   });host.append(card);shown++;
-  });
-  if(!shown)host.append(node('p','검색 결과가 없습니다. 검색어를 바꿔 주세요.'));
-  document.getElementById('groupCount').textContent=`추천 ${catalog.groups.length}묶음 · 현재 ${shown}묶음 표시`;
+window.PAGroupReview=(()=>{
+ let store,registry,catalog,ledger,host;const M=PAReviewModel,$=id=>document.getElementById(id);
+ const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
+ const actor=()=>$('actor').value.trim(),feedback=text=>$('groupStatus').textContent=text;
+ const name=id=>PABoxExamples.get(id)?.name||registry.operations.find(o=>o.id===id)?.name||id;
+ function adopt(s){catalog=s.catalog;ledger=s.ledger;store.attach(registry);}
+ function record(g){
+  const saved=M.current(ledger,catalog).find(r=>r.groupId===g.id);if(saved)return structuredClone(saved);
+  let old;try{old=JSON.parse(localStorage.getItem('pa-group-reviews-v1')||'{}')[actor()+'|'+g.id];}catch(_){}
+  if(old&&g.revision.startsWith(old.revision+':'))return {...structuredClone(old),revision:g.revision,parts:old.parts.map(p=>({...p,verdict:'pending'})),legacy:true};
+  return {groupId:g.id,revision:g.revision,actor:actor(),parts:[{memberIds:g.members.map(m=>m.id),proposal:g.proposal,verdict:'pending'}]};
  }
- function exportBatch(){
-  if(!actor()){feedback('강사 이름을 먼저 입력해 주세요.');return;}
-  const rows=catalog.groups.map(g=>record(g)).filter(r=>r.parts.some(p=>p.verdict!=='pending')||r.parts.length>1);
-  if(!rows.length){feedback('먼저 묶음을 승인·분리·보류해 주세요.');return;}
-  download(`${actor()}-묶음검토.json`,{schema:'problem-atom/group-review/1.0',actor:actor(),at:new Date().toISOString(),groups:rows});feedback('묶음 검토 파일을 저장했습니다. 운영자는 묶음검토_반영.cmd로 반영합니다.');
+ async function commit(r){
+  if(!actor())throw Error('검토자 이름을 먼저 입력해 주세요.');
+  try{localStorage.setItem('seminar-actor',actor());}catch(_){}
+  const row={...structuredClone(r),actor:actor()};delete row.legacy;
+  adopt(await store.save({schema:'problem-atom/group-review/1.0',actor:actor(),groups:[row]}));
+ }
+ function render(){
+  if(!catalog)return;host.replaceChildren();const q=$('groupSearch').value.trim().toLowerCase(),filter=$('reviewFilter').value;let shown=0;
+  const linked=new Set(registry.reviewed_assets.flatMap(a=>a.operation_ids));
+  $('reviewConnectionSummary').textContent=`승인한 정리문 ${registry.reviewed_assets.length}개 · 연결된 제작 박스 ${linked.size}개 / ${registry.operations.length}개`;
+  for(const g of catalog.groups){
+   const r=record(g);if(q&&!JSON.stringify(g).toLowerCase().includes(q)&&!g.operations.some(id=>name(id).includes(q)))continue;
+   if(filter!=='all'&&!r.parts.some(p=>p.verdict===filter))continue;
+   const card=node('article',undefined,'review-group');card.id='review-'+g.id;card.append(node('h3',g.title),node('p',g.reason));
+   if(r.at)card.append(node('p',`마지막 검수: ${r.actor} · ${new Date(r.at).toLocaleString('ko-KR')}`,'review-byline'));
+   if(r.legacy)card.append(node('p','이전 임시 정리문입니다. 현재 연결 조건을 확인하고 다시 승인해 주세요.','group-guard'));
+   card.append(node('p',g.guard,'group-guard'));
+   const ops=node('details',undefined,'review-linked-boxes');ops.append(node('summary',`제작실에 연결된 박스 ${g.operations.length}개 · 예시 보기`));
+   for(const id of g.operations){const d=PABoxExamples.get(id),box=node('section',undefined,'review-box-example');box.append(node('h4',name(id)));
+    if(d){const given=node('div');given.innerHTML=PAMath.mathify(d.given);box.append(given);const steps=node('ol');for(const text of [...d.steps,'결과: '+d.result]){const li=node('li');li.innerHTML=PAMath.mathify(text);steps.append(li);}box.append(steps);}
+    box.append(node('p',registry.operations.find(o=>o.id===id).guard_note));ops.append(box);
+   }card.append(ops);
+   r.parts.forEach((part,index)=>{
+    const box=node('section',undefined,'group-part'),members=part.memberIds.map(id=>g.members.find(m=>m.id===id));
+    const h=node('h4',`${r.parts.length>1?'분리 묶음 '+(index+1)+' · ':''}${members.length}개 항목 · ${{pending:'검수 대기',approve:'검수 완료',hold:'보류'}[part.verdict]}`);box.append(h);
+    const label=node('label','승인할 정리문'),text=node('textarea');text.value=part.proposal;text.rows=3;text.maxLength=10000;label.append(text);box.append(label);
+    text.oninput=()=>{h.textContent=`${members.length}개 항목 · 수정 중 · 다시 승인 필요`;};
+    text.onchange=async()=>{part.proposal=text.value.trim();part.verdict='pending';try{await commit(r);feedback('수정한 정리문을 저장했습니다. 다시 승인하기 전까지 검수 완료 목록에서 빠집니다.');}catch(e){feedback(e.message);}};
+    const detail=node('details');detail.append(node('summary','원래 항목 비교 · 분리할 항목 선택'));const selected=[];
+    for(const m of members){const row=node('div',undefined,'group-member'),l=node('label'),check=node('input');check.type='checkbox';check.value=m.id;selected.push(check);l.append(check,document.createTextNode(m.name+' · '+(m.author||'출처 기록')));const definition=node('p');definition.innerHTML=PAMath.mathify(m.definition||'');row.append(l,definition,node('small',m.id));detail.append(row);}box.append(detail);
+    const actions=node('div',undefined,'group-actions');
+    for(const [action,title]of [['approve','승인하고 제작실에 연결'],['split','선택 항목 분리'],['hold','보류']]){
+     const b=node('button',title);b.type='button';b.onclick=async()=>{
+      if(!actor()){feedback('검토자 이름을 먼저 입력해 주세요.');$('actor').focus();return;}
+      part.proposal=text.value.trim();
+      if(action==='split'){const ids=selected.filter(c=>c.checked).map(c=>c.value);if(!ids.length||ids.length===part.memberIds.length){feedback('분리할 일부 항목을 선택해 주세요.');return;}part.memberIds=part.memberIds.filter(id=>!ids.includes(id));part.verdict='pending';r.parts.push({memberIds:ids,proposal:ids.map(id=>g.members.find(m=>m.id===id).name).join(' / ')+' — 분리 후 정리문을 검토해 주세요.',verdict:'pending'});}else part.verdict=action;
+      actions.querySelectorAll('button').forEach(b=>b.disabled=true);
+      try{await commit(r);render();feedback(action==='approve'?'검수 내용을 저장하고 제작실에 연결했습니다.':action==='hold'?'보류했습니다. 해당 정리문을 새 제작 요청에 전달하지 않습니다.':'분리한 두 정리문을 다시 검수해 주세요.');}catch(e){feedback(e.message);actions.querySelectorAll('button').forEach(b=>b.disabled=false);}
+     };actions.append(b);
+    }box.append(actions);
+    if(part.verdict==='approve'){const refs=registry.reviewed_assets.filter(a=>a.group_id===g.id&&a.member_ids.some(id=>part.memberIds.includes(id))),links=node('div',undefined,'review-ready-links');links.append(node('b','검수 내용을 사용할 박스'));for(const id of new Set(refs.flatMap(a=>a.operation_ids))){const a=node('a',name(id),'review-operation-link');a.href='connections.html?reviewed='+encodeURIComponent(id);links.append(a);}if(!refs.some(a=>a.operation_ids.length))links.append(node('p','정리문은 저장됐습니다. 이 항목은 아직 제작용 연결 규칙이 없어 재료 등록이 필요합니다.'));box.append(links);}
+    card.append(box);
+   });host.append(card);if(typeof renderMath==='function')renderMath(card);shown++;
+  }
+  if(!shown)host.append(node('p','해당 상태의 검수 자료가 없습니다. 다른 필터를 선택해 주세요.'));
+  $('groupCount').textContent=`전체 ${catalog.groups.length}묶음 · 현재 ${shown}묶음 표시`;
  }
  async function init(){
-  host=document.getElementById('reviewGroups');
-  try{const [a,b]=await Promise.all([fetch('review-groups.json',{cache:'no-store'}),fetch('group-review-ledger.json',{cache:'no-store'})]);if(!a.ok)throw Error();catalog=await a.json();if(b.ok){const d=await b.json();persisted=Object.fromEntries((d.groups||[]).map(r=>[`${r.actor}|${r.groupId}`,r]));}
-   document.getElementById('groupSearch').addEventListener('input',render);document.getElementById('actor').addEventListener('change',render);document.getElementById('exportGroups').onclick=exportBatch;
-   document.getElementById('resetGroups').onclick=()=>{if(!actor()){feedback('초기화할 검토자 이름을 입력해 주세요.');return;}const state=load();Object.keys(state).filter(k=>k.startsWith(actor()+'|')).forEach(k=>delete state[k]);localStorage.setItem(KEY,JSON.stringify(state));render();feedback('현재 이름으로 이 기기에 저장한 묶음 기록을 초기화했습니다. 이미 반영된 운영 원장은 유지됩니다.');};
-   document.getElementById('toggleIndividual').onclick=()=>{const n=document.getElementById('individualReview');n.hidden=!n.hidden;document.getElementById('toggleIndividual').setAttribute('aria-expanded',String(!n.hidden));};render();feedback('추천 묶음을 확인한 뒤 승인하거나 일부 항목을 분리하세요. 기록은 검토자 이름별로 저장됩니다.');
-  }catch{feedback('추천 묶음을 읽지 못했습니다. 개별 검토는 계속 사용할 수 있습니다.');document.getElementById('individualReview').hidden=false;}
+  host=$('reviewGroups');store=PAReviewClient.create(PASession.create());
+  try{const response=await fetch('connection-registry.json',{cache:'no-store'});if(!response.ok)throw Error('제작 자산을 읽지 못했습니다.');registry=await response.json();adopt(await store.load());
+   $('reviewStorage').textContent=store.get().storage==='companion'?'이 PC의 검수 원장에 저장됩니다. 제작실이 같은 기록을 바로 사용합니다.':'이 브라우저에 저장되고 같은 사이트의 제작실에 연결됩니다. 다른 기기로 옮길 때는 검수 파일을 사용하세요.';
+   $('boardSync').textContent='승인한 정리문은 문항 제작실에 연결됩니다.';
+   $('groupSearch').oninput=render;$('reviewFilter').onchange=render;$('actor').addEventListener('change',render);
+   $('refreshReviews').onclick=async()=>{try{adopt(await store.load());render();feedback('최신 검수 기록을 불러왔습니다.');}catch(e){feedback(e.message);}};
+   $('exportGroups').onclick=()=>{const rows=M.current(ledger,catalog);if(!rows.length){feedback('저장된 검수가 없습니다.');return;}download('자산-검수.json',{schema:'problem-atom/review-transfer/1',groups:rows});feedback('검수 파일을 저장했습니다. 다른 기기에서 가져올 수 있습니다.');};
+   $('importGroups').onchange=async e=>{try{const f=e.target.files[0];if(!f)return;if(f.size>1000000)throw Error('검수 파일은 1MB 이하여야 합니다.');const data=JSON.parse(await f.text());if(!['problem-atom/review-transfer/1','problem-atom/group-review/1.0'].includes(data.schema)||!Array.isArray(data.groups)||!data.groups.length)throw Error('검수 파일 형식이 다릅니다.');for(const row of data.groups)M.validate({schema:'problem-atom/group-review/1.0',actor:row.actor,groups:[row]},catalog);for(const row of data.groups)adopt(await store.save({schema:'problem-atom/group-review/1.0',actor:row.actor,groups:[row]}));render();feedback('검수 파일을 저장하고 제작실에 연결했습니다.');}catch(error){feedback(error.message);}finally{e.target.value='';}};
+   let legacyConnected=false;$('toggleIndividual').onclick=()=>{const n=$('individualReview');n.hidden=!n.hidden;if(!n.hidden&&!legacyConnected&&typeof connectComments==='function'){legacyConnected=true;connectComments();}$('toggleIndividual').setAttribute('aria-expanded',String(!n.hidden));};render();feedback('정리문과 연결될 박스를 확인한 뒤 승인해 주세요.');
+  }catch(e){feedback(e.message);}
  }
  return {init};
 })();

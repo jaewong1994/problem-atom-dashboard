@@ -1,0 +1,1698 @@
+{
+  "schema": "problem-atom/review-catalog/1",
+  "registry_revision": "75818ac5f26f5804575c46390d8184b4185a0474c9b3a41d7cf31571dc0d6115",
+  "groups": [
+    {
+      "id": "derivative",
+      "title": "차형 적분의 미분",
+      "proposal": "다항식 F,w에 대해 G(x)=∫ₐˣ(F(x)−F(t))w(t)dt이면 G′(x)=F′(x)∫ₐˣw(t)dt. 곱의 미분과 정적분의 미분으로 유도한다.",
+      "guard": "일반적인 이변수 함수의 미분 공식과 같은 조건을 만족하는 다항식들에서의 유도는 적용 범위가 다르다. 공식·유도·항등식 근거의 역할을 유지한다.",
+      "members": [
+        {
+          "id": "PA-CAND-CON-20260910-001",
+          "name": "위끝과 피적분함수에 같은 변수가 있는 정적분의 미분",
+          "definition": "g(x)=∫_a^x F(x,t)dt이면 g'(x)=∫_a^x ∂F/∂x dt + F(x,x)이다. 이 문항은 F(x,x)={f(x)-f(x)}f(x)^4=0이라 경계항이 사라지고, 적분 내부를 x로 미분한 f'(x)∫_a^x f(t)^4dt만 남는다.",
+          "kind": "concept",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "∂/∂x를 적분 안으로 넣은 항과 위끝 대입항 F(x,x)의 합이 도함수다.",
+            "prerequisites": [
+              "d/dx∫_a^x f(t)dt=f(x)",
+              "곱의 미분법"
+            ],
+            "common_confusions": [
+              "피적분함수 안의 x를 상수로 보고 f(x)^4만 남김",
+              "경계항 F(x,x)가 0이 아닌 문항에서도 지움"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-CON-20260908-001",
+          "name": "매개변수가 들어 있는 정적분의 미분",
+          "definition": "적분의 위끝과 피적분함수에 변수가 함께 들어 있을 때 라이프니츠 법칙으로 미분한다.",
+          "kind": "concept",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {},
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-SKL-20260910-028",
+          "name": "정적분으로 정의된 함수의 도함수 공식을 극한 정의로 유도하기",
+          "definition": "h(x)=∫_a^x f(x,t)dt에서 h(x+h)-h(x)를 구간 분할로 나누고 극한을 적분 안으로 보내 h'(x)=∫_a^x ∂_x f dt + f(x,x)를 얻는다.",
+          "kind": "skill",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {
+            "input": "h(x)=∫_a^x f(x,t)dt",
+            "action": "차분을 두 적분으로 나누고 극한과 적분을 교환해 공식을 유도한다",
+            "output": "경계항을 포함한 도함수 공식",
+            "action_type": "proof",
+            "error_conditions": [
+              "극한과 적분의 교환 조건을 언급 없이 사용"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-CON-20260910-031",
+          "name": "항등식은 미분·적분해도 항등식",
+          "definition": "f(x)=g(x)가 x에 대한 항등식이고 미분가능하면 f'(x)=g'(x)도 항등식이며, ∫_a^x f(t)dt=∫_a^x g(t)dt도 항등식이다.",
+          "kind": "concept",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "항등식의 양변은 미분·적분 연산으로 보존된다.",
+            "prerequisites": [
+              "항등식과 방정식의 구분"
+            ],
+            "common_confusions": [
+              "방정식(특정 x에서만 성립)을 미분해 새 식을 얻으려 함"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q20"
+        }
+      ],
+      "relation": "함께 검토할 항목들 · 각 항목이 하는 일은 따로 구분합니다",
+      "reason": "같은 풀이 단계에서 쓰이는 조건과 계산 방법을 모았습니다. 함께 읽고 비교하되, 서로 다른 내용은 별도 항목으로 남깁니다.",
+      "duplicate_pairs": [
+        {
+          "ids": [
+            "PA-CAND-CON-20260910-001",
+            "PA-CAND-CON-20260908-001"
+          ],
+          "names": [
+            "위끝과 피적분함수에 같은 변수가 있는 정적분의 미분",
+            "매개변수가 들어 있는 정적분의 미분"
+          ]
+        }
+      ],
+      "regression_notes": [
+        "24개 차형 적분 문항에서 직접 적분 후 미분한 식과 곱 분해식을 비교"
+      ],
+      "revision": "8a6edd36217d31217d4ee706bbe346d127b83fd980732adcb8b2427d797feed4:c78365aa2d1b29c737f7b37de3d19f3c0e2e3cdf1758d114a7427f6a3977bd2d",
+      "operations": [
+        "PA-MOTIF-S01-01"
+      ]
+    },
+    {
+      "id": "sign",
+      "title": "정적분의 부호와 증가 조건",
+      "proposal": "다항식 w의 값이 모든 x에서 0보다 크거나 같고, w가 항상 0인 것은 아니라고 하자. 그러면 길이가 0보다 큰 모든 구간에서 적분값이 0보다 크다. 따라서 ∫ₐˣw(t)dt는 x>a일 때 양수, x<a일 때 음수, x=a일 때 0이다.",
+      "guard": "함숫값이 0보다 크거나 같다는 조건만으로는 충분하지 않다. 어떤 구간에서 함수가 계속 0이면 그 구간의 적분도 0이다. 여기서는 w가 다항식이고 항상 0인 것은 아니라는 조건을 함께 사용한다.",
+      "members": [
+        {
+          "id": "PA-CAND-CON-20260910-002",
+          "name": "부호가 일정한 피적분함수의 정적분은 x-a와 부호가 같다",
+          "definition": "f(t)≥0이고 모든 입력에서 0이 아니면 I(x)=∫_a^x f(t)dt는 증가함수이고 I(a)=0이다. 따라서 I(x)는 x>a에서 양, x<a에서 음, 즉 x-a와 부호가 같다.",
+          "kind": "concept",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "I'(x)=f(x)^4≥0, I(a)=0 ⇒ I(x)와 x-a의 부호 일치.",
+            "prerequisites": [
+              "정적분으로 정의된 함수의 도함수",
+              "도함수 부호와 증가"
+            ],
+            "common_confusions": [
+              "I(x)≥0이라고 착각(x<a에서는 음수)",
+              "f(t)^4=0인 점이 있으면 증가가 아니라고 오해"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-DEC-20260908-001",
+          "name": "0보다 크거나 같은 함수를 적분할 때 구간 방향으로 부호 판단",
+          "definition": "피적분함수가 음이 아니고 모든 입력에서 0이 아니면, a에서 x까지의 적분 부호는 x-a의 부호와 일치한다.",
+          "kind": "decision",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {},
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-CON-20260910-030",
+          "name": "도함수가 0 이상이고 0인 열린구간이 없으면 증가",
+          "definition": "미분가능한 f에 대해 f'≥0이고 f'=0인 열린구간이 없으면 f는 증가함수다. 역으로 미분가능하고 증가하면 f'≥0이다(연속·증가만으로는 도함수를 말할 수 없다).",
+          "kind": "concept",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "f'≥0 ∧ {f'=0}에 열린구간 없음 ⇒ 증가.",
+            "prerequisites": [
+              "평균값 정리"
+            ],
+            "common_confusions": [
+              "f'≥0만으로 강한 증가라고 단정",
+              "f'=0인 점이 하나 있으면 증가가 아니라고 오해"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q20"
+        }
+      ],
+      "relation": "함께 검토할 항목들 · 각 항목이 하는 일은 따로 구분합니다",
+      "reason": "같은 풀이 단계에서 쓰이는 조건과 계산 방법을 모았습니다. 함께 읽고 비교하되, 서로 다른 내용은 별도 항목으로 남깁니다.",
+      "duplicate_pairs": [],
+      "regression_notes": [
+        "항상 양수인 다항식 가중치 사용 및 다섯 위치 구간의 극값 수 확인",
+        "0인 구간이 있는 함숫값이 0보다 크거나 같은 함수는 제외 사례로 검사"
+      ],
+      "revision": "9ece679bf814a9a44f05d6785035fbd849cc29c9e9879b7930be4d4e4a28dfb4:a2c6f72b8484863f76f8aabb94e8eddcb544d37a16d0b12ef0cf79aad6c96c6b",
+      "operations": [
+        "PA-MOTIF-S01-02"
+      ]
+    },
+    {
+      "id": "collision",
+      "title": "0이 되는 두 지점이 겹칠 때 극값 개수의 변화",
+      "proposal": "도함수의 부호가 (x−r)(x−s)(x−a)의 부호와 같고 r<s이면 a=r 또는 a=s일 때만 극값이 1개이다. 서로 다른 세 값이 0이 되는 지점에서는 3개이다.",
+      "guard": "여기서는 도함수가 0이 되는 지점들을 기준으로 구간을 나누었을 때, 각 구간 안에서는 도함수의 부호가 일정한 경우를 다룹니다. 극값에서 도함수 부호가 바뀐다는 문장을 임의 함수의 일반 명제로 승인하지 않는다. 부호표·판단·전략·유형은 연결하되 하나로 합치지 않는다.",
+      "members": [
+        {
+          "id": "PA-CAND-DEC-20260910-003",
+          "name": "곱 인수의 값이 0이 되는 지점이 겹치면 그 지점에서 극값이 생기지 않는다는 판단",
+          "definition": "g'(x)=3(x-3)(x-5)·I(x)의 부호 변화점 3, 5, a 중 두 인수의 값이 0이 되는 지점이 겹치면 두 번의 부호 변화가 겹쳐 곱 전체의 부호는 바뀌지 않는다. 극값이 하나만 남으려면 a를 3 또는 5에 겹쳐야 한다고 판단한다.",
+          "kind": "decision",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {
+            "trigger_condition": "g'가 여러 인수의 곱이고 극값 개수가 조건으로 주어짐",
+            "alternatives": [
+              "g를 직접 적분해 개형 그리기",
+              "a의 범위별로 부호표를 따로 그리기"
+            ],
+            "selected_action": "값이 0이 되는 지점을 한 수직선에 놓고 a가 위치가 정해진, 값이 0이 되는 지점과 겹칠 때만 극값이 하나 남는다고 판단",
+            "guard_conditions": [
+              "두 인수가 같은 지점을 지나며 각각 부호를 바꾸면, 곱 전체의 부호는 바뀌지 않는다",
+              "I(x)의 부호가 x-a와 같음을 먼저 확보한다"
+            ],
+            "failure_cost": "dead_end"
+          },
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-SKL-20260910-004",
+          "name": "도함수 인수들의 값이 0이 되는 지점을 한 수직선에 올려 부호표 만들기",
+          "definition": "위치가 정해진, 값이 0이 되는 지점 3, 5와 매개변수에 따라 위치가 달라지는, 값이 0이 되는 지점 a를 같은 수직선에 놓고 구간별 부호 곱을 읽어 a 위치(a<3, 3<a<5, a>5, a=3, a=5)마다 극값 개수를 센다.",
+          "kind": "skill",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {
+            "input": "g'(x)의 인수 3(x-3)(x-5)와 I(x)의 값이 0이 되는 지점",
+            "action": "값이 0이 되는 지점을 한 축에 두고 구간별 부호를 곱해 극값 개수를 센다",
+            "output": "a 위치에 따른 극값 개수",
+            "action_type": "representation_change",
+            "error_conditions": [
+              "a=3, a=5인 경계 경우를 빠뜨림"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-STR-20260910-005",
+          "name": "극값 개수 조건을 매개변수 0이 되는 지점이 서로 겹치는 경우 문제로 바꾸기",
+          "definition": "'오직 하나의 극값'을 '부호 변화점이 하나만 남도록 하한 a를 위치가 정해진, 값이 0이 되는 지점에 겹친다'로 번역한다. 적분 끝값에서 생기는 항이 0이 됨 → I의 부호 → 부호표 → 0이 되는 위치가 겹치도록 선택을 한 덩어리로 묶는다.",
+          "kind": "strategy",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {
+            "special_meaning": "극값 개수 조건을 값이 0이 되는 지점 위치 선택으로 바꾸는 이 문항 특유의 흐름",
+            "member_positions": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "applicability": "도함수가 (다항식 인수)×(부호 일정 정적분 인수)로 분해될 때",
+            "misuse_patterns": [
+              "I(x)의 부호가 일정하지 않은데 같은 논리를 적용"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-PAT-20260910-006",
+          "name": "정적분 인수를 품은 도함수의 극값 개수로 하한 a 결정",
+          "definition": "g(x)=∫_a^x{f(x)-f(t)}h(t)dt, h≥0 꼴에서 극값 개수 조건으로 하한 a의 값(합)을 구하는 골격.",
+          "kind": "problem_pattern",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {
+            "given_structure": "g(x)=∫_a^x{f(x)-f(t)}h(t)dt, h(t)≥0, 극값 개수 k",
+            "target_output": "조건을 만족하는 a의 값 또는 합",
+            "invariants": [
+              "적분 끝값에서 생기는 항이 0이 됨 구조",
+              "h≥0으로 I의 부호가 x-a와 일치"
+            ],
+            "variation_handles": [
+              "f'의 근 개수와 여러 번 겹치는 근 여부",
+              "h의 차수·부호",
+              "요구 극값 개수 k"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-CON-20260910-032",
+          "name": "곱의 부호변화 규칙: 두 인수의 부호가 동시에 바뀌면 곱의 부호는 유지되고, 한쪽만 바뀌면 곱의 부호도 바뀜",
+          "definition": "x=a에서 두 인수가 모두 부호를 바꾸면 곱은 부호가 바뀌지 않고, 한 인수만 바꾸면 곱의 부호가 바뀌며, 둘 다 안 바뀌면 곱도 안 바뀐다.",
+          "kind": "concept",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "부호를 바꾸는 인수의 개수가 홀수이면 곱의 부호도 바뀌고, 짝수이면 곱의 부호는 바뀌지 않는다.",
+            "prerequisites": [
+              "부호표"
+            ],
+            "common_confusions": [
+              "두 인수가 같은 점에서 0이 되면 무조건 극값이라고 판단"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-SKL-20260908-001",
+          "name": "곱으로 분해된 도함수의 통합 부호표",
+          "definition": "각 인수의 값이 0이 되는 지점과 부호 변화를 같은 수직선에 놓아 도함수 전체의 부호 변화를 계산한다.",
+          "kind": "skill",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {},
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-STR-20260908-001",
+          "name": "0이 되는 지점이 겹치는 경우로 극값 개수 줄이기",
+          "definition": "두 인수의 부호 변화점이 겹치면 곱의 두 번의 부호 변화가 겹쳐 곱 전체의 부호는 바뀌지 않는다는 점을 이용해 매개변수를 결정한다.",
+          "kind": "strategy",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {},
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-PAT-20260908-001",
+          "name": "도함수 인수의 0이 되는 지점이 겹치는 경우로 극값 개수 제어",
+          "definition": "매개변수가 정하는 값이 0이 되는 지점과 고정된 값이 0이 되는 지점이 서로 겹치도록 하여 요구된 극값 개수를 만드는 유형이다.",
+          "kind": "problem_pattern",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {},
+          "source_question_id": "KICE-2021-06-Q20"
+        },
+        {
+          "id": "PA-CAND-CON-20260910-029",
+          "name": "극값이면 도함수의 부호가 바뀐다(도함수가 불연속이어도 성립)",
+          "definition": "f가 x=a에서 연속이고 극값을 가지면 f'는 x=a 양쪽에서 부호가 바뀐다. f'가 x=a에서 불연속이어도 성립하며, 미분가능하면 추가로 f'(a)=0이다. 역은 성립하지 않는다.",
+          "kind": "concept",
+          "author": "민재웅",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "연속 ∧ 극값 ⇒ f' 부호 변화. 미분가능이면 f'(a)=0도 성립. 불연속이면 규칙 아님.",
+            "prerequisites": [
+              "극값의 정의",
+              "평균값 정리 또는 증감표"
+            ],
+            "common_confusions": [
+              "f'(a)=0이면 극값이라고 역으로 사용",
+              "f'가 정의되지 않는 점을 극값 후보에서 제외"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q20"
+        }
+      ],
+      "relation": "함께 검토할 항목들 · 각 항목이 하는 일은 따로 구분합니다",
+      "reason": "같은 풀이 단계에서 쓰이는 조건과 계산 방법을 모았습니다. 함께 읽고 비교하되, 서로 다른 내용은 별도 항목으로 남깁니다.",
+      "duplicate_pairs": [
+        {
+          "ids": [
+            "PA-CAND-SKL-20260910-004",
+            "PA-CAND-SKL-20260908-001"
+          ],
+          "names": [
+            "도함수 인수들의 값이 0이 되는 지점을 한 수직선에 올려 부호표 만들기",
+            "곱으로 분해된 도함수의 통합 부호표"
+          ]
+        },
+        {
+          "ids": [
+            "PA-CAND-STR-20260910-005",
+            "PA-CAND-STR-20260908-001"
+          ],
+          "names": [
+            "극값 개수 조건을 매개변수 0이 되는 지점이 서로 겹치는 경우 문제로 바꾸기",
+            "0이 되는 지점이 겹치는 경우로 극값 개수 줄이기"
+          ]
+        },
+        {
+          "ids": [
+            "PA-CAND-PAT-20260910-006",
+            "PA-CAND-PAT-20260908-001"
+          ],
+          "names": [
+            "정적분 인수를 품은 도함수의 극값 개수로 하한 a 결정",
+            "도함수 인수의 0이 되는 지점이 겹치는 경우로 극값 개수 제어"
+          ]
+        }
+      ],
+      "regression_notes": [
+        "24개 문항에서 실수인 근의 위치를 각각 확인해 같은 근이 겹친 횟수가 홀수인지 짝수인지에 따라 극값 수 3·1·3·1·3 확인"
+      ],
+      "revision": "ea047970d1d38c855718c14855608321efce1c2ad83762a23430828529bbcce9:ac8f9af13d4494398e273b2247ec7270bd38e1ec66a42e25596428a0d61b53b5",
+      "operations": [
+        "PA-MOTIF-S01-03"
+      ]
+    },
+    {
+      "id": "absolute",
+      "title": "원점에서 두 부호 변화가 서로 없어지는 현상와 절댓값 꺾임",
+      "proposal": "다항식 P의 |P|는 인수분해했을 때 한 번만 나타나는 근에서만 미분 불가능하다. sgn(x)|P(x)|는 원점의 연속성을 맞춰 P(0)=0이면 원점에서 미분 가능하므로 원점 밖 인수분해했을 때 한 번만 나타나는 근을 따로 센다.",
+      "guard": "세 번 겹치는 근도 부호가 바뀌지만 |P|의 꺾임은 아니다. sgn(x)의 원점 규칙을 원점 밖에 적용하지 않는다.",
+      "members": [
+        {
+          "id": "PA-CAND-CON-20260910-007",
+          "name": "부호함수 |x|/x의 값과 x=0 불연속",
+          "definition": "|x|/x는 x>0에서 1, x<0에서 -1이고 x=0에서 불연속이다. 이것과 곱한 함수가 연속이려면 곱해진 인수가 x=0에서 0이어야 한다.",
+          "kind": "concept",
+          "author": "김상범",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "|x|/x = sgn(x), x≠0.",
+            "prerequisites": [
+              "함수의 연속 조건"
+            ],
+            "common_confusions": [
+              "|x|/x를 약분해 1로 취급"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q14"
+        },
+        {
+          "id": "PA-CAND-CON-20260910-008",
+          "name": "|다항식|의 미분불가점은 인수분해했을 때 한 번만 나타나는 근으로 x축을 통과하는 점뿐",
+          "definition": "|f(x)|는 f가 홀수 차수 근으로 x축을 통과하는 점에서만 꺾여 미분불가이고, 극값이 x축에 접하는 점(여러 번 겹치는 근)에서는 미분가능하다.",
+          "kind": "concept",
+          "author": "김상범",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "미분불가점 수 = 인수분해했을 때 한 번만 나타나는 근 통과 수.",
+            "prerequisites": [
+              "절댓값 함수의 미분가능성",
+              "여러 번 겹치는 근과 접함"
+            ],
+            "common_confusions": [
+              "|f|=0인 모든 점을 미분불가로 셈"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q14"
+        },
+        {
+          "id": "PA-CAND-DEC-20260910-009",
+          "name": "연속인 인수를 분리하고 꺾임 개수만으로 이동량 정하기",
+          "definition": "g=(|x|/x)·|f(x-p)+q|로 분리해 연속 조건은 '원점 통과', 미분불가점 1개 조건은 '극값이 원점에 온다'로 바꾸어 생각한다.",
+          "kind": "decision",
+          "author": "김상범",
+          "stage": "ai_candidate",
+          "fields": {
+            "trigger_condition": "xg(x)=|xf(x-p)+qx|처럼 절댓값 안에 x가 공통 인수로 있고 연속·미분가능 조건이 함께 주어짐",
+            "alternatives": [
+              "g를 구간별로 나눠 직접 미분",
+              "여러 p,q로 그래프를 그려 실험"
+            ],
+            "selected_action": "부호함수와 |평행이동 삼차식|을 분리하고 각 조건을 위치 조건으로 바꾼다",
+            "guard_conditions": [
+              "p,q>0 확인: 극소 (3,-39)를 원점으로 보내면 p=-3<0이라 불가",
+              "극값이 원점에 오면 접하므로 그 점은 미분가능"
+            ],
+            "failure_cost": "wrong_answer"
+          },
+          "source_question_id": "KICE-2021-06-Q14"
+        }
+      ],
+      "relation": "함께 검토할 항목들 · 각 항목이 하는 일은 따로 구분합니다",
+      "reason": "같은 풀이 단계에서 쓰이는 조건과 계산 방법을 모았습니다. 함께 읽고 비교하되, 서로 다른 내용은 별도 항목으로 남깁니다.",
+      "duplicate_pairs": [],
+      "regression_notes": [
+        "|x|, |x²|, |x³|의 좌우 미분계수 비교",
+        "24개 합성 문항에서 합성 후 인수분해했을 때 한 번만 나타나는 근만 선택"
+      ],
+      "revision": "448db819ecc5a4b42e18cde217e42276a76697a749462aefa16d3802581c0a6c:8d737f9b5c61856663be395a2eff8c0e1adee099b220330087b973bce9f9210b",
+      "operations": [
+        "PA-MOTIF-S01-04",
+        "PA-MOTIF-S01-05",
+        "PA-MOTIF-S01-06"
+      ]
+    },
+    {
+      "id": "shift",
+      "title": "이동량 후보를 만들고 선택",
+      "proposal": "원점 연속성과 원점 밖 꺾임 수를 먼저 번역한 뒤 이동 전 다항식의 극점을 원점으로 옮기는 후보를 모두 계산하고 이동량의 부호 조건으로 선택한다.",
+      "guard": "항상 극점을 옮기면 된다고 일반화하지 않는다. 원점의 근 차수와 원점 밖 인수분해했을 때 한 번만 나타나는 근 개수를 먼저 확인한다.",
+      "members": [
+        {
+          "id": "PA-CAND-SKL-20260910-010",
+          "name": "극점을 원점으로 옮기는 평행이동량 읽기",
+          "definition": "f의 극점 (-1,-7), (3,-39)를 원점으로 보내는 (p,q)=(1,7), (-3,39)를 계산하고 부호 제약으로 (1,7)을 고른다.",
+          "kind": "skill",
+          "author": "김상범",
+          "stage": "ai_candidate",
+          "fields": {
+            "input": "f의 극점 좌표와 이동식 f(x-p)+q",
+            "action": "극점을 원점으로 보내는 (p,q)를 계산하고 부호 제약으로 선택한다",
+            "output": "p=1, q=7",
+            "action_type": "calculation",
+            "error_conditions": [
+              "x-p가 오른쪽 이동임을 반대로 적용"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q14"
+        },
+        {
+          "id": "PA-CAND-STR-20260910-011",
+          "name": "절댓값 미분불가점 개수를 극값 위치 하나로 맞추기",
+          "definition": "연속·미분가능 두 조건을 '어느 극값을 원점에 두는가'라는 단일 선택으로 압축한다. 인수 분리 → 원점 통과 → 극값 원점 → 이동량.",
+          "kind": "strategy",
+          "author": "김상범",
+          "stage": "ai_candidate",
+          "fields": {
+            "special_meaning": "두 조건을 한 위치 선택으로 압축하는 이 문항 특유의 흐름",
+            "member_positions": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "applicability": "|다항식| 꼴의 미분불가점 개수가 조건으로 주어질 때",
+            "misuse_patterns": [
+              "극값이 원점에 오면 미분불가가 늘어난다고 반대로 판단"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q14"
+        },
+        {
+          "id": "PA-CAND-PAT-20260910-012",
+          "name": "부호함수×|평행이동 삼차식|의 연속·미분가능 조건으로 이동량 결정",
+          "definition": "xg(x)=|xf(x-p)+qx|, g 연속, 미분불가점 개수 1에서 p+q를 구하는 골격.",
+          "kind": "problem_pattern",
+          "author": "김상범",
+          "stage": "ai_candidate",
+          "fields": {
+            "given_structure": "xg(x)=|x f(x-p)+qx|, g 연속, 미분불가점 개수",
+            "target_output": "이동량 p, q",
+            "invariants": [
+              "연속 ⇔ 원점 통과",
+              "미분불가점 수 = 인수분해했을 때 한 번만 나타나는 근 통과 수"
+            ],
+            "variation_handles": [
+              "요구 미분불가점 개수",
+              "부호 제약 p,q>0",
+              "f의 극값 개수"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q14"
+        }
+      ],
+      "relation": "함께 검토할 항목들 · 각 항목이 하는 일은 따로 구분합니다",
+      "reason": "같은 풀이 단계에서 쓰이는 조건과 계산 방법을 모았습니다. 함께 읽고 비교하되, 서로 다른 내용은 별도 항목으로 남깁니다.",
+      "duplicate_pairs": [],
+      "regression_notes": [
+        "기존 삼차식의 극점 이동 후보 (p,q)=(1,7),(-3,39)와 인수 x²(x−6) 확인"
+      ],
+      "revision": "1d0e2433870c36aa45cfa81b90176a10bf37f1399e6db7e6c98c693f3c0b2e43:00994e20e1a31ef574fd1678391e0ca35c19f16e6c81fabc6698868b9db6fb35",
+      "operations": [
+        "PA-MOTIF-S01-05",
+        "PA-MOTIF-S01-06"
+      ]
+    },
+    {
+      "id": "normalization",
+      "title": "함숫값 차와 함숫값을 빼면 상수항이 없어지는 성질",
+      "proposal": "F(x)−F(0), F(x+p)−F(p)로 정의된 조각함수에서는 함숫값을 뺄 때 상수항이 서로 없어집니다. 공통 표현을 재사용하되 보기별 가정은 합치지 않는다.",
+      "guard": "차형 표현의 성질과 여러 보기에 재사용하는 전략은 다른 역할이다. 상수항 결정 조건을 넣어도 요구량에 영향이 없을 수 있다.",
+      "members": [
+        {
+          "id": "PA-CAND-CON-20260910-013",
+          "name": "함숫값의 차를 도함수의 정적분으로 쓰기",
+          "definition": "f(x)-f(c)=∫_c^x f'(t)dt이므로 f(x+p)-f(p)=∫_p^{x+p}f'(t)dt이고, 이를 미분하면 g'(x)=f'(x+p)다.",
+          "kind": "concept",
+          "author": "이광훈",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "미적분의 기본정리로 조각함수를 정적분 표현으로 통일한다.",
+            "prerequisites": [
+              "미적분의 기본정리"
+            ],
+            "common_confusions": [
+              "f(x+p)-f(p)를 미분할 때 f'(p)를 남김"
+            ]
+          },
+          "source_question_id": "KICE-2021-09-Q14"
+        },
+        {
+          "id": "PA-CAND-STR-20260910-017",
+          "name": "g의 정적분 표현 하나를 세 보기에 재사용",
+          "definition": "정의 재작성(①)을 한 번만 하고 ㄱ 도함수값, ㄴ 경계 미분가능, ㄷ 적분 부호를 같은 표현으로 처리한다.",
+          "kind": "strategy",
+          "author": "이광훈",
+          "stage": "ai_candidate",
+          "fields": {
+            "special_meaning": "보기 세 개를 하나의 표현으로 처리하는 이 문항 특유의 흐름",
+            "member_positions": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "applicability": "조각함수 보기 문항",
+            "misuse_patterns": [
+              "보기마다 g를 다시 정의"
+            ]
+          },
+          "source_question_id": "KICE-2021-09-Q14"
+        }
+      ],
+      "relation": "함께 검토할 항목들 · 각 항목이 하는 일은 따로 구분합니다",
+      "reason": "같은 풀이 단계에서 쓰이는 조건과 계산 방법을 모았습니다. 함께 읽고 비교하되, 서로 다른 내용은 별도 항목으로 남깁니다.",
+      "duplicate_pairs": [],
+      "regression_notes": [
+        "24개 붙임 문항에서 함숫값을 빼면 상수항이 없어지는 성질와 두 식이 연결되는 지점의 함숫값 일치 확인"
+      ],
+      "revision": "57248c153f4335bad25bbd78c556eeb53e16487da061bf5d43073f62cea22c26:95e614829cce333a6efebcc19e61d70b614aeb46cffe77fa4bc54e2514ebd31a",
+      "operations": [
+        "PA-MOTIF-S01-07",
+        "PA-MOTIF-S01-09"
+      ]
+    },
+    {
+      "id": "boundary",
+      "title": "두 식이 연결되는 지점 미분과 조건 선택",
+      "proposal": "다항식 조각을 함숫값 차로 붙이면 원점 연속은 자동이다. 좌우 미분계수를 맞춰 이동량 후보를 구한 뒤 양수 조건으로 선택하고 구간별 적분을 계산한다.",
+      "guard": "연속이 자동인 정의에서만 미분계수 일치만 검사한다. 보기 문항에서는 각 보기의 가정을 독립적으로 적용한다.",
+      "members": [
+        {
+          "id": "PA-CAND-CON-20260910-014",
+          "name": "조각함수의 한 점 미분가능성: 연속과 좌·우 미분계수 일치",
+          "definition": "x=0에서 연속이고 좌미분계수와 우미분계수가 같으면 미분가능하다. 다항식 조각이므로 도함수의 좌·우극한으로 대체할 수 있지만, 연속 확인과 도함수 극한의 존재가 전제다.",
+          "kind": "concept",
+          "author": "이광훈",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "연속 ∧ 좌미분계수 = 우미분계수 ⇒ 미분가능.",
+            "prerequisites": [
+              "미분계수의 정의",
+              "연속"
+            ],
+            "common_confusions": [
+              "연속 확인 없이 도함수 극한만 비교",
+              "도함수의 극한과 미분계수를 무조건 동일시"
+            ]
+          },
+          "source_question_id": "KICE-2021-09-Q14"
+        },
+        {
+          "id": "PA-CAND-DEC-20260910-015",
+          "name": "양수 조건으로 p=0을 버리고 p=2만 남기기",
+          "definition": "우미분계수 f'(p)=3p(p-2)=0의 두 근 중 문제의 양수 조건으로 p=0을 제외하고 p=2 하나만 센다.",
+          "kind": "decision",
+          "author": "이광훈",
+          "stage": "ai_candidate",
+          "fields": {
+            "trigger_condition": "조건식의 근이 여러 개인데 정의역·부호 제한이 붙어 있음",
+            "alternatives": [
+              "두 근을 모두 개수로 셈"
+            ],
+            "selected_action": "양수 p 조건으로 근을 걸러 개수를 확정",
+            "guard_conditions": [
+              "문제의 부호·정의역 조건을 다시 읽는다"
+            ],
+            "failure_cost": "wrong_answer"
+          },
+          "source_question_id": "KICE-2021-09-Q14"
+        },
+        {
+          "id": "PA-CAND-SKL-20260910-016",
+          "name": "이동된 조각별로 정적분을 나누어 p의 식 만들기",
+          "definition": "∫_{-1}^0(x³-3x²)dx + ∫_0^1{f(x+p)-f(p)}dx를 전개해 (1/2)(3p+2)(p-2)로 인수분해하고 p≥2에서 부호를 읽는다.",
+          "kind": "skill",
+          "author": "이광훈",
+          "stage": "ai_candidate",
+          "fields": {
+            "input": "g의 두 조각 정의와 구간 [-1,1]",
+            "action": "구간을 나눠 적분하고 p의 이차식으로 인수분해한다",
+            "output": "p에 대한 부호 판정식",
+            "action_type": "calculation",
+            "error_conditions": [
+              "f(x+p)-f(p) 전개의 상수항 처리 실수",
+              "인수분해를 못 해 부호 판단 실패"
+            ]
+          },
+          "source_question_id": "KICE-2021-09-Q14"
+        },
+        {
+          "id": "PA-CAND-PAT-20260910-018",
+          "name": "이동 붙임 삼차 조각함수의 미분가능·정적분 부호 보기 문항",
+          "definition": "g=f(x)-f(0)(x≤0), f(x+p)-f(p)(x>0), f'(0)=f'(2)=0에서 한 점 미분가능과 대칭 구간 적분 부호를 묻는 골격.",
+          "kind": "problem_pattern",
+          "author": "이광훈",
+          "stage": "ai_candidate",
+          "fields": {
+            "given_structure": "이동해 붙인 삼차 조각함수, f'의 근 조건",
+            "target_output": "옳은 보기 조합",
+            "invariants": [
+              "x=0에서 g=0으로 연속 자동",
+              "g'는 f'의 평행이동"
+            ],
+            "variation_handles": [
+              "f'의 근 위치",
+              "적분 구간",
+              "p의 범위"
+            ]
+          },
+          "source_question_id": "KICE-2021-09-Q14"
+        }
+      ],
+      "relation": "함께 검토할 항목들 · 각 항목이 하는 일은 따로 구분합니다",
+      "reason": "같은 풀이 단계에서 쓰이는 조건과 계산 방법을 모았습니다. 함께 읽고 비교하되, 서로 다른 내용은 별도 항목으로 남깁니다.",
+      "duplicate_pairs": [],
+      "regression_notes": [
+        "24개 붙임 문항에서 p=0,2h 후보 및 정적분 값 재계산"
+      ],
+      "revision": "58bfa5461dc3a909bdb6ba1123d46f50e24de0b36fcc6a108197b2733e799fcd:adac76bb7e1694078111b31e02a7f9c8624b666fa41b193f8e6377cb483c3a3b",
+      "operations": [
+        "PA-MOTIF-S01-07",
+        "PA-MOTIF-S01-08",
+        "PA-MOTIF-S01-09"
+      ]
+    },
+    {
+      "id": "composition",
+      "title": "합성방정식을 외부 함수의 근으로 분해",
+      "proposal": "외부 다항식의 서로 다른 실근을 먼저 구하고 내부 함수가 각 근과 같아지는 방정식으로 분해한다. 근의 개수와 같은 근이 겹친 횟수를 구분한다.",
+      "guard": "삼차식의 서로 다른 실근 2개는 인수분해했을 때 한 번만 나타나는 근과 여러 번 겹치는 근이다. 합성 후 같은 근이 겹친 횟수는 곱해지며, 실근 개수에서는 중복 계산하지 않는다.",
+      "members": [
+        {
+          "id": "PA-CAND-CON-20260910-019",
+          "name": "삼차함수 실근 2개는 인수분해했을 때 한 번만 나타나는 근 1개와 여러 번 겹치는 근 1개",
+          "definition": "최고차항이 0이 아닌 삼차함수가 서로 다른 실근을 정확히 2개 가지면 f(x)=k(x-α)(x-β)² 꼴이다.",
+          "kind": "concept",
+          "author": "김연수",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "실근 2개 ⇔ 인수분해했을 때 한 번만 나타나는 근 + 여러 번 겹치는 근.",
+            "prerequisites": [
+              "삼차방정식 근의 분포",
+              "여러 번 겹치는 근"
+            ],
+            "common_confusions": [
+              "실근 2개에 허근을 포함해 셈"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q22"
+        },
+        {
+          "id": "PA-CAND-CON-20260910-021",
+          "name": "합성형 방정식 f(g(x))=0의 치환 분해",
+          "definition": "f(t)=0의 근이 α, β일 때 f(x-f(x))=0 ⇔ x-f(x)=α 또는 β ⇔ f(x)=x-α 또는 f(x)=x-β. 기울기 1인 두 직선과 곡선의 교점 문제가 된다.",
+          "kind": "concept",
+          "author": "김연수",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "f(g(x))=0 ⇔ g(x) ∈ {f의 근}.",
+            "prerequisites": [
+              "합성함수",
+              "방정식의 동치 변형"
+            ],
+            "common_confusions": [
+              "t의 범위를 x의 범위와 혼동"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q22"
+        },
+        {
+          "id": "PA-CAND-PAT-20260910-027",
+          "name": "f(x-f(x))=0의 근 개수를 평행 직선 교점 수로 묻는 삼차함수 계수 결정",
+          "definition": "실근 2개, f(x-f(x))=0의 실근 3개, f(1), f'(1), f'(0) 부등식으로 f(0)을 정하는 골격.",
+          "kind": "problem_pattern",
+          "author": "김연수",
+          "stage": "ai_candidate",
+          "fields": {
+            "given_structure": "근 개수 조건 2개와 점·기울기 조건",
+            "target_output": "특정 함숫값 f(0)",
+            "invariants": [
+              "치환으로 기울기 1 직선 2개",
+              "접선 = 여러 번 겹치는 근"
+            ],
+            "variation_handles": [
+              "직선 기울기(x-2f(x) 등)",
+              "요구 근 개수",
+              "접점 위치"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q22"
+        }
+      ],
+      "relation": "함께 검토할 항목들 · 각 항목이 하는 일은 따로 구분합니다",
+      "reason": "같은 풀이 단계에서 쓰이는 조건과 계산 방법을 모았습니다. 함께 읽고 비교하되, 서로 다른 내용은 별도 항목으로 남깁니다.",
+      "duplicate_pairs": [],
+      "regression_notes": [
+        "24개 합성 다항식을 독립 인수분해하여 서로 다른 실근 4개와 인수분해했을 때 한 번만 나타나는 근 1개 확인"
+      ],
+      "revision": "de458ea67e2c17b7e65346b432132f237058fba84ab50937eb87b21c9ebfb3e7:b4b3a1a5dcfe4b0c8b9ce21c734172aad55f9bbc728413dd16c051ffe56bd93e",
+      "operations": [
+        "PA-MOTIF-S01-10",
+        "PA-MOTIF-S01-13"
+      ]
+    },
+    {
+      "id": "tangent",
+      "title": "접촉 후보를 모두 복원하고 검산",
+      "proposal": "접촉은 함수와 직선의 차에서 여러 번 겹치는 근을 만든다. 기울기 조건을 만족하는 점을 모두 구하고 교점 수·부등식으로 후보를 배제한 뒤 인수정리로 계수를 복원한다.",
+      "guard": "접촉이 반드시 두 번 겹치는 근은 아니다. 함수와 직선의 차에서 같은 근이 세 번 겹치는 경우도 확인한다. 근과 계수의 합은 복소근 및 같은 근이 겹친 횟수까지 포함하므로 실교점 좌표 합으로 무조건 사용하지 않는다.",
+      "members": [
+        {
+          "id": "PA-CAND-CON-20260910-020",
+          "name": "미분계수는 접선의 기울기",
+          "definition": "f'(1)=1은 점 (1,4)에서 접선 y=x+3의 기울기가 1이라는 뜻이며, 기울기 1인 직선과 곡선이 접할 가능성을 연다.",
+          "kind": "concept",
+          "author": "김연수",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "f'(a) = 점 (a,f(a))에서의 접선 기울기.",
+            "prerequisites": [
+              "미분계수의 기하적 의미"
+            ],
+            "common_confusions": [
+              "f'(1)=1을 f(1)=1로 혼동"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q22"
+        },
+        {
+          "id": "PA-CAND-CON-20260910-022",
+          "name": "접점은 여러 번 겹치는 근이지만 서로 다른 교점 수로는 1개",
+          "definition": "직선이 곡선에 접하면 대수적으로 여러 번 겹치는 근이지만 서로 다른 x좌표 개수로는 1개다. 접선은 삼차곡선과 접점 1개 + 다른 교점 1개 = 2개에서 만난다.",
+          "kind": "concept",
+          "author": "김연수",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "교점 개수 셈에서 여러 번 겹치는 근은 1개.",
+            "prerequisites": [
+              "여러 번 겹치는 근과 접함"
+            ],
+            "common_confusions": [
+              "접점을 2개로 중복 계산"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q22"
+        },
+        {
+          "id": "PA-CAND-DEC-20260910-024",
+          "name": "교점 3개를 접선 2개 + 다른 직선 1개로 나누는 개형 선택",
+          "definition": "기울기 1인 두 직선과 삼차곡선의 서로 다른 교점 합이 3이므로 한 직선은 접선(2개), 다른 직선은 1개다. 점 (1,4)의 접선 y=x+3을 그 접선으로 두고 β=-3을 얻는다.",
+          "kind": "decision",
+          "author": "김연수",
+          "stage": "ai_candidate",
+          "fields": {
+            "trigger_condition": "두 평행 직선과 삼차곡선의 서로 다른 교점 수 합이 3",
+            "alternatives": [
+              "다른 직선이 접선이고 y=x+3이 1개",
+              "y=x+3이 변곡점 접선이라 1개"
+            ],
+            "selected_action": "(1,4)의 접선을 2개 교점 직선으로 두고 나머지 직선이 1개에서 만나게 배치",
+            "guard_conditions": [
+              "조건 f'(0)>1의 역할(접선이 x=1에서 생긴다는 근거 또는 다른 배치의 배제)을 확정해야 한다. 현재 풀이에 없다",
+              "나머지 직선이 정확히 1개에서 만나는지 마지막에 확인"
+            ],
+            "failure_cost": "dead_end"
+          },
+          "source_question_id": "KICE-2021-06-Q22"
+        },
+        {
+          "id": "PA-CAND-SKL-20260910-025",
+          "name": "접선 인수를 여러 번 겹치는 근으로 두고 인수정리로 계수 k 구하기",
+          "definition": "f(x)-(x+3)=k(x-1)²(x+3)을 f(x)=(x+3){k(x-1)²+1}로 정리하고 x=-3을 대입해 k=-1/16을 얻는다.",
+          "kind": "skill",
+          "author": "김연수",
+          "stage": "ai_candidate",
+          "fields": {
+            "input": "f(x)-(x+3)=k(x-1)²(x+3)",
+            "action": "전개해 공통 인수를 묶고 남은 인수에 x=-3을 대입한다",
+            "output": "f(x)=-(1/16)(x+3)²(x-5)",
+            "action_type": "calculation",
+            "error_conditions": [
+              "k(x-1)²+1 대신 k(x-1)²로 두어 접선 조건 누락"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q22"
+        },
+        {
+          "id": "PA-CAND-CON-20260910-023",
+          "name": "인수정리로 남은 인수의 근 조건 만들기",
+          "definition": "P(x)가 (x-a)를 인수로 가질 필요충분조건은 P(a)=0. f(x)=(x+3){k(x-1)²+1}이 (x+3)²을 가지려면 k(-3-1)²+1=0이다.",
+          "kind": "concept",
+          "author": "김연수",
+          "stage": "ai_candidate",
+          "fields": {
+            "statement": "P(a)=0 ⇔ (x-a) | P(x).",
+            "prerequisites": [
+              "인수정리",
+              "나머지정리"
+            ],
+            "common_confusions": [
+              "(x+3)이 한 번 있으면 충분하다고 착각"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q22"
+        },
+        {
+          "id": "PA-CAND-STR-20260910-026",
+          "name": "근 구조 → 기울기 1 직선 → 접선 개형 → 인수 복원",
+          "definition": "조건 (가)(나)와 접선 정보를 하나의 개형으로 묶고, 계수 k는 마지막에 인수정리로 정한다.",
+          "kind": "strategy",
+          "author": "김연수",
+          "stage": "ai_candidate",
+          "fields": {
+            "special_meaning": "근 개수 조건을 직선-곡선 배치로 시각화한 뒤 대수는 마지막 한 번만 쓰는 이 문항 특유의 흐름",
+            "member_positions": [
+              1,
+              3,
+              4,
+              6,
+              7
+            ],
+            "applicability": "f(x-f(x))=0류 합성 방정식의 근 개수 조건",
+            "misuse_patterns": [
+              "개형 없이 대수 전개로 진입해 경우가 폭발"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q22"
+        },
+        {
+          "id": "PA-CAND-SKL-20260910-034",
+          "name": "삼차곡선과 평행한 두 직선의 교점 x좌표 합 보존으로 검산하기",
+          "definition": "f(x)-(x-c)의 근의 합은 -b/a로 c와 무관하다. 접선 y=x+3의 교점 1, 1, -3(합 -1)과 다른 직선의 교점 합이 같아야 하므로 미지 교점을 구하거나 검산한다.",
+          "kind": "skill",
+          "author": "김연수",
+          "stage": "ai_candidate",
+          "fields": {
+            "input": "기울기가 같은 두 직선과 삼차곡선의 교점 x좌표",
+            "action": "근과 계수의 관계로 두 직선의 교점 x좌표 합이 같음을 이용한다",
+            "output": "미지 교점 좌표 또는 검산 결과",
+            "action_type": "verification",
+            "error_conditions": [
+              "최고차항 계수 부호로 근의 합 부호 착각"
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q22"
+        }
+      ],
+      "relation": "함께 검토할 항목들 · 각 항목이 하는 일은 따로 구분합니다",
+      "reason": "같은 풀이 단계에서 쓰이는 조건과 계산 방법을 모았습니다. 함께 읽고 비교하되, 서로 다른 내용은 별도 항목으로 남깁니다.",
+      "duplicate_pairs": [],
+      "regression_notes": [
+        "x³−3x의 같은 기울기 후보 −1,1 모두 확인",
+        "x³의 원점 접선은 함수와 직선의 차에서 같은 근이 세 번 겹치는 경우이므로 일반적인 두 교점 규칙에서 제외"
+      ],
+      "revision": "0a3a76a91fb41a2c480e4e6f613e5f267dbdc8f49fc012541b7a09cb808518b5:fd0a59e6167e0e7af49b3cf2007bc0590a71ad1cde5e6f85609a90ce767e24b4",
+      "operations": [
+        "PA-MOTIF-S01-10",
+        "PA-MOTIF-S01-11",
+        "PA-MOTIF-S01-12",
+        "PA-MOTIF-S01-13"
+      ]
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-033",
+      "title": "절댓값 비율 |u|/u를 부호함수로 바꾸기",
+      "proposal": "u>0이면 |u|/u=1, u<0이면 |u|/u=−1이다. u=0에서는 원래 식이 정의되지 않으므로 정의역에서 제외하고, 별도로 함숫값이 주어진 경우 그 정의를 따른다.",
+      "guard": "비율은 u=0 제외, 합·차는 u=0 포함. |u|−u는 u<0에서 −2u입니다.",
+      "members": [
+        {
+          "id": "PA-CAND-SKL-20260910-033",
+          "name": "절댓값 비율 |u|/u를 부호함수로 바꾸기",
+          "definition": "u>0이면 |u|/u=1, u<0이면 |u|/u=−1이다. u=0에서는 원래 식이 정의되지 않으므로 정의역에서 제외하고, 별도로 함숫값이 주어진 경우 그 정의를 따른다.",
+          "kind": "skill",
+          "author": "김상범",
+          "stage": "ai_candidate",
+          "fields": {
+            "input": "|u(x)|/u(x), 단 u(x)≠0",
+            "action": "u(x)의 양수·음수 구간을 구해 각각 1과 −1로 치환한다.",
+            "output": "u의 크기는 사라지고 부호만 남는 구간별 상수함수",
+            "action_type": "representation_change",
+            "error_conditions": [
+              "u(x)=0에 임의로 0을 대입하지 않는다.",
+              "u(x)=0이라는 사실만으로 좌우 부호가 바뀐다고 판단하지 않는다."
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q14"
+        }
+      ],
+      "relation": "독립 스킬 · 분리 요청 반영",
+      "reason": "부호만 남기는 변환과 크기가 남는 변환은 적용 전제와 출력이 달라 따로 보관합니다.",
+      "revision": "8b491502b61bcb2cfb6613c8ace2cd52b83803c196b17d500598aa704a50cc56:26262ab7f3292dfecb972a7c3a7113b81d2d94b29beef843f6ebd752c3b87ecf",
+      "operations": [
+        "PA-MOTIF-S01-04",
+        "PA-CAND-SKL-20260910-033"
+      ]
+    },
+    {
+      "id": "PA-CAND-SKL-20260914-001",
+      "title": "절댓값 합·차 |u|±u를 구간별 식으로 바꾸기",
+      "proposal": "|u|+u는 u≥0에서 2u, u<0에서 0이다. |u|−u는 u≥0에서 0, u<0에서 −2u이다. 두 식 모두 u=0에서 0이며, u가 실수로 정의되는 모든 곳에서 사용할 수 있다.",
+      "guard": "비율은 u=0 제외, 합·차는 u=0 포함. |u|−u는 u<0에서 −2u입니다.",
+      "members": [
+        {
+          "id": "PA-CAND-SKL-20260914-001",
+          "name": "절댓값 합·차 |u|±u를 구간별 식으로 바꾸기",
+          "definition": "|u|+u는 u≥0에서 2u, u<0에서 0이다. |u|−u는 u≥0에서 0, u<0에서 −2u이다. 두 식 모두 u=0에서 0이며, u가 실수로 정의되는 모든 곳에서 사용할 수 있다.",
+          "kind": "skill",
+          "author": "김상범",
+          "stage": "ai_candidate",
+          "fields": {
+            "input": "|u(x)|+u(x) 또는 |u(x)|−u(x)",
+            "action": "u(x)의 부호로 구간을 나누어 한쪽 구간은 0, 다른 쪽은 2u(x) 또는 −2u(x)로 쓴다.",
+            "output": "부호에 따라 한쪽 부분만 남긴 구간별 함수; 각각 2max(u,0), 2max(−u,0)",
+            "action_type": "representation_change",
+            "error_conditions": [
+              "u<0에서 |u|−u=−2u이다. 2u로 쓰면 부호 오류다.",
+              "u(x)=0은 정의역에서 제외하지 않는다.",
+              "u 자체의 정의역 제한은 그대로 유지한다."
+            ]
+          },
+          "source_question_id": "KICE-2021-06-Q14"
+        }
+      ],
+      "relation": "독립 스킬 · 분리 요청 반영",
+      "reason": "부호만 남기는 변환과 크기가 남는 변환은 적용 전제와 출력이 달라 따로 보관합니다.",
+      "revision": "f88927dbe4522820dd89530976d41c4497cb8ca04e55f465f15f3e3086778605:682d2b70e05a34ee2ecad2c74da1c4e46adc7c32f12da837f52ef6bb1ff4c015",
+      "operations": [
+        "PA-CAND-SKL-20260914-001"
+      ]
+    },
+    {
+      "id": "operation-PA-S02-LEVELS-01",
+      "title": "절댓값은 안쪽 식의 부호로 벗긴다",
+      "proposal": "절댓값 안의 부호를 정해 식 나누기. 이차식이 항상 양수인지 먼저 확인한다.",
+      "guard": "이차식이 항상 양수인지 먼저 확인한다.",
+      "members": [
+        {
+          "id": "PA-S02-LEVELS-01",
+          "name": "절댓값은 안쪽 식의 부호로 벗긴다",
+          "definition": "이차식이 항상 양수인지 먼저 확인한다.",
+          "kind": "step",
+          "author": "민재웅 · 2021년 9월 20번 · 2쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-LEVELS-01"
+      ],
+      "revision": "c6e6dfd3bf7b173bee8cf8d57427ce5a0a4844339e3725cafae6d2dddd89a1c6",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-LEVELS-02",
+      "title": "실근의 개수는 상수를 분리해서 읽는다",
+      "proposal": "수평선 높이에 따라 만나는 점 세기. 끝점과 접점의 높이를 따로 센다.",
+      "guard": "끝점과 접점의 높이를 따로 센다.",
+      "members": [
+        {
+          "id": "PA-S02-LEVELS-02",
+          "name": "실근의 개수는 상수를 분리해서 읽는다",
+          "definition": "끝점과 접점의 높이를 따로 센다.",
+          "kind": "step",
+          "author": "민재웅 · 2021년 9월 20번 · 2쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-LEVELS-02"
+      ],
+      "revision": "565eafee62cc6bf306c4b7e38051bafb534747473e3336bfee97de09fd153d0c",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-LEVELS-03",
+      "title": "정수의 합은 평균 × 개수",
+      "proposal": "허용된 값 중 정수만 골라내기. 열린 끝과 닫힌 끝을 구분한다.",
+      "guard": "열린 끝과 닫힌 끝을 구분한다.",
+      "members": [
+        {
+          "id": "PA-S02-LEVELS-03",
+          "name": "정수의 합은 평균 × 개수",
+          "definition": "열린 끝과 닫힌 끝을 구분한다.",
+          "kind": "step",
+          "author": "민재웅 · 2021년 9월 20번 · 3쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-LEVELS-03"
+      ],
+      "revision": "ac1954f21d074f9178e4b9a9cc18fd7e97b19c7ec522822554bbb8615e5d3eac",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-JUMP-01",
+      "title": "우미분계수 + 좌미분계수 분해",
+      "proposal": "좌우에서 다가오는 차이를 나누기. 좌우 미분계수의 합을 구한다. 끊김 여부는 별도의 좌우 극한 계산이 필요하다.",
+      "guard": "좌우 미분계수의 합을 구한다. 끊김 여부는 별도의 좌우 극한 계산이 필요하다.",
+      "members": [
+        {
+          "id": "PA-S02-JUMP-01",
+          "name": "우미분계수 + 좌미분계수 분해",
+          "definition": "좌우 미분계수의 합을 구한다. 끊김 여부는 별도의 좌우 극한 계산이 필요하다.",
+          "kind": "step",
+          "author": "민재웅 · 2021년 9월 22번 · 3쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-JUMP-01"
+      ],
+      "revision": "96f6e4d977dabdabb076f4914f694707c22e6e72b9d10fc7bd000b0dcd8c6448",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-JUMP-02",
+      "title": "불연속 × 연속이 연속이면, 연속 쪽이 0",
+      "proposal": "끊기는 곳에 다른 인수의 0 맞추기. 유한한 서로 다른 좌우 극한일 때의 필요조건이다. 점의 값도 확인한다.",
+      "guard": "유한한 서로 다른 좌우 극한일 때의 필요조건이다. 점의 값도 확인한다.",
+      "members": [
+        {
+          "id": "PA-S02-JUMP-02",
+          "name": "불연속 × 연속이 연속이면, 연속 쪽이 0",
+          "definition": "유한한 서로 다른 좌우 극한일 때의 필요조건이다. 점의 값도 확인한다.",
+          "kind": "step",
+          "author": "민재웅 · 2021년 9월 22번 · 3쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-JUMP-02"
+      ],
+      "revision": "6b7ddfcb557081c1fd6a856fab843fb625301edf7476082e6b6357a48294c68e",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-JUMP-03",
+      "title": "삼차함수의 실근 구조 분류 · 가장 왼쪽 근부터",
+      "proposal": "가장 왼쪽 근부터 모양 좁히기. 이동량이 양수여야 한다.",
+      "guard": "이동량이 양수여야 한다.",
+      "members": [
+        {
+          "id": "PA-S02-JUMP-03",
+          "name": "삼차함수의 실근 구조 분류 · 가장 왼쪽 근부터",
+          "definition": "이동량이 양수여야 한다.",
+          "kind": "step",
+          "author": "민재웅 · 2021년 9월 22번 · 2~3쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-JUMP-03"
+      ],
+      "revision": "89e6111e5793a5e4490b48e533dda34ebb15aecbd67145ba2863b2d34238ffa7",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-JUMP-04",
+      "title": "근은 인수별로 모으고 겹치는 근을 지운다",
+      "proposal": "겹치는 근을 한 번만 세기. 같은 값인지 확인하고 합집합을 만든다.",
+      "guard": "같은 값인지 확인하고 합집합을 만든다.",
+      "members": [
+        {
+          "id": "PA-S02-JUMP-04",
+          "name": "근은 인수별로 모으고 겹치는 근을 지운다",
+          "definition": "같은 값인지 확인하고 합집합을 만든다.",
+          "kind": "step",
+          "author": "민재웅 · 2021년 9월 22번 · 3쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-JUMP-04"
+      ],
+      "revision": "cda7ab4d221ae32cb191ab8125e99c91f136891e74811f6996eb9ae90c21a876",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-RECURRENCE-01",
+      "title": "구간 끝의 함숫값과 미분계수로 상수 구하기",
+      "proposal": "구간 끝의 값과 기울기로 상수 찾기. 끝점 값과 기울기 조건을 실제로 모두 사용한다.",
+      "guard": "끝점 값과 기울기 조건을 실제로 모두 사용한다.",
+      "members": [
+        {
+          "id": "PA-S02-RECURRENCE-01",
+          "name": "구간 끝의 함숫값과 미분계수로 상수 구하기",
+          "definition": "끝점 값과 기울기 조건을 실제로 모두 사용한다.",
+          "kind": "step",
+          "author": "이광훈 · 2021년 11월 20번 · 1쪽 풀이"
+        }
+      ],
+      "operations": [
+        "PA-S02-RECURRENCE-01"
+      ],
+      "revision": "e6a883d5cddf45013708ed4ec0502252c300e5f265f0c32e577c0b27ccca1e71",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-RECURRENCE-02",
+      "title": "피적분함수의 평행이동과 적분구간의 이동",
+      "proposal": "적분 구간을 아는 구간으로 옮기기. 위끝과 아래끝을 함께 옮긴다.",
+      "guard": "위끝과 아래끝을 함께 옮긴다.",
+      "members": [
+        {
+          "id": "PA-S02-RECURRENCE-02",
+          "name": "피적분함수의 평행이동과 적분구간의 이동",
+          "definition": "위끝과 아래끝을 함께 옮긴다.",
+          "kind": "step",
+          "author": "이광훈 · 2021년 11월 20번 · 2쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-RECURRENCE-02"
+      ],
+      "revision": "ffb7ad5fdaebae181b02c7908ebe3262a00eb66ec81ee4658571f6c66fcc28dd",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-RECURRENCE-03",
+      "title": "앞 구간의 식을 다음 구간에 쓰기",
+      "proposal": "앞 구간의 식을 다음 구간에 쓰기. 중간 구간의 식을 생략하지 않는다.",
+      "guard": "중간 구간의 식을 생략하지 않는다.",
+      "members": [
+        {
+          "id": "PA-S02-RECURRENCE-03",
+          "name": "앞 구간의 식을 다음 구간에 쓰기",
+          "definition": "중간 구간의 식을 생략하지 않는다.",
+          "kind": "step",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-S02-RECURRENCE-03"
+      ],
+      "revision": "0e1e45a33c3774bb236c6dd92fc1ce5737de8f6d6a759a435d37d3214931790e",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-WINDOW-01",
+      "title": "움직이는 구간의 크기와 점들의 간격 비교 · 두 점이 들어가는 위치",
+      "proposal": "두 점이 모두 들어가는 구간 찾기. 닫힌구간의 양끝을 포함한다.",
+      "guard": "닫힌구간의 양끝을 포함한다.",
+      "members": [
+        {
+          "id": "PA-S02-WINDOW-01",
+          "name": "움직이는 구간의 크기와 점들의 간격 비교 · 두 점이 들어가는 위치",
+          "definition": "닫힌구간의 양끝을 포함한다.",
+          "kind": "step",
+          "author": "이광훈 · 2021년 11월 22번 · 2쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-WINDOW-01"
+      ],
+      "revision": "e20f81e36d370c10fd210176af39251c22e267e5b2d72a742e2b9421a51710f9",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-WINDOW-02",
+      "title": "움직이는 구간의 크기와 점들의 간격 비교 · 간격 결정",
+      "proposal": "개수 조건에서 두 근의 간격 찾기. 개수가 2인 위치가 있다는 조건이 필요하다.",
+      "guard": "개수가 2인 위치가 있다는 조건이 필요하다.",
+      "members": [
+        {
+          "id": "PA-S02-WINDOW-02",
+          "name": "움직이는 구간의 크기와 점들의 간격 비교 · 간격 결정",
+          "definition": "개수가 2인 위치가 있다는 조건이 필요하다.",
+          "kind": "step",
+          "author": "이광훈 · 2021년 11월 22번 · 2쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-WINDOW-02"
+      ],
+      "revision": "6616ab8e77bf070981e9b024d320db2a50d872aa84e8e60527c63d44312857e8",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-WINDOW-03",
+      "title": "나머지정리의 활용 · 같은 함숫값 빼기",
+      "proposal": "같은 함숫값을 빼서 인수 만들기. 두 점은 다르고 최고차항 계수는 0이 아니다.",
+      "guard": "두 점은 다르고 최고차항 계수는 0이 아니다.",
+      "members": [
+        {
+          "id": "PA-S02-WINDOW-03",
+          "name": "나머지정리의 활용 · 같은 함숫값 빼기",
+          "definition": "두 점은 다르고 최고차항 계수는 0이 아니다.",
+          "kind": "step",
+          "author": "이광훈 · 2021년 11월 22번 · 2쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-WINDOW-03"
+      ],
+      "revision": "dd9b2598ce6985efee7e2488cca9793c5cf12bf42f590676c4c4ea775a5ee26c",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-WINDOW-04",
+      "title": "가능한 식을 모두 대입해 고르기",
+      "proposal": "가능한 식을 모두 대입해 고르기. 추가 조건이 둘 다 허용할 가능성도 남긴다.",
+      "guard": "추가 조건이 둘 다 허용할 가능성도 남긴다.",
+      "members": [
+        {
+          "id": "PA-S02-WINDOW-04",
+          "name": "가능한 식을 모두 대입해 고르기",
+          "definition": "추가 조건이 둘 다 허용할 가능성도 남긴다.",
+          "kind": "step",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-S02-WINDOW-04"
+      ],
+      "revision": "726eb3b2edbf4181b9cedbca9aac1b41d37a75fda96638e0cc94964745de5aa1",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-SIGNED-01",
+      "title": "정적분의 윗끝·아랫끝을 맞춰 적분상수 찾기",
+      "proposal": "적분의 양끝을 같게 놓아 값 얻기. 해당 점에서 적분이 정의되어야 한다.",
+      "guard": "해당 점에서 적분이 정의되어야 한다.",
+      "members": [
+        {
+          "id": "PA-S02-SIGNED-01",
+          "name": "정적분의 윗끝·아랫끝을 맞춰 적분상수 찾기",
+          "definition": "해당 점에서 적분이 정의되어야 한다.",
+          "kind": "step",
+          "author": "김상범 · 2022년 6월 14번 · 4쪽"
+        }
+      ],
+      "operations": [
+        "PA-S02-SIGNED-01"
+      ],
+      "revision": "bb62989616977b8f3057c78cb1ae3be4a3d95eb38d5d687202b9adc23604bdcc",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-SIGNED-02",
+      "title": "좌우 미분계수와 연속 조건 연결",
+      "proposal": "좌우를 미분한 뒤 연결점 맞추기. 자료의 다항식 적분 표현과 좌우 연속성을 함께 사용한다.",
+      "guard": "자료의 다항식 적분 표현과 좌우 연속성을 함께 사용한다.",
+      "members": [
+        {
+          "id": "PA-S02-SIGNED-02",
+          "name": "좌우 미분계수와 연속 조건 연결",
+          "definition": "자료의 다항식 적분 표현과 좌우 연속성을 함께 사용한다.",
+          "kind": "step",
+          "author": "김상범 · 2022년 6월 14번 · 5쪽 풀이"
+        }
+      ],
+      "operations": [
+        "PA-S02-SIGNED-02"
+      ],
+      "revision": "967d1e29930c4fc140c41dc3c3576bbf9ce90f284a6dc9692a70fd259aea38a4",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-SIGNED-03",
+      "title": "구한 근이 실제 적용 구간에 있는지 확인",
+      "proposal": "구한 근이 실제 적용 구간에 있는지 확인. 이 단계 뒤에 중복을 제거한다.",
+      "guard": "이 단계 뒤에 중복을 제거한다.",
+      "members": [
+        {
+          "id": "PA-S02-SIGNED-03",
+          "name": "구한 근이 실제 적용 구간에 있는지 확인",
+          "definition": "이 단계 뒤에 중복을 제거한다.",
+          "kind": "step",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-S02-SIGNED-03"
+      ],
+      "revision": "100289e17360aa2854c54555017d9d3cec9581291d72698d41dcd15fe4c05c99",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-TRAVEL-01",
+      "title": "속도의 적분과 속력의 적분",
+      "proposal": "이동거리와 위치 차이 구분하기. 속도 적분과 속도 절댓값 적분을 구분한다.",
+      "guard": "속도 적분과 속도 절댓값 적분을 구분한다.",
+      "members": [
+        {
+          "id": "PA-S02-TRAVEL-01",
+          "name": "속도의 적분과 속력의 적분",
+          "definition": "속도 적분과 속도 절댓값 적분을 구분한다.",
+          "kind": "step",
+          "author": "김연수 · 2022년 11월 14번 · 1쪽 풀이와 개념"
+        }
+      ],
+      "operations": [
+        "PA-S02-TRAVEL-01"
+      ],
+      "revision": "f4f8f4597fbe8a03d9220ccceaadde172395905fa4223d958beb481b404c546a",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-TRAVEL-02",
+      "title": "방향이 바뀐 곳에서 거리 나눠 더하기",
+      "proposal": "방향이 바뀐 곳에서 거리 나눠 더하기. 시간 범위 안의 방향전환과 끝점을 사용한다.",
+      "guard": "시간 범위 안의 방향전환과 끝점을 사용한다.",
+      "members": [
+        {
+          "id": "PA-S02-TRAVEL-02",
+          "name": "방향이 바뀐 곳에서 거리 나눠 더하기",
+          "definition": "시간 범위 안의 방향전환과 끝점을 사용한다.",
+          "kind": "step",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-S02-TRAVEL-02"
+      ],
+      "revision": "904002e2211115f8a51c5d7c6e141604c2c91afc186edcc78cd2031d63799984",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-TRAVEL-03",
+      "title": "멈춘 시각으로 위치식의 계수 찾기",
+      "proposal": "멈춘 시각으로 위치식의 계수 찾기. 위치식의 도함수에 해당 시각을 대입한다.",
+      "guard": "위치식의 도함수에 해당 시각을 대입한다.",
+      "members": [
+        {
+          "id": "PA-S02-TRAVEL-03",
+          "name": "멈춘 시각으로 위치식의 계수 찾기",
+          "definition": "위치식의 도함수에 해당 시각을 대입한다.",
+          "kind": "step",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-S02-TRAVEL-03"
+      ],
+      "revision": "a81ed1df8eed5e7f9d832e9bdacdf4868e13b82fae7db1273a5672e2b1aa83f0",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-S02-TRAVEL-04",
+      "title": "갔다 돌아온 거리로 최대 거리 제한하기",
+      "proposal": "갔다 돌아온 거리로 최대 거리 제한하기. 왕복 조건이 없으면 거리의 절반이라는 결론을 낼 수 없다.",
+      "guard": "왕복 조건이 없으면 거리의 절반이라는 결론을 낼 수 없다.",
+      "members": [
+        {
+          "id": "PA-S02-TRAVEL-04",
+          "name": "갔다 돌아온 거리로 최대 거리 제한하기",
+          "definition": "왕복 조건이 없으면 거리의 절반이라는 결론을 낼 수 없다.",
+          "kind": "step",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-S02-TRAVEL-04"
+      ],
+      "revision": "c1b7544659091e9be460e10743b7076cf819cb2cd69ea0d3b8090040f6055be2",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-OP-FIXED-LEVELS",
+      "title": "주어진 높이에서 만나는 점 세기",
+      "proposal": "주어진 높이에서 만나는 점 세기. 정해진 높이의 교점 개수와, 특정 개수를 만드는 높이의 범위를 구하는 일은 별도다.",
+      "guard": "정해진 높이의 교점 개수와, 특정 개수를 만드는 높이의 범위를 구하는 일은 별도다.",
+      "members": [
+        {
+          "id": "PA-OP-FIXED-LEVELS",
+          "name": "주어진 높이에서 만나는 점 세기",
+          "definition": "정해진 높이의 교점 개수와, 특정 개수를 만드는 높이의 범위를 구하는 일은 별도다.",
+          "kind": "step",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-OP-FIXED-LEVELS"
+      ],
+      "revision": "25415602b7cab54f9f044ca15f68c2b9c735a47cb1636f31f93a92ee89682768",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-BRIDGE-01",
+      "title": "기울어진 직선을 수평선으로 바꾸기",
+      "proposal": "기울어진 직선을 수평선으로 바꾸기. H(x)=F(x)−x/m를 새 함수로 정의한다. F와 H의 성질을 같은 것으로 취급하지 않는다.",
+      "guard": "H(x)=F(x)−x/m를 새 함수로 정의한다. F와 H의 성질을 같은 것으로 취급하지 않는다.",
+      "members": [
+        {
+          "id": "PA-BRIDGE-01",
+          "name": "기울어진 직선을 수평선으로 바꾸기",
+          "definition": "H(x)=F(x)−x/m를 새 함수로 정의한다. F와 H의 성질을 같은 것으로 취급하지 않는다.",
+          "kind": "bridge",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-BRIDGE-01"
+      ],
+      "revision": "9ccfa8ad67d8a07510fd127e4af3649b336c68ebb89ec381a71c5b12a8e5ee7a",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-BRIDGE-02",
+      "title": "알고 있는 다항식에서 증감과 높이 구하기",
+      "proposal": "알고 있는 다항식에서 증감과 높이 구하기. 미분·실근 계산·끝값 대입이 추가된다. 연결 검사 통과가 이 계산의 완료를 뜻하지는 않는다.",
+      "guard": "미분·실근 계산·끝값 대입이 추가된다. 연결 검사 통과가 이 계산의 완료를 뜻하지는 않는다.",
+      "members": [
+        {
+          "id": "PA-BRIDGE-02",
+          "name": "알고 있는 다항식에서 증감과 높이 구하기",
+          "definition": "미분·실근 계산·끝값 대입이 추가된다. 연결 검사 통과가 이 계산의 완료를 뜻하지는 않는다.",
+          "kind": "bridge",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-BRIDGE-02"
+      ],
+      "revision": "0070f56f28362154602df1020dc729e549fbd285998998413a8af9dabf63fcf1",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-BRIDGE-03",
+      "title": "유한한 답 후보를 정수 선택에 넘기기",
+      "proposal": "유한한 답 후보를 정수 선택에 넘기기. 유한 집합 그대로 전달한다. 최솟값과 최댓값 사이의 모든 수로 넓히지 않는다.",
+      "guard": "유한 집합 그대로 전달한다. 최솟값과 최댓값 사이의 모든 수로 넓히지 않는다.",
+      "members": [
+        {
+          "id": "PA-BRIDGE-03",
+          "name": "유한한 답 후보를 정수 선택에 넘기기",
+          "definition": "유한 집합 그대로 전달한다. 최솟값과 최댓값 사이의 모든 수로 넓히지 않는다.",
+          "kind": "bridge",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-BRIDGE-03"
+      ],
+      "revision": "acb4436675c6798a2823a2d34b91229f2114defd08680b18094be4b057abafe8",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-BRIDGE-04",
+      "title": "도함수와 한 점의 값으로 함수 되찾기",
+      "proposal": "도함수와 한 점의 값으로 함수 되찾기. 도함수는 다항식. 한 점의 값이 없으면 적분상수가 남는다.",
+      "guard": "도함수는 다항식. 한 점의 값이 없으면 적분상수가 남는다.",
+      "members": [
+        {
+          "id": "PA-BRIDGE-04",
+          "name": "도함수와 한 점의 값으로 함수 되찾기",
+          "definition": "도함수는 다항식. 한 점의 값이 없으면 적분상수가 남는다.",
+          "kind": "bridge",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-BRIDGE-04"
+      ],
+      "revision": "1c4e172e6529c2d70f00eb4ae49f0ac23976b1c6aeb81b066216a328a54b670e",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-BRIDGE-05",
+      "title": "허용 높이를 매개변수의 허용값으로 옮기기",
+      "proposal": "허용 높이를 매개변수의 허용값으로 옮기기. a가 높이 자체라는 일대일 대응을 명시한다. a² 등은 별도 역상 계산이 필요하다.",
+      "guard": "a가 높이 자체라는 일대일 대응을 명시한다. a² 등은 별도 역상 계산이 필요하다.",
+      "members": [
+        {
+          "id": "PA-BRIDGE-05",
+          "name": "허용 높이를 매개변수의 허용값으로 옮기기",
+          "definition": "a가 높이 자체라는 일대일 대응을 명시한다. a² 등은 별도 역상 계산이 필요하다.",
+          "kind": "bridge",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-BRIDGE-05"
+      ],
+      "revision": "85050d768faac0d47c992203d889911ab73c3852e3c9e3c04d7cc8de875f9e12",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-BRIDGE-06",
+      "title": "실근의 개수와 중근",
+      "proposal": "다항식의 근과 반복 횟수 함께 구하기. 근의 위치만 가져와 반복 횟수를 추정하지 않는다. 인수분해 또는 중복근 검사가 필요하다.",
+      "guard": "근의 위치만 가져와 반복 횟수를 추정하지 않는다. 인수분해 또는 중복근 검사가 필요하다.",
+      "members": [
+        {
+          "id": "PA-BRIDGE-06",
+          "name": "실근의 개수와 중근",
+          "definition": "근의 위치만 가져와 반복 횟수를 추정하지 않는다. 인수분해 또는 중복근 검사가 필요하다.",
+          "kind": "bridge",
+          "author": "김연수 · 2021년 6월 22번 · 개념 1"
+        }
+      ],
+      "operations": [
+        "PA-BRIDGE-06"
+      ],
+      "revision": "e1f6f5dc92691c6120a6f4b54896d3f0354d135a5a22c52beb52de7892aad29c",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-BRIDGE-07",
+      "title": "함수 그래프를 시간에 따른 위치로 읽기",
+      "proposal": "함수 그래프를 시간에 따른 위치로 읽기. 같은 함수를 위치로 정의하고 시간 범위를 제한한다. 극값을 시간 밖에서 세지 않는다.",
+      "guard": "같은 함수를 위치로 정의하고 시간 범위를 제한한다. 극값을 시간 밖에서 세지 않는다.",
+      "members": [
+        {
+          "id": "PA-BRIDGE-07",
+          "name": "함수 그래프를 시간에 따른 위치로 읽기",
+          "definition": "같은 함수를 위치로 정의하고 시간 범위를 제한한다. 극값을 시간 밖에서 세지 않는다.",
+          "kind": "bridge",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-BRIDGE-07"
+      ],
+      "revision": "f58aa525b6a52f9346f81a58a85a4190b043f57b9e5e74eb7bacc47ebebe96e6",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-BRIDGE-09",
+      "title": "정수 후보가 한 개인지 두 개인지 나눠 거꾸로 찾기",
+      "proposal": "정수 후보가 한 개인지 두 개인지 나눠 거꾸로 찾기. F(x)=k(x−p)(x−q)(x−r)에서 k≠0, 서로 다른 p,q가 정해지고 r만 미정이어야 한다. 허용 a는 F′의 두 실근과 정확히 일치하고, 그중 정수인 값의 합 S는 알려진 0 아닌 정수다. 두 근이 모두 정수인 경우와 한 근만 정수인 경우로 r 후보를 구한 뒤 실제 정수 여부와 합을 다시 확인한다. 합이 0이면 빈 집합 경우를 놓칠 수 있어 사용하지 않는다.",
+      "guard": "F(x)=k(x−p)(x−q)(x−r)에서 k≠0, 서로 다른 p,q가 정해지고 r만 미정이어야 한다. 허용 a는 F′의 두 실근과 정확히 일치하고, 그중 정수인 값의 합 S는 알려진 0 아닌 정수다. 두 근이 모두 정수인 경우와 한 근만 정수인 경우로 r 후보를 구한 뒤 실제 정수 여부와 합을 다시 확인한다. 합이 0이면 빈 집합 경우를 놓칠 수 있어 사용하지 않는다.",
+      "members": [
+        {
+          "id": "PA-BRIDGE-09",
+          "name": "정수 후보가 한 개인지 두 개인지 나눠 거꾸로 찾기",
+          "definition": "F(x)=k(x−p)(x−q)(x−r)에서 k≠0, 서로 다른 p,q가 정해지고 r만 미정이어야 한다. 허용 a는 F′의 두 실근과 정확히 일치하고, 그중 정수인 값의 합 S는 알려진 0 아닌 정수다. 두 근이 모두 정수인 경우와 한 근만 정수인 경우로 r 후보를 구한 뒤 실제 정수 여부와 합을 다시 확인한다. 합이 0이면 빈 집합 경우를 놓칠 수 있어 사용하지 않는다.",
+          "kind": "bridge",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-BRIDGE-09"
+      ],
+      "revision": "4b54171ea3bcb0d363ffe142716f875c158741e702ed093c0d9e41d1fb7c7fd4",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    },
+    {
+      "id": "operation-PA-BRIDGE-08",
+      "title": "같은 높이의 두 점에서 기울기 변화 확인하기",
+      "proposal": "같은 높이의 두 점에서 기울기 변화 확인하기. 서로 다른 두 입력에서 함숫값이 같은 실제 삼차함수에만 쓴다. 두 기울기 변화 위치가 존재한다는 연결이며 위치의 수치는 실제 함수식을 미분해 별도로 구한다.",
+      "guard": "서로 다른 두 입력에서 함숫값이 같은 실제 삼차함수에만 쓴다. 두 기울기 변화 위치가 존재한다는 연결이며 위치의 수치는 실제 함수식을 미분해 별도로 구한다.",
+      "members": [
+        {
+          "id": "PA-BRIDGE-08",
+          "name": "같은 높이의 두 점에서 기울기 변화 확인하기",
+          "definition": "서로 다른 두 입력에서 함숫값이 같은 실제 삼차함수에만 쓴다. 두 기울기 변화 위치가 존재한다는 연결이며 위치의 수치는 실제 함수식을 미분해 별도로 구한다.",
+          "kind": "bridge",
+          "author": "연결 재료"
+        }
+      ],
+      "operations": [
+        "PA-BRIDGE-08"
+      ],
+      "revision": "efb6a31c20a82967de917c430cbb244913ab8d24622dbafc749daaa4288c06ac",
+      "relation": "제작실에서 사용하는 박스",
+      "reason": "이 박스의 사용 조건과 예시를 확인해 주세요.",
+      "regression_notes": []
+    }
+  ],
+  "checks": [
+    {
+      "id": "parity",
+      "name": "단순·이중·세 번 겹치는 근: 부호변화와 절댓값 미분의 구분",
+      "passed": true,
+      "detail": "부호변화: 1·3차 / |x^m| 미분 불가: 1차만. 3차를 꺾임으로 분류하면 실패. 독립 미분 검사는 test_sandbox.py에서 실행."
+    },
+    {
+      "id": "zero-interval",
+      "name": "함숫값이 0보다 크거나 같다는 조건만으로 적분값의 부호를 정할 수 없음",
+      "passed": true,
+      "detail": "w(t)=0 (t≤1), (t−1)² (t>1): [0,1]에서는 모든 입력에서 0. 다항식 전제 또는 모든 구간 적분 양수 전제가 필요."
+    },
+    {
+      "id": "tangent-order",
+      "name": "함수와 직선의 차에서 같은 근이 세 번 겹치는 경우 제외 사례",
+      "passed": true,
+      "detail": "y=x³의 원점 접선 y=0: x³=0의 서로 다른 해는 0 하나. 접선이면 교점 2개라는 일반화는 제외."
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import re
 ROOT = Path(__file__).resolve().parent
 PAGES = ('index', 'connections', 'asset-library', 'motif-library', 'dashboard',
          'promotion-board', 'vision', 'studio', 'pilot-review')
-PRIMARY = (('index', '홈'), ('connections', '문항 만들기'), ('asset-library', '재료 찾기'))
+PRIMARY = (('index', '홈'), ('connections', '문항 만들기'), ('promotion-board', '재료 검수'), ('asset-library', '재료 찾기'))
 
 def header(page):
     active = 'asset-library' if page == 'motif-library' else page
