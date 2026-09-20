@@ -1,0 +1,75 @@
+{
+  "schema": "problem-atom/authoring-lessons/1",
+  "revision": "judgment-authoring-20260921",
+  "synchronized_at": "2026-09-21",
+  "mode": "reviewed_design_lessons_only",
+  "external_nodes_imported": 0,
+  "sources": [
+    {
+      "document": "수학프로젝트_공유지식/10_문항제작_분석_지식파이프라인.md",
+      "lesson": "설계 계약·조건 결합·역풀이 QA",
+      "sha256": "866223204850a6e9763f706c5672cc3d31348443d11100678544a7e17f3fcae5"
+    },
+    {
+      "document": "ngd2/문제은행/엔진별/24_판단중심온톨로지_엔진.md",
+      "lesson": "발동 신호·판단·스킬·계산의 구분",
+      "sha256": "45024c784407a4fc9fab6c336dd9424586b60e956f20f74ddf2580139ec14bf8"
+    },
+    {
+      "document": "ngd2/문제은행/2026-09-08_온톨로지_Codex_작업일지.md",
+      "lesson": "노드 증식 억제·의미 검토와 기계 검증 분리",
+      "sha256": "e2c971d8767d40d4cebac3757af85d4b94361542bb60613d40daef0a6ccd6832"
+    },
+    {
+      "document": "기출문제 분석, 재조합 시스템/schemas/pa_ontology_contract_v1.json",
+      "lesson": "PA 독립 자산·승인 경계",
+      "sha256": "0699fc59adef1d16ffd29110665d0dbb418e58618d531e436639a9cac4663306"
+    }
+  ],
+  "principles": [
+    {
+      "id": "signal-decision-action",
+      "lesson": "주어진 신호·학생의 판단·실행 행위·출력을 구분한다.",
+      "implemented_in": [
+        "authoring-model.js:profiles",
+        "authoring-ui.js",
+        "model-contract.js"
+      ]
+    },
+    {
+      "id": "question-constrained",
+      "lesson": "계산·대입 같은 큰 분류가 아니라 대상과 목적이 있는 풀이만 제안한다.",
+      "implemented_in": [
+        "authoring-model.js:next"
+      ]
+    },
+    {
+      "id": "reuse-before-inflate",
+      "lesson": "단순 정보 전달을 새 판단이나 계산으로 세지 않고 기존 계약을 묶어 쓴다.",
+      "implemented_in": [
+        "authoring-model.js:next"
+      ]
+    },
+    {
+      "id": "joins-and-counterfactuals",
+      "lesson": "조건 결합과 조건 제거·우회 풀이를 검토한다. 구조 통과는 의미 승인과 다르다.",
+      "implemented_in": [
+        "authoring-model.js:blueprint",
+        "model-contract.js:INSTRUCTIONS"
+      ]
+    },
+    {
+      "id": "independent-registry",
+      "lesson": "온톨로지 교훈만 반영하고 외부 노드의 자동 가져오기·병합·승격은 하지 않는다.",
+      "implemented_in": [
+        "authoring-model.js:profiles",
+        "test_authoring.py"
+      ]
+    }
+  ],
+  "limits": [
+    "제작 설명은 승인된 온톨로지 분류가 아니다.",
+    "난도·생산성 개선률은 사용자 평가 전이다.",
+    "원천 문서 변경은 sync_authoring_lessons.py로 감지하고 재검토한다."
+  ]
+}

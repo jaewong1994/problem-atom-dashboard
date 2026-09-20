@@ -2,7 +2,7 @@
   "engine": "connections-1.0",
   "registry_revision": "75818ac5f26f5804575c46390d8184b4185a0474c9b3a41d7cf31571dc0d6115",
   "engine_sha256": "c8bc2f6f403e8a96df931b3b64d18b22591ce72e07f6eed3bf6187be95a17a3a",
-  "test_methods_passed": 63,
+  "test_methods_passed": 70,
   "test_methods_skipped": 0,
   "records": 107,
   "contracts": 46,
