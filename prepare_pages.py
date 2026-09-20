@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parent
 SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
+    "studio.html", "studio.css", "studio-engine.js", "studio-ui.js", "composition-catalog.json", "studio-validation.json",
     "composer-engine.js", "composer-ui.js",
     "review-groups.json", "group-review-ledger.json", "group-review.js", "sandbox.css",
     "combination-examples.json", "combination-examples.js",
@@ -78,10 +79,13 @@ def build_site() -> None:
     import unittest
     from test_sandbox import SandboxTests
     from test_composer import ComposerTests
-    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(SandboxTests),unittest.defaultTestLoader.loadTestsFromTestCase(ComposerTests)])
+    from test_studio import StudioTests
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(SandboxTests),unittest.defaultTestLoader.loadTestsFromTestCase(ComposerTests),unittest.defaultTestLoader.loadTestsFromTestCase(StudioTests)])
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")
+    import hashlib
+    (ROOT/"studio-validation.json").write_text(json.dumps({"engine": "seminar-composer-2.0", "engine_sha256": hashlib.sha256((ROOT/"studio-engine.js").read_bytes()).hexdigest(), "test_methods_passed": result.testsRun, "new_generated_cases": 360, "legacy_generated_cases": 192, "original_source_problems": 6, "checks": ["exact algebra", "root counts and endpoints", "condition removal witnesses", "option effects", "asset use", "KaTeX rendering", "replay and invalid inputs"], "difficulty_calibrated": False, "human_approved": False},ensure_ascii=False,indent=2),encoding="utf-8")
     if SITE.exists():
         if SITE.parent != ROOT or SITE.name != "_site":
             raise RuntimeError("빌드 폴더 경로 검증 실패")

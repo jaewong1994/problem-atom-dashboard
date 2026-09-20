@@ -1,0 +1,20 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>문제 만들기 · Problem Atom</title><meta name="theme-color" content="#174d3c">
+<link rel="stylesheet" href="site-shell.css"><link rel="stylesheet" href="vendor/katex/katex.min.css"><link rel="stylesheet" href="studio.css?v=s02a">
+<script defer src="vendor/katex/katex.min.js"></script><script defer src="studio-engine.js?v=s02a"></script><script defer src="studio-ui.js?v=s02a"></script></head><body>
+<header class="global-header"><a class="global-brand" href="index.html"><b>PA</b><span>문항 연구 시스템</span></a><nav class="global-nav" aria-label="주요 페이지"><a href="studio.html" aria-current="page">문제 만들기</a><a href="promotion-board.html">자산 검토</a><a href="asset-library.html">공유 자산</a><a href="motif-library.html">이전 조합 예시</a></nav></header>
+<main><header class="studio-head"><div><p class="eyebrow">문항 제작실 <span>세미나 02</span></p><h1>어떤 생각을 풀게 할까요?</h1><p>출발할 아이디어를 고르고, 계산과 추론을 따로 조절하세요.</p></div><a href="#assets" class="text-link">새 자료의 원자 21개 살펴보기 ↓</a></header>
+<div class="workbench"><aside class="settings" aria-label="문제 만들기 설정">
+<label class="section-label" for="family"><b>01</b> 출발할 아이디어</label><select id="family"></select><p id="familySummary" class="family-summary"></p>
+<fieldset><legend><b>02</b> 학생이 연결할 생각</legend>
+<label class="choice"><input name="level" type="radio" value="guided"><span><strong>기본 · 핵심부터 연습</strong><small>중간 결론을 주고 이어서 풀게 합니다.</small></span></label>
+<label class="choice"><input name="level" type="radio" value="standard" checked><span><strong>표준 · 조건부터 해석</strong><small>숨은 식이나 관계를 직접 찾게 합니다.</small></span></label>
+<label class="choice"><input name="level" type="radio" value="challenge"><span><strong>심화 · 다른 생각까지 연결</strong><small id="extensionLabel"></small></span></label></fieldset>
+<fieldset><legend><b>03</b> 계산에 쓸 숫자</legend><div class="segmented"><label><input name="calculation" type="radio" value="light" checked><span>작고 간단하게</span></label><label><input name="calculation" type="radio" value="full"><span>계산도 충분히</span></label></div></fieldset>
+<div class="generation"><button id="makeBatch" class="primary">이 설정으로 3문항 만들기 <span aria-hidden="true">→</span></button><p id="status" role="status" aria-live="polite"></p></div>
+<details class="advanced"><summary>같은 문항 다시 만들기</summary><label for="seed">재현 번호</label><div class="seed-row"><input id="seed" type="number" min="0" max="2147483647" step="1" value="20"><button id="replay">불러오기</button></div><p>저장한 파일의 구조·단계·숫자 크기·번호를 맞추면 같은 문항이 나옵니다.</p></details>
+<p class="limit-note">단계는 같은 구조 안에서의 설계 목표입니다. 학생 정답률로 확인한 난도는 아닙니다. 현재 수학Ⅱ의 여섯 구조를 지원합니다.</p>
+</aside><section class="output" aria-label="예상 풀이와 생성된 문제"><div class="prediction"><div class="prediction-head"><h2>만들기 전, 풀이 미리 보기</h2><span id="previewSteps"></span></div><p id="previewRoute"></p><div id="previewWork" class="work-chips"></div><details><summary>이 선택이 바꾸는 점</summary><p id="previewChange"></p></details></div>
+<div class="result-toolbar"><h2 id="resultTitle">예상 문항</h2><div id="variantTabs" role="group" aria-label="만든 문항 선택"></div></div><article class="paper" id="problem"></article><div class="paper-actions"><button id="saveItem">이 문항 보관</button><button id="printItem">학생용 인쇄</button><button id="download">문항·풀이 파일 저장</button><button id="downloadText">읽기용 문서 저장</button></div><div id="solution"></div></section></div>
+<section class="saved-section"><div class="section-heading"><h2>보관한 문항 <span id="savedCount">0</span></h2><button id="exportSaved">보관함 파일 저장</button></div><p class="quiet">이 브라우저에 저장됩니다. 다른 기기로 옮기려면 파일을 저장하세요.</p><div id="savedItems"></div></section>
+<section class="assets-section" id="assets"><div class="section-heading"><div><p class="eyebrow">새 세미나의 재사용 요소</p><h2>원문 풀이를 조합 가능한 생각으로</h2></div><span class="status-tag">AI 분석 · 사람 확인 전</span></div><p>같은 문항의 두 분석은 한 묶음으로 연결했습니다. 요소의 이름을 누르면 쓰는 조건과 잘못 쓰기 쉬운 경우를 볼 수 있습니다.</p><div id="assetCatalog"></div></section>
+<footer>검산은 성립 여부를 확인합니다. 참신성·실제 난도·출제 품질은 만들어진 문항을 보고 판단하세요. <a href="motif-library.html">기존 생성기와 분석 자료</a></footer></main></body></html>

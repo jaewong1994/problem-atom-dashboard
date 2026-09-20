@@ -1,0 +1,872 @@
+{
+  "schema": "problem-atom/composition-catalog/2.0",
+  "version": "20260920-v1",
+  "status": "ai_candidate",
+  "sources": [
+    {
+      "key": "S02-1",
+      "file": "미적1_20210920_민재웅_260916_151151.pdf",
+      "pages": 3,
+      "sha256": "2c237356b755e44a1b75e85b08f850e99359e09a23db76e3bef51f41d102bf69"
+    },
+    {
+      "key": "S02-2",
+      "file": "미적1_20210922_민재웅_260916_150758.pdf",
+      "pages": 3,
+      "sha256": "ebaa48307b044317e2c22e2680566e523dc9f203a42b075f20da740757b3ce43"
+    },
+    {
+      "key": "S02-3",
+      "file": "미적분Ⅰ_20211120_이광훈_01_260916_152247.pdf",
+      "pages": 2,
+      "sha256": "955b7285ca34cbc9377bc9c54610d6b74c23243e65dd27f061ff495d5d9b3a5e"
+    },
+    {
+      "key": "S02-4",
+      "file": "미적분Ⅰ_20211122_이광훈_01_260916_151726.pdf",
+      "pages": 2,
+      "sha256": "f0f0c187673a63a82966b89f41f12a48c6abe620c50b93891c47aaba88c5080e"
+    },
+    {
+      "key": "S02-5",
+      "file": "미적분Ⅰ_20220614_김상범_01_260916_144741.pdf",
+      "pages": 7,
+      "sha256": "4c4f06faa964b8fcdba994d841f8d84450082fd7428e26d8cba2fb8708923f32"
+    },
+    {
+      "key": "S02-6",
+      "file": "미적분Ⅰ_20221114_김연수_260916_145911.pdf",
+      "pages": 2,
+      "sha256": "6207a8f2523793d3a03ef9f945572889775929e052d32f6db10011e1b539c210"
+    },
+    {
+      "key": "S02-7",
+      "file": "미적분Ⅰ_20211122_민재웅.hwp",
+      "pages": 1,
+      "sha256": "e49edafe7f3e51a65d2f21817e6be309cc2407fbdc642e6b2eb2ccd87e016c1c",
+      "extraction": "Hancom COM exported HWPX and PDF; original unchanged"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "levels",
+      "title": "절댓값을 풀고 만나는 점 세기",
+      "source_question_id": "KICE-2021-09-Q20",
+      "sources": [
+        "S02-1"
+      ],
+      "authors": [
+        "민재웅"
+      ],
+      "answer": "21",
+      "steps": [
+        "f(x)+x=½x(x²−9x+22). 이차식은 판별식이 −7이므로 항상 양수이다.",
+        "g=f+|f+x|−6x는 x<0에서 −7x, x≥0에서 x³−9x²+15x.",
+        "오른쪽 도함수는 3(x−1)(x−5). 극댓값 7, 극솟값 −25. 왼쪽 직선은 양의 높이에서 교점 하나를 더한다.",
+        "네 교점 조건은 0<k<7. 양끝 k=0,7에서는 서로 다른 근이 3개이다. 정수합은 21."
+      ],
+      "corrections": [
+        "접점·이음점·불연속점·점근선 네 종류만으로 모든 개수 변화가 설명된다는 문장은 이 자료의 구간별 다항식 범위로 제한한다.",
+        "접하는 근을 두 번 세지 않는다."
+      ],
+      "atom_ids": [
+        "PA-S02-LEVELS-01",
+        "PA-S02-LEVELS-02",
+        "PA-S02-LEVELS-03"
+      ],
+      "status": "ai_candidate",
+      "engine_support": "live_generator"
+    },
+    {
+      "id": "jump",
+      "title": "끊기는 곳을 다른 인수의 0으로 메우기",
+      "source_question_id": "KICE-2021-09-Q22",
+      "sources": [
+        "S02-2"
+      ],
+      "authors": [
+        "민재웅"
+      ],
+      "answer": "108",
+      "steps": [
+        "H(x)=lim(h→0+) (|f(x+h)|−|f(x−h)|)/h는 좌우 미분계수의 합이다.",
+        "f≠0에서는 H=2sgn(f)f′, f=0에서는 H=0. 다항식에서는 f가 한 번만 0이 되는 근에서만 H가 불연속이다.",
+        "g=f(x−3)H가 연속이면 각 단순근 β에서 f(β−3)=0. 가장 왼쪽 단순근을 따라가면 서로 다른 세 실근과 실근 하나인 경우는 불가능하다.",
+        "삼중근이면 g의 근이 두 개뿐이다. 따라서 f=(x−α)²(x−α−3). g의 서로 다른 근은 α,α+2,α+3,α+6.",
+        "합 7에서 α=−1. f(5)=108."
+      ],
+      "corrections": [
+        "불연속×연속이 연속이면 연속인 인수가 0이라는 문장은 서로 다른 유한한 좌우 극한이 있는 이 구조에 적용한다.",
+        "중근이라는 표현은 두 번 이상 겹치는 근 전체를 뜻하는지 구분해서 기록한다."
+      ],
+      "atom_ids": [
+        "PA-S02-JUMP-01",
+        "PA-S02-JUMP-02",
+        "PA-S02-JUMP-03",
+        "PA-S02-JUMP-04"
+      ],
+      "status": "ai_candidate",
+      "engine_support": "live_generator"
+    },
+    {
+      "id": "recurrence",
+      "title": "아는 구간을 옮겨 다음 구간 구하기",
+      "source_question_id": "KICE-2021-11-Q20",
+      "sources": [
+        "S02-3"
+      ],
+      "authors": [
+        "이광훈"
+      ],
+      "answer": "110",
+      "steps": [
+        "f(0)=0, f(1)=1. x=0을 함수 관계식에 대입하면 b=1.",
+        "f′(x+1)=f(x)+xf′(x)+a를 x=0의 오른쪽에서 사용한다. f′(1)=1이므로 a=1.",
+        "0≤x≤1에서 f(x+1)=x²+x+1. 적분 구간을 0부터 1로 옮기면 적분값 11/6. 60배는 110."
+      ],
+      "corrections": [
+        "관계식의 정의역은 x≥0이다. 끝점에서 오른쪽 미분을 사용하고 전체 미분 가능성과 맞춘다."
+      ],
+      "atom_ids": [
+        "PA-S02-RECURRENCE-01",
+        "PA-S02-RECURRENCE-02",
+        "PA-S02-RECURRENCE-03"
+      ],
+      "status": "ai_candidate",
+      "engine_support": "live_generator"
+    },
+    {
+      "id": "window",
+      "title": "움직이는 구간으로 두 근의 간격 찾기",
+      "source_question_id": "KICE-2021-11-Q22",
+      "sources": [
+        "S02-4",
+        "S02-7"
+      ],
+      "authors": [
+        "이광훈",
+        "민재웅"
+      ],
+      "answer": "9",
+      "steps": [
+        "g(t)=2인 점이 존재하므로 f′는 서로 다른 두 실근 α<β를 갖는다.",
+        "모든 점에서 좌우 극한의 합≤2이면 β−α≥2. β−α<2이면 두 근을 포함하는 t의 열린구간에서 g=2여서 극한합 4.",
+        "g(f(1))=g(f(4))=2에서 β−α≤2. 따라서 간격은 2이고 f(1)=f(4)=α.",
+        "f−α=½(x−1)(x−4)(x−k). 도함수 두 근의 간격식에서 k=1 또는 4.",
+        "k=1일 때 α=1,f(0)=−1,g(−1)=1. k=4일 때 α=2,f(0)=−6,g(−6)=0. 전자만 남아 f(5)=9."
+      ],
+      "corrections": [
+        "민재웅 자료는 후보 제외 과정과 일부 중간 근거가 생략돼 있다. [0,2]에 도함수의 근이 있다는 결론만으로 f를 정하지 않는다.",
+        "이광훈 자료의 나머지정리 메모에서 f(q)가 중복된 곳은 f(r)로 읽어야 한다.",
+        "닫힌구간에서 양끝의 근 두 개가 들어가는 한 점은 좌우 극한과 값이 다를 수 있다."
+      ],
+      "atom_ids": [
+        "PA-S02-WINDOW-01",
+        "PA-S02-WINDOW-02",
+        "PA-S02-WINDOW-03",
+        "PA-S02-WINDOW-04"
+      ],
+      "status": "ai_candidate",
+      "engine_support": "live_generator"
+    },
+    {
+      "id": "signed",
+      "title": "적분으로 숨긴 함수를 좌우로 나눠 찾기",
+      "source_question_id": "KICE-2022-06-Q14",
+      "sources": [
+        "S02-5"
+      ],
+      "authors": [
+        "김상범"
+      ],
+      "answer": "ㄱ, ㄷ (④)",
+      "steps": [
+        "G(0)=0. 양쪽에서 미분하면 x<0에서 f=−G′, x>0에서 f=G′. 연속인 f를 0에 맞추면 G′(0)=f(0)=0.",
+        "최고차항 계수가 1인 삼차함수는 G=x²(x−a). f(x)=−x(3x−2a) (x<0), x(3x−2a) (x≥0).",
+        "a=0이면 f는 전체에서 증가하므로 극댓값이 없다. ㄴ은 거짓.",
+        "2<f(1)<4는 −1/2<a<1/2. f(x)=x의 근은 (2a−1)/3<0,0,(2a+1)/3>0. ㄷ은 참."
+      ],
+      "corrections": [
+        "x≥0에서 G′=f라는 표기는 0에서 좌우 관계를 맞춘 뒤 정당화한다.",
+        "첨부 후반의 공식 해설은 앞 풀이와 같은 근거이므로 새 원자로 중복 등록하지 않는다.",
+        "편측 기울기만으로 전체 교점 수가 결정된다는 일반화는 금지. 이차식과 각 반직선에서의 증감을 확인한다."
+      ],
+      "atom_ids": [
+        "PA-S02-SIGNED-01",
+        "PA-S02-SIGNED-02",
+        "PA-S02-SIGNED-03"
+      ],
+      "status": "ai_candidate",
+      "engine_support": "live_generator"
+    },
+    {
+      "id": "travel",
+      "title": "왕복한 거리를 방향 바뀐 지점으로 계산",
+      "source_question_id": "KICE-2022-11-Q14",
+      "sources": [
+        "S02-6"
+      ],
+      "authors": [
+        "김연수"
+      ],
+      "answer": "ㄱ, ㄷ (③)",
+      "steps": [
+        "위치 X(0)=X(1)=0이므로 속도 적분은 0. 총 이동거리 D=2.",
+        "임의 시각 t까지 갔다가 다시 0으로 돌아오는 거리≥2|X(t)|. 따라서 |X(t)|≤1. ㄴ은 거짓.",
+        "원점 재통과가 없다고 가정하면 삼차 위치함수는 (0,1)에서 한쪽 부호이다. 도함수는 이차식이므로 구간 안 방향전환은 하나뿐이다.",
+        "그 경우 총 이동거리=2max|X|=2여서 max|X|=1. 모든 시각에 |X|<1이라는 가정과 모순. ㄷ은 참."
+      ],
+      "corrections": [
+        "가속도 함수를 미분하면 속도라는 문장은 위치를 미분하면 속도로 수정한다.",
+        "총 이동거리의 절반이라는 상계는 왕복 경로 전체에 성립한다.",
+        "최대 이탈거리가 D/2보다 작으면 원점을 재통과한다는 명제는 일반적인 운동에 성립하지 않는다. 여기서는 삼차 위치함수·양끝 원점 조건을 사용한다."
+      ],
+      "atom_ids": [
+        "PA-S02-TRAVEL-01",
+        "PA-S02-TRAVEL-02",
+        "PA-S02-TRAVEL-03",
+        "PA-S02-TRAVEL-04"
+      ],
+      "status": "ai_candidate",
+      "engine_support": "live_generator"
+    }
+  ],
+  "atoms": [
+    {
+      "id": "PA-S02-LEVELS-01",
+      "name": "절댓값 안에서 부호를 정하는 부분 찾기",
+      "kind": "decision",
+      "status": "ai_candidate",
+      "input": "x와 항상 양수인 이차식의 곱",
+      "action": "절댓값 안에서 부호를 정하는 부분 찾기",
+      "output": "x의 부호에 따른 두 식",
+      "guard": "이차식의 최고차항이 양수이고 판별식이 음수",
+      "failure": "판별식이 0이면 추가로 값이 0인 지점을 확인",
+      "source_question_id": "KICE-2021-09-Q20",
+      "source_files": [
+        "S02-1"
+      ],
+      "source_pages": {
+        "S02-1": [
+          1,
+          2,
+          3
+        ]
+      },
+      "used_by": [
+        "levels"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-LEVELS-02",
+      "name": "방정식 대신 수평선과 만나는 점 세기",
+      "kind": "skill",
+      "status": "ai_candidate",
+      "input": "G(x)=k와 각 구간의 증감",
+      "action": "방정식 대신 수평선과 만나는 점 세기",
+      "output": "허용하는 높이의 구간",
+      "guard": "경계값과 접점 높이를 따로 센다",
+      "failure": "접한 근을 두 개로 계산",
+      "source_question_id": "KICE-2021-09-Q20",
+      "source_files": [
+        "S02-1"
+      ],
+      "source_pages": {
+        "S02-1": [
+          1,
+          2,
+          3
+        ]
+      },
+      "used_by": [
+        "levels"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-LEVELS-03",
+      "name": "양끝을 확인하고 정수만 골라내기",
+      "kind": "skill",
+      "status": "ai_candidate",
+      "input": "열린구간 또는 닫힌구간",
+      "action": "양끝을 확인하고 정수만 골라내기",
+      "output": "정수의 개수·합",
+      "guard": "끝값 포함 여부와 음수 여부 명시",
+      "failure": "부등호를 무조건 닫기",
+      "source_question_id": "KICE-2021-09-Q20",
+      "source_files": [
+        "S02-1"
+      ],
+      "source_pages": {
+        "S02-1": [
+          1,
+          2,
+          3
+        ]
+      },
+      "used_by": [
+        "levels"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-JUMP-01",
+      "name": "양쪽에서 다가오는 차이를 나눠 읽기",
+      "kind": "skill",
+      "status": "ai_candidate",
+      "input": "절댓값의 대칭 차분",
+      "action": "양쪽에서 다가오는 차이를 나눠 읽기",
+      "output": "좌미분계수와 우미분계수의 합",
+      "guard": "분모가 h이며 2h가 아님",
+      "failure": "미분 불가능한 점에 2f′를 그대로 적용",
+      "source_question_id": "KICE-2021-09-Q22",
+      "source_files": [
+        "S02-2"
+      ],
+      "source_pages": {
+        "S02-2": [
+          1,
+          2,
+          3
+        ]
+      },
+      "used_by": [
+        "jump"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-JUMP-02",
+      "name": "끊기는 곳에 다른 인수의 0 맞추기",
+      "kind": "concept",
+      "status": "ai_candidate",
+      "input": "유한한 좌우 극한이 다른 인수와 연속인 인수의 곱",
+      "action": "끊기는 곳에 다른 인수의 0 맞추기",
+      "output": "연속인 인수가 그곳에서 0",
+      "guard": "곱의 그 점 값도 확인",
+      "failure": "발산하는 인수에도 그대로 사용",
+      "source_question_id": "KICE-2021-09-Q22",
+      "source_files": [
+        "S02-2"
+      ],
+      "source_pages": {
+        "S02-2": [
+          1,
+          2,
+          3
+        ]
+      },
+      "used_by": [
+        "jump"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-JUMP-03",
+      "name": "가장 왼쪽 근부터 가능한 모양 좁히기",
+      "kind": "decision",
+      "status": "ai_candidate",
+      "input": "양수만큼 왼쪽으로 옮긴 곳도 근이라는 조건",
+      "action": "가장 왼쪽 근부터 가능한 모양 좁히기",
+      "output": "허용되는 근의 반복 모양",
+      "guard": "다항식의 근이 유한 개이고 이동량이 양수",
+      "failure": "삼중근 가능성을 누락",
+      "source_question_id": "KICE-2021-09-Q22",
+      "source_files": [
+        "S02-2"
+      ],
+      "source_pages": {
+        "S02-2": [
+          1,
+          2,
+          3
+        ]
+      },
+      "used_by": [
+        "jump"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-JUMP-04",
+      "name": "겹치는 근은 한 번만 세기",
+      "kind": "skill",
+      "status": "ai_candidate",
+      "input": "여러 인수의 실근 목록",
+      "action": "겹치는 근은 한 번만 세기",
+      "output": "서로 다른 근의 목록과 합",
+      "guard": "중복을 제거하고 순서 정렬",
+      "failure": "근과 계수 관계로 서로 다른 근의 합을 대체",
+      "source_question_id": "KICE-2021-09-Q22",
+      "source_files": [
+        "S02-2"
+      ],
+      "source_pages": {
+        "S02-2": [
+          1,
+          2,
+          3
+        ]
+      },
+      "used_by": [
+        "jump"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-RECURRENCE-01",
+      "name": "구간 끝의 값과 기울기로 상수 찾기",
+      "kind": "skill",
+      "status": "ai_candidate",
+      "input": "한 구간의 함수와 이동 관계식",
+      "action": "구간 끝의 값과 기울기로 상수 찾기",
+      "output": "관계식의 미정 상수",
+      "guard": "값 일치와 기울기 일치를 모두 확인",
+      "failure": "관계식을 허용 구간 밖에 대입",
+      "source_question_id": "KICE-2021-11-Q20",
+      "source_files": [
+        "S02-3"
+      ],
+      "source_pages": {
+        "S02-3": [
+          1,
+          2
+        ]
+      },
+      "used_by": [
+        "recurrence"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-RECURRENCE-02",
+      "name": "적분 구간을 아는 구간으로 옮기기",
+      "kind": "skill",
+      "status": "ai_candidate",
+      "input": "f(x+L)의 관계식",
+      "action": "적분 구간을 아는 구간으로 옮기기",
+      "output": "알고 있는 구간의 다항식 적분",
+      "guard": "치환 시 위끝·아래끝을 함께 이동",
+      "failure": "함수만 옮기고 적분 구간은 유지",
+      "source_question_id": "KICE-2021-11-Q20",
+      "source_files": [
+        "S02-3"
+      ],
+      "source_pages": {
+        "S02-3": [
+          1,
+          2
+        ]
+      },
+      "used_by": [
+        "recurrence"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-RECURRENCE-03",
+      "name": "한 구간에서 구한 식을 다음 구간에 재사용",
+      "kind": "strategy",
+      "status": "ai_candidate",
+      "input": "앞 구간의 식",
+      "action": "한 구간에서 구한 식을 다음 구간에 재사용",
+      "output": "두 단계 뒤 구간의 식",
+      "guard": "중간 구간의 식을 실제로 사용",
+      "failure": "독립된 적분 두 개를 붙이기",
+      "source_question_id": "KICE-2021-11-Q20",
+      "source_files": [
+        "S02-3"
+      ],
+      "source_pages": {
+        "S02-3": [
+          1,
+          2
+        ]
+      },
+      "used_by": [
+        "recurrence"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-WINDOW-01",
+      "name": "두 점이 함께 들어가는 구간의 위치 찾기",
+      "kind": "concept",
+      "status": "ai_candidate",
+      "input": "서로 다른 두 점과 길이가 고정된 닫힌구간",
+      "action": "두 점이 함께 들어가는 구간의 위치 찾기",
+      "output": "개수가 2인 t의 범위",
+      "guard": "닫힌구간 양끝 포함",
+      "failure": "g(a)를 좌우 극한합으로 대체",
+      "source_question_id": "KICE-2021-11-Q22",
+      "source_files": [
+        "S02-4",
+        "S02-7"
+      ],
+      "source_pages": {
+        "S02-4": [
+          1,
+          2
+        ],
+        "S02-7": [
+          1
+        ]
+      },
+      "used_by": [
+        "window"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-WINDOW-02",
+      "name": "개수 조건을 두 근 사이 거리로 바꾸기",
+      "kind": "decision",
+      "status": "ai_candidate",
+      "input": "개수함수의 좌우 극한 조건과 g=2인 점",
+      "action": "개수 조건을 두 근 사이 거리로 바꾸기",
+      "output": "근 사이 거리=구간 길이",
+      "guard": "g=2 존재 조건을 함께 사용",
+      "failure": "극한 조건 하나로 등호를 결론",
+      "source_question_id": "KICE-2021-11-Q22",
+      "source_files": [
+        "S02-4",
+        "S02-7"
+      ],
+      "source_pages": {
+        "S02-4": [
+          1,
+          2
+        ],
+        "S02-7": [
+          1
+        ]
+      },
+      "used_by": [
+        "window"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-WINDOW-03",
+      "name": "같은 함숫값을 빼서 인수 만들기",
+      "kind": "skill",
+      "status": "ai_candidate",
+      "input": "F(u)=F(v)=c와 삼차함수",
+      "action": "같은 함숫값을 빼서 인수 만들기",
+      "output": "F(x)−c=K(x−u)(x−v)(x−k)",
+      "guard": "u와 v가 서로 다르고 최고차항 계수 확인",
+      "failure": "두 알려진 근만으로 나머지 근을 고정",
+      "source_question_id": "KICE-2021-11-Q22",
+      "source_files": [
+        "S02-4",
+        "S02-7"
+      ],
+      "source_pages": {
+        "S02-4": [
+          1,
+          2
+        ],
+        "S02-7": [
+          1
+        ]
+      },
+      "used_by": [
+        "window"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-WINDOW-04",
+      "name": "가능한 식을 둘 다 만들고 조건으로 고르기",
+      "kind": "decision",
+      "status": "ai_candidate",
+      "input": "여러 다항식 후보와 추가 조건",
+      "action": "가능한 식을 둘 다 만들고 조건으로 고르기",
+      "output": "조건을 모두 만족시키는 식",
+      "guard": "추가 조건을 실제 각 후보에 대입",
+      "failure": "그림이 그럴듯한 후보만 선택",
+      "source_question_id": "KICE-2021-11-Q22",
+      "source_files": [
+        "S02-4",
+        "S02-7"
+      ],
+      "source_pages": {
+        "S02-4": [
+          1,
+          2
+        ],
+        "S02-7": [
+          1
+        ]
+      },
+      "used_by": [
+        "window"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-SIGNED-01",
+      "name": "적분의 위끝과 아래끝을 같게 놓기",
+      "kind": "skill",
+      "status": "ai_candidate",
+      "input": "정적분으로 정의한 함수",
+      "action": "적분의 위끝과 아래끝을 같게 놓기",
+      "output": "기준점의 함숫값 0",
+      "guard": "적분이 정의되는 구간",
+      "failure": "미분 정보만으로 적분상수를 무시",
+      "source_question_id": "KICE-2022-06-Q14",
+      "source_files": [
+        "S02-5"
+      ],
+      "source_pages": {
+        "S02-5": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "used_by": [
+        "signed"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-SIGNED-02",
+      "name": "양쪽 식을 미분한 뒤 연결 지점 맞추기",
+      "kind": "skill",
+      "status": "ai_candidate",
+      "input": "부호가 다른 두 정적분 식과 연속성",
+      "action": "양쪽 식을 미분한 뒤 연결 지점 맞추기",
+      "output": "두 번 0이 되는 인수가 있는 다항식",
+      "guard": "양쪽 극한과 점의 값 확인",
+      "failure": "연속성 없이 기울기만 맞추기",
+      "source_question_id": "KICE-2022-06-Q14",
+      "source_files": [
+        "S02-5"
+      ],
+      "source_pages": {
+        "S02-5": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "used_by": [
+        "signed"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-SIGNED-03",
+      "name": "구한 근이 그쪽 구간에 있는지 확인",
+      "kind": "decision",
+      "status": "ai_candidate",
+      "input": "구간별 방정식 해",
+      "action": "구한 근이 그쪽 구간에 있는지 확인",
+      "output": "조건을 만족시키는 서로 다른 실근",
+      "guard": "0의 중복 제거",
+      "failure": "음수 구간에서 나온 양의 근을 포함",
+      "source_question_id": "KICE-2022-06-Q14",
+      "source_files": [
+        "S02-5"
+      ],
+      "source_pages": {
+        "S02-5": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "used_by": [
+        "signed"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-TRAVEL-01",
+      "name": "이동거리와 처음·끝 위치 차이 구분",
+      "kind": "concept",
+      "status": "ai_candidate",
+      "input": "위치와 속도",
+      "action": "이동거리와 처음·끝 위치 차이 구분",
+      "output": "변위는 속도 적분, 이동거리는 속도 절댓값 적분",
+      "guard": "시간 범위와 시작·끝 위치",
+      "failure": "돌아온 거리를 0으로 계산",
+      "source_question_id": "KICE-2022-11-Q14",
+      "source_files": [
+        "S02-6"
+      ],
+      "source_pages": {
+        "S02-6": [
+          1,
+          2
+        ]
+      },
+      "used_by": [
+        "travel"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-TRAVEL-02",
+      "name": "방향 바뀐 지점까지 나눠 거리 더하기",
+      "kind": "skill",
+      "status": "ai_candidate",
+      "input": "속도 부호가 바뀌는 시각과 위치",
+      "action": "방향 바뀐 지점까지 나눠 거리 더하기",
+      "output": "이동거리와 최대 이탈거리",
+      "guard": "끝점과 구간 내 방향전환만 포함",
+      "failure": "속도 0인 점을 모두 방향전환으로 판단",
+      "source_question_id": "KICE-2022-11-Q14",
+      "source_files": [
+        "S02-6"
+      ],
+      "source_pages": {
+        "S02-6": [
+          1,
+          2
+        ]
+      },
+      "used_by": [
+        "travel"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-TRAVEL-03",
+      "name": "속도가 0인 시각으로 위치식의 계수 찾기",
+      "kind": "skill",
+      "status": "ai_candidate",
+      "input": "위치함수의 식과 속도가 0인 시각",
+      "action": "속도가 0인 시각으로 위치식의 계수 찾기",
+      "output": "위치함수의 미정 계수",
+      "guard": "위치가 미분 가능하고 해당 시각이 정의역 안에 있음",
+      "failure": "위치 자체를 0으로 놓기",
+      "source_question_id": "KICE-2022-11-Q14",
+      "source_files": [
+        "S02-6"
+      ],
+      "source_pages": {
+        "S02-6": [
+          1,
+          2
+        ]
+      },
+      "used_by": [
+        "travel"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    },
+    {
+      "id": "PA-S02-TRAVEL-04",
+      "name": "갔다 돌아오는 거리로 최대 위치 제한",
+      "kind": "concept",
+      "status": "ai_candidate",
+      "input": "양끝 위치가 같고 총 거리 D",
+      "action": "갔다 돌아오는 거리로 최대 위치 제한",
+      "output": "모든 시각에 시작점과의 거리≤D/2",
+      "guard": "왕복 조건 필요",
+      "failure": "한 방향 운동에도 D/2 적용",
+      "source_question_id": "KICE-2022-11-Q14",
+      "source_files": [
+        "S02-6"
+      ],
+      "source_pages": {
+        "S02-6": [
+          1,
+          2
+        ]
+      },
+      "used_by": [
+        "travel"
+      ],
+      "evidence": "원문 시각 확인·AI 독립 재도출",
+      "reviewers": [],
+      "approved_at": null
+    }
+  ],
+  "language": {
+    "source": "33_발문어휘통계_공적시험.md",
+    "source_sha256": "8285e8e2ae2eb8033ab9435d1500c1f8b91c0f8b8ef3e3ca86846c47f04cc064",
+    "grammar_sha256": "d6d0e5124fcaea792700d94a6aee8e1a72142f7ca34c3a28beb43f6f5d901fe3",
+    "preferred": [
+      "이때",
+      "일 때",
+      "라 하자",
+      "에 대하여",
+      "구하시오",
+      "<보기>에서",
+      "만족시키는",
+      "존재하는",
+      "음이 아닌",
+      "다음 중 옳은 것은",
+      "있는 대로 고른 것은",
+      "최댓값",
+      "최솟값",
+      "극댓값",
+      "극솟값"
+    ],
+    "scope": "발문 표면형만 참고. 어휘 빈도로 난도·교육과정·승격을 정하지 않음",
+    "note": "원문 내신 전파 2번의 표현은 앞선 원칙과 충돌하므로 공적시험 선호 표기를 유지한다."
+  },
+  "ontology": {
+    "source": "PA ontology v1 / NGD2 composition v61 참고",
+    "flow": "signal → concept → decision → skill → output",
+    "naming": "직관적인 표시 이름과 적용 전제를 함께 저장",
+    "external_auto_merge": false,
+    "human_approval": false
+  }
+}
