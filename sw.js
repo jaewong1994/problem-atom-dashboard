@@ -1,9 +1,9 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v36`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v38`;
 const SHELL = [
-  "./studio.html", "./connections.html", "./connections.css?v=io1", "./connections.js?v=bundle2", "./connection-engine.js?v=design2", "./connection-registry.json",
-  "./judgment-bundles.js?v=bundle2", "./authoring-model.js?v=bundle2", "./authoring-ui.js?v=bundle2", "./authoring.css?v=bundle2", "./authoring-lessons.json",
-  "./web-handoff.js?v=bundle2", "./production-io.js?v=io1", "./composition-graph.js?v=map1", "./box-copy.js?v=examples1", "./composition-planner.js?v=bundle2", "./model-contract.js?v=bundle2", "./selection-model.js?v=map1", "./session-client.js?v=io1", "./model-provider.json",
+  "./studio.html", "./connections.html", "./connections.css?v=io1", "./connections.js?v=unit1", "./connection-engine.js?v=design2", "./connection-registry.json",
+  "./curriculum-model.js?v=unit1", "./unit-ui.js?v=unit1", "./units.css?v=unit1", "./judgment-bundles.js?v=unit1", "./authoring-model.js?v=unit1", "./authoring-ui.js?v=unit1", "./authoring.css?v=unit1", "./authoring-lessons.json",
+  "./web-handoff.js?v=unit1", "./production-io.js?v=io1", "./composition-graph.js?v=map1", "./box-copy.js?v=examples1", "./composition-planner.js?v=unit1", "./model-contract.js?v=unit1", "./selection-model.js?v=map1", "./session-client.js?v=unit1", "./model-provider.json",
   "./review-groups.json", "./group-review-ledger.json", "./group-review.js", "./sandbox.css",
   "./combination-examples.json", "./combination-examples.js",
   "./motif-library.html",
@@ -13,8 +13,8 @@ const SHELL = [
   "./",
   "./index.html",
   "./entry.css?v=flow1",
-  "./entry.js?v=flow1",
-  "./site-shell.css?v=flow1", "./site-shell.js?v=flow1",
+  "./entry.js?v=unit1",
+  "./site-shell.css?v=flow2",
   "./dashboard.html",
   "./styles.css",
   "./grouped.css",

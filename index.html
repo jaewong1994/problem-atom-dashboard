@@ -1,17 +1,16 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="theme-color" content="#1f3a68"><meta name="description" content="재료를 고르고 난도를 설정해 수학 문항을 만드는 작업 공간입니다."><title>홈 · Problem Atom</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="assets/pwa/apple-touch-icon.png"><link rel="icon" sizes="192x192" href="assets/pwa/icon-192.png"><link rel="stylesheet" href="entry.css?v=flow1"><link rel="stylesheet" href="pwa-install.css"><link rel="stylesheet" href="site-shell.css?v=flow1"><script defer src="site-shell.js?v=flow1"></script></head>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="theme-color" content="#1f3a68"><meta name="description" content="재료를 고르고 난도를 설정해 수학 문항을 만드는 작업 공간입니다."><title>홈 · Problem Atom</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="assets/pwa/apple-touch-icon.png"><link rel="icon" sizes="192x192" href="assets/pwa/icon-192.png"><link rel="stylesheet" href="entry.css?v=flow1"><link rel="stylesheet" href="pwa-install.css"><link rel="stylesheet" href="site-shell.css?v=flow2"><link rel="stylesheet" href="units.css?v=unit1"><script defer src="curriculum-model.js?v=unit1"></script></head>
 <body data-page="index">
 <!--SITE_NAV-->
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
-<header class="global-header"><a class="global-brand" href="index.html" aria-label="Problem Atom 홈"><b aria-hidden="true">PA</b><span>Problem Atom</span></a><nav class="global-nav" aria-label="주요 메뉴"><a href="index.html" aria-current="page">홈</a><a href="connections.html">문항 만들기</a><a href="asset-library.html">재료·사례</a><details class="nav-more"><summary>분석·검수</summary><div class="nav-more-links"><a href="dashboard.html">기출 분석 현황</a><a href="promotion-board.html">재료 검수</a><a href="vision.html">프로젝트 안내</a><a href="studio.html">이전 문항 보관함</a></div></details></nav></header>
+<header class="global-header"><a class="global-brand" href="index.html" aria-label="Problem Atom 홈"><b aria-hidden="true">PA</b><span>Problem Atom</span></a><nav class="global-nav" aria-label="주요 메뉴"><a href="index.html" aria-current="page">홈</a><a href="connections.html">문항 만들기</a><a href="asset-library.html">재료 찾기</a></nav></header>
 <!--/SITE_NAV-->
 <main class="home-main" id="main">
-<header class="home-heading"><h1>어떤 문항을 만들까요?</h1><p>문제에 넣을 생각을 고르고, 계산과 추론의 부담을 조절해 보세요.</p></header>
-<section class="home-start" aria-labelledby="startTitle">
-<div class="home-create"><span class="home-tag">문항 제작실</span><h2 id="startTitle">고른 재료를 하나의 문제로</h2><p>필요한 조건과 연결을 확인한 뒤 Codex에 제작을 요청합니다. 완성된 문항과 풀이를 함께 검토하세요.</p><a class="home-cta" href="connections.html"><span id="startLabel">문항 만들기</span><span aria-hidden="true">→</span></a><p class="resume-note" id="resumeNote">처음이라면 제작실의 시작 조합을 골라 보세요.</p></div>
-<div class="home-steps"><h2>이렇게 진행해요</h2><ol><li><b>재료 고르기</b><span>핵심 생각과 함께 사용할 요소를 선택해요.</span></li><li><b>난도와 제작 조건 정하기</b><span>계산 부담과 추론 요구를 따로 정해요.</span></li><li><b>문항과 풀이 검토하기</b><span>정답, 조건의 역할, 실제 난도를 확인해요.</span></li></ol></div>
-</section>
-<section class="home-resources" aria-labelledby="resourceTitle"><h2 id="resourceTitle">재료와 사례 먼저 살펴보기</h2><div class="resource-grid"><a class="resource-link" href="asset-library.html"><b>검수된 재료</b><p>세미나에서 확인을 마친 개념과 풀이 방법</p><span aria-hidden="true">→</span></a><a class="resource-link" href="motif-library.html"><b>조합 예시</b><p>여러 요소가 실제 풀이에서 이어지는 방식</p><span aria-hidden="true">→</span></a></div></section>
-<details class="home-operations"><summary>분석·검수 작업 <span>세미나 자료를 정리할 때</span></summary><div class="operations-links"><a href="dashboard.html">기출 분석 현황<small>분석할 문항과 발표 현황 확인</small></a><a href="promotion-board.html">재료 검수<small>추천 묶음을 확인하고 수정 의견 남기기</small></a></div></details>
-<footer class="home-footer"><span>Problem Atom · 수학 문항 제작 작업 공간</span><a href="vision.html">프로젝트 안내</a></footer>
-</main><script src="entry.js?v=flow1" defer></script><script src="pwa-install.js" defer></script></body></html>
+<header class="home-heading"><p class="unit-kicker">대단원별 문항 제작</p><h1>어느 범위의 문항을 만들까요?</h1><p>대단원을 고르고, 필요한 판단을 담아 한 문항으로 연결하세요.</p></header>
+<section class="home-resume" aria-label="저장한 작업"><a class="home-cta" href="connections.html"><span id="startLabel">문항 만들기</span><span aria-hidden="true">→</span></a><p id="resumeNote">이전에 작업한 구성을 이어갈 수 있어요.</p></section>
+<div class="home-chapters" id="homeUnits" aria-label="과목별 대단원"></div>
+<a class="home-fusion" href="connections.html?mode=fusion"><div><p class="unit-kicker">별도 제작 틀</p><h2>과목 융합형</h2><p>수학Ⅰ 수열 + 확통 경우의 수처럼, 서로 다른 과목의 판단을 하나의 풀이로 연결합니다.</p></div><span aria-hidden="true">→</span></a>
+<p class="home-flow-note">대단원·융합 범위 선택 → 판단 묶음과 질문 선택 → 계산·추론 목표 설정 → AI 제작 → 문항·해설 검토 및 한글 출력</p>
+<details class="home-operations"><summary>자료 관리 <span>분석·검수가 필요할 때</span></summary><div class="operations-links"><a href="dashboard.html">기출 분석 현황<small>분석할 문항과 발표 현황 확인</small></a><a href="promotion-board.html">재료 검수<small>추천 묶음을 확인하고 수정 의견 남기기</small></a></div><details class="home-archive"><summary>이전 자료와 프로젝트 기록</summary><a href="studio.html">이전 문항 보관함</a><a href="vision.html">프로젝트 안내</a></details></details>
+<footer class="home-footer"><span>Problem Atom · 수학 문항 제작 작업 공간</span></footer>
+</main><script src="entry.js?v=unit1" defer></script><script src="pwa-install.js" defer></script></body></html>

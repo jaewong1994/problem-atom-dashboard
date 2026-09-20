@@ -31,12 +31,29 @@ class NavigationTests(unittest.TestCase):
                 if tag == 'a' and not attrs['href'].startswith('#'):
                     self.assertTrue((ROOT / attrs['href']).is_file(), attrs['href'])
             self.assertIn('<a href="index.html"', header(page))
-            self.assertIn('site-shell.js?v=flow1', text)
-            self.assertIn('site-shell.css?v=flow1', text)
+            self.assertIn('site-shell.css?v=flow2', text)
         from prepare_pages import STATIC_FILES
         published = {Path(p).stem for p in STATIC_FILES if p.endswith('.html')}
         self.assertTrue(published <= set(PAGES))
         self.assertIn('site-shell.js', STATIC_FILES)
+
+    def test_primary_navigation_and_utilities_stay_out_of_creation_path(self):
+        for page in PAGES:
+            nav = header(page)
+            self.assertNotIn('nav-more', nav)
+            self.assertNotIn('studio.html', nav)
+            self.assertNotIn('vision.html', nav)
+            self.assertIn('재료 찾기', nav)
+        text = (ROOT/'connections.html').read_text(encoding='utf-8')
+        tools = text.index('<details id="workspaceTools"')
+        self.assertGreater(tools, text.index('id="printWorkbench"'))
+        for marker in ('id="loadPlanButton"', 'id="savePlan"', 'id="materialsDetails"', 'id="planDetails"', 'class="file-tools"'):
+            self.assertGreater(text.index(marker), tools)
+        self.assertNotIn('class="technical-links"', text)
+        home = (ROOT/'index.html').read_text(encoding='utf-8')
+        self.assertNotIn('class="home-resources"', home)
+        self.assertIn('class="home-operations"', home)
+        self.assertIn('class="home-archive"', home)
 
     def test_home_preserves_draft_and_handles_unavailable_storage(self):
         source = json.dumps((ROOT/'entry.js').read_text(encoding='utf-8'))
