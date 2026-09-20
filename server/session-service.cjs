@@ -17,11 +17,11 @@ function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir
   // No CORS credential bridge: the public page opens this same-origin companion UI.
   if(origin&&!['http://127.0.0.1:'+actualPort,'http://localhost:'+actualPort].includes(origin))return send(403,{error:'연결 도우미 화면에서 요청해 주세요.'});
   const url=new URL(req.url,'http://'+host);
-  if(req.method==='GET'&&url.pathname==='/health')return send(200,{service:'problem-atom-codex-companion',revision:registry.revision,design_intent_version:1});
+  if(req.method==='GET'&&url.pathname==='/health')return send(200,{service:'problem-atom-codex-companion',revision:registry.revision,design_intent_version:1,reasoning_graph_version:1});
   if(url.pathname.startsWith('/session/')){
    const given=Buffer.from(req.headers['x-pa-session']||''),expected=Buffer.from(token);
    if(given.length!==expected.length||!crypto.timingSafeEqual(given,expected))return send(401,{error:'연결 도우미에서 화면을 다시 열어 주세요.'});
-   if(req.method==='GET'&&url.pathname==='/session/status')return send(200,{...(await auth()),model:MODEL,revision:registry.revision,design_intent_version:1,activeJob:active});
+   if(req.method==='GET'&&url.pathname==='/session/status')return send(200,{...(await auth()),model:MODEL,revision:registry.revision,design_intent_version:1,reasoning_graph_version:1,activeJob:active});
    if(req.method==='GET'&&url.pathname==='/session/jobs')return send(200,{jobs:[...jobs.values()].sort((a,b)=>(Date.parse(b.createdAt)||0)-(Date.parse(a.createdAt)||0)).slice(0,30).map(j=>({id:j.id,status:j.status,createdAt:j.createdAt,updatedAt:j.updatedAt}))});
    const match=url.pathname.match(/^\/session\/jobs\/(REQ-[a-zA-Z0-9-]+)(\/cancel)?$/);
    if(match){const j=jobs.get(match[1]);if(!j)return send(404,{error:'제작 기록이 없습니다.'});if(req.method==='GET'&&!match[2])return send(200,publicJob(j));if(req.method==='POST'&&match[2]){j.controller?.abort();return send(200,{status:j.status});}return send(405,{error:'지원하지 않는 요청'});}

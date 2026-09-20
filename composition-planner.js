@@ -1,4 +1,4 @@
-(function(root,factory){const api=typeof module==='object'?factory(require('./connection-engine.js'),require('./selection-model.js')):factory(root.PAConnections,root.PASelection);if(typeof module==='object')module.exports=api;else root.PAPlanner=api;})(typeof globalThis!=='undefined'?globalThis:this,(Connections,Selection)=>{
+(function(root,factory){const api=typeof module==='object'?factory(require('./connection-engine.js'),require('./selection-model.js'),require('./composition-graph.js')):factory(root.PAConnections,root.PASelection,root.PAGraph);if(typeof module==='object')module.exports=api;else root.PAPlanner=api;})(typeof globalThis!=='undefined'?globalThis:this,(Connections,Selection,Graph)=>{
  'use strict';
  const clone=x=>JSON.parse(JSON.stringify(x));
  const key=f=>JSON.stringify([f.type,f.subject,f.object||null,f.scope]);
@@ -14,9 +14,9 @@
   if(!t||!registry.types[t.type]||typeof t.subject!=='string'||!t.subject.trim()||t.subject.length>100||typeof t.scope!=='string'||!t.scope.trim()||t.scope.length>100)throw Error('마지막에 구할 정보를 선택하세요.');
   const relation=registry.operations.some(o=>[...o.requires,...o.provides].some(p=>p.type===t.type&&p.object));
   if(relation?(typeof t.object!=='string'||!t.object.trim()||t.object.length>100):(t.object!=null))throw Error('질문의 대상 관계가 다릅니다.');
-  return {schema:value.schema,core:clone(core),target:{type:t.type,subject:t.subject,scope:t.scope,...(relation?{object:t.object}:{})},calculation:value.calculation,reasoning:value.reasoning};
+  return {schema:value.schema,core:clone(core),target:{type:t.type,subject:t.subject,scope:t.scope,...(relation?{object:t.object}:{})},calculation:value.calculation,reasoning:value.reasoning,...(value.graph?{graph:Graph.normalizeSpec(value.graph,plan,registry)}:{})};
  }
- function intent(plan,registry,coreId,target,calculation,reasoning){return normalizeIntent({schema:'problem-atom/design-intent/1',core:plan.nodes.find(n=>n.id===coreId),target,calculation,reasoning},plan,registry);}
+ function intent(plan,registry,coreId,target,calculation,reasoning,graph=null){return normalizeIntent({...((graph)?{graph}:{}),schema:'problem-atom/design-intent/1',core:plan.nodes.find(n=>n.id===coreId),target,calculation,reasoning},plan,registry);}
  function lineage(result,target){
   const facts=new Map(result.facts.map(f=>[key(f),f])),steps=new Set(),keys=new Set();
   function visit(k){if(keys.has(k))return;keys.add(k);const f=facts.get(k);if(!f||f.origin!=='derived')return;steps.add(f.by);(f.depends_on||[]).forEach(visit);}
@@ -84,6 +84,7 @@
   const audit=analyze(plan,registry,spec.core.id,spec.target);errors.push(...audit.issues);
   if(!audit.goalReady)errors.push('마지막 질문에 필요한 결과를 도출하지 못했습니다.');
   if(!audit.coreConnected)errors.push('핵심 재료에서 마지막 질문까지의 연결을 확인할 수 없습니다.');
+  if(spec.graph)errors.push(...Graph.validateResult(spec.graph,plan,registry));
   return [...new Set(errors)];
  }
  return {GOALS,key,sameNode,normalizeIntent,intent,lineage,analyze,targets,reorder,validateResult};

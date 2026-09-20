@@ -15,7 +15,7 @@ SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
     "studio.html", "connections.html", "connections.css", "connections.js", "connection-engine.js", "connection-registry.json", "connection-validation.json", "composition-catalog.json",
-    "box-copy.js", "model-contract.js", "composition-planner.js", "selection-model.js", "session-client.js", "model-provider.json",
+    "composition-graph.js", "mindmap-ui.js", "box-copy.js", "model-contract.js", "composition-planner.js", "selection-model.js", "session-client.js", "model-provider.json",
     "review-groups.json", "group-review-ledger.json", "group-review.js", "sandbox.css",
     "combination-examples.json", "combination-examples.js",
     "motif-library.html",
@@ -90,7 +90,8 @@ def build_site() -> None:
     from test_session_math import SessionMathTests
     from test_navigation import NavigationTests
     from test_planner import PlannerTests
-    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests)])
+    from test_graph import GraphTests
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests)])
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")

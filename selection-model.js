@@ -106,7 +106,7 @@
   }
   return nodes;
  }
- function recommendations(plan,engine,registry,coreId=null,{limit=4,maxDepth=3}={}){
+ function recommendations(plan,engine,registry,coreId=null,{limit=4,maxDepth=3,includeIntermediate=false}={}){
   const initial=engine.run(plan);if(initial.status!=='connected')return [];
   coreId=validCore(plan,coreId);
   const selected=new Set(plan.nodes.map(n=>n.id)),ops=new Map(registry.operations.map(o=>[o.id,o]));
@@ -149,13 +149,13 @@
   const items=[...best.values()];
   // A bridge already bundled with a fuller suggestion is not a second competing choice.
   const bundled=new Set(items.filter(r=>ops.get(r.id).kind!=='bridge').flatMap(r=>r.nodes.slice(0,-1).map(n=>n.id)));
-  return items.filter(r=>!bundled.has(r.id)).sort((a,b)=>Number(ops.get(a.id).kind==='bridge')-Number(ops.get(b.id).kind==='bridge')||a.nodes.length-b.nodes.length).slice(0,limit);
+  return items.filter(r=>includeIntermediate||!bundled.has(r.id)).sort((a,b)=>Number(ops.get(a.id).kind==='bridge')-Number(ops.get(b.id).kind==='bridge')||a.nodes.length-b.nodes.length).slice(0,limit);
  }
  function appendRecommendation(plan,item,engine,registry,coreId){
   const fresh=recommendations(plan,engine,registry,coreId,{limit:registry.operations.length}).find(r=>r.id===item.id&&JSON.stringify(r.nodes)===JSON.stringify(item.nodes));
   if(!fresh)throw Error('구성이 달라졌습니다. 현재 추천에서 다시 골라 주세요.');
   return {...structuredClone(plan),nodes:[...structuredClone(plan.nodes),...structuredClone(fresh.nodes)]};
  }
- function clearSelection(draft,registry){return {...structuredClone(draft),plan:blank(registry),disabled:[],coreId:null,target:null};}
+ function clearSelection(draft,registry){return {...structuredClone(draft),plan:blank(registry),disabled:[],coreId:null,target:null,...(draft.mapState?{mapState:{roles:{},positions:{}}}:{})};}
  return {categories,category,describe,blank,preset,toggle,advice,declare,coreStarts,coreStart,validCore,coreInstruction,recommendations,appendRecommendation,clearSelection};
 });
