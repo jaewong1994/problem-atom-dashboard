@@ -58,5 +58,104 @@
  function toggle(plan,id,registry){if(!registry.operations.some(o=>o.id===id))throw Error('등록되지 않은 재료입니다.');const i=plan.nodes.findIndex(n=>n.id===id);if(i>=0)plan.nodes.splice(i,1);else plan.nodes.push({id,bindings:{f:'F',h:'H',a:'a'},scope:'main'});return plan;}
  function advice(plan,engine){const result=engine.run(plan),at=result.trace.findIndex(s=>s.status!=='direct');if(at<0)return {result,at,nodes:[],missing:[]};let state=engine.prepare(plan.facts);for(let i=0;i<at;i++)state=engine.apply(state,plan.nodes[i]).facts;const found=engine.suggest(state,plan.nodes[at],{bindings:{f:'F',h:'H',a:'a'},maxDepth:3,limit:1});return {result,at,nodes:found.paths?.[0]||[],missing:result.trace[at].missing};}
  function declare(plan,fact){const f={...fact,origin:'given'};if(!plan.facts.some(x=>x.type===f.type&&x.subject===f.subject&&x.scope===f.scope&&x.object===f.object))plan.facts.push(f);return plan;}
- return {categories,category,describe,blank,preset,toggle,advice,declare};
+ const coreStarts=[
+  {preset:'old-new-lines',id:'PA-MOTIF-S01-10',name:'합성방정식의 해 개수'},
+  {preset:'old-new-integers',id:'PA-MOTIF-S01-03',name:'극값을 갖는 위치가 하나'},
+  {preset:'old-new-distance',id:'PA-BRIDGE-04',name:'도함수로 원래 함수 찾기'}
+ ];
+ function coreStart(registry,id){
+  const start=coreStarts.find(s=>s.id===id);if(!start)throw Error('등록되지 않은 핵심 틀입니다.');
+  const plan=preset(registry,start.preset),at=plan.nodes.findIndex(n=>n.id===id);
+  plan.nodes=plan.nodes.slice(0,at+1);return {plan,coreId:id};
+ }
+ function validCore(plan,id){return typeof id==='string'&&plan.nodes.some(n=>n.id===id)?id:null;}
+ function coreInstruction(plan,id,registry){
+  const core=validCore(plan,id);if(!core)return '';
+  return '핵심 재료: '+registry.operations.find(o=>o.id===core).name+' ('+core+').\n이 재료가 풀이의 중심이 되게 하세요. 다른 재료는 핵심에서 얻은 정보를 이어 쓰도록 구성하세요. 핵심을 빼면 어떤 판단이 불가능해지는지 조건 역할과 풀이의 가장 어려운 부분에 설명하세요.';
+ }
+ const key=f=>JSON.stringify([f.type,f.subject,f.object||null,f.scope]);
+ // Match every required port, including relation objects and assumption scope.
+ function variants(op,facts){
+  const scopes=[...new Set(facts.map(f=>f.scope))],nodes=[];
+  for(const scope of scopes){
+   let matches=[{}];
+   for(const port of op.requires){
+    const next=[];
+    for(const binding of matches)for(const fact of facts.filter(f=>f.scope===scope&&f.type===port.type)){
+     const b={...binding};let compatible=true;
+     for(const field of ['subject','object'])if(port[field]){
+      const slot=port[field].slice(1),value=fact[field];
+      if(!value||(b[slot]&&b[slot]!==value)){compatible=false;break;}b[slot]=value;
+     }
+     if(compatible)next.push(b);
+    }
+    matches=[...new Map(next.map(b=>[JSON.stringify(b),b])).values()].slice(0,64);
+    if(!matches.length)break;
+   }
+   for(const b of matches){
+    // An output may need a new symbol, but never a new mathematical assumption.
+    for(const port of op.provides)for(const field of ['subject','object'])if(port[field]){
+     const slot=port[field].slice(1);if(b[slot])continue;
+     const used=new Set(facts.filter(f=>f.scope===scope).flatMap(f=>[f.subject,f.object].filter(Boolean)));
+     const base=slot==='h'?'H':slot==='a'?'a':'F';let symbol=base,n=2;
+     while(used.has(symbol)||Object.values(b).includes(symbol))symbol=base+n++;
+     b[slot]=symbol;
+    }
+    nodes.push({id:op.id,bindings:b,scope});
+   }
+  }
+  return nodes;
+ }
+ function recommendations(plan,engine,registry,coreId=null,{limit=4,maxDepth=3}={}){
+  const initial=engine.run(plan);if(initial.status!=='connected')return [];
+  coreId=validCore(plan,coreId);
+  const selected=new Set(plan.nodes.map(n=>n.id)),ops=new Map(registry.operations.map(o=>[o.id,o]));
+  const original=new Map(initial.facts.map(f=>[key(f),f]));
+  function linked(f,map,seen=new Set()){
+   if(!f||f.origin!=='derived'||seen.has(key(f)))return false;
+   if(coreId?f.by===coreId:selected.has(f.by))return true;
+   seen.add(key(f));return (f.depends_on||[]).some(k=>linked(map.get(k),map,new Set(seen)));
+  }
+  const queue=[{facts:initial.facts,path:[]}],seen=new Set(),best=new Map();let visited=0;
+  while(queue.length&&visited++<128){
+   const state=queue.shift(),map=new Map(state.facts.map(f=>[key(f),f]));
+   for(const op of registry.operations){
+    if(selected.has(op.id)||state.path.some(n=>n.id===op.id))continue;
+    for(const node of variants(op,state.facts)){
+     const check=engine.inspect(state.facts,node);if(check.status!=='direct'||check.redundant)continue;
+     const required=op.requires.map(p=>key({type:p.type,subject:node.bindings[p.subject.slice(1)],object:p.object?node.bindings[p.object.slice(1)]:undefined,scope:node.scope}));
+     if(!required.some(k=>linked(map.get(k),map)))continue;
+     // Retain only bridges that the target really consumes. Parallel detours are discarded.
+     const needed=new Set(),uses=new Map();
+     function visit(k){
+      const f=map.get(k);if(!f)return;
+      if(original.has(k)){if(linked(f,map))uses.set(k,f);return;}
+      needed.add(f.by);for(const parent of f.depends_on||[])visit(parent);
+     }
+     required.forEach(visit);
+     const nodes=[...state.path.filter(n=>needed.has(n.id)),node];
+     const candidate={...plan,nodes:[...plan.nodes,...nodes]};
+     if(nodes.length+plan.nodes.length>100||engine.run(candidate).status!=='connected')continue;
+     const work=nodes.reduce((w,n)=>{for(const k of ['algebra','branches'])w[k]+=ops.get(n.id).work[k]||0;return w;},{algebra:0,branches:0});
+     const item={id:op.id,node,nodes,uses:[...uses.values()],work,bridgeCount:nodes.length-1};
+     const old=best.get(op.id);if(!old||nodes.length<old.nodes.length)best.set(op.id,item);
+     if(op.kind==='bridge'&&state.path.length<Math.min(3,maxDepth)){
+      const next=engine.apply(state.facts,node).facts,hash=next.map(key).sort().join('|');
+      if(!seen.has(hash)){seen.add(hash);queue.push({facts:next,path:[...state.path,node]});}
+     }
+    }
+   }
+  }
+  const items=[...best.values()];
+  // A bridge already bundled with a fuller suggestion is not a second competing choice.
+  const bundled=new Set(items.filter(r=>ops.get(r.id).kind!=='bridge').flatMap(r=>r.nodes.slice(0,-1).map(n=>n.id)));
+  return items.filter(r=>!bundled.has(r.id)).sort((a,b)=>Number(ops.get(a.id).kind==='bridge')-Number(ops.get(b.id).kind==='bridge')||a.nodes.length-b.nodes.length).slice(0,limit);
+ }
+ function appendRecommendation(plan,item,engine,registry,coreId){
+  const fresh=recommendations(plan,engine,registry,coreId,{limit:registry.operations.length}).find(r=>r.id===item.id&&JSON.stringify(r.nodes)===JSON.stringify(item.nodes));
+  if(!fresh)throw Error('구성이 달라졌습니다. 현재 추천에서 다시 골라 주세요.');
+  return {...structuredClone(plan),nodes:[...structuredClone(plan.nodes),...structuredClone(fresh.nodes)]};
+ }
+ function clearSelection(draft,registry){return {...structuredClone(draft),plan:blank(registry),disabled:[],coreId:null};}
+ return {categories,category,describe,blank,preset,toggle,advice,declare,coreStarts,coreStart,validCore,coreInstruction,recommendations,appendRecommendation,clearSelection};
 });

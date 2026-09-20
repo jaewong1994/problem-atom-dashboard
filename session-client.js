@@ -9,8 +9,8 @@
    const r=await fetch(route,{method,headers:{'X-PA-Session':bootstrap.token,...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined,cache:'no-store',signal:AbortSignal.timeout(15000)});
    const data=await r.json();if(!r.ok)throw Error(data.error||'연결 도우미가 응답하지 않습니다.');return data;
   }
-  function open(plan,brief,calculation,reasoning){
-   const draft={schema:'problem-atom/selection-draft/1',plan,brief,calculation,reasoning};
+  function open(plan,brief,calculation,reasoning,coreId=null){
+   const draft={schema:'problem-atom/selection-draft/1',plan,brief,calculation,reasoning,coreId};
    const url='http://127.0.0.1:8987/connections.html#draft='+encodeURIComponent(JSON.stringify(draft));
    // Same-tab navigation also works in embedded browsers that suppress popups.
    window.location.assign(url);

@@ -5,6 +5,95 @@ import unittest
 
 
 class SessionTests(unittest.TestCase):
+    def test_core_starts_and_recommendations_reuse_real_outputs(self):
+        run_js(r"""
+        const S=require('./selection-model.js');
+        for(const start of S.coreStarts){
+          const {plan,coreId}=S.coreStart(R,start.id),before=JSON.stringify(plan);
+          assert.equal(E.run(plan).status,'connected');assert.equal(plan.nodes.at(-1).id,coreId);
+          const rows=S.recommendations(plan,E,R,coreId);
+          assert.ok(rows.length>0);assert.equal(JSON.stringify(plan),before);
+          for(const r of rows){
+            assert.ok(r.uses.length>0);assert.ok(r.uses.every(f=>f.origin==='derived'));
+            const next=S.appendRecommendation(plan,r,E,R,coreId);
+            assert.deepEqual(next.facts,plan.facts);assert.equal(E.run(next).status,'connected');
+            assert.equal(S.validCore(next,coreId),coreId);
+            for(const bridge of r.nodes.slice(0,-1)){
+              const removed={...next,nodes:next.nodes.filter(n=>n!==bridge&&n.id!==bridge.id)};
+              assert.notEqual(E.run(removed).status,'connected','unnecessary bridge: '+bridge.id);
+            }
+            assert.equal(JSON.stringify(plan),before);
+          }
+        }
+        const seed=S.coreStart(R,'PA-MOTIF-S01-03');
+        const r=S.recommendations(seed.plan,E,R,seed.coreId).find(r=>r.id==='PA-S02-LEVELS-03');
+        assert.deepEqual(r.nodes.map(n=>n.id),['PA-BRIDGE-03','PA-S02-LEVELS-03']);
+        const invalid=structuredClone(seed.plan);invalid.facts.pop();
+        assert.deepEqual(S.recommendations(invalid,E,R,seed.coreId),[]);
+        assert.throws(()=>S.appendRecommendation(invalid,r,E,R,seed.coreId),/달라졌/);
+        """)
+
+    def test_recommendations_respect_core_subject_relation_scope_and_forbidden(self):
+        run_js(r"""
+        const S=require('./selection-model.js');
+        const op=R.operations.find(o=>o.id==='PA-S02-LEVELS-02'),coreId=op.id;
+        const plan={revision:R.revision,nodes:[{id:coreId,bindings:{f:'Phi'},scope:'case-A'}],facts:op.requires.map(p=>({type:p.type,subject:'Phi',scope:'case-A',origin:'given'}))};
+        const relation={type:'height_identity',subject:'k',object:'Other',scope:'case-A',origin:'given'};
+        plan.facts.push(relation);
+        assert.ok(!S.recommendations(plan,E,R,coreId).some(r=>r.id==='PA-S02-LEVELS-03'));
+        relation.object='Phi';relation.scope='case-B';
+        assert.ok(!S.recommendations(plan,E,R,coreId).some(r=>r.id==='PA-S02-LEVELS-03'));
+        relation.scope='case-A';
+        const integer=S.recommendations(plan,E,R,coreId).find(r=>r.id==='PA-S02-LEVELS-03');
+        assert.ok(integer);assert.ok(integer.nodes.every(n=>n.scope==='case-A'));
+        assert.deepEqual(integer.nodes[0].bindings,{f:'Phi',a:'k'});
+        // An independently solvable operation is not a recommendation for this core.
+        plan.facts.push({type:'root_lists',subject:'Z',scope:'case-A',origin:'given'});
+        assert.ok(!S.recommendations(plan,E,R,coreId).some(r=>r.id==='PA-S02-JUMP-04'));
+        const rr=structuredClone(R);rr.operations.find(o=>o.id==='PA-S02-LEVELS-03').forbids=[{type:'admissible_set',subject:'$a'}];
+        assert.ok(!S.recommendations(plan,require('./connection-engine.js').create(rr),rr,coreId).some(r=>r.id==='PA-S02-LEVELS-03'));
+        const renamed=S.coreStart(R,'PA-MOTIF-S01-10');
+        renamed.plan.nodes[0].bindings.f='Phi';renamed.plan.nodes[0].scope='case-B';
+        renamed.plan.facts.forEach(f=>{f.subject='Phi';f.scope='case-B';});
+        const fixed=S.recommendations(renamed.plan,E,R,renamed.coreId).find(r=>r.id==='PA-OP-FIXED-LEVELS');
+        assert.equal(fixed.nodes[0].bindings.f,'Phi');assert.ok(fixed.nodes.every(n=>n.scope==='case-B'));
+        """)
+
+    def test_clear_selection_preserves_brief_goals_and_core_handoff(self):
+        run_js(r"""
+        const S=require('./selection-model.js'),vm=require('node:vm'),fs=require('node:fs');
+        const seed=S.coreStart(R,'PA-MOTIF-S01-03'),draft={...seed,disabled:['some-key'],brief:'짧은 계산',calculation:0,reasoning:2};
+        const before=JSON.stringify(draft),empty=S.clearSelection(draft,R);
+        assert.deepEqual(empty.plan,S.blank(R));assert.equal(empty.coreId,null);assert.deepEqual(empty.disabled,[]);
+        assert.equal(empty.brief,draft.brief);assert.equal(empty.reasoning,2);assert.equal(JSON.stringify(draft),before);
+        assert.equal(S.validCore(empty.plan,seed.coreId),null);
+        const focus=S.coreInstruction(seed.plan,seed.coreId,R);assert.ok(focus.includes(seed.coreId));assert.ok(focus.includes('핵심을 빼면'));
+        assert.equal(S.coreInstruction(empty.plan,seed.coreId,R),'');
+        let transferred;
+        const window={location:{assign:url=>transferred=JSON.parse(decodeURIComponent(url.split('#draft=')[1]))}};
+        vm.runInNewContext(fs.readFileSync('session-client.js','utf8'),{document:{getElementById:()=>null},location:{hostname:'public.test'},window});
+        window.PASession.create().open(seed.plan,draft.brief,0,2,seed.coreId);
+        assert.equal(transferred.coreId,seed.coreId);assert.deepEqual(transferred.plan,seed.plan);assert.equal(transferred.reasoning,2);
+        """)
+
+    def test_all_contract_recommendations_add_no_assumptions_or_unused_bridges(self):
+        run_js(r"""
+        const S=require('./selection-model.js');
+        for(const op of R.operations){
+          const bindings={f:'F',h:'H',a:'a'},scope='test-only';
+          const plan={revision:R.revision,nodes:[{id:op.id,bindings,scope}],facts:op.requires.map(p=>({type:p.type,subject:bindings[p.subject.slice(1)],...(p.object?{object:bindings[p.object.slice(1)]}:{}),scope,origin:'given'}))};
+          const before=JSON.stringify(plan);
+          for(const r of S.recommendations(plan,E,R,op.id,{limit:46})){
+            assert.ok(!plan.nodes.some(n=>n.id===r.id));
+            const next=S.appendRecommendation(plan,r,E,R,op.id);
+            assert.equal(E.run(next).status,'connected');assert.deepEqual(next.facts,plan.facts);
+            assert.ok(r.uses.every(f=>f.by===op.id));
+            for(const bridge of r.nodes.slice(0,-1))assert.notEqual(E.run({...next,nodes:next.nodes.filter(n=>n.id!==bridge.id)}).status,'connected');
+          }
+          assert.equal(JSON.stringify(plan),before);
+        }
+        """)
+
     def test_box_selection_presets_and_no_invented_conditions(self):
         run_js(r"""
         const S=require('./selection-model.js');
