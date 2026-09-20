@@ -4,6 +4,15 @@ from test_model import run_js
 
 
 class AuthoringTests(unittest.TestCase):
+    def test_intermediate_singletons_offer_their_bundle_instead_of_a_dead_end_start(self):
+        run_js(r"""
+        const B=require('./judgment-bundles.js'),A=require('./authoring-model.js');
+        for(const b of B.catalog)assert.equal(A.startOptions(R,b.id).hasQuestion,true);
+        const middle=A.startOptions(R,'PA-MOTIF-S01-01');assert.equal(middle.hasQuestion,false);assert.ok(middle.bundles.some(b=>b.id==='sign-cases'));
+        assert.equal(A.startOptions(R,'PA-S02-JUMP-04').hasQuestion,true);
+        assert.equal(A.startOptions(R,'PA-CAND-SKL-20260910-033').hasQuestion,false);
+        """)
+
     def test_bundles_are_connected_strategies_and_every_member_reaches_an_answer(self):
         run_js(r"""
         const B=require('./judgment-bundles.js'),P=require('./composition-planner.js');

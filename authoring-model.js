@@ -61,6 +61,7 @@
   ['PA-CAND-SKL-20260914-001','translate','절댓값과 원래 식의 합이나 차가 있다','원래 식의 부호에 따라 나눈다','각 구간에서 절댓값을 풀어 쓴다','0이 되는 경계에서도 두 식의 값을 확인한다']
  ]);
  function profile(id){return profiles[id]||null;}
+ function startOptions(registry,id){const seed=B.seed(registry,id);return {seed,hasQuestion:routes(seed.plan,registry,seed.coreId).length>0,bundles:B.catalog.filter(b=>b.members.includes(id)).map(b=>({id:b.id,name:b.name}))};}
  function routes(plan,registry,coreId){return P.targets(G.compile(plan,registry).plan,registry,coreId).filter(c=>c.route.every(n=>profile(n.id)));}
  function routeKey(choice){return P.key(choice.target);}
  function descendants(edges,from,to){const seen=new Set();function visit(id){if(id===from)return true;if(seen.has(id))return false;seen.add(id);return edges.filter(e=>e.to===id).some(e=>visit(e.from));}return visit(to);}
@@ -98,5 +99,5 @@
  }
  // Rank is a diagram position, never a difficulty score. Independent branches share a row.
  function layers(plan,registry){const g=G.compile(plan,registry),rank=new Map([['@start',0]]),rows=[];for(const n of g.plan.nodes){const parents=g.edges.filter(e=>e.to===n.id).map(e=>e.from),level=1+Math.max(0,...parents.map(p=>rank.get(p)||0));rank.set(n.id,level);(rows[level-1]||=([])).push(n.id);}return {graph:g,rows:rows.filter(Boolean)};}
- return {VERSION,REVISION,stages,profiles,profile,routes,next,attach,complete,blueprint,layers,descendants};
+ return {VERSION,REVISION,stages,profiles,profile,startOptions,routes,next,attach,complete,blueprint,layers,descendants};
 });
