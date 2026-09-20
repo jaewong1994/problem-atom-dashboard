@@ -17,7 +17,7 @@ async function loginStatus({spawnImpl=spawn}={}){
 function makeArgs(folder){return ['exec','--ignore-user-config','--ephemeral','--skip-git-repo-check','--sandbox','read-only','--disable','shell_tool','--disable','unified_exec','--disable','multi_agent','-c','web_search="disabled"','-c','model_reasoning_effort="high"','-c','project_doc_max_bytes=0','--model',MODEL,'--color','never','--json','--output-schema',path.join(folder,'schema.json'),'--output-last-message',path.join(folder,'result.json'),'-'];}
 async function generateSession(job,registry,{signal,onProgress=()=>{},spawnImpl=spawn,checkLogin=loginStatus}={}){
  if(job.schema!=='problem-atom/model-request/1'||job.registry_revision!==registry.revision)throw Error('자산 판본이 다릅니다. 화면을 새로고침하세요.');
- const canonical=C.makeRequest(registry,job.seed_plan,job.brief,job.request_id);
+ const canonical=C.makeRequest(registry,job.seed_plan,job.brief,job.request_id,job.design_intent);
  if(create(registry).run(canonical.seed_plan).status==='blocked')throw Error('충돌한 조건을 먼저 수정해 주세요.');
  const auth=await checkLogin();if(!auth.ready)throw Error(auth.reason);
  if(signal?.aborted)throw Error('제작을 취소했습니다.');
@@ -37,7 +37,7 @@ async function generateSession(job,registry,{signal,onProgress=()=>{},spawnImpl=
    child.stdout.on('data',()=>{});child.stderr.on('data',()=>{});
    child.stdin.on('error',()=>{});
    child.on('close',code=>settle(stopped||(code===0?null:Error('Codex 제작이 완료되지 않았습니다. 로그인·사용 한도를 확인하세요. 자동 재시도하지 않았습니다.'))));
-   child.stdin.end(C.INSTRUCTIONS+'\n문항 제작만 수행한다. 도구 실행, 파일 탐색, 다른 에이전트 호출은 하지 않는다. 제공된 정보만으로 수학적으로 풀고 최종 결과 JSON을 반환한다.\n'+JSON.stringify({request_id:canonical.request_id,registry_revision:canonical.registry_revision,brief:canonical.brief,seed_plan:canonical.seed_plan,knowledge:canonical.knowledge}));
+   child.stdin.end(C.INSTRUCTIONS+'\n문항 제작만 수행한다. 도구 실행, 파일 탐색, 다른 에이전트 호출은 하지 않는다. 제공된 정보만으로 수학적으로 풀고 최종 결과 JSON을 반환한다.\n'+JSON.stringify({request_id:canonical.request_id,registry_revision:canonical.registry_revision,brief:canonical.brief,design_intent:canonical.design_intent,seed_plan:canonical.seed_plan,knowledge:canonical.knowledge}));
    if(signal?.aborted)abort();
   });
   const result=JSON.parse(await fs.readFile(path.join(folder,'result.json'),'utf8'));

@@ -17,12 +17,12 @@ function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir
   // No CORS credential bridge: the public page opens this same-origin companion UI.
   if(origin&&!['http://127.0.0.1:'+actualPort,'http://localhost:'+actualPort].includes(origin))return send(403,{error:'연결 도우미 화면에서 요청해 주세요.'});
   const url=new URL(req.url,'http://'+host);
-  if(req.method==='GET'&&url.pathname==='/health')return send(200,{service:'problem-atom-codex-companion',revision:registry.revision});
+  if(req.method==='GET'&&url.pathname==='/health')return send(200,{service:'problem-atom-codex-companion',revision:registry.revision,design_intent_version:1});
   if(url.pathname.startsWith('/session/')){
    const given=Buffer.from(req.headers['x-pa-session']||''),expected=Buffer.from(token);
    if(given.length!==expected.length||!crypto.timingSafeEqual(given,expected))return send(401,{error:'연결 도우미에서 화면을 다시 열어 주세요.'});
-   if(req.method==='GET'&&url.pathname==='/session/status')return send(200,{...(await auth()),model:MODEL,revision:registry.revision,activeJob:active});
-   if(req.method==='GET'&&url.pathname==='/session/jobs')return send(200,{jobs:[...jobs.values()].slice(-30).reverse().map(j=>({id:j.id,status:j.status,createdAt:j.createdAt,updatedAt:j.updatedAt}))});
+   if(req.method==='GET'&&url.pathname==='/session/status')return send(200,{...(await auth()),model:MODEL,revision:registry.revision,design_intent_version:1,activeJob:active});
+   if(req.method==='GET'&&url.pathname==='/session/jobs')return send(200,{jobs:[...jobs.values()].sort((a,b)=>(Date.parse(b.createdAt)||0)-(Date.parse(a.createdAt)||0)).slice(0,30).map(j=>({id:j.id,status:j.status,createdAt:j.createdAt,updatedAt:j.updatedAt}))});
    const match=url.pathname.match(/^\/session\/jobs\/(REQ-[a-zA-Z0-9-]+)(\/cancel)?$/);
    if(match){const j=jobs.get(match[1]);if(!j)return send(404,{error:'제작 기록이 없습니다.'});if(req.method==='GET'&&!match[2])return send(200,publicJob(j));if(req.method==='POST'&&match[2]){j.controller?.abort();return send(200,{status:j.status});}return send(405,{error:'지원하지 않는 요청'});}
    if(req.method==='POST'&&url.pathname==='/session/jobs'){
@@ -32,7 +32,7 @@ function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir
      if(body.schema!=='problem-atom/model-request/1')return send(400,{error:'제작 요청 형식이 다릅니다.'});
      if(!/^REQ-[a-zA-Z0-9-]{1,90}$/.test(body.request_id))return send(400,{error:'제작 요청 번호 오류'});
      if(body.registry_revision!==registry.revision)return send(409,{error:'자산이 바뀌었습니다. 새로고침 후 요청해 주세요.'});
-     const job=C.makeRequest(registry,body.seed_plan,body.brief,body.request_id);
+     const job=C.makeRequest(registry,body.seed_plan,body.brief,body.request_id,body.design_intent);
      if(create(registry).run(job.seed_plan).status==='blocked')return send(400,{error:'금지 연결을 먼저 수정해 주세요.'});
      const digest=crypto.createHash('sha256').update(JSON.stringify(job)).digest('hex'),old=jobs.get(job.request_id);
      if(old)return old.digest===digest?send(200,publicJob(old)):send(409,{error:'같은 요청 번호의 내용이 달라졌습니다.'});

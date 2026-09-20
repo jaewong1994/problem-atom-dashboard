@@ -43,7 +43,7 @@
     if(op.kind==='bridge'&&op.id==='PA-BRIDGE-01'&&bindings.f===bindings.h)return {...base,reasons:['기울기 항을 뺀 함수는 다른 대상으로 이름을 붙여야 합니다.']};
     const current=new Set(facts.map(key));
     const clashes=forbidden.filter(p=>current.has(key(p)));
-    const errors=contradictions(facts);
+    const errors=contradictions([...facts,...output]);
     if(clashes.length||errors.length)return {...base,reasons:[...clashes.map(p=>'사용 금지: '+registry.types[p.type]),...errors]};
     const missing=required.filter(p=>!current.has(key(p)));
     const redundant=output.every(p=>current.has(key(p)));

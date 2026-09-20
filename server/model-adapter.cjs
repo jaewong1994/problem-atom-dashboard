@@ -4,13 +4,13 @@ const {create}=require('../connection-engine.js');
 const crypto=require('node:crypto');
 function requestBody(job,registry){
  if(job.schema!=='problem-atom/model-request/1'||job.registry_revision!==registry.revision)throw Error('요청 또는 자산 판본 오류');
- const canonical=contract.makeRequest(registry,job.seed_plan,job.brief,job.request_id);
+ const canonical=contract.makeRequest(registry,job.seed_plan,job.brief,job.request_id,job.design_intent);
  if(create(registry).run(canonical.seed_plan).status==='blocked')throw Error('금지 연결 또는 충돌한 조건을 먼저 수정해 주세요.');
  // Rebuild all policy/knowledge on the server; client-supplied instructions are not trusted.
  return {model:'gpt-5.6-sol',reasoning:{effort:'high'},store:false,max_output_tokens:16000,
   instructions:contract.INSTRUCTIONS,
   input:JSON.stringify({request_id:canonical.request_id,registry_revision:canonical.registry_revision,
-   brief:canonical.brief,seed_plan:canonical.seed_plan,knowledge:canonical.knowledge}),
+   brief:canonical.brief,design_intent:canonical.design_intent,seed_plan:canonical.seed_plan,knowledge:canonical.knowledge}),
   text:{format:{type:'json_schema',name:'math_item',strict:true,schema:canonical.response_schema}}};
 }
 async function generate(job,registry,{apiKey=process.env.OPENAI_API_KEY,fetcher=fetch}={}){

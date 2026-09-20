@@ -184,11 +184,11 @@ class SessionTests(unittest.TestCase):
         run_js(r"""
         const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),{createSessionService}=require('./server/session-service.cjs');
         const folder=fs.mkdtempSync(path.join(os.tmpdir(),'pa-service-test-'));
-        fs.writeFileSync(path.join(folder,'REQ-old.json'),JSON.stringify({id:'REQ-old',status:'running',request:job}));
-        fs.writeFileSync(path.join(folder,'REQ-done.json'),JSON.stringify({id:'REQ-done',status:'completed',request:job,output:{result:sample()}}));
+        fs.writeFileSync(path.join(folder,'REQ-old.json'),JSON.stringify({id:'REQ-old',status:'running',createdAt:'2026-09-20T12:00:00Z',request:job}));
+        fs.writeFileSync(path.join(folder,'REQ-done.json'),JSON.stringify({id:'REQ-done',status:'completed',createdAt:'2026-09-21T12:00:00Z',request:job,output:{result:sample()}}));
         const app=createSessionService({registry:R,stateDir:folder,siteDir:folder,port:0,token:'test',auth:async()=>({ready:true})});await new Promise(r=>app.listen(0,'127.0.0.1',r));
         const base='http://127.0.0.1:'+app.address().port,headers={'X-PA-Session':'test'};
-        try{assert.equal((await(await fetch(base+'/session/jobs/REQ-old',{headers})).json()).status,'interrupted');assert.equal((await(await fetch(base+'/session/jobs/REQ-done',{headers})).json()).output.result.answer,sample().answer);}
+        try{assert.deepEqual((await(await fetch(base+'/session/jobs',{headers})).json()).jobs.map(j=>j.id),['REQ-done','REQ-old']);assert.equal((await(await fetch(base+'/session/jobs/REQ-old',{headers})).json()).status,'interrupted');assert.equal((await(await fetch(base+'/session/jobs/REQ-done',{headers})).json()).output.result.answer,sample().answer);}
         finally{app.closeAllConnections();await new Promise(r=>app.close(r));assert.equal(path.dirname(path.resolve(folder)),path.resolve(os.tmpdir()));assert.ok(path.basename(folder).startsWith('pa-service-test-'));fs.rmSync(folder,{recursive:true,force:true});}
         """)
 

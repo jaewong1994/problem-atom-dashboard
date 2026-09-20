@@ -1,8 +1,8 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v29`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v30`;
 const SHELL = [
-  "./studio.html", "./connections.html", "./connections.css?v=core1", "./connections.js?v=core1", "./connection-engine.js?v=c2", "./connection-registry.json",
-  "./model-contract.js?v=boxes1", "./selection-model.js?v=core1", "./session-client.js?v=core1", "./model-provider.json",
+  "./studio.html", "./connections.html", "./connections.css?v=design2", "./connections.js?v=design2", "./connection-engine.js?v=design2", "./connection-registry.json",
+  "./composition-planner.js?v=design2", "./model-contract.js?v=design2", "./selection-model.js?v=design2", "./session-client.js?v=design2", "./model-provider.json",
   "./review-groups.json", "./group-review-ledger.json", "./group-review.js", "./sandbox.css",
   "./combination-examples.json", "./combination-examples.js",
   "./motif-library.html",

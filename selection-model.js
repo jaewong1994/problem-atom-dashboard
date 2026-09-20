@@ -156,6 +156,6 @@
   if(!fresh)throw Error('구성이 달라졌습니다. 현재 추천에서 다시 골라 주세요.');
   return {...structuredClone(plan),nodes:[...structuredClone(plan.nodes),...structuredClone(fresh.nodes)]};
  }
- function clearSelection(draft,registry){return {...structuredClone(draft),plan:blank(registry),disabled:[],coreId:null};}
+ function clearSelection(draft,registry){return {...structuredClone(draft),plan:blank(registry),disabled:[],coreId:null,target:null};}
  return {categories,category,describe,blank,preset,toggle,advice,declare,coreStarts,coreStart,validCore,coreInstruction,recommendations,appendRecommendation,clearSelection};
 });
