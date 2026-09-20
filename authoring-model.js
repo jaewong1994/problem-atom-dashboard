@@ -1,4 +1,4 @@
-(function(root,factory){const api=typeof module==='object'?factory(require('./connection-engine.js'),require('./composition-planner.js'),require('./composition-graph.js')):factory(root.PAConnections,root.PAPlanner,root.PAGraph);if(typeof module==='object')module.exports=api;else root.PAAuthoring=api;})(typeof globalThis!=='undefined'?globalThis:this,(Connections,P,G)=>{
+(function(root,factory){const api=typeof module==='object'?factory(require('./connection-engine.js'),require('./composition-planner.js'),require('./composition-graph.js'),require('./judgment-bundles.js')):factory(root.PAConnections,root.PAPlanner,root.PAGraph,root.PABundles);if(typeof module==='object')module.exports=api;else root.PAAuthoring=api;})(typeof globalThis!=='undefined'?globalThis:this,(Connections,P,G,B)=>{
  'use strict';
  const VERSION=1,REVISION='judgment-authoring-20260921',clone=x=>JSON.parse(JSON.stringify(x));
  // Production descriptions, not new ontology nodes or ratified classifications.
@@ -94,7 +94,7 @@
  function blueprint(plan,registry,coreId=null,target=null){
   const g=G.compile(plan,registry),operations=new Map(registry.operations.map(o=>[o.id,o]));
   const steps=g.plan.nodes.map(n=>{const p=profile(n.id),o=operations.get(n.id);return {id:n.id,bindings:clone(n.bindings),scope:n.scope,core:n.id===coreId,...(p?clone(p):{stage:'unreviewed',action:o.name}),inputs:g.inputs[n.id],outputs:o.provides.map(port=>({type:port.type,subject:n.bindings[port.subject.slice(1)],scope:n.scope,...(port.object?{object:n.bindings[port.object.slice(1)]}:{})}))};});
-  return {schema:'problem-atom/authoring-blueprint/1',revision:REVISION,classification:'production_guidance_not_ontology_approval',target:clone(target),steps,joins:g.edges.filter(e=>e.from!=='@start'),review:['핵심 조건을 빼도 같은 답을 얻는가?','더 쉬운 풀이로 핵심 판단을 건너뛸 수 있는가?','각 조건은 후보를 어디서 줄이거나 어떤 정보를 결정하는가?','계산을 늘린 것과 새로운 판단을 요구한 것을 구분했는가?']};
+  return {schema:'problem-atom/authoring-blueprint/1',revision:REVISION,bundle_version:1,classification:'production_guidance_not_ontology_approval',target:clone(target),bundles:B.groups(plan,registry),steps,joins:g.edges.filter(e=>e.from!=='@start'),review:['묶음 안의 각 판단을 빼도 같은 답을 얻는가?','더 쉬운 풀이로 선택한 판단을 건너뛸 수 있는가?','각 조건은 후보를 어디서 줄이거나 어떤 정보를 결정하는가?','계산을 늘린 것과 새로운 판단을 요구한 것을 구분했는가?']};
  }
  // Rank is a diagram position, never a difficulty score. Independent branches share a row.
  function layers(plan,registry){const g=G.compile(plan,registry),rank=new Map([['@start',0]]),rows=[];for(const n of g.plan.nodes){const parents=g.edges.filter(e=>e.to===n.id).map(e=>e.from),level=1+Math.max(0,...parents.map(p=>rank.get(p)||0));rank.set(n.id,level);(rows[level-1]||=([])).push(n.id);}return {graph:g,rows:rows.filter(Boolean)};}

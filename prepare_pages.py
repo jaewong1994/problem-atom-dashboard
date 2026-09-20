@@ -15,7 +15,7 @@ SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
     "studio.html", "connections.html", "connections.css", "connections.js", "connection-engine.js", "connection-registry.json", "connection-validation.json", "composition-catalog.json",
-    "authoring-model.js", "authoring-ui.js", "authoring.css", "authoring-lessons.json", "web-handoff.js", "production-io.js", "composition-graph.js", "mindmap-ui.js", "box-copy.js", "model-contract.js", "composition-planner.js", "selection-model.js", "session-client.js", "model-provider.json",
+    "judgment-bundles.js", "authoring-model.js", "authoring-ui.js", "authoring.css", "authoring-lessons.json", "web-handoff.js", "production-io.js", "composition-graph.js", "mindmap-ui.js", "box-copy.js", "model-contract.js", "composition-planner.js", "selection-model.js", "session-client.js", "model-provider.json",
     "review-groups.json", "group-review-ledger.json", "group-review.js", "sandbox.css",
     "combination-examples.json", "combination-examples.js",
     "motif-library.html",

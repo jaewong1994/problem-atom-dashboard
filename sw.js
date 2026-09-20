@@ -1,9 +1,9 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v34`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v35`;
 const SHELL = [
-  "./studio.html", "./connections.html", "./connections.css?v=io1", "./connections.js?v=author1", "./connection-engine.js?v=design2", "./connection-registry.json",
-  "./authoring-model.js?v=author1", "./authoring-ui.js?v=author1", "./authoring.css?v=author1", "./authoring-lessons.json",
-  "./web-handoff.js?v=author1", "./production-io.js?v=io1", "./composition-graph.js?v=map1", "./box-copy.js?v=examples1", "./composition-planner.js?v=map1", "./model-contract.js?v=author1", "./selection-model.js?v=map1", "./session-client.js?v=io1", "./model-provider.json",
+  "./studio.html", "./connections.html", "./connections.css?v=io1", "./connections.js?v=bundle1", "./connection-engine.js?v=design2", "./connection-registry.json",
+  "./judgment-bundles.js?v=bundle1", "./authoring-model.js?v=bundle1", "./authoring-ui.js?v=bundle1", "./authoring.css?v=bundle1", "./authoring-lessons.json",
+  "./web-handoff.js?v=bundle1", "./production-io.js?v=io1", "./composition-graph.js?v=map1", "./box-copy.js?v=examples1", "./composition-planner.js?v=bundle1", "./model-contract.js?v=bundle1", "./selection-model.js?v=map1", "./session-client.js?v=io1", "./model-provider.json",
   "./review-groups.json", "./group-review-ledger.json", "./group-review.js", "./sandbox.css",
   "./combination-examples.json", "./combination-examples.js",
   "./motif-library.html",
