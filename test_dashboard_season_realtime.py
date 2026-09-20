@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import zipfile
 from pathlib import Path
 
@@ -31,14 +32,14 @@ def main() -> None:
     assert "id=\"seasonGrid\"" in html
     assert "id=\"subjectFilter\"" in html and "id=\"yearFilter\"" in html
     assert "강사 이름" in html
-    assert html.index('id="actor"') < html.index("<main>")
+    assert html.index('id="actor"') < html.index("<main")
     assert html.count('id="actor"') == 1
     assert 'class="global-nav"' in html and 'aria-current="page"' in html
-    assert "min-height: 44px" in shell_css and "prefers-reduced-motion" in shell_css
+    assert re.search(r"min-height:\s*44px", shell_css) and "prefers-reduced-motion" in shell_css
     assert "./realtime.js" in service_worker
-    assert "shell-v15" in service_worker and "./math-text.js" in service_worker
+    assert re.search(r"shell-v\d+", service_worker) and "./math-text.js" in service_worker
     assert "./promotion-board.html" in service_worker and 'url.pathname.endsWith("promotion-board.json")' in service_worker
-    assert "promotion-board.html" in html and "승격 대기 자산" in html
+    assert "promotion-board.html" in html and "재료 검수" in html
     pages = (ROOT / "prepare_pages.py").read_text(encoding="utf-8")
     json.loads((ROOT / "manifest.webmanifest").read_text(encoding="utf-8"))
     assert '"promotion-board.json"' in pages and '"pilot-review.json"' not in pages

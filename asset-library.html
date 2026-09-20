@@ -2,67 +2,53 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0d7469"><meta name="description" content="세미나에서 검수한 5축 문항 연구 자산과 문항 패밀리 현황">
-  <title>공유 연구 자산 · Problem Atom</title>
+  <meta name="theme-color" content="#1f3a68"><meta name="description" content="세미나에서 검수한 5축 문항 연구 자산과 문항 패밀리 현황">
+  <title>검수된 재료 · Problem Atom</title>
   <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="assets/pwa/apple-touch-icon.png">
-  <link rel="stylesheet" href="vendor/katex/katex.min.css"><link rel="stylesheet" href="asset-library.css?v=3"><link rel="stylesheet" href="ontology-boundary.css"><link rel="stylesheet" href="site-shell.css"><link rel="stylesheet" href="pwa-install.css">
-</head>
-<body>
-  <header class="global-header">
-    <a class="global-brand" href="index.html"><b>PA</b><span>문항 연구 시스템</span></a>
-    <nav class="global-nav" aria-label="주요 페이지"><a href="connections.html">원자 연결 설계</a>
-      <a href="index.html">입장</a>
-      <a href="dashboard.html">기출 현황</a>
-      <a href="promotion-board.html">승격 대기 자산</a>
-      <a href="asset-library.html" aria-current="page">공유 자산</a>
-      <a href="motif-library.html">조합 예시</a>
-      <a href="vision.html">프로젝트 계획</a>
-    </nav>
-    <div class="instructor-field">
+  <link rel="stylesheet" href="vendor/katex/katex.min.css"><link rel="stylesheet" href="asset-library.css?v=3"><link rel="stylesheet" href="ontology-boundary.css"><link rel="stylesheet" href="pwa-install.css">
+<link rel="stylesheet" href="site-shell.css?v=flow1"><script defer src="site-shell.js?v=flow1"></script></head>
+<body data-page="asset-library">
+  <!--SITE_NAV-->
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="global-header"><a class="global-brand" href="index.html" aria-label="Problem Atom 홈"><b aria-hidden="true">PA</b><span>Problem Atom</span></a><nav class="global-nav" aria-label="주요 메뉴"><a href="index.html">홈</a><a href="connections.html">문항 만들기</a><a href="asset-library.html" aria-current="page">재료·사례</a><details class="nav-more"><summary>분석·검수</summary><div class="nav-more-links"><a href="dashboard.html">기출 분석 현황</a><a href="promotion-board.html">재료 검수</a><a href="vision.html">프로젝트 안내</a><a href="studio.html">이전 문항 보관함</a></div></details></nav></header>
+<!--/SITE_NAV-->
+<div class="page-context"><div class="instructor-field">
       <label for="actor">강사 이름</label>
       <input id="actor" maxlength="20" placeholder="본인 이름" autocomplete="name">
       <small id="commentSync">이름을 넣으면 댓글을 남길 수 있어요</small>
-    </div>
-  </header>
-  <main>
+    </div></div>
+  <main id="main">
     <section class="page-intro" aria-labelledby="assetTitle">
-      <p>확정된 자산</p><h1 id="assetTitle">공유 연구 자산</h1><span>세미나에서 확인이 끝난 개념·판단·스킬·전략·유형만 정본으로 보여 줍니다. 승격 전 후보는 <a href="promotion-board.html">승격 대기 자산</a>에서 확인·댓글·승격을 진행합니다.</span>
+      <p>확정된 자산</p><h1 id="assetTitle">검수된 재료</h1><span>검수가 끝난 개념과 풀이 방법을 찾아보세요. 아직 확인 중인 자료는 <a href="promotion-board.html">재료 검수</a>에서 볼 수 있습니다.</span>
     </section>
-    <section class="authority-boundary" aria-label="세미나 정본 보호 원칙">
-      <strong>여기 있는 정본은 강사 세미나에서 직접 만든 자산입니다.</strong>
-      <span>남긴 말은 정의를 바로 바꾸지 않아요. 운영자가 읽고 반영합니다.</span>
-    </section>
+<nav class="page-tabs" aria-label="재료와 사례"><a href="asset-library.html" aria-current="page">검수된 재료</a><a href="motif-library.html">조합 예시</a><a class="next-action" href="connections.html">재료 골라 문항 만들기 →</a></nav>
+
     <section id="stats" class="stats" aria-label="자산 집계"></section>
-    <section class="pipeline" aria-label="자산 승격 과정">
-      <b>한글 기록지</b><i>→</i><b>원본 보관</b><i>→</i><b>후보 뽑기</b><i>→</i><b>강사 확인</b><i>→</i><b>정본 확정</b><i>→</i><b>문항 만들기</b>
-    </section>
-    <section class="comment-toolbar" aria-label="댓글 보내기">
+
+    <details class="utility-panel"><summary>검토 의견과 파일 관리</summary><section class="comment-toolbar" aria-label="댓글 보내기">
       <p>카드 안에 바로 말을 남길 수 있어요. 실시간 공유가 안 되는 기기에서는 <b>댓글 파일 저장</b>으로 운영자에게 보내 주세요.</p>
       <div>
         <button id="exportComments" type="button">댓글 파일 저장</button>
         <button id="clearLocalComments" type="button">이 기기 댓글 지우기</button>
       </div>
-    </section>
+    </section></details>
     <section class="controls">
       <label>찾기 <input id="search" type="search" placeholder="이름, 번호, 설명, 댓글"></label>
       <div id="filters" aria-label="자산 종류 필터"></div>
     </section>
     <section>
-      <div class="section-title"><div><p>다섯 가지</p><h2>개념 · 스킬 · 판단 · 유형 · 전략</h2></div><span id="resultCount"></span></div>
+      <div class="section-title"><div><h2>재료 목록</h2></div><span id="resultCount"></span></div>
       <div id="assetGrid" class="asset-grid"></div>
-      <div id="empty" class="empty" hidden><strong>아직 확정된 자산이 없어요.</strong><span>승격 대기 자산 탭에서 확인이 끝나면 여기에 나옵니다.</span></div>
+      <div id="empty" class="empty" hidden><strong>아직 확정된 자산이 없어요.</strong><span>재료 검수에서 확인을 마치면 여기에 모입니다. 지금 문항을 만들려면 제작실에서 검토 상태를 확인하고 재료를 고르세요.</span></div>
     </section>
-    <section class="long-goal">
-      <p>끝에 가서 볼 것</p><h2>최종적으로 측정할 것</h2>
-      <div><article><b>전범위 분석</b><span>미분석 고등수학 문항을 5축과 풀이 흐름으로 빠짐없이 분류</span></article><article><b>병목 교정</b><span>학생이 막힌 축을 찾아 진단형·교정형·전이형·통합형 문항으로 연결</span></article><article><b>모의고사 조립</b><span>범위·난이도·풀이시간·병목 분포를 만족하는 자체 문항으로 시험 제작</span></article></div>
-    </section>
+
   </main>
   <script src="vendor/katex/katex.min.js"></script>
   <script src="vendor/katex/auto-render.min.js"></script>
   <script src="math-text.js?v=1"></script>
   <script src="realtime-config.js"></script>
   <script src="realtime.js"></script>
-  <script src="asset-library.js?v=approved-only" defer></script>
+  <script src="asset-library.js?v=flow1" defer></script>
   <script src="pwa-install.js" defer></script>
 </body>
 </html>

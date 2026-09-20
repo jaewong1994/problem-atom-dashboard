@@ -211,10 +211,8 @@ async function start() {
     });
     const summary = data.summary || {};
     $("stats").innerHTML = [
-      ["확정된 자산", summary.entities || 0],
-      ["분석한 문항", summary.questions || 0],
-      ["확인 전 후보", summary.reviewQueue || 0],
-      ["만든 모의고사", summary.mockExams || 0],
+      ["검수된 재료", summary.entities || 0],
+      ["검수 중인 후보", summary.reviewQueue || 0],
     ].map(([label, count]) => `<article class="stat"><span>${label}</span><strong>${count}</strong></article>`).join("");
     records = [
       ...(data.entities || []),
@@ -223,7 +221,8 @@ async function start() {
       ...(data.mockExams || []).map((item) => ({ ...item, kind: "mockExam" })),
       // Pending candidates belong exclusively to promotion-board.html.
     ];
-    const kinds = ["all", "concept", "skill", "decision", "problem_pattern", "strategy", "question", "family", "mockExam"];
+    const kinds = ["all", "concept", "skill", "decision", "problem_pattern", "strategy", "question", "family", "mockExam"].filter(kind => kind === "all" || records.some(row => row.kind === kind));
+    document.querySelector('.controls').hidden = records.length === 0;
     $("filters").innerHTML = kinds.map((kind) => `<button class="filter${kind === "all" ? " active" : ""}" data-kind="${kind}" type="button">${labels[kind]}</button>`).join("");
     document.querySelectorAll(".filter").forEach((button) => {
       button.onclick = () => {

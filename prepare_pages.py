@@ -35,6 +35,7 @@ STATIC_FILES = (
     "grouped.css",
     "season.css",
     "site-shell.css",
+    "site-shell.js",
     "realtime-config.js",
     "realtime.js",
     "season-config.json",
@@ -73,6 +74,8 @@ def merge_progress() -> None:
 
 
 def build_site() -> None:
+    from build_navigation import build as build_navigation
+    build_navigation()
     from build_sandbox import build
     build(ROOT)
     # The published bank must pass independent symbolic checks on every build.
@@ -85,7 +88,8 @@ def build_site() -> None:
     from test_model import ModelTests
     from test_session import SessionTests
     from test_session_math import SessionMathTests
-    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests)])
+    from test_navigation import NavigationTests
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests)])
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")

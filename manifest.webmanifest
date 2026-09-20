@@ -1,14 +1,14 @@
 {
   "id": "./",
-  "name": "Problem Atom · 기출문제 분석",
+  "name": "Problem Atom · 수학 문항 제작",
   "short_name": "Problem Atom",
-  "description": "기출문제 분석·재조합 세미나 현황판",
+  "description": "재료 선택부터 제작과 검토까지 이어지는 수학 문항 제작 작업 공간",
   "lang": "ko-KR",
   "start_url": "./index.html?source=pwa",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f6f2",
-  "theme_color": "#0d7469",
+  "background_color": "#f4f7fb",
+  "theme_color": "#1f3a68",
   "orientation": "any",
   "categories": [
     "education",

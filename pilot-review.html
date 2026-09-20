@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#0d7469">
+  <meta name="theme-color" content="#1f3a68">
   <meta name="description" content="세미나 기록지 양식·검토 쟁점과 자산 조합 대 공백 초안의 회귀를 봅니다. 초안 전문은 싣지 않습니다.">
   <title>파일럿 회귀 · Problem Atom</title>
   <link rel="manifest" href="manifest.webmanifest">
@@ -12,26 +12,20 @@
   <link rel="icon" sizes="192x192" href="assets/pwa/icon-192.png">
   <link rel="stylesheet" href="vendor/katex/katex.min.css">
   <link rel="stylesheet" href="pilot-review.css?v=13">
-  <link rel="stylesheet" href="site-shell.css">
+
   <link rel="stylesheet" href="pwa-install.css">
-</head>
-<body>
-  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
-  <header class="global-header">
-    <a class="global-brand" href="index.html"><b>PA</b><span>문항 연구 시스템</span></a>
-    <nav class="global-nav" aria-label="주요 페이지">
-      <a href="index.html">입장</a>
-      <a href="dashboard.html">기출 현황</a>
-      <a href="promotion-board.html">승격 대기 자산</a>
-      <a href="asset-library.html">공유 자산</a>
-      <a href="vision.html">프로젝트 계획</a>
-    </nav>
-    <div class="instructor-field">
+<link rel="stylesheet" href="site-shell.css?v=flow1"><script defer src="site-shell.js?v=flow1"></script></head>
+<body data-page="pilot-review">
+
+  <!--SITE_NAV-->
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="global-header"><a class="global-brand" href="index.html" aria-label="Problem Atom 홈"><b aria-hidden="true">PA</b><span>Problem Atom</span></a><nav class="global-nav" aria-label="주요 메뉴"><a href="index.html">홈</a><a href="connections.html">문항 만들기</a><a href="asset-library.html">재료·사례</a><details class="nav-more"><summary>분석·검수</summary><div class="nav-more-links"><a href="dashboard.html">기출 분석 현황</a><a href="promotion-board.html">재료 검수</a><a href="vision.html">프로젝트 안내</a><a href="studio.html">이전 문항 보관함</a></div></details></nav></header>
+<!--/SITE_NAV-->
+<div class="page-context"><div class="instructor-field">
       <label for="actor">강사 이름</label>
       <input id="actor" maxlength="20" placeholder="본인 이름" autocomplete="name">
-      <small id="reviewSync">검토 표시는 승격 대기 자산 탭에서 합니다</small>
-    </div>
-  </header>
+      <small id="reviewSync">검토 표시는 재료 검수 탭에서 합니다</small>
+    </div></div>
 
   <main id="main">
     <div id="loadError" class="error-banner" role="alert" hidden aria-hidden="true">
@@ -42,7 +36,7 @@
     <section class="page-intro" aria-labelledby="pilotTitle">
       <p>SEMINAR-01 파일럿</p>
       <h1 id="pilotTitle">기록지 양식과 조합 회귀</h1>
-      <span>결과지 4장의 양식·검토 쟁점과, 후보를 조합한 초안과 공백 초안의 시간·품질 회귀만 봅니다. 후보 확인·댓글·승격은 <a href="promotion-board.html">승격 대기 자산</a>에서 합니다. 초안 문항 전문은 공개 화면에 싣지 않습니다.</span>
+      <span>결과지 4장의 양식·검토 쟁점과, 후보를 조합한 초안과 공백 초안의 시간·품질 회귀만 봅니다. 후보 확인·댓글·승격은 <a href="promotion-board.html">재료 검수</a>에서 합니다. 초안 문항 전문은 공개 화면에 싣지 않습니다.</span>
     </section>
 
     <ol class="pilot-flow" aria-label="자산 운영 경로">
@@ -69,10 +63,10 @@
 
     <section class="review-board" aria-labelledby="queueTitle">
       <div class="block-head">
-        <h2 id="queueTitle">승격 대기 자산</h2>
+        <h2 id="queueTitle">재료 검수</h2>
         <p id="queueCount"></p>
       </div>
-      <p class="handoff">후보별 확인·정정·보류, 댓글, 병합 제안, 정본 ID는 <a href="promotion-board.html">승격 대기 자산 탭</a>에서 봅니다. 쟁점의 후보 ID를 누르면 그 탭의 해당 후보로 이동합니다.</p>
+      <p class="handoff">후보별 확인·정정·보류, 댓글, 병합 제안, 정본 ID는 <a href="promotion-board.html">재료 검수 탭</a>에서 봅니다. 쟁점의 후보 ID를 누르면 그 탭의 해당 후보로 이동합니다.</p>
     </section>
 
     <section class="compose" aria-labelledby="composeTitle">
