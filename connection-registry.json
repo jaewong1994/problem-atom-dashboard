@@ -119,7 +119,11 @@
     "height_identity": "이 매개변수가 높이 자체라는 대응",
     "zero_scale": "합성식의 계수 m이 0",
     "fixed_heights": "교점을 셀 수평선의 높이 목록",
-    "level_counts": "정해진 각 높이에서의 교점 개수"
+    "level_counts": "정해진 각 높이에서의 교점 개수",
+    "parameter_is_critical_root": "허용값이 이 함수의 도함수가 0이 되는 두 위치와 정확히 일치함",
+    "cubic_one_free_root": "서로 다른 두 근과 최고차항 계수가 정해지고 나머지 한 근만 미정인 삼차함수",
+    "nonzero_integer_root_sum": "정수인 허용값의 합이 알려져 있고 0이 아님",
+    "zero_integer_root_sum": "정수인 허용값의 합이 0임"
   },
   "records": [
     {
@@ -3460,7 +3464,9 @@
       ],
       "connection_ids": [
         "PA-MOTIF-S01-03",
-        "PA-BRIDGE-03"
+        "PA-BRIDGE-03",
+        "PA-BRIDGE-09",
+        "PA-BRIDGE-08"
       ],
       "integration_status": "contract_linked"
     },
@@ -5160,7 +5166,8 @@
       "connection_ids": [
         "PA-S02-LEVELS-03",
         "PA-BRIDGE-03",
-        "PA-BRIDGE-05"
+        "PA-BRIDGE-05",
+        "PA-BRIDGE-09"
       ],
       "integration_status": "contract_linked"
     },
@@ -5893,7 +5900,9 @@
         }
       ],
       "connection_ids": [
-        "PA-S02-WINDOW-03"
+        "PA-S02-WINDOW-03",
+        "PA-BRIDGE-09",
+        "PA-BRIDGE-08"
       ],
       "integration_status": "contract_linked"
     },
@@ -9267,6 +9276,11 @@
         {
           "type": "finite_parameter_set",
           "subject": "$a"
+        },
+        {
+          "type": "parameter_is_critical_root",
+          "subject": "$a",
+          "object": "$f"
         }
       ],
       "forbids": [],
@@ -9284,7 +9298,7 @@
       ],
       "review_status": "ai_candidate",
       "contract_status": "encoded",
-      "revision": 1,
+      "revision": 2,
       "work": {
         "algebra": 1,
         "branches": 0
@@ -11222,6 +11236,117 @@
       ],
       "effect": "derive",
       "verification": "연결 조건 검사. 구체 문항의 계산·유일성은 별도 검사."
+    },
+    {
+      "id": "PA-BRIDGE-09",
+      "name": "정수 후보가 한 개인지 두 개인지 나눠 거꾸로 찾기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "finite_parameter_set",
+          "subject": "$a"
+        },
+        {
+          "type": "parameter_is_critical_root",
+          "subject": "$a",
+          "object": "$f"
+        },
+        {
+          "type": "factored_family",
+          "subject": "$f"
+        },
+        {
+          "type": "two_simple_critical_roots",
+          "subject": "$f"
+        },
+        {
+          "type": "cubic_one_free_root",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_integer_root_sum",
+          "subject": "$a"
+        }
+      ],
+      "provides": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "zero_integer_root_sum",
+          "subject": "$a"
+        }
+      ],
+      "guard_note": "F(x)=k(x−p)(x−q)(x−r)에서 k≠0, 서로 다른 p,q가 정해지고 r만 미정이어야 한다. 허용 a는 F′의 두 실근과 정확히 일치하고, 그중 정수인 값의 합 S는 알려진 0 아닌 정수다. 두 근이 모두 정수인 경우와 한 근만 정수인 경우로 r 후보를 구한 뒤 실제 정수 여부와 합을 다시 확인한다. 합이 0이면 빈 집합 경우를 놓칠 수 있어 사용하지 않는다.",
+      "supports": [
+        "PA-S02-LEVELS-03",
+        "PA-S02-WINDOW-03",
+        "PA-MOTIF-S01-03"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 2,
+        "branches": 2
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "두 정수근이면 r=3S/2−p−q. 한 정수근이면 그 값은 S이고, r((p+q)−2S)+3S²−2(p+q)S+pq=0. 계수가 0인 경우 상수항=−(p−q)²/4<0이므로 해가 없다. S≠0이므로 정수근이 없는 경우는 제외된다. 후보 필터링은 별도 단계이며 사람 승인은 별도.",
+      "discovered_by": "2026-09-20 핵심 원자 고정 5단계 실제 Sol 제작의 역추론 가교 보고"
+    },
+    {
+      "id": "PA-BRIDGE-08",
+      "name": "같은 높이의 두 점에서 기울기 변화 확인하기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "equal_values",
+          "subject": "$f"
+        },
+        {
+          "type": "cubic_leading",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "two_simple_critical_roots",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "서로 다른 두 입력에서 함숫값이 같은 실제 삼차함수에만 쓴다. 두 기울기 변화 위치가 존재한다는 연결이며 위치의 수치는 실제 함수식을 미분해 별도로 구한다.",
+      "supports": [
+        "PA-S02-WINDOW-03",
+        "PA-MOTIF-S01-03"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "독립 항등식 검산: F=kx^3+Bx^2+Cx+D, F(p)=F(q), p≠q, k≠0이면 F′의 판별식은 4(B+3k(p+q)/2)^2+3k^2(p−q)^2>0. 사람 승인은 별도.",
+      "discovered_by": "2026-09-20 핵심 원자 고정 3·4단계 실제 Sol 제작의 미등록 가교 보고"
     }
   ],
   "rules": [
@@ -11525,6 +11650,14 @@
     {
       "file": "connection-design-sources.json",
       "sha256": "36fe499f612940b69eef05d80ce208148c86bfc77f243ca41cea4b08bbc36d9a"
+    },
+    {
+      "file": "connection-incoming/inverse-integer-root-sum.json",
+      "sha256": "c75f8763a9c9cb7c273e782fda8f8f599c36a38a9e710892ac676454e5c37aa8"
+    },
+    {
+      "file": "connection-incoming/same-level-cubic-critical-points.json",
+      "sha256": "8423699967eef4e985c75a22267921e884df63b20d2215b00addd93f17119b8f"
     }
   ],
   "policy": {
@@ -11584,5 +11717,5 @@
     "external_auto_merge": false,
     "human_approval": false
   },
-  "revision": "e0643edfddb2356e6a515548a9b783aa5c99f560db03fa41b9155025e2d38882"
+  "revision": "75818ac5f26f5804575c46390d8184b4185a0474c9b3a41d7cf31571dc0d6115"
 }

@@ -1,0 +1,27 @@
+{
+  "schema": "problem-atom/connection-extension/1",
+  "id": "same-level-cubic-critical-points",
+  "records": [],
+  "operations": [{
+    "id": "PA-BRIDGE-08",
+    "name": "같은 높이의 두 점에서 기울기 변화 확인하기",
+    "kind": "bridge",
+    "requires": [
+      {"type": "equal_values", "subject": "$f"},
+      {"type": "cubic_leading", "subject": "$f"}
+    ],
+    "provides": [{"type": "two_simple_critical_roots", "subject": "$f"}],
+    "forbids": [],
+    "guard_note": "서로 다른 두 입력에서 함숫값이 같은 실제 삼차함수에만 쓴다. 두 기울기 변화 위치가 존재한다는 연결이며 위치의 수치는 실제 함수식을 미분해 별도로 구한다.",
+    "supports": ["PA-S02-WINDOW-03", "PA-MOTIF-S01-03"],
+    "review_status": "ai_candidate",
+    "contract_status": "encoded",
+    "effect": "derive",
+    "revision": 1,
+    "work": {"algebra": 1, "branches": 0},
+    "influence": {"role": "enabler", "calibrated": false},
+    "curriculum": ["수학Ⅱ"],
+    "verification": "독립 항등식 검산: F=kx^3+Bx^2+Cx+D, F(p)=F(q), p≠q, k≠0이면 F′의 판별식은 4(B+3k(p+q)/2)^2+3k^2(p−q)^2>0. 사람 승인은 별도.",
+    "discovered_by": "2026-09-20 핵심 원자 고정 3·4단계 실제 Sol 제작의 미등록 가교 보고"
+  }]
+}

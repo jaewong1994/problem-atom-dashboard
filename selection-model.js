@@ -48,7 +48,9 @@
   'PA-BRIDGE-02':'함수식을 미분해 올라가고 내려가는 구간과 꺾이는 높이를 구해요.',
   'PA-BRIDGE-03':'앞에서 찾은 후보를 그대로 넘겨 그중 정수만 고를 수 있게 해요.',
   'PA-BRIDGE-05':'그래프에서 찾은 높이 범위를 문제의 매개변수 범위로 바꿔요.',
-  'PA-BRIDGE-06':'함수가 0이 되는 위치와 각 인수가 몇 번 곱해졌는지 함께 찾아요.'
+  'PA-BRIDGE-06':'함수가 0이 되는 위치와 각 인수가 몇 번 곱해졌는지 함께 찾아요.',
+  'PA-BRIDGE-08':'삼차함수가 같은 높이를 두 번 지나면, 기울기가 0이 되는 두 지점이 있음을 알아내요.',
+  'PA-BRIDGE-09':'정수 후보가 한 개인 경우와 두 개인 경우를 나눠, 알려진 합에서 함수 모양을 거꾸로 찾아요.'
  };
  function describe(op,registry){return examples[op.id]||[explanations[op.id]||registry.types[op.provides[0].type]+' 정보를 얻는 데 사용해요.',null];}
  function blank(registry){return {revision:registry.revision,nodes:[],facts:[]};}

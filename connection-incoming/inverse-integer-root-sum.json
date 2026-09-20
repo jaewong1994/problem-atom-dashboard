@@ -1,0 +1,31 @@
+{
+  "schema": "problem-atom/connection-extension/1",
+  "id": "inverse-integer-root-sum",
+  "records": [],
+  "operations": [{
+    "id": "PA-BRIDGE-09",
+    "name": "정수 후보가 한 개인지 두 개인지 나눠 거꾸로 찾기",
+    "kind": "bridge",
+    "requires": [
+      {"type": "finite_parameter_set", "subject": "$a"},
+      {"type": "parameter_is_critical_root", "subject": "$a", "object": "$f"},
+      {"type": "factored_family", "subject": "$f"},
+      {"type": "two_simple_critical_roots", "subject": "$f"},
+      {"type": "cubic_one_free_root", "subject": "$f"},
+      {"type": "nonzero_integer_root_sum", "subject": "$a"}
+    ],
+    "provides": [{"type": "candidate_functions", "subject": "$f"}],
+    "forbids": [{"type": "zero_integer_root_sum", "subject": "$a"}],
+    "guard_note": "F(x)=k(x−p)(x−q)(x−r)에서 k≠0, 서로 다른 p,q가 정해지고 r만 미정이어야 한다. 허용 a는 F′의 두 실근과 정확히 일치하고, 그중 정수인 값의 합 S는 알려진 0 아닌 정수다. 두 근이 모두 정수인 경우와 한 근만 정수인 경우로 r 후보를 구한 뒤 실제 정수 여부와 합을 다시 확인한다. 합이 0이면 빈 집합 경우를 놓칠 수 있어 사용하지 않는다.",
+    "supports": ["PA-S02-LEVELS-03", "PA-S02-WINDOW-03", "PA-MOTIF-S01-03"],
+    "review_status": "ai_candidate",
+    "contract_status": "encoded",
+    "effect": "derive",
+    "revision": 1,
+    "work": {"algebra": 2, "branches": 2},
+    "influence": {"role": "constraint", "calibrated": false},
+    "curriculum": ["수학Ⅱ"],
+    "verification": "두 정수근이면 r=3S/2−p−q. 한 정수근이면 그 값은 S이고, r((p+q)−2S)+3S²−2(p+q)S+pq=0. 계수가 0인 경우 상수항=−(p−q)²/4<0이므로 해가 없다. S≠0이므로 정수근이 없는 경우는 제외된다. 후보 필터링은 별도 단계이며 사람 승인은 별도.",
+    "discovered_by": "2026-09-20 핵심 원자 고정 5단계 실제 Sol 제작의 역추론 가교 보고"
+  }]
+}

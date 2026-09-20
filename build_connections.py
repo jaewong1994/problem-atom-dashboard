@@ -195,6 +195,13 @@ TYPES.update({
 def ports(items):
     return [fact(*s.split('@')) for s in items.split()]
 
+TYPES.update({
+    'parameter_is_critical_root':'허용값이 이 함수의 도함수가 0이 되는 두 위치와 정확히 일치함',
+    'cubic_one_free_root':'서로 다른 두 근과 최고차항 계수가 정해지고 나머지 한 근만 미정인 삼차함수',
+    'nonzero_integer_root_sum':'정수인 허용값의 합이 알려져 있고 0이 아님',
+    'zero_integer_root_sum':'정수인 허용값의 합이 0임',
+})
+
 OPS=[]
 def op(ident,name,needs,gives,guard,*,kind='step',forbids='',supports=None,work=None,power='representation'):
     OPS.append({'id':ident,'name':name,'kind':kind,'requires':ports(needs),'provides':ports(gives),
@@ -269,6 +276,9 @@ def contracts():
         op('PA-BRIDGE-'+ident,name,a,b,g,kind='bridge',supports=s or ['PA-MOTIF-S01-08','PA-S02-RECURRENCE-01'],work={'algebra':2,'branches':1},power='enabler')
     # Relation assertions are explicit inputs, not unconditional bridge effects.
     next(x for x in OPS if x['id']=='PA-BRIDGE-05')['requires'] += [{'type':'height_identity','subject':'$a','object':'$f'}]
+    extrema = next(x for x in OPS if x['id']=='PA-MOTIF-S01-03')
+    extrema['provides'] += [{'type':'parameter_is_critical_root','subject':'$a','object':'$f'}]
+    extrema['revision'] = 2
     next(x for x in OPS if x['id']=='PA-BRIDGE-04')['requires'] += ports('polynomial')
     next(x for x in OPS if x['id']=='PA-MOTIF-S01-10')['forbids'] = ports('zero_scale')
     return OPS

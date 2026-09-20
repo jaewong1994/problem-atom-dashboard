@@ -98,6 +98,12 @@ class ConnectionTests(unittest.TestCase):
         assert.equal(E.inspect(zeroScale,{id:'PA-MOTIF-S01-10',bindings:{f:'F'},scope:'main'}).status,'blocked');
         const wrongRelation=[{type:'height_set',subject:'F',scope:'main',origin:'given'},{type:'height_identity',subject:'a',object:'G',scope:'main',origin:'given'}];
         assert.equal(E.inspect(wrongRelation,{id:'PA-BRIDGE-05',bindings:{f:'F',a:'a'},scope:'main'}).status,'conditional');
+        const inverse=R.operations.find(o=>o.id==='PA-BRIDGE-09');
+        const inverseNode={id:inverse.id,bindings:{f:'F',a:'a'},scope:'main'};
+        const inverseFacts=inverse.requires.map(p=>({type:p.type,subject:inverseNode.bindings[p.subject.slice(1)],...(p.object?{object:'F'}:{}),scope:'main',origin:'given'}));
+        assert.equal(E.inspect(inverseFacts,inverseNode).status,'direct');
+        const unrelatedRoots=inverseFacts.map(f=>f.type==='parameter_is_critical_root'?{...f,object:'H'}:f);
+        assert.equal(E.inspect(unrelatedRoots,inverseNode).status,'conditional','a different function cannot supply these roots');
         """)
 
     def test_all_pairs_are_only_discovery_not_approval(self):

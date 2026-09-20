@@ -1,11 +1,11 @@
 {
   "engine": "connections-1.0",
-  "registry_revision": "e0643edfddb2356e6a515548a9b783aa5c99f560db03fa41b9155025e2d38882",
+  "registry_revision": "75818ac5f26f5804575c46390d8184b4185a0474c9b3a41d7cf31571dc0d6115",
   "engine_sha256": "42ee688e139cccdf6d58d056232cb09a3279e505f8def0d2643726158071f2e7",
-  "test_methods_passed": 33,
+  "test_methods_passed": 35,
   "records": 107,
-  "contracts": 44,
-  "pair_discovery_checks": 1936,
+  "contracts": 46,
+  "pair_discovery_checks": 2116,
   "cross_seminar_witnesses": 3,
   "legacy_generated_cases": 192,
   "checks": [
