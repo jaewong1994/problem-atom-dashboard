@@ -12,7 +12,8 @@
   function open(plan,brief,calculation,reasoning){
    const draft={schema:'problem-atom/selection-draft/1',plan,brief,calculation,reasoning};
    const url='http://127.0.0.1:8987/connections.html#draft='+encodeURIComponent(JSON.stringify(draft));
-   window.open(url,'_blank','noopener,noreferrer');
+   // Same-tab navigation also works in embedded browsers that suppress popups.
+   window.location.assign(url);
   }
   return {local,status:()=>call('/session/status'),jobs:()=>call('/session/jobs'),job:id=>call('/session/jobs/'+encodeURIComponent(id)),submit:job=>call('/session/jobs',{method:'POST',body:job}),cancel:id=>call('/session/jobs/'+encodeURIComponent(id)+'/cancel',{method:'POST'}),open};
  }
