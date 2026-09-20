@@ -1,8 +1,8 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v22`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v24`;
 const SHELL = [
-  "./studio.html", "./studio.css?v=s02a", "./studio-engine.js?v=s02a", "./studio-ui.js?v=s02a", "./composition-catalog.json",
-  "./composer-engine.js", "./composer-ui.js",
+  "./studio.html", "./connections.html", "./connections.css?v=c2", "./connections.js?v=c2", "./connection-engine.js?v=c2", "./connection-registry.json",
+  "./model-contract.js?v=c2", "./model-workspace.js?v=c2", "./model-provider.json",
   "./review-groups.json", "./group-review-ledger.json", "./group-review.js", "./sandbox.css",
   "./combination-examples.json", "./combination-examples.js",
   "./motif-library.html",
@@ -66,7 +66,7 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (request.mode === "navigate" || /\/(review-groups|group-review-ledger|combination-examples)\.json$/.test(url.pathname) || url.pathname.endsWith("motif-library.json") || url.pathname.endsWith("dashboard-data.json") || url.pathname.endsWith("progress-summary.json") || url.pathname.endsWith("asset-library.json") || url.pathname.endsWith("promotion-board.json") || url.pathname.endsWith("realtime-config.js")) {
+  if (request.mode === "navigate" || /\/(review-groups|group-review-ledger|combination-examples|connection-registry|connection-validation|model-provider)\.json$/.test(url.pathname) || url.pathname.endsWith("motif-library.json") || url.pathname.endsWith("dashboard-data.json") || url.pathname.endsWith("progress-summary.json") || url.pathname.endsWith("asset-library.json") || url.pathname.endsWith("promotion-board.json") || url.pathname.endsWith("realtime-config.js")) {
     event.respondWith(networkFirst(request));
     return;
   }

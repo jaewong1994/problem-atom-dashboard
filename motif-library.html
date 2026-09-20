@@ -5,32 +5,11 @@
 <link rel="stylesheet" href="sandbox.css?v=ui2">
 <link rel="stylesheet" href="vendor/katex/katex.min.css">
 <script defer src="vendor/katex/katex.min.js"></script><script defer src="motif-library.js"></script><script defer src="combination-examples.js"></script>
-<script defer src="composer-engine.js"></script><script defer src="composer-ui.js?v=ui2"></script>
+
 </head><body>
 <header class="global-header"><a class="global-brand" href="index.html"><b>PA</b><span>문항 연구 시스템</span></a>
-<nav class="global-nav" aria-label="주요 페이지"><a href="studio.html">문제 만들기</a><a href="dashboard.html">기출 현황</a><a href="promotion-board.html">승격 대기 자산</a><a href="asset-library.html">공유 자산</a><a href="motif-library.html" aria-current="page">조합 예시</a></nav></header>
-<main class="composer-page"><p class="intro"><a href="studio.html"><strong>새 문항 제작실 열기 →</strong></a> 새 세미나의 여섯 구조 · 단계별 조합 · 3문항 비교</p><p class="eyebrow">PROBLEM ATOM · 문항 제작</p><h1>생각을 고르고, 문제를 만드세요.</h1>
-<p class="intro">계산은 가볍게, 생각은 깊게. 선택할 때마다 예상 풀이가 달라집니다.</p>
-<section class="experiment-panel composer" aria-labelledby="cpTitle">
-<div class="composer-heading"><div><span class="cp-kicker">지금 만들 수 있는 문제</span><h2 id="cpTitle">정적분으로 정의된 함수의 극값</h2></div><span class="cp-badge">첫 번째 제작 구조</span></div>
-<div class="composer-layout"><div class="composer-settings"><div id="cpOptions">
-<fieldset><legend><span class="step-number">1</span> 계산을 얼마나 맡길까요?</legend>
-<label class="choice"><input type="radio" name="cpPresentation" value="factored" checked><span><strong>핵심 판단에 집중</strong><small>도함수를 인수분해한 식으로 줍니다.</small><em>학생은 두 근을 바로 읽고 시작합니다.</em></span></label>
-<label class="choice"><input type="radio" name="cpPresentation" value="expanded"><span><strong>미분부터 직접</strong><small>전개된 삼차함수를 줍니다.</small><em>학생이 미분하고, 도함수가 0이 되는 값을 찾습니다.</em></span></label>
-<label class="choice"><input type="radio" name="cpPresentation" value="conditions"><span><strong>주어진 조건으로 식 찾기</strong><small>두 지점에서의 미분계수를 줍니다.</small><em>학생이 도함수의 계수를 구한 뒤 두 근을 찾습니다.</em></span></label>
-</fieldset>
-<fieldset><legend><span class="step-number">2</span> 어떤 생각을 더 요구할까요?</legend>
-<label class="choice"><input id="cpSign" type="checkbox" checked><span><strong>적분값을 계산하지 않고 부호 판단</strong><small>적분 구간의 방향으로 양수·음수를 판단하게 합니다.</small><em>선택 해제하면 부호 판단 힌트를 줍니다.</em></span></label>
-<label class="choice"><input id="cpSelect" type="checkbox"><span><strong>두 후보 중 하나를 골라내기</strong><small>한 점에서 도함수가 음수라는 조건을 추가합니다.</small><em>선택하면 답 1개 · 해제하면 가능한 값 2개를 모두 묻습니다.</em></span></label>
-</fieldset>
-<details class="cp-number"><summary>문제의 숫자 바꾸기</summary><label>재현 번호 <input id="cpSeed" type="number" min="0" max="999999" step="1" value="14"></label><p>같은 번호와 선택이면 같은 문제가 만들어집니다.</p><button id="cpRandom" type="button">다른 숫자로 바꾸기</button></details>
-</div></div>
-<div class="composer-output"><div id="cpPreview"></div>
-<button id="cpCreate" class="cp-primary" type="button">이 설정으로 문제 만들기 <span aria-hidden="true">→</span></button>
-<p id="cpStatus" role="status" aria-live="polite"></p>
-<div id="cpResult" class="cp-paper"><div class="cp-empty"><span class="cp-kicker">문항 미리보기</span><h3>어떤 생각을 담을까요?</h3><p>왼쪽에서 선택한 뒤 문제를 만들어 보세요.<br>문항과 정답·풀이가 여기에 나타납니다.</p></div></div>
-<button id="cpSave" type="button" disabled>문항·풀이 저장</button>
-</div></div></section>
+<nav class="global-nav" aria-label="주요 페이지"><a href="connections.html">원자 연결 설계</a><a href="dashboard.html">기출 현황</a><a href="promotion-board.html">승격 대기 자산</a><a href="asset-library.html">공유 자산</a><a href="motif-library.html" aria-current="page">조합 예시</a></nav></header>
+<main class="composer-page"><p class="eyebrow">이전 분석 보관</p><h1>원문 풀이와 조합 사례</h1><p class="intro">이전 제작 기능은 종료했습니다. <a href="connections.html">통합 원자 연결 설계실</a>에서 사용 조건과 가교를 확인하세요.</p>
 <details class="cp-archive"><summary>기존 조합 예시와 원문 분석 둘러보기 <span>검산한 문항 72개 · 원형 분석 4개</span></summary>
 <section class="experiment-panel" aria-labelledby="experimentTitle">
 <h2 id="experimentTitle">이전에 검산한 문항 둘러보기</h2>
@@ -38,7 +17,7 @@
 <div class="experiment-controls">
 <label>조합 구조<select id="exampleFamily"><option value="">전체 구조</option></select></label>
 <label>포함할 요소<select id="exampleElement"><option value="">전체 요소</option></select></label>
-<button id="randomExample" type="button">다시 랜덤 조합</button><button id="saveExample" type="button">이 문항 저장</button>
+<button id="randomExample" type="button">다른 검산 사례 보기</button><button id="saveExample" type="button">이 문항 저장</button>
 </div>
 <p id="exampleStatus" role="status" aria-live="polite">검산된 문항을 불러오는 중입니다.</p><div id="generatedExample"></div>
 <div class="experiment-controls"><label>재현 번호<input id="exampleSeed" type="text"></label><button id="replayExample" type="button">같은 문항 보기</button></div>

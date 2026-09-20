@@ -1,0 +1,942 @@
+{
+  "conditions": [
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-001",
+      "status": "ai_candidate",
+      "name": "극값 개수 지정",
+      "surface": "함수 {g}는 오직 하나의 극값을 갖는다",
+      "binds_roles": [
+        "integral_lower_limit",
+        "polynomial_coefficient",
+        "shift_horizontal"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "count",
+      "degrees_removed": 1,
+      "discrete": true,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": true,
+      "miss_error": "두 인수의 영점이 겹쳐 부호 변화가 상쇄되는 경우를 빠뜨리고 판별식 경우만 센다",
+      "curriculum": "극값과 도함수의 부호 변화 (수학Ⅱ)",
+      "source_question": "KICE-2021-06-Q20",
+      "author": "민재웅",
+      "evidence": "오직 하나의 극값을 갖도록 하는 모든 a의 값의 합",
+      "derived_from_assets": [
+        "PA-CAND-STR-20260910-005",
+        "PA-CAND-SKL-20260910-004"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-002",
+      "status": "ai_candidate",
+      "name": "답을 모든 값의 합으로 묻기",
+      "surface": "조건을 만족시키는 모든 {a}의 값의 합을 구하시오",
+      "binds_roles": [
+        "answer_form"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "representation",
+      "degrees_removed": 0,
+      "discrete": false,
+      "uniqueness_power": "absorbs",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "해가 여러 개임을 확인하지 않고 하나만 찾고 멈춘다",
+      "curriculum": "값의 합 표현",
+      "source_question": "KICE-2021-06-Q20",
+      "author": "민재웅",
+      "evidence": "모든 a의 값의 합을 구하시오",
+      "derived_from_assets": [
+        "PA-CAND-PAT-20260910-006"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-003",
+      "status": "ai_candidate",
+      "name": "실수 전체에서 연속",
+      "surface": "함수 {g}는 실수 전체의 집합에서 연속이다",
+      "binds_roles": [
+        "shift_vertical",
+        "shift_horizontal",
+        "piece_boundary"
+      ],
+      "fits_frames": [
+        "absolute_shift",
+        "piecewise_shift"
+      ],
+      "yields": "equation",
+      "degrees_removed": 1,
+      "discrete": false,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "절댓값이나 분모가 0이 되는 점에서 값이 0이어야 한다는 요구를 놓친다",
+      "curriculum": "함수의 연속 (수학Ⅱ)",
+      "source_question": "KICE-2021-06-Q14",
+      "author": "김상범",
+      "evidence": "실수 전체의 집합에서 연속인 함수 g(x)가 다음 조건을 만족시킬 때",
+      "derived_from_assets": [
+        "PA-CAND-CON-20260910-007",
+        "PA-CAND-DEC-20260910-009"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-004",
+      "status": "ai_candidate",
+      "name": "미분불가점 개수 지정",
+      "surface": "함수 {g}가 x={a}에서 미분가능하지 않은 실수 {a}의 개수는 {k}이다",
+      "binds_roles": [
+        "shift_horizontal",
+        "shift_vertical",
+        "polynomial_coefficient"
+      ],
+      "fits_frames": [
+        "absolute_shift",
+        "piecewise_shift"
+      ],
+      "yields": "count",
+      "degrees_removed": 1,
+      "discrete": true,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": true,
+      "miss_error": "중근에서는 접해서 미분가능해지는 것을 놓쳐 꺾임 개수를 잘못 센다",
+      "curriculum": "미분가능성과 절댓값 함수 (수학Ⅱ)",
+      "source_question": "KICE-2021-06-Q14",
+      "author": "김상범",
+      "evidence": "(나) 함수 g(x)가 x=a에서 미분가능하지 않은 실수 a의 개수는 1이다",
+      "derived_from_assets": [
+        "PA-CAND-CON-20260910-008",
+        "PA-CAND-STR-20260910-011"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-005",
+      "status": "ai_candidate",
+      "name": "매개변수 양수 조건",
+      "surface": "{p}는 양수이다",
+      "binds_roles": [
+        "shift_horizontal",
+        "shift_vertical",
+        "integral_lower_limit",
+        "polynomial_coefficient"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "exclusion",
+      "degrees_removed": 0,
+      "discrete": false,
+      "uniqueness_power": "pins",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "부호 조건으로 배제되는 후보를 답에 포함시킨다",
+      "curriculum": "부등식으로 주어진 조건의 사용",
+      "source_question": "KICE-2021-09-Q14",
+      "author": "이광훈",
+      "evidence": "양수 p에 대하여 / 우미분계수 3p(p-2)=0의 두 근 중 양수 조건으로 p=0을 제외",
+      "derived_from_assets": [
+        "PA-CAND-DEC-20260910-015"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-006",
+      "status": "ai_candidate",
+      "name": "함수 정의를 항등식 문면으로 주기",
+      "surface": "모든 실수 {x}에 대하여 {등식}이다",
+      "binds_roles": [
+        "function"
+      ],
+      "fits_frames": [
+        "absolute_shift",
+        "piecewise_shift"
+      ],
+      "yields": "structure",
+      "degrees_removed": 0,
+      "discrete": false,
+      "uniqueness_power": "none",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "항등식을 x에 대해 정리하지 않고 특정 값만 대입한다",
+      "curriculum": "항등식",
+      "source_question": "KICE-2021-06-Q14",
+      "author": "김상범",
+      "evidence": "(가) 모든 실수 x에 대하여 xg(x)=|xf(x-p)+qx|이다",
+      "derived_from_assets": [
+        "PA-CAND-CON-20260910-031"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-007",
+      "status": "ai_candidate",
+      "name": "실수 전체에서 미분가능",
+      "surface": "함수 {g}는 실수 전체의 집합에서 미분가능하다",
+      "binds_roles": [
+        "shift_horizontal",
+        "piece_boundary",
+        "polynomial_coefficient"
+      ],
+      "fits_frames": [
+        "absolute_shift",
+        "piecewise_shift"
+      ],
+      "yields": "equation",
+      "degrees_removed": 1,
+      "discrete": true,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": true,
+      "miss_error": "연속을 먼저 확인하지 않고 도함수의 좌·우극한만 비교한다",
+      "curriculum": "미분가능성과 연속 (수학Ⅱ)",
+      "source_question": "KICE-2021-09-Q14",
+      "author": "이광훈",
+      "evidence": "ㄴ. g(x)가 실수 전체에서 미분가능하도록 하는 양수 p의 개수는 1이다 / 쟁점 precondition: 연속 확인 선행",
+      "derived_from_assets": [
+        "PA-CAND-CON-20260910-014"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-008",
+      "status": "ai_candidate",
+      "name": "조건을 만족시키는 매개변수의 개수를 묻기",
+      "surface": "조건을 만족시키는 {p}의 개수는 {n}이다",
+      "binds_roles": [
+        "answer_form",
+        "required_count"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "representation",
+      "degrees_removed": 0,
+      "discrete": false,
+      "uniqueness_power": "absorbs",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "배제 조건을 적용하지 않아 개수를 하나 더 센다",
+      "curriculum": "조건을 만족시키는 값의 개수",
+      "source_question": "KICE-2021-09-Q14",
+      "author": "이광훈",
+      "evidence": "미분가능하도록 하는 양수 p의 개수는 1이다",
+      "derived_from_assets": [
+        "PA-CAND-DEC-20260910-015"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-009",
+      "status": "ai_candidate",
+      "name": "구간 정적분의 부호 판정",
+      "surface": "{범위}일 때 ∫_{a}^{b} {g}(x) dx ≥ 0이다",
+      "binds_roles": [
+        "shift_horizontal",
+        "integral_lower_limit"
+      ],
+      "fits_frames": [
+        "integral_defined",
+        "piecewise_shift"
+      ],
+      "yields": "range",
+      "degrees_removed": 0,
+      "discrete": false,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": true,
+      "miss_error": "부호를 결정하는 인수를 찾지 못해 범위 조건의 역할을 놓친다",
+      "curriculum": "정적분의 계산과 부호 (수학Ⅱ)",
+      "source_question": "KICE-2021-09-Q14",
+      "author": "이광훈",
+      "evidence": "ㄷ. p ≥ 2일 때 ∫_{-1}^{1} g(x) dx ≥ 0이다 / 쟁점 missing_role: p≥2의 역할이 박스에 없음",
+      "derived_from_assets": [
+        "PA-CAND-SKL-20260910-016"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-010",
+      "status": "ai_candidate",
+      "name": "매개변수 범위 지정",
+      "surface": "{p} ≥ {c}이다",
+      "binds_roles": [
+        "shift_horizontal",
+        "integral_lower_limit",
+        "polynomial_coefficient"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "range",
+      "degrees_removed": 0,
+      "discrete": false,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "범위 조건이 인수의 부호를 정하는 데 쓰이는 것을 놓친다",
+      "curriculum": "부등식으로 주어진 조건의 사용",
+      "source_question": "KICE-2021-09-Q14",
+      "author": "이광훈",
+      "evidence": "ㄷ. p ≥ 2일 때",
+      "derived_from_assets": [
+        "PA-CAND-SKL-20260910-016"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-011",
+      "status": "ai_candidate",
+      "name": "두 점의 미분계수를 0으로 지정",
+      "surface": "{f}'({a}) = {f}'({b}) = 0",
+      "binds_roles": [
+        "polynomial_coefficient",
+        "derivative_value"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "equation",
+      "degrees_removed": 2,
+      "discrete": true,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "극점 두 개를 주면 계수가 정해지는 것을 모르고 미지수를 남긴다",
+      "curriculum": "도함수와 극점 (수학Ⅱ)",
+      "source_question": "KICE-2021-09-Q14",
+      "author": "이광훈",
+      "evidence": "최고차항의 계수가 1이고 f'(0)=f'(2)=0인 삼차함수 f(x)",
+      "derived_from_assets": [
+        "PA-CAND-SKL-20260910-016"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-012",
+      "status": "ai_candidate",
+      "name": "방정식의 서로 다른 실근 개수 지정",
+      "surface": "방정식 {f}(x) = 0은 서로 다른 실근을 {n}개 갖는다",
+      "binds_roles": [
+        "polynomial_coefficient",
+        "constant_term"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "structure",
+      "degrees_removed": 1,
+      "discrete": false,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "중근이 놓일 자리를 한 가지만 보고 경우를 빠뜨린다",
+      "curriculum": "삼차방정식의 실근과 중근 (수학Ⅱ)",
+      "source_question": "KICE-2021-06-Q22",
+      "author": "김연수",
+      "evidence": "(가) 방정식 f(x)=0은 서로 다른 실근을 2개 갖는다",
+      "derived_from_assets": [
+        "PA-CAND-CON-20260910-019"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-013",
+      "status": "ai_candidate",
+      "name": "합성형 방정식의 서로 다른 실근 개수 지정",
+      "surface": "방정식 {f}(x - {f}(x)) = 0은 서로 다른 실근을 {n}개 갖는다",
+      "binds_roles": [
+        "polynomial_coefficient",
+        "line_slope"
+      ],
+      "fits_frames": [
+        "composite_roots"
+      ],
+      "yields": "count",
+      "degrees_removed": 1,
+      "discrete": true,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": true,
+      "miss_error": "치환하지 않고 전개하려 하거나, 접점을 서로 다른 교점 2개로 센다",
+      "curriculum": "합성형 방정식의 치환과 교점 개수 (수학Ⅱ)",
+      "source_question": "KICE-2021-06-Q22",
+      "author": "김연수",
+      "evidence": "(나) 방정식 f(x-f(x))=0은 서로 다른 실근을 3개 갖는다",
+      "derived_from_assets": [
+        "PA-CAND-CON-20260910-021",
+        "PA-CAND-CON-20260910-022"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-014",
+      "status": "ai_candidate",
+      "name": "함숫값 지정",
+      "surface": "{f}({a}) = {v}",
+      "binds_roles": [
+        "point_value",
+        "polynomial_coefficient"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "equation",
+      "degrees_removed": 1,
+      "discrete": true,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "지정된 점을 그래프 개형과 연결하지 않고 계수 계산에만 쓴다",
+      "curriculum": "함숫값",
+      "source_question": "KICE-2021-06-Q22",
+      "author": "김연수",
+      "evidence": "f(1)=4",
+      "derived_from_assets": [
+        "PA-CAND-CON-20260910-020"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-015",
+      "status": "ai_candidate",
+      "name": "미분계수 지정",
+      "surface": "{f}'({a}) = {v}",
+      "binds_roles": [
+        "derivative_value",
+        "polynomial_coefficient",
+        "line_slope"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "equation",
+      "degrees_removed": 1,
+      "discrete": true,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": true,
+      "miss_error": "미분계수를 접선의 기울기로 읽지 않아 접할 가능성을 열지 못한다",
+      "curriculum": "미분계수와 접선의 기울기 (수학Ⅱ)",
+      "source_question": "KICE-2021-06-Q22",
+      "author": "김연수",
+      "evidence": "f'(1)=1 / 개념 2: 미분계수는 접선의 기울기",
+      "derived_from_assets": [
+        "PA-CAND-CON-20260910-020"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-016",
+      "status": "ai_candidate",
+      "name": "미분계수 부등식으로 개형 배제",
+      "surface": "{f}'({a}) > {v}",
+      "binds_roles": [
+        "derivative_value",
+        "polynomial_coefficient"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "exclusion",
+      "degrees_removed": 0,
+      "discrete": false,
+      "uniqueness_power": "pins",
+      "elimination_risk": "none",
+      "bottleneck": true,
+      "miss_error": "부등식을 쓰지 않아 접선이 놓일 자리를 정하는 근거가 빠진다",
+      "curriculum": "도함수의 부호와 개형 (수학Ⅱ)",
+      "source_question": "KICE-2021-06-Q22",
+      "author": "김연수",
+      "evidence": "f'(0)>1 / 쟁점 missing_condition_use: 이 조건이 풀이·박스 어디에도 쓰이지 않았다",
+      "derived_from_assets": [
+        "PA-CAND-DEC-20260910-024"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-017",
+      "status": "ai_candidate",
+      "name": "답을 서로소 자연수 비로 묻기",
+      "surface": "{f}({a}) = {q}/{p} ({p}, {q}는 서로소인 자연수)일 때 {p}+{q}의 값을 구하시오",
+      "binds_roles": [
+        "answer_form"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "representation",
+      "degrees_removed": 0,
+      "discrete": false,
+      "uniqueness_power": "pins",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "기약분수로 만들지 않고 p, q를 잘못 읽는다",
+      "curriculum": "서로소와 기약분수",
+      "source_question": "KICE-2021-06-Q22",
+      "author": "김연수",
+      "evidence": "f(0)=q/p (p, q는 서로소인 자연수)일 때 p+q의 값",
+      "derived_from_assets": [
+        "PA-CAND-PAT-20260910-027"
+      ],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-018",
+      "status": "ai_candidate",
+      "name": "최고차항의 계수 지정",
+      "surface": "최고차항의 계수가 {c}인 삼차함수 {f}",
+      "binds_roles": [
+        "polynomial_coefficient"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "equation",
+      "degrees_removed": 1,
+      "discrete": true,
+      "uniqueness_power": "narrows",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "최고차항 계수를 미지수로 남겨 두고 경우를 늘린다",
+      "curriculum": "다항함수의 표현",
+      "source_question": "KICE-2021-06-Q20",
+      "author": "민재웅",
+      "evidence": "f(x)=x^3-12x^2+45x+3 / 최고차항의 계수가 1이고",
+      "derived_from_assets": [],
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "condition_card",
+      "condition_id": "PA-COND-20260911-019",
+      "status": "ai_candidate",
+      "name": "답을 최솟값으로 묻기",
+      "surface": "조건을 만족시키는 {a}의 최솟값을 구하시오",
+      "binds_roles": [
+        "answer_form"
+      ],
+      "fits_frames": [
+        "any"
+      ],
+      "yields": "representation",
+      "degrees_removed": 0,
+      "discrete": false,
+      "uniqueness_power": "pins",
+      "elimination_risk": "none",
+      "bottleneck": false,
+      "miss_error": "해집합의 한 분기만 찾고 더 작은 고립점을 놓친다",
+      "curriculum": "최솟값 표현",
+      "source_question": "",
+      "author": "",
+      "evidence": "",
+      "derived_from_assets": [],
+      "origin": "engine_gap",
+      "gap_note": "1회차 기록지 4장의 답 표현은 모든 값의 합·개수·서로소 비 세 가지뿐이었다. 해집합이 고립점과 반직선으로 갈리는 설계에는 최솟값 문면이 필요해서 엔진이 만든 후보다. 강사 확인 전에는 쓰지 않는다."
+    }
+  ],
+  "skeletons": [
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "skeleton",
+      "skeleton_id": "PA-SKEL-20260911-001",
+      "status": "ai_candidate",
+      "name": "정적분으로 정의된 함수의 극값 개수로 자리 하나를 정한다",
+      "frame": "g(x) = ∫_{L}^{x} K(x,t)·W(t) dt 에서 K(x,x)=0이면 g'는 곱으로 분해되고, g의 극값 개수 조건이 L 또는 W·F의 매개변수를 정한다",
+      "frame_kind": "integral_defined",
+      "slots": [
+        {
+          "slot": "L",
+          "role": "integral_lower_limit",
+          "role_label": "적분 하한",
+          "freedom": 1
+        },
+        {
+          "slot": "A",
+          "role": "polynomial_coefficient",
+          "role_label": "F'의 영점을 정하는 계수",
+          "freedom": 1
+        },
+        {
+          "slot": "C",
+          "role": "constant_term",
+          "role_label": "F의 상수항",
+          "freedom": 1,
+          "eliminable": {
+            "where": "g'(x)=F(x)-F(L) 같은 차분과 도함수 계산",
+            "risk": "high"
+          }
+        },
+        {
+          "slot": "W",
+          "role": "polynomial_coefficient",
+          "role_label": "부호가 일정한 가중 인수의 매개변수",
+          "freedom": 1
+        },
+        {
+          "slot": "k",
+          "role": "required_count",
+          "role_label": "요구 극값 개수",
+          "freedom": 0,
+          "given": true
+        }
+      ],
+      "derived": [
+        {
+          "name": "g'",
+          "rule": "위끝과 피적분에 x가 함께 있으므로 경계항 K(x,x)=0이 사라지고 g'(x)=∫_L^x ∂_x K·W dt 만 남는다"
+        },
+        {
+          "name": "부호",
+          "rule": "W가 음이 아니고 항등적으로 0이 아니면 ∫_L^x W dt 의 부호는 x-L의 부호와 같다"
+        },
+        {
+          "name": "극값",
+          "rule": "곱으로 분해된 g'의 영점을 한 수직선에 올려 부호 변화 횟수를 센다. 두 인수의 영점이 겹치면 상쇄된다"
+        }
+      ],
+      "invariants": [
+        "경계항이 0이 되는 피적분 구조",
+        "가중 인수의 부호가 일정해야 적분 인수의 부호를 방향으로 판단할 수 있다",
+        "극값 개수 = 도함수의 부호 변화 횟수"
+      ],
+      "handles": [
+        "F'의 영점 개수와 위치",
+        "가중 인수의 차수와 부호",
+        "요구 극값 개수 k",
+        "하한을 매개변수로 둘지 계수를 매개변수로 둘지"
+      ],
+      "answer_targets": [
+        "매개변수의 모든 값의 합",
+        "매개변수의 최솟값",
+        "조건을 만족시키는 정수 매개변수의 개수"
+      ],
+      "requires_assets": [
+        "PA-CAND-CON-20260908-001",
+        "PA-CAND-DEC-20260908-001",
+        "PA-CAND-SKL-20260910-004",
+        "PA-CAND-STR-20260910-005",
+        "PA-CAND-CON-20260910-032"
+      ],
+      "source_questions": [
+        "KICE-2021-06-Q20"
+      ],
+      "evidence": [
+        "g(x)=∫_a^x {f(x)-f(t)}{f(t)}^4 dt 가 오직 하나의 극값을 갖도록 하는 모든 a의 값의 합",
+        "민재웅 기록지 2쪽 손글씨: 경계항 f(x,x)=0 표시"
+      ],
+      "author": "민재웅",
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "skeleton",
+      "skeleton_id": "PA-SKEL-20260911-002",
+      "status": "ai_candidate",
+      "name": "절댓값을 품은 함수의 연속과 미분불가점 개수로 이동량을 정한다",
+      "frame": "x·g(x) = |x·F(x-P) + Q·x| 처럼 절댓값 안이 원점을 지나야 연속이 되는 구조에서, 미분불가점 개수 조건이 이동량 (P,Q)를 정한다",
+      "frame_kind": "absolute_shift",
+      "slots": [
+        {
+          "slot": "P",
+          "role": "shift_horizontal",
+          "role_label": "가로 이동량",
+          "freedom": 1
+        },
+        {
+          "slot": "Q",
+          "role": "shift_vertical",
+          "role_label": "세로 이동량",
+          "freedom": 1
+        },
+        {
+          "slot": "A",
+          "role": "polynomial_coefficient",
+          "role_label": "F의 극값을 정하는 계수",
+          "freedom": 1
+        },
+        {
+          "slot": "k",
+          "role": "required_count",
+          "role_label": "요구 미분불가점 개수",
+          "freedom": 0,
+          "given": true
+        }
+      ],
+      "derived": [
+        {
+          "name": "분리",
+          "rule": "부호함수 |x|/x 를 떼어내면 남은 인수는 연속이고, 연속 조건은 절댓값 안이 원점을 지나는 것으로 환원된다"
+        },
+        {
+          "name": "꺾임",
+          "rule": "|다항식|은 단순근으로 x축을 통과하는 점에서만 미분불가이고, 접하는 중근에서는 미분가능하다"
+        }
+      ],
+      "invariants": [
+        "절댓값 안의 값이 x=0에서 0이어야 연속이다",
+        "미분불가점은 단순근에서만 생긴다",
+        "이동은 그래프의 모양을 바꾸지 않는다"
+      ],
+      "handles": [
+        "요구 미분불가점 개수",
+        "이동량의 부호 제약",
+        "F의 극값 개수와 높이"
+      ],
+      "answer_targets": [
+        "P+Q",
+        "P의 값",
+        "조건을 만족시키는 이동량의 개수"
+      ],
+      "requires_assets": [
+        "PA-CAND-CON-20260910-007",
+        "PA-CAND-CON-20260910-008",
+        "PA-CAND-DEC-20260910-009",
+        "PA-CAND-SKL-20260910-010",
+        "PA-CAND-STR-20260910-011",
+        "PA-CAND-SKL-20260910-033"
+      ],
+      "source_questions": [
+        "KICE-2021-06-Q14"
+      ],
+      "evidence": [
+        "(가) 모든 실수 x에 대하여 xg(x)=|xf(x-p)+qx|이다",
+        "(나) 함수 g(x)가 x=a에서 미분가능하지 않은 실수 a의 개수는 1이다",
+        "김상범 기록지 2쪽 여백 손글씨: |★|/★ 꼴 → 아는 함수"
+      ],
+      "author": "김상범",
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "skeleton",
+      "skeleton_id": "PA-SKEL-20260911-003",
+      "status": "ai_candidate",
+      "name": "이동해 붙인 조각함수의 경계 미분가능성과 구간 적분 부호",
+      "frame": "g(x) = F(x)-F(0) (x ≤ 0), F(x+P)-F(P) (x > 0) 처럼 두 조각을 각각 0에서 0이 되게 붙인 구조에서, 경계 미분가능 조건이 P를 정하고 구간 적분의 부호가 P의 범위를 읽는다",
+      "frame_kind": "piecewise_shift",
+      "slots": [
+        {
+          "slot": "P",
+          "role": "shift_horizontal",
+          "role_label": "오른쪽 조각의 이동량",
+          "freedom": 1
+        },
+        {
+          "slot": "Z",
+          "role": "polynomial_coefficient",
+          "role_label": "F'의 영점을 정하는 계수",
+          "freedom": 1
+        },
+        {
+          "slot": "C",
+          "role": "constant_term",
+          "role_label": "F의 상수항",
+          "freedom": 1,
+          "eliminable": {
+            "where": "F(x)-F(0) 과 F(x+P)-F(P) 의 차분",
+            "risk": "high"
+          }
+        },
+        {
+          "slot": "B",
+          "role": "piece_boundary",
+          "role_label": "조각 경계",
+          "freedom": 0,
+          "given": true
+        },
+        {
+          "slot": "I",
+          "role": "required_count",
+          "role_label": "적분 구간의 끝",
+          "freedom": 0,
+          "given": true
+        }
+      ],
+      "derived": [
+        {
+          "name": "g'",
+          "rule": "조각마다 g'는 F'와 F'의 평행이동이고, 경계에서는 연속이 먼저 확인된 뒤에만 도함수의 좌·우극한으로 비교할 수 있다"
+        },
+        {
+          "name": "미분가능",
+          "rule": "경계에서 미분가능 ⟺ F'(0)=F'(P)"
+        }
+      ],
+      "invariants": [
+        "두 조각이 경계에서 같은 값 0을 갖도록 만든 구조",
+        "도함수 비교 전에 연속을 확인한다",
+        "g'는 F'의 평행이동이다"
+      ],
+      "handles": [
+        "F'의 영점 위치",
+        "적분 구간",
+        "이동량의 범위 조건",
+        "보기 문면으로 물을지 값으로 물을지"
+      ],
+      "answer_targets": [
+        "보기 조합",
+        "이동량의 개수",
+        "이동량의 값"
+      ],
+      "requires_assets": [
+        "PA-CAND-CON-20260910-013",
+        "PA-CAND-CON-20260910-014",
+        "PA-CAND-DEC-20260910-015",
+        "PA-CAND-SKL-20260910-016",
+        "PA-CAND-STR-20260910-017"
+      ],
+      "source_questions": [
+        "KICE-2021-09-Q14"
+      ],
+      "evidence": [
+        "x ≤ 0일 때 f(x)-f(0), x > 0일 때 f(x+p)-f(p)",
+        "ㄴ. g(x)가 실수 전체에서 미분가능하도록 하는 양수 p의 개수는 1이다",
+        "ㄷ. p ≥ 2일 때 ∫_{-1}^{1} g(x) dx ≥ 0이다"
+      ],
+      "author": "이광훈",
+      "origin": "ai_reread"
+    },
+    {
+      "schema": "problem-atom/design-layer/1.0",
+      "kind": "skeleton",
+      "skeleton_id": "PA-SKEL-20260911-004",
+      "status": "ai_candidate",
+      "name": "합성형 방정식의 근 개수를 평행한 직선의 교점으로 바꿔 계수를 정한다",
+      "frame": "F(x - m·F(x)) = 0 처럼 치환이 기울기가 같은 직선 여러 개를 만드는 구조에서, 근 개수 조건과 점·기울기 조건이 F의 계수를 정한다",
+      "frame_kind": "composite_roots",
+      "slots": [
+        {
+          "slot": "K",
+          "role": "polynomial_coefficient",
+          "role_label": "곡선의 계수",
+          "freedom": 3
+        },
+        {
+          "slot": "M",
+          "role": "line_slope",
+          "role_label": "치환이 만드는 직선의 기울기",
+          "freedom": 0,
+          "given": true
+        },
+        {
+          "slot": "V",
+          "role": "point_value",
+          "role_label": "지정하는 함숫값",
+          "freedom": 0,
+          "given": true
+        },
+        {
+          "slot": "D",
+          "role": "derivative_value",
+          "role_label": "지정하는 미분계수",
+          "freedom": 0,
+          "given": true
+        },
+        {
+          "slot": "N",
+          "role": "required_count",
+          "role_label": "요구 근 개수",
+          "freedom": 0,
+          "given": true
+        }
+      ],
+      "derived": [
+        {
+          "name": "치환",
+          "rule": "F(t)=0의 근이 α, β면 F(x-m F(x))=0 ⟺ F(x) = (x-α)/m 또는 (x-β)/m 이고, 두 직선은 기울기가 같다"
+        },
+        {
+          "name": "접선",
+          "rule": "직선이 곡선에 접하면 대수적으로는 중근이지만 서로 다른 교점 수로는 1개다"
+        },
+        {
+          "name": "교점 합",
+          "rule": "기울기가 같은 직선들과의 교점 x좌표의 합은 절편과 무관하게 보존된다"
+        }
+      ],
+      "invariants": [
+        "치환이 만드는 직선들의 기울기가 서로 같다",
+        "접점은 중근이지만 서로 다른 교점으로는 1개다",
+        "근 개수 조건은 교점 개수의 합으로 읽는다"
+      ],
+      "handles": [
+        "치환식이 만드는 기울기",
+        "요구 근 개수",
+        "지정하는 점과 미분계수",
+        "답을 서로소 자연수 비로 물을지"
+      ],
+      "answer_targets": [
+        "계수에서 얻은 값",
+        "p+q 꼴의 표현",
+        "함숫값"
+      ],
+      "requires_assets": [
+        "PA-CAND-CON-20260910-019",
+        "PA-CAND-CON-20260910-020",
+        "PA-CAND-CON-20260910-021",
+        "PA-CAND-CON-20260910-022",
+        "PA-CAND-CON-20260910-023",
+        "PA-CAND-DEC-20260910-024",
+        "PA-CAND-SKL-20260910-025",
+        "PA-CAND-STR-20260910-026",
+        "PA-CAND-SKL-20260910-034"
+      ],
+      "source_questions": [
+        "KICE-2021-06-Q22"
+      ],
+      "evidence": [
+        "(나) 방정식 f(x-f(x))=0은 서로 다른 실근을 3개 갖는다",
+        "f(1)=4, f'(1)=1, f'(0)>1",
+        "김연수 기록지 2쪽 여백: α+β+γ = α'+β'+γ'"
+      ],
+      "author": "김연수",
+      "origin": "ai_reread"
+    }
+  ]
+}

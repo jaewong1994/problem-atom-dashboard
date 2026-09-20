@@ -1,0 +1,7 @@
+{
+  "mode": "codex_handoff",
+  "api_model": "gpt-5.6-sol",
+  "api_endpoint": null,
+  "automatic_model_fallback": false,
+  "status": "API 서버와 키 설정 전. Codex 아스트라에 요청 파일을 전달하는 방식은 사용 가능."
+}

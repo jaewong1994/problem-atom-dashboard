@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parent
 SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
-    "studio.html", "studio.css", "studio-engine.js", "studio-ui.js", "composition-catalog.json", "studio-validation.json",
-    "composer-engine.js", "composer-ui.js",
+    "studio.html", "connections.html", "connections.css", "connections.js", "connection-engine.js", "connection-registry.json", "connection-validation.json", "composition-catalog.json",
+    "model-contract.js", "model-workspace.js", "model-provider.json",
     "review-groups.json", "group-review-ledger.json", "group-review.js", "sandbox.css",
     "combination-examples.json", "combination-examples.js",
     "motif-library.html",
@@ -79,13 +79,28 @@ def build_site() -> None:
     import unittest
     from test_sandbox import SandboxTests
     from test_composer import ComposerTests
-    from test_studio import StudioTests
-    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(SandboxTests),unittest.defaultTestLoader.loadTestsFromTestCase(ComposerTests),unittest.defaultTestLoader.loadTestsFromTestCase(StudioTests)])
+    from build_connections import build as build_connections
+    build_connections()
+    from test_connections import ConnectionTests
+    from test_model import ModelTests
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests)])
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")
     import hashlib
-    (ROOT/"studio-validation.json").write_text(json.dumps({"engine": "seminar-composer-2.0", "engine_sha256": hashlib.sha256((ROOT/"studio-engine.js").read_bytes()).hexdigest(), "test_methods_passed": result.testsRun, "new_generated_cases": 360, "legacy_generated_cases": 192, "original_source_problems": 6, "checks": ["exact algebra", "root counts and endpoints", "condition removal witnesses", "option effects", "asset use", "KaTeX rendering", "replay and invalid inputs"], "difficulty_calibrated": False, "human_approved": False},ensure_ascii=False,indent=2),encoding="utf-8")
+    registry=json.loads((ROOT/'connection-registry.json').read_text(encoding='utf-8'))
+    (ROOT/'connection-validation.json').write_text(json.dumps({
+        'engine':'connections-1.0',
+        'registry_revision':registry['revision'],
+        'engine_sha256':hashlib.sha256((ROOT/'connection-engine.js').read_text(encoding='utf-8').encode('utf-8')).hexdigest(),
+        'test_methods_passed':result.testsRun,
+        'records':len(registry['records']), 'contracts':len(registry['operations']),
+        'pair_discovery_checks':len(registry['operations'])**2,
+        'cross_seminar_witnesses':3, 'legacy_generated_cases':192,
+        'checks':['every contract requirement removed','forbidden conditions','object and scope isolation','bridge paths and removal','unknown and stale assets','new asset ingestion','independent algebra witnesses','retired UI','Sol request and result contract','mock API failure handling','service access controls'],
+        'model_api_default':'gpt-5.6-sol','live_api_tested':False,'model_adapter_tested_with_mock':True,
+        'local_item_generator_enabled':False,'human_approved':False,'difficulty_calibrated':False
+    },ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     if SITE.exists():
         if SITE.parent != ROOT or SITE.name != "_site":
             raise RuntimeError("빌드 폴더 경로 검증 실패")

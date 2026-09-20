@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "새 세미나의 연결 자산 반입",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "records",
+    "operations"
+  ],
+  "properties": {
+    "schema": {
+      "const": "problem-atom/connection-extension/1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]{1,60}$"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "kind",
+          "origin"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "origin": {
+            "type": "string"
+          },
+          "source_status": {
+            "const": "ai_candidate"
+          },
+          "payload": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "kind",
+          "requires",
+          "provides",
+          "forbids",
+          "guard_note",
+          "supports",
+          "review_status",
+          "contract_status",
+          "revision",
+          "effect",
+          "work",
+          "influence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "step",
+              "bridge"
+            ]
+          },
+          "requires": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/port"
+            }
+          },
+          "provides": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/port"
+            }
+          },
+          "forbids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/port"
+            }
+          },
+          "guard_note": {
+            "type": "string",
+            "minLength": 1
+          },
+          "supports": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "review_status": {
+            "const": "ai_candidate"
+          },
+          "contract_status": {
+            "const": "encoded"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "effect": {
+            "const": "derive"
+          },
+          "work": {
+            "type": "object",
+            "required": [
+              "algebra",
+              "branches"
+            ],
+            "properties": {
+              "algebra": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "branches": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "influence": {
+            "type": "object",
+            "required": [
+              "role",
+              "calibrated"
+            ],
+            "properties": {
+              "role": {
+                "enum": [
+                  "representation",
+                  "constraint",
+                  "enabler"
+                ]
+              },
+              "calibrated": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "port": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "subject"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "connection-registry.json의 types에 등록된 키만 허용"
+        },
+        "subject": {
+          "type": "string",
+          "enum": ["$f", "$h", "$a"]
+        },
+        "object": {
+          "type": "string",
+          "enum": ["$f", "$h", "$a"],
+          "description": "매개변수와 함수의 대응처럼 두 대상을 잇는 경우"
+        }
+      }
+    }
+  }
+}
