@@ -7,7 +7,7 @@ function math(text,tag='p'){const p=el(tag),pattern=/\$\$([\s\S]+?)\$\$|\$([^$\n
 try{
  const response=await fetch('connection-registry.json',{cache:'no-store'});if(!response.ok)throw Error('자산을 읽지 못했습니다.');
  const registry=await response.json(),engine=PAConnections.create(registry),ops=new Map(registry.operations.map(o=>[o.id,o])),session=PASession.create(),S=PASelection,P=PAPlanner,C=PABoxCopy,G=PAGraph,U=PACurriculum;let productionIO=null;
- const nameOf=id=>C.atoms[id]?.name||ops.get(id)?.name||id;
+ const nameOf=id=>PABoxExamples.get(id)?.name||C.atoms[id]?.name||ops.get(id)?.name||id;
  const goalName=type=>C.goals[type]?.name||P.GOALS[type]||registry.types[type];
  function example(text,compact=false){if(!text)return document.createDocumentFragment();const box=el('span',null,'box-example'+(compact?' compact':''));box.append(el('span','예시','example-label'));const body=math(text,'span');body.className='example-body';box.append(body);return box;}
  let coreId=null,target=null,undoSelection=null,unitScope=null;

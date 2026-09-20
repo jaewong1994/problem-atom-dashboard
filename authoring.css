@@ -34,3 +34,32 @@ body[data-page=connections] main{max-width:1400px;padding:32px 28px 80px}
 .is-empty .author-board,.is-empty .author-map-toggle{display:none}.is-empty .author-grid{display:block;min-height:0}.is-empty .author-panel{position:static;border:0;max-width:1050px;margin:0 auto;padding:32px}.is-empty .bundle-shelf{grid-template-columns:repeat(2,minmax(0,1fr))}.is-empty .author-grid{background:var(--surface)}.is-empty .bundle-search{max-width:440px}
 @media(max-width:560px){.is-empty .author-panel{padding:22px 18px}.is-empty .bundle-shelf{grid-template-columns:1fr}.bundle-library-card{padding:16px}.bundle-library-card>b{font-size:16px}.author-node.bundle{padding:14px}.author-count{white-space:normal;text-align:right;max-width:105px}}
 @media(prefers-reduced-motion:reduce){.bundle-library-card{transition:none}}
+
+/* Examples open in their own card; opening a card never selects a material. */
+.bundle-shelf{align-items:start}
+.box-accordion{min-width:0;margin:0;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);overflow:hidden;transition:border-color 180ms,box-shadow 180ms}
+.box-accordion:hover{border-color:var(--blue)}
+.box-accordion[open]{border-color:var(--blue);box-shadow:0 4px 18px #1b2d480a}
+.box-accordion>summary{display:block;list-style:none;cursor:pointer;min-height:44px;padding:20px;text-align:left}
+.box-accordion>summary::-webkit-details-marker{display:none}
+.box-card-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.box-card-heading .author-choice-meta{font-size:12px}
+.box-card-title{display:block;font-size:17px;line-height:1.65;font-weight:750;color:var(--ink);word-break:keep-all;overflow-wrap:anywhere}
+.box-chevron{font-size:19px;color:var(--blue);transition:transform 180ms}
+.box-accordion[open] .box-chevron{transform:rotate(180deg)}
+.box-math-line{display:block;min-width:0;max-width:100%;color:var(--ink-2);font-size:14px;line-height:1.95;word-break:keep-all;overflow-wrap:anywhere}
+.box-math-line .example-body{display:block;max-width:100%}
+.box-math-line .katex{font-size:1.07em;max-width:100%;overflow-x:auto;overflow-y:hidden;vertical-align:middle;display:inline-block;padding:3px 0}
+.box-accordion>summary>.box-math-line{margin-top:14px;padding:12px 14px;background:var(--soft);border-radius:7px}
+.box-expand-hint{display:block;margin-top:12px;font-size:12px;font-weight:600;color:var(--blue)}
+.box-card-content{padding:0 20px 20px;min-width:0}
+.box-card-content>h4{font-size:13px;margin:0 0 10px;border-top:1px solid var(--line);padding-top:18px}
+.box-worked-steps{padding-left:22px;margin:0 0 16px}.box-worked-steps li{padding-left:4px;margin:8px 0}.box-worked-steps li::marker{color:var(--blue);font-weight:650}
+.box-conclusion{padding:14px;background:var(--blue-soft);border-radius:7px;margin:16px 0}.box-conclusion>b{font-size:12px;color:var(--navy)}
+.box-members,.box-seminar-source{margin:10px 0}.box-card-content :is(.box-members,.box-seminar-source,.author-inputs)>summary{min-height:44px;align-content:center;font-size:12px;line-height:1.7;cursor:pointer}
+.box-seminar-source p,.box-seminar-source small,.box-members p{display:block;font-size:12px;line-height:1.8;color:var(--muted);overflow-wrap:anywhere}
+.box-card-content>.wide{margin-top:14px}.box-card-content .author-caution{font-size:13px}.box-card-content .author-inputs{margin-bottom:8px}
+.box-accordion[open]>.box-card-content{animation:box-reveal 180ms ease-out}
+@keyframes box-reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:560px){.box-accordion>summary{padding:16px}.box-card-content{padding:0 16px 16px}.box-card-title{font-size:16px}.box-math-line{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.box-accordion,.box-chevron{transition:none}.box-accordion[open]>.box-card-content{animation:none}}
