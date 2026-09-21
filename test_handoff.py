@@ -170,6 +170,31 @@ class HwpxTests(unittest.TestCase):
                     self.module.build([{'question':['$'+formula+'$'],'answer':'1','solution':['계산한다.']}],out,SKILLS)
                 self.assertFalse(out.exists())
 
+    def test_observed_escape_noise_exports_identically_without_changing_source(self):
+        clean = {'question':[r'$F(x)=-\frac49x(x-3)^2$이다.'], 'answer':'$-16$',
+                 'solution':[r'$F_2(\frac r2)=-\frac r2,$', r"$F_1'(1)=\frac43,\qquad F_2'(1)=0.$"]}
+        noisy = {'question':['\x1b[31m'+clean['question'][0]+'\x1b[0m'],
+                 'answer':clean['answer'],
+                 'solution':[s.replace(',', ',\x1b') for s in clean['solution']]}
+        original = repr(noisy)
+        with tempfile.TemporaryDirectory(prefix='pa-hwpx-test-') as folder:
+            files = [Path(folder)/name for name in ['clean.hwpx','noisy.hwpx']]
+            for item, out in zip([clean,noisy], files):
+                self.module.build([item],out,SKILLS)
+            with zipfile.ZipFile(files[0]) as a, zipfile.ZipFile(files[1]) as b:
+                self.assertEqual(a.read('Contents/section0.xml'), b.read('Contents/section0.xml'))
+        self.assertEqual(repr(noisy), original)
+
+    def test_ambiguous_controls_report_the_exact_problem_and_paragraph(self):
+        for bad in ['$x\x0crac{1}{2}$', '$\x08inom{5}{2}$', '$x\x1b[2J$']:
+            with self.subTest(bad=repr(bad)), tempfile.TemporaryDirectory(prefix='pa-hwpx-test-') as folder:
+                good = {'question':['$x=1$이다.'],'answer':'1','solution':['계산한다.']}
+                item = {**good,'solution':['첫 단계',bad]}
+                out = Path(folder)/'bad.hwpx'
+                with self.assertRaisesRegex(ValueError,'2번 문항 해설 2번째 문단'):
+                    self.module.build([good,item],out,SKILLS)
+                self.assertFalse(out.exists())
+
 
 if __name__=='__main__':
     unittest.main()

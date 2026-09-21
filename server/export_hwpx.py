@@ -13,6 +13,23 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
+def clean_format_controls(text):
+    """Remove terminal formatting, never guess a damaged TeX command.
+
+    Actual model output contained standalone ESC after math commas. ESC and
+    ANSI colour/style sequences have no printable mathematical content.
+    Other controls (notably form feed from an incorrectly escaped \\frac)
+    remain errors rather than being deleted or turned into invented formulas.
+    """
+    text = re.sub(r'\x1b\[[0-9;:]*m', '', text)
+    if re.search(r'\x1b[\[\]PX^_]', text):
+        raise ValueError('문자 서식이 손상되어 출력을 중단했습니다. 해당 문단의 내용을 다시 확인해 주세요.')
+    text = text.replace('\x1b', '')
+    if re.search(r'[\x00-\x08\x0b\x0c\x0e-\x1f]', text):
+        raise ValueError('수식 표기가 손상되어 출력을 중단했습니다. 해당 문단의 수식을 다시 확인해 주세요.')
+    return text
+
+
 def prepare_latex(latex):
     """Parse TeX arguments before the legacy converter can discard commands.
 
@@ -148,13 +165,15 @@ def build(items, output, skills):
     writer._eq_id[0] = 50000
     writer._p_id[0] = 80000
 
-    def paragraphs(lines):
+    def paragraphs(lines, section):
         out = []
-        for original in lines:
+        for line_number, original in enumerate(lines, 1):
             if not isinstance(original, str) or len(original) > 50000:
                 raise ValueError('본문과 해설의 길이 또는 형식이 다릅니다.')
-            if re.search(r'[\x00-\x08\x0b\x0c\x0e-\x1f]', original):
-                raise ValueError('수식에 제어문자가 있습니다. LaTeX 역슬래시를 확인하세요.')
+            try:
+                original = clean_format_controls(original)
+            except ValueError as exc:
+                raise ValueError(f'{section} {line_number}번째 문단: {exc}') from None
             # Student-facing content only; internal titles/roles never enter here.
             original = re.sub(r'\[\s*\d+\s*점\s*\]|^\s*\d+\s*점\s*$', '', original)
             original = re.sub(r'^\s*(?:#{1,6}\s+|\d+[.)]\s+)', '', original)
@@ -203,9 +222,10 @@ def build(items, output, skills):
         return out
 
     document = []
-    for item in items:
-        body = paragraphs(item['question'])
-        notes = paragraphs(['[정답] ' + item['answer'], *item['solution']])
+    for item_number, item in enumerate(items, 1):
+        body = paragraphs(item['question'], f'{item_number}번 문항 본문')
+        notes = paragraphs(['[정답] ' + item['answer']], f'{item_number}번 문항 정답')
+        notes += paragraphs(item['solution'], f'{item_number}번 문항 해설')
         if notes:
             notes[0]['segs'].insert(0, ('t', ' ', '1'))
         if not body or not notes:
