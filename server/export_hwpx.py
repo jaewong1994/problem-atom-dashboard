@@ -8,9 +8,64 @@ import argparse
 import json
 import re
 import sys
+import unicodedata
 import zipfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
+
+
+def split_case_labels(kind, value):
+    """Project top-level Roman case labels to native equation segments.
+
+    Text labels, TeX text wrappers and Unicode Roman numerals share one style.
+    Parenthesized arguments such as F(I) and labels inside fractions/cases stay
+    inside their mathematical expression; they are not paragraph case markers.
+    """
+    roman = r'[IVXⅠ-Ⅻⅰ-ⅻ]+'
+    pattern = re.compile(
+        r'\\(?:text|textrm|mathrm)\s*\{\s*\(\s*(' + roman + r')\s*\)\s*\}'
+        r'|\(\s*\\mathrm\s*\{\s*(' + roman + r')\s*\}\s*\)'
+        r'|\(\s*(' + roman + r')\s*\)')
+    valid = {'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'}
+    out, cursor = [], 0
+    for match in pattern.finditer(value):
+        label = unicodedata.normalize('NFKC', next(g for g in match.groups() if g)).upper()
+        if label not in valid:
+            continue
+        prefix = value[:match.start()]
+        if kind == 'math':
+            # Only split at the outer level, never across a structural command.
+            depth = 0
+            for token in re.findall(r'\\.|[{}()[\]]', prefix):
+                if token in '{([':
+                    depth += 1
+                elif token in '})]':
+                    depth -= 1
+            if depth != 0:
+                continue
+            if match.group(3) and prefix.strip() and not re.search(r'(?:[,;:]|\\q?quad)\s*$', prefix):
+                continue
+        elif prefix and re.search(r'[A-Za-z0-9_\])}]\s*$', prefix):
+            continue
+        if match.start() > cursor:
+            out.append((kind, value[cursor:match.start()]))
+        out.append(('case', label))
+        cursor = match.end()
+        # Each marker owns exactly one ordinary space before the next content.
+        while cursor < len(value) and value[cursor] == ' ':
+            cursor += 1
+    if cursor < len(value):
+        out.append((kind, value[cursor:]))
+    return out
+
+
+def native_roman_style(script):
+    """Use Hancom's explicit rm ... it switch, including uppercase functions.
+
+    Reset before arguments/subscripts so F_a(x), F'(x), G and H have upright
+    names while x/a and lowercase function names retain their usual italics.
+    """
+    return re.sub(r'\brm\{([A-Z]+\'*)\}\s*it\b', r'rm \1 it', script)
 
 
 def clean_format_controls(text):
@@ -184,7 +239,23 @@ def build(items, output, skills):
                 if segments:
                     out.append({'paraPr': '1', 'segs': segments})
                     segments = []
-            for kind, value in bridge.split_math(original):
+            def append_equation(script):
+                # A declaration marker must not be orphaned at the line end.
+                # Keep (I) and its immediately following formula in one object;
+                # prose references such as '(I)에서' remain separate markers.
+                if (len(segments) >= 2 and segments[-1] == ('t', ' ', '1')
+                        and segments[-2][0] == 'eq'
+                        and re.fullmatch(r'LEFT \( rm [IVX]+ it RIGHT \)', segments[-2][1])):
+                    marker = segments[-2][1]
+                    segments[-2:] = [('eq', marker + ' ~ ' + script)]
+                else:
+                    segments.append(('eq', script))
+            parts_with_cases = [part for kind, value in bridge.split_math(original)
+                                for part in split_case_labels(kind, value)]
+            for kind, value in parts_with_cases:
+                if kind == 'case':
+                    segments.extend([('eq', f'LEFT ( rm {value} it RIGHT )'), ('t', ' ', '1')])
+                    continue
                 chunks = [(kind, value)] if kind == 'math' else bridge.split_math(normalizer.wrap_math_phrases(value))
                 for k, text in chunks:
                     if k == 'text':
@@ -207,17 +278,21 @@ def build(items, output, skills):
                             part = re.sub(r'^\s*(?:\\q?quad\s*)+|(?:\\q?quad\s*)+$', '', part).strip()
                             if not part:
                                 continue
+                            trailing_comma = part.endswith(',')
                             # \, is a TeX spacing command, never a printed list comma.
                             part = prepare_latex(part).replace(r'\,', r'\;')
                             for i, phrase in enumerate(normalizer.split_list_commas(part)):
                                 if i:
                                     segments.append(('t', ', ', '1'))
                                 script = bridge.latex_to_hwp_script(normalizer.normalize_latex(phrase.replace('\n', ' ')))
+                                script = native_roman_style(script)
                                 if not script.strip():
                                     raise ValueError('빈 수식으로 변환된 구절이 있습니다.')
                                 if re.search(r'\b(?:frac|dfrac|tfrac|begin|end|includegraphics|displaystyle|textstyle|mathbb|limits)\b', script):
                                     raise ValueError('변환되지 않은 LaTeX 명령이 남았습니다. 수식을 확인하세요.')
-                                segments.append(('eq', script))
+                                append_equation(script)
+                            if trailing_comma:
+                                segments.append(('t', ', ', '1'))
             flush()
         return out
 

@@ -79,6 +79,65 @@ class HwpxTests(unittest.TestCase):
         cls.module=importlib.util.module_from_spec(spec)
         spec.loader.exec_module(cls.module)
 
+    def test_roman_case_labels_share_one_native_style(self):
+        variants = [r'$\text{(I)}\quad F(x)=x$', r'$\mathrm{(I)}\quad F(x)=x$',
+                    r'$(\mathrm{I})\quad F(x)=x$', '(I) $F(x)=x$', '(Ⅰ) $F(x)=x$', '(ⅰ) $F(x)=x$']
+        hp = '{http://www.hancom.co.kr/hwpml/2011/paragraph}'
+        with tempfile.TemporaryDirectory(prefix='pa-hwpx-case-') as folder:
+            for i, question in enumerate(variants):
+                output = Path(folder)/f'{i}.hwpx'
+                self.module.build([{'question':[question], 'answer':'1',
+                                    'solution':[r'(II)에서 $G(x)=x$이다.', r'$\text{(II)}\quad G(x)=x$']}], output, SKILLS)
+                with zipfile.ZipFile(output) as z:
+                    root = ET.fromstring(z.read('Contents/section0.xml'))
+                scripts = [n.text for n in root.iter(hp+'script')]
+                self.assertEqual(sum(s.startswith('LEFT ( rm I it RIGHT )') for s in scripts), 1)
+                self.assertEqual(sum(s.startswith('LEFT ( rm II it RIGHT )') for s in scripts), 2)
+                self.assertTrue(any(s.startswith('LEFT ( rm I it RIGHT ) ~ rm F it') for s in scripts))
+                self.assertFalse(any('"(I)"' in s or '"(II)"' in s or 'Ⅰ' in s or 'Ⅱ' in s for s in scripts))
+                self.assertFalse(any(re.search(r'\([ⅠⅡIV]+\)', n.text or '') for n in root.iter(hp+'t')))
+                for run in root.iter(hp+'run'):
+                    children=list(run)
+                    for j,node in enumerate(children):
+                        if node.tag==hp+'equation' and any('rm I' in (s.text or '') for s in node.iter(hp+'script')):
+                            # A declaration stays with its formula; references
+                            # use the same marker followed by ordinary spacing.
+                            self.assertTrue(any(' ~ ' in (s.text or '') for s in node.iter(hp+'script'))
+                                            or any(n.tag==hp+'t' and n.text==' ' for n in children[j+1:]))
+
+    def test_case_projection_keeps_math_arguments_and_punctuation(self):
+        split = self.module.split_case_labels
+        for source in [r'F(I)+G(II)', r'\frac{(I)}{x}', r'\begin{cases}x & (I)\\0 & (II)\end{cases}']:
+            self.assertEqual(split('math',source), [('math',source)])
+        self.assertEqual(split('text','함수 F(I)를 구한다.'), [('text','함수 F(I)를 구한다.')])
+        item={'question':[r'$\text{(I)}\quad F(x)=x,\qquad\text{(II)}\quad G(x)=x^2$'],
+              'answer':'1','solution':['(Ⅰ)과 (Ⅱ)를 비교한다.']}
+        with tempfile.TemporaryDirectory(prefix='pa-hwpx-case-') as folder:
+            output=Path(folder)/'comma.hwpx'
+            self.module.build([item],output,SKILLS)
+            with zipfile.ZipFile(output) as z:
+                root=ET.fromstring(z.read('Contents/section0.xml'))
+            hp='{http://www.hancom.co.kr/hwpml/2011/paragraph}'
+            self.assertIn(', ',[n.text for n in root.iter(hp+'t')])
+
+    def test_uppercase_functions_are_upright_without_romanizing_arguments(self):
+        item={'question':[r"$F(x)+G_a(x)+H_2'(x)+Q(x)+F$와 $f(x)+g(t)$를 비교한다."],
+              'answer':'0','solution':[r"$F'(x)+G(x)+H(x)$이다."]}
+        with tempfile.TemporaryDirectory(prefix='pa-hwpx-font-') as folder:
+            output=Path(folder)/'font.hwpx'
+            self.module.build([item],output,SKILLS)
+            with zipfile.ZipFile(output) as z:
+                root=ET.fromstring(z.read('Contents/section0.xml'))
+            hp='{http://www.hancom.co.kr/hwpml/2011/paragraph}'
+            scripts='\n'.join(n.text or '' for n in root.iter(hp+'script'))
+            for letter in ['F','G','H','Q']:
+                self.assertIn('rm '+letter+' it',scripts)
+            self.assertIn("rm F' it",scripts)
+            self.assertIn('rm G it_{a}',scripts.replace('it _','it_'))
+            self.assertNotIn('rm{',scripts)
+            for letter in ['x','a','f','g','t']:
+                self.assertNotRegex(scripts,r'\brm\s+'+letter+r'\b')
+
     def test_native_equations_notes_numbering_and_document_boundary(self):
         item={'question':['함수 $f(x)=\\frac{x^2+1}{2}$와 $0\\le x\\le 2$에 대하여 값을 구하시오.'], 'answer':'1/2', 'solution':['$\\binom{5}{2}=10$이고, $x=0$ 또는 $x=2$이다.']}
         with tempfile.TemporaryDirectory(prefix='pa-hwpx-test-') as folder:
@@ -148,7 +207,7 @@ class HwpxTests(unittest.TestCase):
             joined = ' '.join(scripts)
             self.assertEqual(len(re.findall(r'\bint\s*_', joined)), 2)
             self.assertIn('sqrt {2}', joined)
-            self.assertIn('rm{R}', joined)
+            self.assertIn('rm R it', joined)
             self.assertFalse(any(word in joined for word in ['displaystyle', 'mathbb', 'sqrt2']))
             note = next(root.iter(hp+'endNote'))
             self.assertRegex(' '.join(e.text or '' for e in note.iter(hp+'script')), r'\bint\s*_')
