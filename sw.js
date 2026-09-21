@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v40`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v41`;
 const SHELL = [
   "./studio.html", "./connections.html", "./connections.css?v=io1", "./connections.js?v=review1", "./connection-engine.js?v=design2", "./connection-registry.json",
   "./curriculum-model.js?v=unit1", "./unit-ui.js?v=unit1", "./units.css?v=unit1", "./judgment-bundles.js?v=unit1", "./authoring-model.js?v=unit1", "./authoring-ui.js?v=review1", "./authoring.css?v=cards1", "./authoring-lessons.json",
@@ -14,7 +14,7 @@ const SHELL = [
   "./index.html",
   "./entry.css?v=flow1",
   "./entry.js?v=unit1",
-  "./site-shell.css?v=flow2",
+  "./site-shell.css?v=flow3",
   "./dashboard.html",
   "./styles.css",
   "./grouped.css",

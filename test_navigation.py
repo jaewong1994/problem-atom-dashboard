@@ -31,7 +31,7 @@ class NavigationTests(unittest.TestCase):
                 if tag == 'a' and not attrs['href'].startswith('#'):
                     self.assertTrue((ROOT / attrs['href']).is_file(), attrs['href'])
             self.assertIn('<a href="index.html"', header(page))
-            self.assertIn('site-shell.css?v=flow2', text)
+            self.assertIn('site-shell.css?v=flow3', text)
         from prepare_pages import STATIC_FILES
         published = {Path(p).stem for p in STATIC_FILES if p.endswith('.html')}
         self.assertTrue(published <= set(PAGES))
@@ -44,7 +44,10 @@ class NavigationTests(unittest.TestCase):
             self.assertNotIn('studio.html', nav)
             self.assertNotIn('vision.html', nav)
             self.assertIn('재료 찾기', nav)
+            self.assertIn('<a href="dashboard.html"', nav)
+            self.assertNotIn('connectSession', nav)
         text = (ROOT/'connections.html').read_text(encoding='utf-8')
+        self.assertGreater(text.index('id="connectSession"'), text.index('<main id="main">'))
         tools = text.index('<details id="workspaceTools"')
         self.assertGreater(tools, text.index('id="printWorkbench"'))
         for marker in ('id="loadPlanButton"', 'id="savePlan"', 'id="materialsDetails"', 'id="planDetails"', 'class="file-tools"'):
