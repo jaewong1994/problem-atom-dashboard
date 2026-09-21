@@ -214,7 +214,7 @@ async function start() {
     });
     const summary = data.summary || {};
     let reviewed=[];
-    try{const registry=await fetch('connection-registry.json',{cache:'no-store'}).then(r=>r.json()),store=PAReviewClient.create(PASession.create());await store.load();reviewed=store.attach(registry).map(r=>({id:r.id,kind:'reviewed',name:r.title,definition:r.summary,reviewer:r.reviewer,groupId:r.group_id,operations:r.operation_ids,operationNames:Object.fromEntries(registry.operations.map(o=>[o.id,PABoxExamples.get(o.id)?.name||o.name]))}));}catch(error){setSync('검수 원장 연결을 확인해 주세요. '+error.message);}
+    try{const registry=await fetch('connection-registry.json',{cache:'no-store'}).then(r=>r.json()),store=PAReviewClient.create(PASession.create());await store.load();reviewed=store.attach(registry).map(r=>({id:r.id,kind:'reviewed',name:r.title,definition:r.summary,reviewer:r.reviewer,groupId:r.group_id,operations:r.operation_ids,operationNames:Object.fromEntries(registry.operations.map(o=>[o.id,PABoxCopy.atoms[o.id]?.name||PABoxExamples.get(o.id)?.name||o.name]))}));}catch(error){setSync('검수 원장 연결을 확인해 주세요. '+error.message);}
 
     $("stats").innerHTML = [
       ["검수된 재료", (summary.entities || 0)+reviewed.length],

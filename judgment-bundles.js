@@ -4,13 +4,13 @@
  // A bundle is a reusable strategy, not a new atomic judgment or an approved asset.
  // Course availability comes from its actual operations, never from its generic title.
  const catalog=[
-  {id:'view-candidates',name:'관점을 바꾸고 후보 좁히기',idea:'다르게 읽기 → 경우 나누기 → 조건 대조 → 검산',effect:'식을 바로 계산하기보다 조건을 연결해 가능한 대상을 찾아야 합니다.',members:['PA-MOTIF-S01-10','PA-MOTIF-S01-11','PA-MOTIF-S01-12','PA-MOTIF-S01-13'],example:'함수가 들어간 방정식을 교점 문제로 바꾸고, 접하는 경우에서 함수 후보를 남겨요.'},
-  {id:'sign-cases',name:'값 대신 부호로 경우 나누기',idea:'모양 바꾸기 → 부호 판단 → 겹치는 경우 찾기',effect:'정확한 계산값보다 부호가 달라지는 위치가 풀이의 중심이 됩니다.',members:['PA-MOTIF-S01-01','PA-MOTIF-S01-02','PA-MOTIF-S01-03'],example:'적분을 전개하지 않고 도함수의 부호를 읽어, 극값을 하나만 남기는 경우를 찾아요.'},
-  {id:'boundary-check',name:'이어지는 곳을 먼저 맞추기',idea:'좌우 값 맞추기 → 근의 모양 확인 → 꺾이는 곳 구별',effect:'구간을 나누는 경계에서 무엇이 달라지는지 따져야 합니다.',members:['PA-MOTIF-S01-04','PA-MOTIF-S01-05'],example:'부호가 붙은 절댓값 함수를 연속으로 만든 뒤, 미분할 수 없는 위치를 찾아요.'},
-  {id:'range-filter',name:'범위를 좁혀 정수만 남기기',idea:'경우별 범위 찾기 → 대상 연결 → 정수 선별',effect:'구간의 끝점과 제외되는 후보까지 판단해야 합니다.',members:['PA-S02-LEVELS-02','PA-BRIDGE-05','PA-S02-LEVELS-03'],example:'교점 개수를 만족하는 높이를 찾고, 그 높이에 대응하는 매개변수 중 정수만 남겨요.'},
-  {id:'moving-range',name:'움직이는 구간으로 간격 찾기',idea:'동시에 들어가는 때 찾기 → 개수 조건 비교 → 간격 결정',effect:'하나의 위치만 계산하지 않고 구간이 움직일 때의 경우를 비교합니다.',members:['PA-S02-WINDOW-01','PA-S02-WINDOW-02'],example:'길이가 정해진 구간에 두 근이 함께 들어갈 수 있는 때를 이용해 두 근의 간격을 찾아요.'},
-  {id:'valid-distinct',name:'범위 밖 후보와 중복 걷어내기',idea:'구간에 맞는 해 선별 → 겹치는 해 합치기',effect:'식을 풀어 얻은 후보와 실제로 세어야 하는 답을 구별합니다.',members:['PA-S02-SIGNED-03','PA-S02-JUMP-04'],example:'한쪽 구간에서 나온 해가 그 구간에 속하는지 확인하고, 경계에서 겹친 해는 한 번만 세요.'},
-  {id:'boundary-transfer',name:'경계를 맞춰 다른 구간에 이어 쓰기',idea:'값·기울기 맞추기 → 상수 결정 → 아는 구간으로 이동',effect:'한 구간에서 찾은 정보를 다른 구간의 계산에 사용합니다.',members:['PA-S02-RECURRENCE-01','PA-S02-RECURRENCE-02'],example:'구간 경계에서 상수를 정한 뒤, 구간 사이 관계로 정적분을 계산해요.'}
+  {id:'view-candidates',name:'합성방정식과 그래프',searchAlias:'관점을 바꾸고 후보 좁히기',idea:'다르게 읽기 → 경우 나누기 → 조건 대조 → 검산',effect:'식을 바로 계산하기보다 조건을 연결해 가능한 대상을 찾아야 합니다.',members:['PA-MOTIF-S01-10','PA-MOTIF-S01-11','PA-MOTIF-S01-12','PA-MOTIF-S01-13'],example:'함수가 들어간 방정식을 교점 문제로 바꾸고, 접하는 경우에서 함수 후보를 남겨요.'},
+  {id:'sign-cases',name:'정적분과 극값 개수',searchAlias:'값 대신 부호로 경우 나누기',idea:'모양 바꾸기 → 부호 판단 → 겹치는 경우 찾기',effect:'정확한 계산값보다 부호가 달라지는 위치가 풀이의 중심이 됩니다.',members:['PA-MOTIF-S01-01','PA-MOTIF-S01-02','PA-MOTIF-S01-03'],example:'적분을 전개하지 않고 도함수의 부호를 읽어, 극값을 하나만 남기는 경우를 찾아요.'},
+  {id:'boundary-check',name:'절댓값과 연속·미분가능',searchAlias:'이어지는 곳을 먼저 맞추기',idea:'좌우 값 맞추기 → 근의 모양 확인 → 꺾이는 곳 구별',effect:'구간을 나누는 경계에서 무엇이 달라지는지 따져야 합니다.',members:['PA-MOTIF-S01-04','PA-MOTIF-S01-05'],example:'부호가 붙은 절댓값 함수를 연속으로 만든 뒤, 미분할 수 없는 위치를 찾아요.'},
+  {id:'range-filter',name:'개수함수와 정수 조건',searchAlias:'범위를 좁혀 정수만 남기기',idea:'경우별 범위 찾기 → 대상 연결 → 정수 선별',effect:'구간의 끝점과 제외되는 후보까지 판단해야 합니다.',members:['PA-S02-LEVELS-02','PA-BRIDGE-05','PA-S02-LEVELS-03'],example:'교점 개수를 만족하는 높이를 찾고, 그 높이에 대응하는 매개변수 중 정수만 남겨요.'},
+  {id:'moving-range',name:'움직이는 구간과 점의 개수',searchAlias:'움직이는 구간으로 간격 찾기',idea:'동시에 들어가는 때 찾기 → 개수 조건 비교 → 간격 결정',effect:'하나의 위치만 계산하지 않고 구간이 움직일 때의 경우를 비교합니다.',members:['PA-S02-WINDOW-01','PA-S02-WINDOW-02'],example:'길이가 정해진 구간에 두 근이 함께 들어갈 수 있는 때를 이용해 두 근의 간격을 찾아요.'},
+  {id:'valid-distinct',name:'구간별 방정식과 실근',searchAlias:'범위 밖 후보와 중복 걷어내기',idea:'구간에 맞는 해 선별 → 겹치는 해 합치기',effect:'식을 풀어 얻은 후보와 실제로 세어야 하는 답을 구별합니다.',members:['PA-S02-SIGNED-03','PA-S02-JUMP-04'],example:'한쪽 구간에서 나온 해가 그 구간에 속하는지 확인하고, 경계에서 겹친 해는 한 번만 세요.'},
+  {id:'boundary-transfer',name:'함수의 관계식과 정적분',searchAlias:'경계를 맞춰 다른 구간에 이어 쓰기',idea:'값·기울기 맞추기 → 상수 결정 → 아는 구간으로 이동',effect:'한 구간에서 찾은 정보를 다른 구간의 계산에 사용합니다.',members:['PA-S02-RECURRENCE-01','PA-S02-RECURRENCE-02'],example:'구간 경계에서 상수를 정한 뒤, 구간 사이 관계로 정적분을 계산해요.'}
  ];
  function definition(id){return catalog.find(b=>b.id===id)||null;}
  function slots(op){return [...new Set([...op.requires,...op.provides,...op.forbids].flatMap(p=>[p.subject,p.object].filter(Boolean).map(x=>x.slice(1))))];}

@@ -3,7 +3,7 @@ window.PAGroupReview=(()=>{
  let store,registry,catalog,ledger,host;const M=PAReviewModel,$=id=>document.getElementById(id);
  const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
  const actor=()=>$('actor').value.trim(),feedback=text=>$('groupStatus').textContent=text;
- const name=id=>PABoxExamples.get(id)?.name||registry.operations.find(o=>o.id===id)?.name||id;
+ const name=id=>PABoxCopy.atoms[id]?.name||PABoxExamples.get(id)?.name||registry.operations.find(o=>o.id===id)?.name||id;
  function adopt(s){catalog=s.catalog;ledger=s.ledger;store.attach(registry);}
  function record(g){
   const saved=M.current(ledger,catalog).find(r=>r.groupId===g.id);if(saved)return structuredClone(saved);

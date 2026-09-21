@@ -11,7 +11,7 @@ try{
  const reviewStore=PAReviewClient.create(session);let reviewLoadError='';
  async function refreshReviews(){try{await reviewStore.load();reviewStore.attach(registry);reviewLoadError='';return true;}catch(e){reviewLoadError=e.message;return false;}}
  await refreshReviews();
- const nameOf=id=>PABoxExamples.get(id)?.name||C.atoms[id]?.name||ops.get(id)?.name||id;
+ const nameOf=id=>C.atoms[id]?.name||PABoxExamples.get(id)?.name||ops.get(id)?.name||id;
  const goalName=type=>C.goals[type]?.name||P.GOALS[type]||registry.types[type];
  function example(text,compact=false){if(!text)return document.createDocumentFragment();const box=el('span',null,'box-example'+(compact?' compact':''));box.append(el('span','예시','example-label'));const body=math(text,'span');body.className='example-body';box.append(body);return box;}
  let coreId=null,target=null,undoSelection=null,unitScope=null;
