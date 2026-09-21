@@ -4,6 +4,19 @@ from test_model import run_js
 
 
 class CurriculumTests(unittest.TestCase):
+    def test_window_limits_bundle_can_start_and_reach_its_question(self):
+        run_js(r"""
+        const U=require('./curriculum-model.js'),B=require('./judgment-bundles.js'),P=require('./composition-planner.js');
+        const scope=U.scope('m2-limits'),seed=B.seed(R,'moving-range');
+        assert.ok(U.material(R,B.definition('moving-range').members,scope).visible);
+        assert.ok(U.canStart(seed.plan,R,scope));assert.ok(U.audit(seed.plan,R,scope).valid);
+        const target=P.targets(seed.plan,R,seed.coreId).find(c=>c.target.type==='root_gap');
+        assert.ok(target);assert.ok(P.analyze(seed.plan,R,seed.coreId,target.target).ready);
+        // Counting points alone is still supporting work; it does not certify a chapter.
+        assert.equal(U.canStart(B.seed(R,'PA-S02-WINDOW-01').plan,R,scope),false);
+        assert.ok(U.audit(seed.plan,R,U.scope('p-counting')).outside.includes('m2-limits'));
+        """)
+
     def test_nine_chapters_and_explicit_classification_coverage(self):
         run_js(r"""
         const U=require('./curriculum-model.js');

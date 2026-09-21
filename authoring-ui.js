@@ -52,8 +52,12 @@
     if(!rows.length)return;const box=el('section',null,'review-context');box.append(el('b','검수한 정리문'));
     for(const r of rows){box.append(el('p',r.summary),el('small',r.reviewer+' · '+new Date(r.reviewed_at).toLocaleDateString('ko-KR')));const link=el('a','검수 기록 보기');link.href='promotion-board.html#review-'+r.group_id;box.append(link);}box.append(el('small','이 정리문은 선택한 박스와 함께 AI 제작 요청에 전달됩니다.'));panel.append(box);
    }
+   function materialState(id){
+    const b=B.definition(id),startOptions=A.startOptions(registry,id),seed=startOptions.seed,scopeFits=ctx.unitScope&&U.audit(seed.plan,registry,ctx.unitScope,{requireMain:false}).valid;
+    return {b,startOptions,seed,scopeFits,placements:plan.nodes.length?B.placements(plan,registry,id).filter(item=>ctx.unitScope&&U.audit(item.plan,registry,ctx.unitScope,{requireMain:false}).valid):[]};
+   }
    function materialDetails(panel,id){
-    const b=B.definition(id),startOptions=A.startOptions(registry,id),seed=startOptions.seed,p=A.profile(id),scopeFits=ctx.unitScope&&U.audit(seed.plan,registry,ctx.unitScope,{requireMain:false}).valid,placements=plan.nodes.length?B.placements(plan,registry,id).filter(item=>ctx.unitScope&&U.audit(item.plan,registry,ctx.unitScope,{requireMain:false}).valid):[];
+    const {b,seed,scopeFits}=materialState(id);
     const d=X.get(id);reviewContext(panel,b?b.members:[id]);
     if(d){const steps=el('ol',null,'box-worked-steps');for(const text of d.steps){const row=el('li');row.append(mathLine(text));steps.append(row);}panel.append(el('h4','이렇게 풀어요'),steps,el('div',null,'box-conclusion'));const result=panel.lastElementChild;result.append(el('b','얻는 결과'),mathLine(d.result));}
     if(b){const members=el('details',null,'box-members');members.append(el('summary','묶음에 들어 있는 판단 '+b.members.length+'개'));for(const member of b.members)members.append(el('p',name(member)));panel.append(members);}
@@ -61,23 +65,40 @@
     const conditions=el('details',null,'author-inputs');conditions.append(el('summary','필요한 시작 정보 '+seed.plan.facts.length+'개 · 사용 조건'));for(const fact of seed.plan.facts)conditions.append(el('p',registry.types[fact.type]));for(const n of seed.plan.nodes){const op=registry.operations.find(o=>o.id===n.id);conditions.append(el('p',op.guard_note,'author-footnote'));}panel.append(conditions);
     if(scopeFits&&!U.audit(seed.plan,registry,ctx.unitScope).hasMain)panel.append(el('p','이 재료만으로는 선택한 각 대단원의 판단을 모두 담을 수 없습니다. 필요한 단원의 재료와 함께 사용하세요.','author-caution'));
     if(!scopeFits)panel.append(el('p','이 구성에는 선택 범위 밖의 재료나 조건이 있습니다. 위에서 제작 범위를 먼저 조정하세요.','author-caution'));
-    if(!startOptions.hasQuestion){panel.append(el('p','이 낱개는 풀이 중간에 이어 쓰는 재료입니다. 혼자서는 마지막 질문까지 이어지지 않아요.','author-caution'));for(const pack of startOptions.bundles.filter(b=>U.material(registry,B.definition(b.id).members,ctx.unitScope).visible))panel.append(button('함께 쓰는 묶음: '+pack.name,()=>focusNode('@preview:'+pack.id),'wide'));}
-    if(!plan.nodes.length&&startOptions.hasQuestion&&scopeFits&&U.canStart(seed.plan,registry,ctx.unitScope)){const start=button(b?'이 묶음 담기':'이 재료 담기',()=>{actions.startMaterial(id);focusNode(U.audit(seed.plan,registry,ctx.unitScope).hasMain?'@question':'@library');},'primary wide');start.dataset.bundleStart=id;panel.append(start,el('p','필요한 시작 정보도 함께 준비합니다. 다음 화면에서 확인·수정할 수 있어요.','author-footnote'));}
-    else if(plan.nodes.length){for(const item of placements.slice(0,3)){panel.append(button('현재 풀이에 '+item.nodes.length+'개 이어 붙이기',()=>{actions.addMaterial(item);focusNode(b?'@bundle:'+id:id);},'primary wide'));}
-     if(!placements.length)panel.append(el('p',seed.plan.nodes.every(n=>plan.nodes.some(old=>old.id===n.id))?'이 재료는 이미 구성에 들어 있습니다.':'현재 풀이의 정보만으로는 이어 붙일 수 없습니다. 필요한 조건과 적용 대상을 확인하세요.','author-caution'));
-     if(startOptions.hasQuestion&&scopeFits&&U.canStart(seed.plan,registry,ctx.unitScope)){const change=el('details');change.append(el('summary','이 재료로 새 구성 시작'),el('p','현재 재료를 바꾸고 필요한 시작 정보를 준비합니다. 되돌리기로 복구할 수 있어요.','author-footnote'),button('현재 구성을 바꾸고 시작',()=>{actions.startMaterial(id);focusNode(U.audit(seed.plan,registry,ctx.unitScope).hasMain?'@question':'@library');},'wide'));panel.append(change);}
-    }
-
+   }
+   function materialActions(panel,id){
+    const {b,startOptions,seed,scopeFits,placements}=materialState(id),chosen=seed.plan.nodes.every(n=>plan.nodes.some(old=>old.id===n.id)),canStart=startOptions.hasQuestion&&scopeFits&&U.canStart(seed.plan,registry,ctx.unitScope);
+    const start=()=>{actions.startMaterial(id);focusNode(U.audit(seed.plan,registry,ctx.unitScope).hasMain?'@question':'@library');};
+    if(chosen){const done=button(b?'담긴 묶음':'담긴 재료',()=>{},'wide box-added');done.disabled=true;panel.append(done);return;}
+    if(!plan.nodes.length&&canStart){const add=button(b?'이 묶음 담기':'이 재료 담기',start,'primary wide');add.dataset.bundleStart=id;panel.append(add);return;}
+    if(placements.length){for(const item of placements.slice(0,3))panel.append(button('현재 풀이에 '+item.nodes.length+'개 이어 붙이기',()=>{actions.addMaterial(item);focusNode(b?'@bundle:'+id:id);},'primary wide'));return;}
+    if(!plan.nodes.length&&!startOptions.hasQuestion){
+     panel.append(el('p','풀이 중간에 쓰는 재료입니다. 다른 재료를 먼저 담거나 함께 쓰는 묶음을 골라 주세요.','author-footnote'));
+     for(const pack of startOptions.bundles.filter(b=>U.material(registry,B.definition(b.id).members,ctx.unitScope).visible))panel.append(button('함께 담기: '+pack.name,()=>focusNode('@preview:'+pack.id),'wide'));
+    }else panel.append(el('p',plan.nodes.length?'현재 풀이와 바로 이어지지 않는 재료입니다.':scopeFits?'보조 재료입니다. 이 단원의 판단 재료를 먼저 담은 뒤 이어 붙여 주세요.':'선택한 대단원 밖의 조건이 필요합니다. 제작 범위를 확인해 주세요.','author-footnote'));
+    if(plan.nodes.length&&canStart){const change=el('details');change.append(el('summary','이 재료로 새 구성 시작'),el('p','현재 재료를 바꿉니다. 되돌리기로 복구할 수 있어요.','author-footnote'),button('현재 구성을 바꾸고 시작',start,'wide'));panel.append(change);}
    }
    if(selected==='@library'){
-    heading('재료 고르기','예시를 펼쳐 보고, 필요한 박스를 담으세요');panel.append(el('p','박스를 누르면 그 자리에서 풀이가 펼쳐져요. 예시를 확인한 뒤 담기 버튼을 누르세요.','author-intro'));
+    heading('재료 고르기','필요한 박스를 담고, 예시는 펼쳐 보세요');panel.append(el('p','박스 아래의 담기 버튼으로 선택하세요. 박스 제목을 누르면 예시 풀이를 볼 수 있어요.','author-intro'));
     const modes=el('div',null,'bundle-modes');modes.setAttribute('role','group');modes.setAttribute('aria-label','재료 보기');for(const [mode,label]of [['bundles','판단 묶음'],['single','낱개 재료']]){const b=button(label,()=>{libraryMode=mode;libraryLimit=8;render(ctx);},'');b.setAttribute('aria-pressed',String(libraryMode===mode));modes.append(b);}panel.append(modes);
     const label=el('label',null,'bundle-search');label.append(el('span','이름이나 예시로 찾기'));const search=el('input');search.type='search';search.value=libraryTerm;search.placeholder='예: 후보, 구간, 정수';label.append(search);panel.append(label);
     panel.append(el('p',ctx.unitScope?'선택한 대단원의 재료예요. 세미나 이름과 예시의 식으로도 검색할 수 있어요.':'대단원을 먼저 고르면 그 범위의 재료가 나옵니다.','author-footnote'));
     const reviewFilter=el('label',null,'review-filter'),check=el('input');check.type='checkbox';check.checked=libraryReviewed;check.onchange=()=>{libraryReviewed=check.checked;paint();};reviewFilter.append(check,document.createTextNode('검수 내용이 연결된 재료만 보기'));panel.append(reviewFilter);const reviewLink=el('a','재료 검수 열기 →','review-panel-link');reviewLink.href='promotion-board.html';panel.append(reviewLink);
     const shelf=el('div',null,'bundle-shelf');panel.append(shelf);
     const paint=()=>{shelf.replaceChildren();const term=libraryTerm.trim().toLowerCase(),rows=(libraryMode==='bundles'?B.catalog:registry.operations.map(o=>({id:o.id,name:name(o.id),idea:A.profile(o.id)?.decision||o.name,example:C.atoms[o.id]?.example||''}))).filter(b=>(!libraryReviewed||(B.definition(b.id)?.members||[b.id]).every(id=>PAReviewModel.forOperation(registry,id).length))&&ctx.unitScope&&U.mainUnits(ctx.unitScope).some(id=>U.count(registry,id)>0)&&U.material(registry,B.definition(b.id)?.members||[b.id],ctx.unitScope).visible&&[b.name,b.idea,b.example,C.atoms[b.id]?.name,...Object.values(X.get(b.id)||{}).flat()].join(' ').toLowerCase().includes(term)).sort((a,b)=>Number(U.material(registry,B.definition(b.id)?.members||[b.id],ctx.unitScope).main)-Number(U.material(registry,B.definition(a.id)?.members||[a.id],ctx.unitScope).main));
-     for(const b of rows.slice(0,libraryLimit)){const pack=B.definition(b.id),d=X.get(b.id),card=el('details',null,'box-accordion');card.dataset.bundleChoice=b.id;card.open=openExamples.has(b.id);const summary=el('summary'),top=el('span',null,'box-card-heading'),title=el('span',null,'box-card-title');top.append(el('span',pack?'판단 묶음 · '+b.members.length+'개':'낱개 재료','author-choice-meta'),el('span','⌄','box-chevron'));top.lastElementChild.setAttribute('aria-hidden','true');title.textContent=d?.name||b.name;summary.append(top,title);const reviewed=(B.definition(b.id)?.members||[b.id]).filter(id=>PAReviewModel.forOperation(registry,id).length).length;if(reviewed)summary.append(el('span',pack?'검수 내용 연결 · '+reviewed+'/'+b.members.length+'개 박스':'검수 내용 연결됨','review-badge'));if(d)summary.append(mathLine(d.given));summary.append(el('span',card.open?'풀이 접기':'풀이 펼치기','box-expand-hint'));const content=el('div',null,'box-card-content');if(card.open)materialDetails(content,b.id);card.append(summary,content);card.addEventListener('toggle',()=>{if(card.open&&!content.childElementCount)materialDetails(content,b.id);card.open?openExamples.add(b.id):openExamples.delete(b.id);summary.querySelector('.box-expand-hint').textContent=card.open?'풀이 접기':'풀이 펼치기';});shelf.append(card);}
+     for(const b of rows.slice(0,libraryLimit)){
+      const pack=B.definition(b.id),d=X.get(b.id),item=el('article',null,'box-material'),card=el('details',null,'box-accordion');
+      item.dataset.materialId=b.id;item.classList.toggle('is-added',(pack?.members||[b.id]).every(id=>plan.nodes.some(n=>n.id===id)));
+      card.dataset.bundleChoice=b.id;card.open=openExamples.has(b.id);
+      const summary=el('summary'),top=el('span',null,'box-card-heading'),title=el('span',null,'box-card-title');
+      top.append(el('span',pack?'판단 묶음 · '+b.members.length+'개':'낱개 재료','author-choice-meta'),el('span','⌄','box-chevron'));top.lastElementChild.setAttribute('aria-hidden','true');title.textContent=d?.name||b.name;summary.append(top,title);
+      const reviewed=(pack?.members||[b.id]).filter(id=>PAReviewModel.forOperation(registry,id).length).length;
+      if(reviewed)summary.append(el('span',pack?'검수 내용 연결 · '+reviewed+'/'+b.members.length+'개 박스':'검수 내용 연결됨','review-badge'));
+      if(d)summary.append(mathLine(d.given));summary.append(el('span',card.open?'풀이 접기':'예시 풀이 펼치기','box-expand-hint'));
+      const content=el('div',null,'box-card-content');if(card.open)materialDetails(content,b.id);card.append(summary,content);
+      card.addEventListener('toggle',()=>{if(!card.isConnected)return;if(card.open&&!content.childElementCount)materialDetails(content,b.id);card.open?openExamples.add(b.id):openExamples.delete(b.id);summary.querySelector('.box-expand-hint').textContent=card.open?'풀이 접기':'예시 풀이 펼치기';});
+      const controls=el('div',null,'box-material-actions');materialActions(controls,b.id);item.append(card,controls);shelf.append(item);
+     }
      if(rows.length>libraryLimit)shelf.append(button('재료 '+Math.min(8,rows.length-libraryLimit)+'개 더 보기',()=>{libraryLimit+=8;paint();},'wide'));if(!rows.length)shelf.append(el('p',libraryTerm?'맞는 재료가 없습니다. 다른 말로 찾아보세요.':libraryReviewed?'아직 이 범위에서 검수 내용이 연결된 재료가 없습니다. 재료 검수에서 승인해 주세요.':'이 범위의 연결 재료가 아직 없습니다. 선택한 제작 틀은 저장됩니다.','author-empty'));
     };search.oninput=()=>{libraryTerm=search.value;libraryLimit=8;paint();};paint();
    }else if(selected.startsWith('@bundle:')){

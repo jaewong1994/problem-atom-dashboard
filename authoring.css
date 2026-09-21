@@ -37,9 +37,11 @@ body[data-page=connections] main{max-width:1400px;padding:32px 28px 80px}
 
 /* Examples open in their own card; opening a card never selects a material. */
 .bundle-shelf{align-items:start}
-.box-accordion{min-width:0;margin:0;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);overflow:hidden;transition:border-color 180ms,box-shadow 180ms}
-.box-accordion:hover{border-color:var(--blue)}
-.box-accordion[open]{border-color:var(--blue);box-shadow:0 4px 18px #1b2d480a}
+.box-material{min-width:0;margin:0;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);overflow:hidden;transition:border-color 180ms,box-shadow 180ms}
+.box-material:hover,.box-material:focus-within{border-color:var(--blue)}
+.box-material.is-added{border-color:var(--blue);background:var(--soft)}
+.box-accordion{min-width:0;margin:0;border:0;border-radius:0;background:transparent;overflow:hidden}
+.box-material-actions{display:grid;gap:10px;padding:0 20px 20px}.box-material-actions>.wide{margin:0;min-height:44px;width:100%}.box-material-actions .author-footnote{margin:0;font-size:13px}.box-material-actions>details>summary{min-height:44px;align-content:center;cursor:pointer;font-size:14px}.box-material-actions .box-added{opacity:1;cursor:default;color:var(--blue);background:var(--soft)}
 .box-accordion>summary{display:block;list-style:none;cursor:pointer;min-height:44px;padding:20px;text-align:left}
 .box-accordion>summary::-webkit-details-marker{display:none}
 .box-card-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
@@ -61,5 +63,5 @@ body[data-page=connections] main{max-width:1400px;padding:32px 28px 80px}
 .box-card-content>.wide{margin-top:14px}.box-card-content .author-caution{font-size:13px}.box-card-content .author-inputs{margin-bottom:8px}
 .box-accordion[open]>.box-card-content{animation:box-reveal 180ms ease-out}
 @keyframes box-reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:560px){.box-accordion>summary{padding:16px}.box-card-content{padding:0 16px 16px}.box-card-title{font-size:16px}.box-math-line{font-size:14px}}
-@media(prefers-reduced-motion:reduce){.box-accordion,.box-chevron{transition:none}.box-accordion[open]>.box-card-content{animation:none}}
+@media(max-width:560px){.box-accordion>summary{padding:16px}.box-card-content,.box-material-actions{padding:0 16px 16px}.box-card-title{font-size:16px}.box-math-line{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.box-material,.box-chevron{transition:none}.box-accordion[open]>.box-card-content{animation:none}}
