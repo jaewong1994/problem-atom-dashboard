@@ -18,13 +18,17 @@ begin
  r=pa_team_rpc(v,'admin-create','{"name":"권한위조"}'); assert (r->>'status')::int=403;
  r=pa_team_rpc(u,'admin-create','{"name":"__회귀초대","hash":"test-only-digest"}'); assert r ? 'members';
  select id into invited_id from pa_team_accounts where name='__회귀초대';
- assert (select role='member' and state='pending' and auth_id is null from pa_team_accounts where id=invited_id);
+ assert (select role='member' and state='pending' and auth_id is null and invite_expires is null from pa_team_accounts where id=invited_id);
  r=pa_team_rpc(u,'admin-create','{"name":"__회귀초대","hash":"x"}'); assert (r->>'status')::int=409;
  r=pa_team_rpc(null,'setup-lock','{"name":"__회귀초대","hash":"wrong"}'); assert (r->>'status')::int=401;
  r=pa_team_rpc(null,'setup-lock','{"name":"__회귀초대","hash":"test-only-digest"}'); assert r->>'id'=invited_id::text;
  r=pa_team_rpc(null,'setup-lock','{"name":"__회귀초대","hash":"test-only-digest"}'); assert (r->>'status')::int=409;
  r=pa_team_rpc(u,'admin-invite',jsonb_build_object('id',invited_id,'hash','new-digest'));assert r ? 'members';
  r=pa_team_rpc(null,'setup-lock','{"name":"__회귀초대","hash":"test-only-digest"}'); assert (r->>'status')::int=401;
+ r=pa_team_rpc(u,'admin-delete',jsonb_build_object('id',invited_id)); assert r ? 'members';
+ r=pa_team_rpc(u,'admin-restore',jsonb_build_object('id',invited_id)); assert r ? 'members';
+ assert (select state='pending' and invite_expires is null from pa_team_accounts where id=invited_id);
+ r=pa_team_rpc(null,'setup-lock',jsonb_build_object('name','__회귀초대','hash',encode(sha256(convert_to('000000','UTF8')),'hex'))); assert r->>'id'=invited_id::text;
  select question_id into q from pa_team_questions limit 1;
  r=pa_team_rpc(v,'claims-write',jsonb_build_object('questionId',q,'action','complete')); assert (r->>'status')::int=403;
  r=pa_team_rpc(v,'claims-write',jsonb_build_object('questionId',q,'action','claim','owner_id',admin_id)); assert (r->>'status')::int=400;

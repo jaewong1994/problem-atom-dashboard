@@ -62,4 +62,33 @@ const response=await handle(new Request('https://test.invalid',{method:'POST',bo
 })().catch(e=>{console.error(e);process.exit(1)});
 """)
 
+    def test_six_character_setup_and_code_cannot_reset_active_password(self):
+        self.run_js(r"""
+const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs'),{stripTypeScriptTypes}=require('node:module');
+(async()=>{let handle,pending=true,created=0,savedPassword,issuedHash;
+const digest=async s=>Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))).toString('hex'),expected=await digest('000000');
+const source=stripTypeScriptTypes(fs.readFileSync('supabase/functions/pa-team/index.ts','utf8').replace("import './review-model.js';",'').replace('export async function','async function'));
+vm.runInNewContext(source,{Deno:{env:{get:()=>''},serve:f=>handle=f},crypto,TextEncoder,Response,Date,JSON,Error,Array,Object,fetch:async(url,o)=>{
+ const b=o.body?JSON.parse(o.body):{};
+ if(url.includes('/admin/users')){created++;savedPassword=b.password;return Response.json({id:'auth-id'});}
+ if(url.includes('/token?'))return b.password===savedPassword?Response.json({user:{id:'auth-id'},access_token:'test-only',refresh_token:'test-only',expires_in:3600}):Response.json({error:'invalid'},{status:400});
+ if(url.endsWith('/auth/v1/user'))return Response.json({id:'auth-id'});
+ if(b.p_action==='members')return Response.json({members:[{id:'one',name:'Teacher',needsSetup:pending}]});
+ if(b.p_action==='setup-lock')return pending&&b.p_body.hash===expected?Response.json({id:'one',auth_id:null}):Response.json({error:'invalid invite',status:401});
+ if(b.p_action==='setup-finish'){pending=false;return Response.json({ok:true});}
+ if(b.p_action==='me')return Response.json({user:{id:'one',name:'Teacher',role:'admin'}});
+ if(b.p_action==='admin-create'){issuedHash=b.p_body.hash;return Response.json({members:[]});}
+ return Response.json({ok:true});
+}});
+const login=(password,invite='000000')=>handle(new Request('https://test.invalid',{method:'POST',body:JSON.stringify({route:'login',payload:{name:'Teacher',password,invite}})}));
+assert.equal((await login('abcde')).status,400);assert.equal(created,0);
+assert.equal((await login('abcdef','wrong')).status,401);assert.equal(created,0);
+assert.equal((await login('abcdef',' 000000\n')).status,200);assert.equal(created,1);assert.equal(pending,false);
+assert.equal((await login('ghijkl')).status,401);assert.equal(created,1);assert.equal(savedPassword,'abcdef');
+assert.equal((await login('abcdef','')).status,200);assert.equal(created,1);
+const admin=await handle(new Request('https://test.invalid',{method:'POST',headers:{Authorization:'Bearer test-only'},body:JSON.stringify({route:'admin',payload:{action:'create',name:'New teacher'}})}));
+const result=await admin.json();assert.equal(admin.status,200);assert.equal(result.invite,'000000');assert.equal(result.expiresInDays,null);assert.equal(issuedHash,expected);
+})().catch(e=>{console.error(e);process.exit(1)});
+""")
+
 if __name__=='__main__':unittest.main()

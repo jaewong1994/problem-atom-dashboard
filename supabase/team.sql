@@ -48,8 +48,8 @@ begin
  end if;
  if p_action='setup-lock' then
   select * into target from pa_team_accounts where name=p_body->>'name' for update;
-  if target.id is null or target.state<>'pending' or target.invite_hash is null or target.invite_hash<>p_body->>'hash' or target.invite_expires<now() then
-   return jsonb_build_object('error','최초 설정에는 유효한 본인 초대 코드가 필요합니다.','status',401);
+  if target.id is null or target.state<>'pending' or target.invite_hash is null or target.invite_hash<>p_body->>'hash' or (target.invite_expires is not null and target.invite_expires<now()) then
+   return jsonb_build_object('error','초대 코드 000000을 입력하고 본인 이름을 확인해 주세요.','status',401);
   end if;
   if target.setup_until>now() then return jsonb_build_object('error','비밀번호 설정 중입니다. 잠시 후 다시 시도해 주세요.','status',409); end if;
   update pa_team_accounts set setup_until=now()+interval '2 minutes' where id=target.id;
@@ -77,7 +77,7 @@ begin
   if p_action='admin-create' then
    if length(trim(p_body->>'name')) not between 1 and 20 or p_body->>'name' ~ '[[:cntrl:]]' then return jsonb_build_object('error','이름은 1~20자로 입력해 주세요.','status',400); end if;
    if exists(select 1 from pa_team_accounts where name=trim(p_body->>'name')) then return jsonb_build_object('error','이미 등록된 이름입니다. 삭제한 계정이라면 복원해 주세요.','status',409); end if;
-   insert into pa_team_accounts(name,invite_hash,invite_expires) values(trim(p_body->>'name'),p_body->>'hash',now()+interval '7 days') returning * into target;
+   insert into pa_team_accounts(name,invite_hash,invite_expires) values(trim(p_body->>'name'),p_body->>'hash',null) returning * into target;
   elsif p_action in ('admin-delete','admin-restore','admin-invite') then
    select * into target from pa_team_accounts where id=(p_body->>'id')::uuid for update;
    if target.id is null then return jsonb_build_object('error','계정이 없습니다.','status',404); end if;
@@ -87,10 +87,10 @@ begin
     update pa_team_accounts set state='deleted',invite_hash=null,invite_expires=null,setup_until=null where id=target.id;
    elsif p_action='admin-restore' then
     if target.state<>'deleted' then return jsonb_build_object('error','삭제된 계정만 복원할 수 있습니다.','status',409); end if;
-    update pa_team_accounts set state=case when auth_id is null then 'pending' else 'active' end where id=target.id;
+    update pa_team_accounts set state=case when auth_id is null then 'pending' else 'active' end,invite_hash=case when auth_id is null then encode(sha256(convert_to('000000','UTF8')),'hex') else null end,invite_expires=null,setup_until=null where id=target.id;
    else
     if target.state<>'pending' then return jsonb_build_object('error','최초 비밀번호 설정 전인 계정에만 초대 코드를 발급합니다.','status',409); end if;
-    update pa_team_accounts set invite_hash=p_body->>'hash',invite_expires=now()+interval '7 days',setup_until=null where id=target.id;
+    update pa_team_accounts set invite_hash=p_body->>'hash',invite_expires=null,setup_until=null where id=target.id;
    end if;
   elsif p_action<>'admin-list' then return jsonb_build_object('error','지원하지 않는 관리 동작입니다.','status',400); end if;
   if p_action<>'admin-list' then insert into pa_team_audit(actor,action,detail) values(a.id,p_action,jsonb_build_object('target',target.id)); end if;

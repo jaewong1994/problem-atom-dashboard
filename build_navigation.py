@@ -22,7 +22,7 @@ def build():
     for page in PAGES:
         path = ROOT / f'{page}.html'
         text = path.read_text(encoding='utf-8')
-        account_assets = '<script defer src="account-config.js?v=team2"></script><script defer src="account-supabase.js?v=team2"></script><script defer src="account-client.js?v=team2"></script><link rel="stylesheet" href="account.css?v=team2">'
+        account_assets = '<script defer src="account-config.js?v=team2"></script><script defer src="account-supabase.js?v=team2"></script><script defer src="account-client.js?v=setup6"></script><link rel="stylesheet" href="account.css?v=team2">'
         text = re.sub(r'<script defer src="account-config.js[^\"]*"></script>(?:<script defer src="account-supabase.js[^\"]*"></script>)?<script defer src="account-client.js[^\"]*"></script><link rel="stylesheet" href="account.css[^\"]*">', account_assets, text)
         if 'account-config.js' not in text:
             text = text.replace('<head>', '<head>' + account_assets, 1)

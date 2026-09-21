@@ -27,11 +27,11 @@ select c.comment_id,c.asset_id,a.id,c.kind,c.body,c.created_at from pa_asset_com
 where not exists(select 1 from pa_team_documents where key='legacy-migrated') on conflict do nothing;
 end if; end $$;
 `;
-// Invitations are generated only once per private deployment folder; reruns never rotate a delivered code.
+// New pending accounts use the shared first-login code. Existing active accounts are never reset.
 for(const name of ['김연수','이광훈','김상범','민재웅']){
- const file=path.join(out,'초대코드-'+name+'.txt');let invite;
- if(fs.existsSync(file))invite=fs.readFileSync(file,'utf8').trim();else{invite=crypto.randomBytes(32).toString('hex');fs.writeFileSync(file,invite+'\n');}
- const hash=crypto.createHash('sha256').update(invite).digest('hex');seed+=`update pa_team_accounts set invite_hash='${hash}',invite_expires=now()+interval '7 days' where name='${name}' and state='pending' and invite_hash is null;\n`;
+ const file=path.join(out,'초대코드-'+name+'.txt'),invite='000000';
+ fs.writeFileSync(file,invite+'\n');
+ const hash=crypto.createHash('sha256').update(invite).digest('hex');seed+=`update pa_team_accounts set invite_hash='${hash}',invite_expires=null where name='${name}' and state='pending' and invite_hash is null;\n`;
 }
 seed+=`insert into pa_team_documents(key,payload) values('legacy-migrated',jsonb_build_object('at',now())) on conflict do nothing;
 commit;
