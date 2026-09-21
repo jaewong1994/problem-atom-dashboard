@@ -3,6 +3,7 @@ from test_model import run_js
 from test_connections import ROOT
 import importlib.util
 import os
+import re
 from pathlib import Path
 import tempfile
 import unittest
@@ -123,7 +124,7 @@ class HwpxTests(unittest.TestCase):
             self.assertEqual(scripts.count('over'),2)
             self.assertNotIn('frac',scripts)
             self.assertNotIn(',', ''.join(x.text or '' for x in root.iter(hp+'t')))
-            self.assertEqual(self.module.explicit_fractions(r'\frac12+\frac{1}{\frac a2}'),r'\frac{1}{2}+\frac{1}{\frac{a}{2}}')
+            self.assertEqual(self.module.prepare_latex(r'\frac12+\frac{1}{\frac a2}'),r'\frac{1}{2}+\frac{1}{\frac{a}{2}}')
 
     def test_corrupt_latex_and_external_commands_fail_without_repair(self):
         for question in ['손상된 $x=1', '$x\x0crac{1}{2}$', '$\\includegraphics{secret.png}$']:
@@ -131,6 +132,42 @@ class HwpxTests(unittest.TestCase):
                 out=Path(folder)/'fail.hwpx'
                 with self.assertRaises(ValueError):
                     self.module.build([{'question':[question],'answer':'1','solution':['계산한다.']}],out,SKILLS)
+                self.assertFalse(out.exists())
+
+    def test_observed_displaystyle_number_set_and_short_roots_in_body_and_notes(self):
+        formula = r'J_a(x)=\displaystyle\int_a^x(t^2+1)\,dt\quad(x\in\mathbb{R})'
+        item = {'question': ['$' + formula + '$'], 'answer': r'$\sqrt2$',
+                'solution': [r"$G_a'(x)=3(x-1)(x-\sqrt2)J_a(x)$", '$' + formula + '$']}
+        with tempfile.TemporaryDirectory(prefix='pa-hwpx-test-') as folder:
+            out = Path(folder)/'observed.hwpx'
+            self.module.build([item], out, SKILLS)
+            with zipfile.ZipFile(out) as z:
+                root = ET.fromstring(z.read('Contents/section0.xml'))
+            hp = '{http://www.hancom.co.kr/hwpml/2011/paragraph}'
+            scripts = [e.text or '' for e in root.iter(hp+'script')]
+            joined = ' '.join(scripts)
+            self.assertEqual(len(re.findall(r'\bint\s*_', joined)), 2)
+            self.assertIn('sqrt {2}', joined)
+            self.assertIn('rm{R}', joined)
+            self.assertFalse(any(word in joined for word in ['displaystyle', 'mathbb', 'sqrt2']))
+            note = next(root.iter(hp+'endNote'))
+            self.assertRegex(' '.join(e.text or '' for e in note.iter(hp+'script')), r'\bint\s*_')
+
+    def test_tex_arguments_and_known_command_boundaries(self):
+        prep = self.module.prepare_latex
+        self.assertEqual(prep(r'\sqrt2x+\frac a2'), r'\sqrt{2}x+\frac{a}{2}')
+        self.assertEqual(prep(r'x^2y+a_12'), 'x^{2} y+a_{1} 2')
+        self.assertIn(r'\sqrt[3]{\frac{1}{2}}', prep(r'\sqrt[3]{\frac12}'))
+        self.assertIn(r'\lim ', prep(r'\lim\limits_{x\to0+}f(x)'))
+
+    def test_unknown_or_malformed_macros_never_become_printed_words(self):
+        for formula in [r'\intentionally_a^x f(t)dt', r'\sqrttwo',
+                        r'\mathbb{F}', r'\sqrt', r'\frac{1}',
+                        r'\sqrt{2', r'x^', r'\begin{aligned}x&=1\end{aligned}']:
+            with self.subTest(formula=formula), tempfile.TemporaryDirectory(prefix='pa-hwpx-test-') as folder:
+                out = Path(folder)/'fail.hwpx'
+                with self.assertRaises(ValueError):
+                    self.module.build([{'question':['$'+formula+'$'],'answer':'1','solution':['계산한다.']}],out,SKILLS)
                 self.assertFalse(out.exists())
 
 

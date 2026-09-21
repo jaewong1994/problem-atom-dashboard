@@ -13,46 +13,127 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
-def explicit_fractions(latex):
-    """Expand TeX's one-token arguments before the kit's brace-based parser.
+def prepare_latex(latex):
+    """Parse TeX arguments before the legacy converter can discard commands.
 
-    In particular, \\frac a2 is legal TeX but the native converter expects
-    \\frac{a}{2}. Fail rather than silently turn an incomplete macro into text.
+    The kit accepts brace-based arguments and silently prints unknown commands.
+    Keep this compatibility boundary here, without changing the shared vendor.
     """
-    pattern = re.compile(r'\\(?:dfrac|tfrac|frac)(?![A-Za-z])')
-    def argument(text, pos):
-        while pos < len(text) and text[pos].isspace():
+    styles = set('displaystyle textstyle scriptstyle scriptscriptstyle limits nolimits displaylimits'.split())
+    unary = set('sqrt overline bar vec boxed text mathrm'.split())
+    simple = set(('leftarrow Leftarrow rightarrow Rightarrow leqq geqq leq geq le ge '
+                  'neq ne times cdot div pm mp infty pi theta alpha beta gamma delta '
+                  'lambda mu sigma omega phi psi varepsilon epsilon to in subset cup cap '
+                  'therefore because ldots cdots dots log ln sin cos tan sec csc cot '
+                  'lim sum prod int max min quad qquad angle triangle choose').split())
+    aliases = {'lvert': '|', 'rvert': '|', 'vert': '|', 'mid': '|',
+               'lbrace': r'\{', 'rbrace': r'\}'}
+    fonts = {'mathbb', 'mathcal', 'mathbf', 'mathit', 'operatorname', 'textrm'}
+    # Unsupported font families are not silently flattened: e.g. mathcal F and
+    # F may name different objects. Only number-set letters have a known alias.
+    pos = 0
+    environments = []
+
+    def fail(message):
+        raise ValueError(message)
+
+    def space():
+        nonlocal pos
+        while pos < len(latex) and latex[pos].isspace():
             pos += 1
-        if pos >= len(text):
-            raise ValueError('분수의 분자 또는 분모가 없습니다.')
-        if text[pos] == '{':
-            start = pos + 1
-            depth = 1
-            pos += 1
-            while pos < len(text):
-                if text[pos] == '\\':
-                    pos += 2
-                    continue
-                if text[pos] == '{':
-                    depth += 1
-                elif text[pos] == '}':
-                    depth -= 1
-                    if depth == 0:
-                        return text[start:pos], pos + 1
+
+    def group(end=None, depth=0):
+        nonlocal pos
+        if depth > 60:
+            fail('수식의 중첩이 너무 깊습니다.')
+        out = []
+        while pos < len(latex):
+            if end and latex[pos] == end:
                 pos += 1
-            raise ValueError('분수의 중괄호가 닫히지 않았습니다.')
-        if text[pos] == '\\':
-            m = re.match(r'\\[A-Za-z]+|\\.', text[pos:])
-            if not m:
-                raise ValueError('분수의 수식 명령이 잘렸습니다.')
-            return m.group(), pos + len(m.group())
-        return text[pos], pos + 1
-    text = latex
-    for match in list(pattern.finditer(text))[::-1]:
-        numerator, pos = argument(text, match.end())
-        denominator, end = argument(text, pos)
-        text = text[:match.start()] + r'\frac{' + numerator + '}{' + denominator + '}' + text[end:]
-    return text
+                return ''.join(out)
+            if latex[pos] == '}':
+                fail('수식의 중괄호 짝이 맞지 않습니다.')
+            out.append(atom(depth + 1))
+        if end:
+            fail('수식의 중괄호가 닫히지 않았습니다.')
+        return ''.join(out)
+
+    def argument(depth):
+        nonlocal pos
+        space()
+        if pos >= len(latex) or latex[pos] in '}^_&':
+            fail('수식 명령의 인자가 없습니다.')
+        if latex[pos] == '{':
+            pos += 1
+            return group('}', depth)
+        return atom(depth)
+
+    def atom(depth):
+        nonlocal pos
+        if depth > 60:
+            fail('수식의 중첩이 너무 깊습니다.')
+        ch = latex[pos]
+        pos += 1
+        if ch == '{':
+            return '{' + group('}', depth) + '}'
+        if ch in '^_':
+            return ch + '{' + argument(depth) + '} '
+        if ch != '\\':
+            return ch
+        if pos >= len(latex):
+            fail('수식 명령이 잘렸습니다.')
+        match = re.match(r'[A-Za-z]+|.', latex[pos:], re.S)
+        cmd = match.group()
+        pos += len(cmd)
+        if cmd in styles:
+            return ' '
+        if cmd in aliases:
+            return aliases[cmd]
+        if cmd in {'frac', 'dfrac', 'tfrac', 'binom'}:
+            return '\\' + ('binom' if cmd == 'binom' else 'frac') + '{' + argument(depth) + '}{' + argument(depth) + '}'
+        if cmd == 'sqrt':
+            space()
+            index = ''
+            if pos < len(latex) and latex[pos] == '[':
+                pos += 1
+                index = '[' + group(']', depth) + ']'
+            return r'\sqrt' + index + '{' + argument(depth) + '}'
+        if cmd in unary:
+            return '\\' + cmd + '{' + argument(depth) + '}'
+        if cmd in fonts:
+            inner = argument(depth).strip()
+            if cmd == 'mathbb' and re.fullmatch('[RNZQC]', inner):
+                return r'\mathrm{' + inner + '}'
+            if cmd == 'textrm':
+                return r'\mathrm{' + inner + '}'
+            fail('한글 출력에서 지원하지 않는 수식 명령: \\' + cmd)
+        if cmd in {'begin', 'end'}:
+            env = argument(depth)
+            if env != 'cases':
+                fail('한글 출력에서 지원하지 않는 수식 환경: ' + env)
+            if cmd == 'begin':
+                environments.append(env)
+            elif not environments or environments.pop() != env:
+                fail('수식 환경의 시작과 끝이 맞지 않습니다.')
+            return '\\' + cmd + '{cases}'
+        if cmd == '\\':
+            if not environments:
+                fail('수식 안 줄바꿈은 cases 환경에서만 지원합니다.')
+            return r'\\'
+        if cmd in {'left', 'right', 'middle', 'big', 'Big', 'bigg', 'Bigg',
+                   'bigl', 'bigr', 'Bigl', 'Bigr', 'biggl', 'biggr', 'Biggl', 'Biggr'}:
+            # Retain delimiter commands; the kit pairs/stretchs their glyphs.
+            return '\\' + cmd + ' '
+        if cmd in simple:
+            return '\\' + cmd + ' '
+        if cmd in {'{', '}', '|', '!', ',', ';', ':', ' '}:
+            return '\\' + cmd
+        fail('한글 출력에서 지원하지 않는 수식 명령: \\' + cmd)
+
+    result = group()
+    if environments:
+        fail('수식 환경이 닫히지 않았습니다.')
+    return result
 
 
 def build(items, output, skills):
@@ -108,14 +189,14 @@ def build(items, output, skills):
                             if not part:
                                 continue
                             # \, is a TeX spacing command, never a printed list comma.
-                            part = explicit_fractions(part).replace(r'\,', r'\;')
+                            part = prepare_latex(part).replace(r'\,', r'\;')
                             for i, phrase in enumerate(normalizer.split_list_commas(part)):
                                 if i:
                                     segments.append(('t', ', ', '1'))
                                 script = bridge.latex_to_hwp_script(normalizer.normalize_latex(phrase.replace('\n', ' ')))
                                 if not script.strip():
                                     raise ValueError('빈 수식으로 변환된 구절이 있습니다.')
-                                if re.search(r'\b(?:frac|dfrac|tfrac|begin|end|includegraphics)\b', script):
+                                if re.search(r'\b(?:frac|dfrac|tfrac|begin|end|includegraphics|displaystyle|textstyle|mathbb|limits)\b', script):
                                     raise ValueError('변환되지 않은 LaTeX 명령이 남았습니다. 수식을 확인하세요.')
                                 segments.append(('eq', script))
             flush()
