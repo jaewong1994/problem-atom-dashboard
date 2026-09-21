@@ -20,7 +20,7 @@ function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir
   // No CORS credential bridge: the public page opens this same-origin companion UI.
   if(origin&&!['http://127.0.0.1:'+actualPort,'http://localhost:'+actualPort].includes(origin))return send(403,{error:'연결 도우미 화면에서 요청해 주세요.'});
   const url=new URL(req.url,'http://'+host);
-  if(req.method==='GET'&&url.pathname==='/health')return send(200,{service:'problem-atom-codex-companion',revision:registry.revision,design_intent_version:1,reasoning_graph_version:1,authoring_blueprint_version:1,judgment_bundle_version:1,curriculum_scope_version:1});
+  if(req.method==='GET'&&url.pathname==='/health')return send(200,{service:'problem-atom-codex-companion',revision:registry.revision,solution_guidance_version:C.SOLUTION_GUIDANCE_VERSION,design_intent_version:1,reasoning_graph_version:1,authoring_blueprint_version:1,judgment_bundle_version:1,curriculum_scope_version:1});
   if(url.pathname.startsWith('/session/')){
    const given=Buffer.from(req.headers['x-pa-session']||''),expected=Buffer.from(token);
    if(given.length!==expected.length||!crypto.timingSafeEqual(given,expected))return send(401,{error:'연결 도우미에서 화면을 다시 열어 주세요.'});

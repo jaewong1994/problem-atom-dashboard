@@ -15,6 +15,7 @@ class HandoffTests(unittest.TestCase):
     def test_web_prompt_preserves_selected_plan_and_uses_no_other_provider(self):
         run_js(r"""
         const W=require('./web-handoff.js'),text=W.prompt(job,'gemini');
+        for(const provider of ['gemini','chatgpt','claude'])assert.ok(W.prompt(job,provider).includes(C.SOLUTION_GUIDANCE));
         assert.ok(text.includes(job.request_id));assert.ok(text.includes(job.registry_revision));
         const payload=JSON.parse(text.slice(text.indexOf('\n\n{')+2));
         assert.deepEqual(payload.seed_plan,job.seed_plan);

@@ -128,6 +128,8 @@ class SessionTests(unittest.TestCase):
         const out=await A.generateSession(job,R,{spawnImpl:mock,checkLogin:async()=>({ready:true})});
         assert.equal(out.provider,'codex-chatgpt-session');assert.equal(out.validation.accepted,true);assert.equal(out.validation.release_ready,false);
         assert.ok(prompt.includes(job.request_id));assert.equal(fs.existsSync(folder),false);assert.equal(calls,1);
+        assert.ok(prompt.includes(C.SOLUTION_GUIDANCE));
+        assert.equal(prompt.split('[학생용 해설 작성 기준').length-1,1);
         const signal=new AbortController();signal.abort();await assert.rejects(()=>A.generateSession(job,R,{signal:signal.signal,spawnImpl:mock,checkLogin:async()=>({ready:true})}));assert.equal(calls,1);
         const abort=new AbortController();
         const hanging=(cmd,args,options)=>{folder=options.cwd;const c=new EventEmitter();c.stdout=new EventEmitter();c.stderr=new EventEmitter();c.stdin=new EventEmitter();c.stdin.end=()=>setImmediate(()=>abort.abort());c.kill=()=>setImmediate(()=>c.emit('close',1));return c;};
@@ -158,7 +160,8 @@ class SessionTests(unittest.TestCase):
         await new Promise(r=>app.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+app.address().port,headers={'X-PA-Session':'unit-test-token','Content-Type':'application/json',Origin:base};
         const post=(body,h=headers)=>fetch(base+'/session/jobs',{method:'POST',headers:h,body:JSON.stringify(body)});
         try{
-          assert.equal((await fetch(base+'/health')).status,200);
+          const health=await fetch(base+'/health');assert.equal(health.status,200);
+          assert.equal((await health.json()).solution_guidance_version,C.SOLUTION_GUIDANCE_VERSION);
           const html=await(await fetch(base+'/connections.html')).text();assert.ok(html.includes('sessionBootstrap'));
           assert.equal((await fetch(base+'/session/status')).status,401);
           assert.equal((await fetch(base+'/session/status',{headers:{...headers,Origin:'https://untrusted.test'}})).status,403);
