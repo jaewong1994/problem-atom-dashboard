@@ -4,30 +4,6 @@ from test_model import run_js
 
 
 class CurriculumTests(unittest.TestCase):
-    def test_material_inventory_explains_empty_units_and_tracks_new_assets(self):
-        run_js(r"""
-        const U=require('./curriculum-model.js'),UI=require('./unit-ui.js');
-        const empty=UI.inventory(R,U.scope('m1-exponential'));
-        assert.equal(empty.hasMain,false);
-        assert.deepEqual(empty.missing.map(u=>u.id),['m1-exponential']);
-        assert.ok(empty.available.length>0);
-        assert.ok(empty.available.every(u=>u.count>0&&u.subject==='math2'));
-        assert.equal(UI.inventory(R,null).hasMain,false);
-        const stocked=UI.inventory(R,U.scope('m2-integrals'));
-        assert.equal(stocked.hasMain,true);assert.deepEqual(stocked.missing,[]);
-        const fusion={mode:'fusion',units:['m1-exponential','m2-derivatives'],supporting_units:[]};
-        assert.equal(UI.inventory(R,fusion).hasMain,true);
-        assert.deepEqual(UI.inventory(R,fusion).missing.map(u=>u.id),['m1-exponential']);
-        // New classified assets make the chapter available without a UI allowlist.
-        const copy=structuredClone(R),id='TEST-EXPONENTIAL';
-        copy.operations.push({...copy.operations[0],id});
-        U.classifications[id]={main:['m1-exponential'],requires:['m1-exponential']};
-        const added=UI.inventory(copy,U.scope('m1-exponential'));
-        assert.equal(added.hasMain,true);assert.deepEqual(added.missing,[]);
-        assert.equal(added.available.find(u=>u.id==='m1-exponential').count,1);
-        assert.equal(UI.inventory(R,U.scope('m1-exponential')).hasMain,false);
-        """)
-
     def test_window_limits_bundle_can_start_and_reach_its_question(self):
         run_js(r"""
         const U=require('./curriculum-model.js'),B=require('./judgment-bundles.js'),P=require('./composition-planner.js');

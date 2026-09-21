@@ -1,9 +1,9 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v47`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v48`;
 const SHELL = [
   "./account-supabase.js?v=team2", "./account-client.js?v=setup6", "./account.css?v=team2",
   "./studio.html", "./connections.html", "./connections.css?v=io1", "./connections.js?v=names1", "./connection-engine.js?v=design2", "./connection-registry.json",
-  "./curriculum-model.js?v=select2", "./unit-ui.js?v=stock1", "./units.css?v=unit1", "./judgment-bundles.js?v=names1", "./authoring-model.js?v=unit1", "./authoring-ui.js?v=stock1", "./authoring.css?v=stock1", "./authoring-lessons.json",
+  "./curriculum-model.js?v=select2", "./unit-ui.js?v=stock2", "./units.css?v=unit1", "./judgment-bundles.js?v=names1", "./authoring-model.js?v=unit1", "./authoring-ui.js?v=stock2", "./authoring.css?v=select2", "./authoring-lessons.json",
   "./web-handoff.js?v=unit1", "./production-io.js?v=team1", "./composition-graph.js?v=map1", "./box-copy.js?v=names1", "./box-examples.js?v=cards1", "./composition-planner.js?v=unit1", "./model-contract.js?v=review1", "./selection-model.js?v=map1", "./session-client.js?v=review1", "./model-provider.json",
   "./review-groups.json", "./group-review-ledger.json", "./group-review.js?v=names1", "./review-model.js?v=review1", "./review-client.js?v=team1", "./review-link.css?v=review1", "./review-catalog.json", "./sandbox.css",
   "./combination-examples.json", "./combination-examples.js",
@@ -14,7 +14,7 @@ const SHELL = [
   "./",
   "./index.html",
   "./entry.css?v=flow1",
-  "./entry.js?v=stock1",
+  "./entry.js?v=stock2",
   "./site-shell.css?v=flow3",
   "./dashboard.html",
   "./styles.css",

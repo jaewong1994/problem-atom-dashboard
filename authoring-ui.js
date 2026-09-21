@@ -79,20 +79,10 @@
     if(plan.nodes.length&&canStart){const change=el('details');change.append(el('summary','이 재료로 새 구성 시작'),el('p','현재 재료를 바꿉니다. 되돌리기로 복구할 수 있어요.','author-footnote'),button('현재 구성을 바꾸고 시작',start,'wide'));panel.append(change);}
    }
    if(selected==='@library'){
-    const inventory=root.PAUnitUI.inventory(registry,ctx.unitScope);
-    if(inventory.missing.length){
-     heading('재료 등록 현황',inventory.hasMain?'융합에 필요한 단원 재료가 아직 없습니다':'이 단원은 아직 재료가 등록되지 않았습니다');
-     const missing=el('section',null,'material-availability');missing.setAttribute('role','status');
-     missing.append(el('b',inventory.missing.map(u=>u.subjectName+' · '+u.name+' 0개').join(' / ')),el('p','검색이나 검수 필터 때문이 아닙니다. 이 단원에 사용할 전용 재료가 아직 없어서 문항을 만들 수 없습니다.'));
-     panel.append(missing);
-     if(inventory.available.length){panel.append(el('h4','지금 재료를 고를 수 있는 단원'));const links=el('div',null,'material-unit-links');for(const u of inventory.available){const link=el('a',null,'material-unit-link');link.href='connections.html?unit='+encodeURIComponent(u.id);link.append(el('small',u.subjectName),el('b',u.name),el('span','전용 재료 '+u.count+'개 · 재료 보기 →'));links.append(link);}panel.append(links);}
-     if(inventory.hasMain)panel.append(el('p','아래에는 이미 등록된 단원의 재료만 표시합니다. 선택한 모든 단원의 재료가 있어야 융합형 제작을 마칠 수 있어요.','author-footnote'));
-    }
-    if(inventory.hasMain){
     heading('재료 고르기','필요한 박스를 담고, 예시는 펼쳐 보세요');panel.append(el('p','박스 아래의 담기 버튼으로 선택하세요. 박스 제목을 누르면 예시 풀이를 볼 수 있어요.','author-intro'));
-    const available={bundles:B.catalog.filter(b=>U.material(registry,b.members,ctx.unitScope).visible),single:registry.operations.filter(o=>U.material(registry,[o.id],ctx.unitScope).visible).map(o=>({id:o.id,name:name(o.id),idea:A.profile(o.id)?.decision||o.name,example:C.atoms[o.id]?.example||''}))};
-    if(!available[libraryMode].length)libraryMode=available.bundles.length?'bundles':'single';
-    const modes=el('div',null,'bundle-modes');modes.setAttribute('role','group');modes.setAttribute('aria-label','재료 보기');for(const [mode,label]of [['bundles','판단 묶음'],['single','낱개 재료']]){const b=button(label+' '+available[mode].length,()=>{libraryMode=mode;libraryLimit=8;render(ctx);},'');b.disabled=!available[mode].length;b.setAttribute('aria-pressed',String(libraryMode===mode));modes.append(b);}panel.append(modes);
+    const stocked=ctx.unitScope&&U.mainUnits(ctx.unitScope).some(id=>U.count(registry,id)>0);
+    const available={bundles:stocked?B.catalog.filter(b=>U.material(registry,b.members,ctx.unitScope).visible):[],single:stocked?registry.operations.filter(o=>U.material(registry,[o.id],ctx.unitScope).visible).map(o=>({id:o.id,name:name(o.id),idea:A.profile(o.id)?.decision||o.name,example:C.atoms[o.id]?.example||''})):[]};
+    const modes=el('div',null,'bundle-modes');modes.setAttribute('role','group');modes.setAttribute('aria-label','재료 보기');for(const [mode,label]of [['bundles','판단 묶음'],['single','낱개 재료']]){const b=button(label+' '+available[mode].length+'개',()=>{libraryMode=mode;libraryLimit=8;render(ctx);},'');b.setAttribute('aria-pressed',String(libraryMode===mode));modes.append(b);}panel.append(modes);
     const label=el('label',null,'bundle-search');label.append(el('span','이름이나 예시로 찾기'));const search=el('input');search.type='search';search.value=libraryTerm;search.placeholder='예: 후보, 구간, 정수';label.append(search);panel.append(label);
     panel.append(el('p',ctx.unitScope?'선택한 대단원의 재료예요. 세미나 이름과 예시의 식으로도 검색할 수 있어요.':'대단원을 먼저 고르면 그 범위의 재료가 나옵니다.','author-footnote'));
     const reviewFilter=el('label',null,'review-filter'),check=el('input');check.type='checkbox';check.checked=libraryReviewed;check.onchange=()=>{libraryReviewed=check.checked;paint();};reviewFilter.append(check,document.createTextNode('검수 내용이 연결된 재료만 보기'));panel.append(reviewFilter);const reviewLink=el('a','재료 검수 열기 →','review-panel-link');reviewLink.href='promotion-board.html';panel.append(reviewLink);
@@ -111,9 +101,8 @@
       card.addEventListener('toggle',()=>{if(!card.isConnected)return;if(card.open&&!content.childElementCount)materialDetails(content,b.id);card.open?openExamples.add(b.id):openExamples.delete(b.id);summary.querySelector('.box-expand-hint').textContent=card.open?'풀이 접기':'예시 풀이 펼치기';});
       const controls=el('div',null,'box-material-actions');materialActions(controls,b.id);item.append(card,controls);shelf.append(item);
      }
-     if(rows.length>libraryLimit)shelf.append(button('재료 '+Math.min(8,rows.length-libraryLimit)+'개 더 보기',()=>{libraryLimit+=8;paint();},'wide'));if(!rows.length){const empty=el('div',null,'material-empty');empty.append(el('p',libraryTerm?'검색어에 맞는 재료가 없습니다.':libraryReviewed?'이 범위에서 검수가 연결된 재료는 아직 없습니다.':'이 보기에는 재료가 없습니다.','author-empty'));if(libraryTerm||libraryReviewed)empty.append(button('검색·검수 필터 풀고 전체 재료 보기',()=>{libraryTerm='';libraryReviewed=false;search.value='';check.checked=false;paint();},'wide'));shelf.append(empty);}
+     if(rows.length>libraryLimit)shelf.append(button('재료 '+Math.min(8,rows.length-libraryLimit)+'개 더 보기',()=>{libraryLimit+=8;paint();},'wide'));if(!rows.length)shelf.append(el('p',libraryTerm?'맞는 재료가 없습니다. 다른 말로 찾아보세요.':libraryReviewed?'아직 이 범위에서 검수 내용이 연결된 재료가 없습니다. 재료 검수에서 승인해 주세요.':'이 범위의 '+(libraryMode==='bundles'?'판단 묶음':'낱개 재료')+': 0개','author-empty'));
     };search.oninput=()=>{libraryTerm=search.value;libraryLimit=8;paint();};paint();
-    }else if(!ctx.unitScope)panel.append(el('p','위에서 문항을 만들 대단원을 먼저 골라 주세요.','author-empty'));
    }else if(selected.startsWith('@bundle:')){
     const b=layout.bundles.find(b=>'@bundle:'+b.id===selected);heading('판단 묶음 · '+b.members.length+'개 재료',b.name);reviewContext(panel,b.members);panel.append(paragraph('이 묶음이 하는 일',b.effect,'spotlight'),example(X.get(b.id)?.given||b.example));
     const list=el('ol',null,'bundle-members');for(const id of b.members){const li=el('li'),open=button(name(id),()=>{expandedBundles.add(b.id);focusNode(id);},'bundle-member-button');li.append(open,el('p',A.profile(id)?.decision));if(audit.unused.includes(id))li.append(el('small','현재 질문에는 쓰이지 않음','author-node-warning'));list.append(li);}panel.append(list);
