@@ -1,7 +1,7 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v43`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v44`;
 const SHELL = [
-  "./account-client.js?v=team1", "./account.css?v=team1",
+  "./account-supabase.js?v=team2", "./account-client.js?v=team2", "./account.css?v=team2",
   "./studio.html", "./connections.html", "./connections.css?v=io1", "./connections.js?v=team1", "./connection-engine.js?v=design2", "./connection-registry.json",
   "./curriculum-model.js?v=select2", "./unit-ui.js?v=unit1", "./units.css?v=unit1", "./judgment-bundles.js?v=unit1", "./authoring-model.js?v=unit1", "./authoring-ui.js?v=select2", "./authoring.css?v=select2", "./authoring-lessons.json",
   "./web-handoff.js?v=unit1", "./production-io.js?v=team1", "./composition-graph.js?v=map1", "./box-copy.js?v=examples1", "./box-examples.js?v=cards1", "./composition-planner.js?v=unit1", "./model-contract.js?v=review1", "./selection-model.js?v=map1", "./session-client.js?v=review1", "./model-provider.json",

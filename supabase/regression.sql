@@ -1,0 +1,48 @@
+-- Runs inside a rollback-only transaction. No teacher password or existing Auth user is modified.
+begin;
+do $$
+declare u uuid; v uuid; admin_id uuid; member_id uuid; invited_id uuid; r jsonb; q text; version text; before_count int;
+begin
+ assert not has_function_privilege('anon','public.pa_team_rpc(uuid,text,jsonb)','execute');
+ assert not has_function_privilege('authenticated','public.pa_team_rpc(uuid,text,jsonb)','execute');
+ assert not has_table_privilege('authenticated','public.pa_team_accounts','select');
+ assert not has_table_privilege('anon','public.pa_team_claims','insert');
+ assert (select bool_and(relrowsecurity) from pg_class where relname in ('pa_team_accounts','pa_team_claims','pa_team_documents','pa_team_comments'));
+ select count(*) into before_count from pa_team_claims;
+ select id into u from auth.users where id not in(select auth_id from pa_team_accounts where auth_id is not null) order by created_at limit 1;
+ select id into v from auth.users where id<>u and id not in(select auth_id from pa_team_accounts where auth_id is not null) order by created_at limit 1;
+ assert u is not null and v is not null,'Need two existing Auth identities for transactional fixture';
+ insert into pa_team_accounts(name,role,state,auth_id) values('__회귀관리','admin','active',u) returning id into admin_id;
+ insert into pa_team_accounts(name,role,state,auth_id) values('__회귀강사','member','active',v) returning id into member_id;
+ r=pa_team_rpc(null,'claims'); assert (r->>'status')::int=401;
+ r=pa_team_rpc(v,'admin-create','{"name":"권한위조"}'); assert (r->>'status')::int=403;
+ r=pa_team_rpc(u,'admin-create','{"name":"__회귀초대","hash":"test-only-digest"}'); assert r ? 'members';
+ select id into invited_id from pa_team_accounts where name='__회귀초대';
+ assert (select role='member' and state='pending' and auth_id is null from pa_team_accounts where id=invited_id);
+ r=pa_team_rpc(u,'admin-create','{"name":"__회귀초대","hash":"x"}'); assert (r->>'status')::int=409;
+ r=pa_team_rpc(null,'setup-lock','{"name":"__회귀초대","hash":"wrong"}'); assert (r->>'status')::int=401;
+ r=pa_team_rpc(null,'setup-lock','{"name":"__회귀초대","hash":"test-only-digest"}'); assert r->>'id'=invited_id::text;
+ r=pa_team_rpc(null,'setup-lock','{"name":"__회귀초대","hash":"test-only-digest"}'); assert (r->>'status')::int=409;
+ r=pa_team_rpc(u,'admin-invite',jsonb_build_object('id',invited_id,'hash','new-digest'));assert r ? 'members';
+ r=pa_team_rpc(null,'setup-lock','{"name":"__회귀초대","hash":"test-only-digest"}'); assert (r->>'status')::int=401;
+ select question_id into q from pa_team_questions limit 1;
+ r=pa_team_rpc(v,'claims-write',jsonb_build_object('questionId',q,'action','complete')); assert (r->>'status')::int=403;
+ r=pa_team_rpc(v,'claims-write',jsonb_build_object('questionId',q,'action','claim','owner_id',admin_id)); assert (r->>'status')::int=400;
+ r=pa_team_rpc(v,'claims-write',jsonb_build_object('questionId',q,'action','claim')); assert r ? 'claims';
+ r=pa_team_rpc(u,'claims-write',jsonb_build_object('questionId',q,'action','complete')); assert (r->>'status')::int=403;
+ r=pa_team_rpc(v,'claims-write',jsonb_build_object('questionId',q,'action','complete')); assert r ? 'claims';
+ r=pa_team_rpc(v,'claims-write',jsonb_build_object('questionId',q,'action','release')); assert (r->>'status')::int=409;
+ r=pa_team_rpc(u,'admin-delete',jsonb_build_object('id',admin_id)); assert (r->>'status')::int=409;
+ r=pa_team_rpc(u,'admin-delete',jsonb_build_object('id',member_id)); assert r ? 'members';
+ r=pa_team_rpc(v,'claims'); assert (r->>'status')::int=401;
+ assert (select count(*)=before_count+1 from pa_team_claims),'Account deletion must preserve analysis records';
+ r=pa_team_rpc(u,'admin-restore',jsonb_build_object('id',member_id)); assert r ? 'members';
+ r=pa_team_rpc(v,'me'); assert r->'user'->>'id'=member_id::text;
+ r=pa_team_rpc(v,'reviews'); version=r->>'version';assert jsonb_array_length(r->'catalog'->'groups')>0;
+ r=pa_team_rpc(v,'reviews-write',jsonb_build_object('baseVersion','outdated','actor','__회귀강사','groups','[]'::jsonb)); assert (r->>'status')::int=409;
+ r=pa_team_rpc(v,'reviews-write',jsonb_build_object('baseVersion',version,'actor','다른 강사','groups','[]'::jsonb)); assert (r->>'status')::int=403;
+ r=pa_team_rpc(v,'comments-write','{"assetId":"qa-only","kind":"question","body":"임시 회귀검증"}'); assert r ? 'comments';
+ r=pa_team_rpc(u,'comments-write',jsonb_build_object('action','delete','commentId',(select comment_id from pa_team_comments where owner_id=member_id))); assert (r->>'status')::int=403;
+end $$;
+rollback;
+select 'PASS: permissions, invitations, ownership, deletion, restoration, review conflict, comments; all fixtures rolled back' as result;

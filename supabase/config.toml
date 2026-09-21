@@ -1,0 +1,3 @@
+project_id = "problem-atom-dashboard"
+[functions.pa-team]
+verify_jwt = false
