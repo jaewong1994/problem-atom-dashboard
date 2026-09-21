@@ -1,0 +1,12 @@
+.git
+.pa-team
+.pa-session
+_site
+__pycache__
+.env
+.env.*
+progress
+comments
+reviews
+*.sqlite*
+*.exe

@@ -61,7 +61,7 @@ window.PAGroupReview=(()=>{
  async function init(){
   host=$('reviewGroups');store=PAReviewClient.create(PASession.create());
   try{const response=await fetch('connection-registry.json',{cache:'no-store'});if(!response.ok)throw Error('제작 자산을 읽지 못했습니다.');registry=await response.json();adopt(await store.load());
-   $('reviewStorage').textContent=store.get().storage==='companion'?'이 PC의 검수 원장에 저장됩니다. 제작실이 같은 기록을 바로 사용합니다.':'이 브라우저에 저장되고 같은 사이트의 제작실에 연결됩니다. 다른 기기로 옮길 때는 검수 파일을 사용하세요.';
+   $('reviewStorage').textContent=store.get().storage==='team'?'공용 검수 원장에 저장됩니다. 같은 계정 서버의 제작실이 바로 사용합니다.':store.get().storage==='companion'?'이 PC의 검수 원장에 저장됩니다. 제작실이 같은 기록을 바로 사용합니다.':'이 브라우저에 저장되고 같은 사이트의 제작실에 연결됩니다. 다른 기기로 옮길 때는 검수 파일을 사용하세요.';
    $('boardSync').textContent='승인한 정리문은 문항 제작실에 연결됩니다.';
    $('groupSearch').oninput=render;$('reviewFilter').onchange=render;$('actor').addEventListener('change',render);
    $('refreshReviews').onclick=async()=>{try{adopt(await store.load());render();feedback('최신 검수 기록을 불러왔습니다.');}catch(e){feedback(e.message);}};

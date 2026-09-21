@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko">
-<head>
+<head><script defer src="account-config.js?v=team1"></script><script defer src="account-client.js?v=team1"></script><link rel="stylesheet" href="account.css?v=team1">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
@@ -87,6 +87,7 @@
       <div class="static-actions" id="staticActions" hidden>
         <button id="exportProgress" type="button">세미나 기록 JSON 내보내기</button>
         <button id="clearDraft" type="button">내 임시 기록 초기화</button>
+        <details><summary>선점·완료 기록 백업</summary><button id="viewClaimsBackup" type="button">현재 공유 기록 확인</button><label>백업 JSON<textarea id="claimsBackup" rows="6" readonly></textarea></label></details>
       </div>
     </section>
 
@@ -126,8 +127,8 @@
   <script src="vendor/problem-rendering/problem-math.js?v=20260903" defer></script>
   <script src="vendor/problem-rendering/problem-display.js?v=20260903" defer></script>
   <script src="realtime-config.js" defer></script>
-  <script src="realtime.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="realtime.js?v=team1" defer></script>
+  <script src="app.js?v=team1" defer></script>
   <script src="pwa-install.js" defer></script>
 </body>
 </html>

@@ -4,13 +4,15 @@
   let snapshot=null,queue=Promise.resolve();
   const cached=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'{"groups":[]}');}catch{return {groups:[]};}};
   async function load(){
-   if(session.local)snapshot=await session.reviews();
+   if(window.PAAccount?.enabled){await PAAccount.ready;snapshot=await PAAccount.call('reviews');}
+   else if(session.local)snapshot=await session.reviews();
    else {const [a,b]=await Promise.all([fetch('review-catalog.json',{cache:'no-store'}),fetch('group-review-ledger.json',{cache:'no-store'})]);if(!a.ok||!b.ok)throw Error('검수 자료를 읽지 못했습니다.');const catalog=await a.json(),ledger=await b.json();snapshot={catalog,ledger:{groups:[...(ledger.groups||[]),...cached().groups]},storage:'browser'};}
    return snapshot;
   }
   function save(payload){const captured=structuredClone(payload);const run=async()=>{
    if(!snapshot)await load();PAReviewModel.validate(captured,snapshot.catalog);
-   if(session.local)snapshot=await session.saveReviews({...captured,baseVersion:snapshot.version});
+   if(window.PAAccount?.enabled)snapshot=await PAAccount.call('reviews',{...captured,baseVersion:snapshot.version});
+   else if(session.local)snapshot=await session.saveReviews({...captured,baseVersion:snapshot.version});
    else {const data=cached(),rows=PAReviewModel.validate(captured,snapshot.catalog);for(const row of rows){row.at=new Date().toISOString();data.groups=data.groups.filter(r=>r.groupId!==row.groupId);data.groups.push(row);}localStorage.setItem(KEY,JSON.stringify(data));await load();}
    return snapshot;
   };queue=queue.then(run,run);return queue;}

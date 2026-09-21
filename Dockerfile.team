@@ -1,0 +1,18 @@
+FROM node:24-bookworm-slim AS build
+RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-venv && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY . .
+RUN python3 -m venv /opt/checks && /opt/checks/bin/pip install --no-cache-dir sympy==1.14.0 && /opt/checks/bin/python prepare_pages.py --build
+
+FROM node:24-bookworm-slim
+WORKDIR /app
+COPY --from=build /app/_site /app/_site
+COPY --from=build /app/server /app/server
+COPY --from=build /app/review-model.js /app/review-model.js
+COPY --from=build /app/dashboard-data.json /app/dashboard-data.json
+RUN mkdir /data && chown node:node /data
+USER node
+ENV PA_TEAM_PORT=8080 PA_TEAM_BIND=0.0.0.0 PA_TEAM_DATA=/data
+VOLUME /data
+EXPOSE 8080
+CMD ["node", "server/team-service.cjs"]

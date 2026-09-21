@@ -359,7 +359,7 @@ async function updateClaim(action, questionId, button) {
   }
   if (!state.realtimeReady) {
     els.notice.hidden = false;
-    els.notice.textContent = "실시간 저장소 연결 전이라 선점할 수 없습니다. 운영자가 Problem Atom 전용 Supabase 설정을 완료해야 합니다.";
+    els.notice.textContent = "실시간 저장소 연결 전이라 선점할 수 없습니다. 홈에서 로그인 상태와 공유 서버 연결을 확인해 주세요.";
     return;
   }
   button.disabled = true;
@@ -428,7 +428,7 @@ function renderQuestion(exam, section, question) {
   const card = document.createElement("article");
   card.className = `question${entry.done ? " done" : ""}${question.preview ? "" : " no-preview"}`;
   card.innerHTML = `
-    <input type="checkbox" ${checked ? "checked" : ""}
+    <input type="checkbox" ${checked ? "checked" : ""} ${state.realtimeReady && ownClaim(question.id) ? "" : "disabled"} title="본인이 선점한 문항만 완료 상태를 바꿀 수 있습니다."
       aria-label="${escapeHtml(`${exam.year} ${exam.session} ${section.title} ${question.number}번 발표 기록`)}">
     <div class="q-info">
       <strong>${question.number}번</strong>
@@ -589,39 +589,17 @@ function updateStats() {
 }
 
 async function toggle(questionId, done, input) {
-  const actor = els.actor.value.trim();
-  if (!actor) {
-    input.checked = !done;
-    els.actor.focus();
-    els.notice.hidden = false;
-    els.notice.textContent = "먼저 발표자의 이름 또는 별칭을 입력해 주세요.";
+  if (!state.realtimeReady || !ownClaim(questionId)) {
+    input.checked = !done; input.disabled = true;
+    els.notice.hidden = false; els.notice.textContent = "로그인한 본인이 선점한 문항만 완료 상태를 바꿀 수 있습니다.";
     return;
   }
-  localStorage.setItem("seminar-actor", actor);
-  state.actor = actor;
   input.disabled = true;
-  if (state.staticMode) {
-    state.draftEvents.push({ questionId, done, updatedAt: new Date().toISOString() });
-    localStorage.setItem("seminar-progress-draft", JSON.stringify(state.draftEvents));
-    mergeAllProgress();
-    render();
-    sync(true, "임시 저장됨", "이 브라우저에 저장 · 세미나 후 JSON 내보내기");
-    input.disabled = false;
-    return;
-  }
   try {
-    await api("/api/toggle", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ actor, questionId, done }),
-    });
-    await refreshProgress(true);
-  } catch (error) {
-    input.checked = !done;
-    sync(false, "저장 실패", error.message);
-  } finally {
-    input.disabled = false;
-  }
+    await window.PARealtime[done ? "complete" : "reopen"](questionId);
+    applyClaims(await window.PARealtime.listClaims()); render();
+    sync(true, "저장됨", done ? "내 문항을 분석 완료로 표시했습니다." : "내 문항을 다시 분석 중으로 바꿨습니다.");
+  } catch(error) {input.checked = !done; sync(false,"저장 실패",error.message); input.disabled = false;}
 }
 
 async function refreshProgress(force = false) {
@@ -687,9 +665,9 @@ async function loadStaticMode() {
   mergeAllProgress();
   $("#staticActions").hidden = false;
   els.notice.hidden = false;
-  els.notice.textContent = "공유 완료 현황을 보고 있습니다. 새 체크는 이 브라우저에 임시 저장되며, 세미나 후 JSON으로 내보내 운영자에게 전달하면 다음 배포에 반영됩니다.";
+  els.notice.textContent = "공유 완료 현황을 보고 있습니다. 로그인한 본인이 선점한 문항만 완료 표시할 수 있습니다.";
   render();
-  sync(true, "GitHub 공유본", `${state.publishedSources.length}명 반영 · 새 기록은 임시 저장`);
+  sync(true, "GitHub 공유본", `${state.publishedSources.length}명 반영 · 본인 선점 문항만 완료 가능`);
 }
 
 function showPreview(exam, section, question) {
@@ -763,6 +741,7 @@ function populateYearFilter() {
 }
 
 async function init() {
+  if(window.PAAccount?.enabled){await PAAccount.ready;state.actor=PAAccount.current()?.user?.name||"";PAAccount.identity();}
   state.seasonConfig = await api("season-config.json").catch(() => null);
   els.actor.value = state.actor;
   els.actor.addEventListener("input", () => {
@@ -831,6 +810,12 @@ async function init() {
   });
   $("#exportProgress").addEventListener("click", downloadDraft);
   $("#clearDraft").addEventListener("click", clearDraft);
+  $("#viewClaimsBackup").addEventListener("click", async () => {
+    try { if(!state.realtimeReady)throw Error("공유 저장소가 연결된 뒤 백업하세요.");
+      const claims=await window.PARealtime.listClaims();
+      $("#claimsBackup").value=JSON.stringify({source:"shared-claims-export",exportedAt:new Date().toISOString(),claims,sources:state.publishedSources},null,2);
+    }catch(e){$("#claimsBackup").value=e.message;}
+  });
 
   try {
     if (isPublishedStaticHost) {

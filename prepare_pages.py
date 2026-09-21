@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parent
 SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
+    "account-config.js", "account-client.js", "account.css",
     "studio.html", "connections.html", "connections.css", "connections.js", "connection-engine.js", "connection-registry.json", "connection-validation.json", "composition-catalog.json",
     "curriculum-model.js", "unit-ui.js", "units.css", "judgment-bundles.js", "authoring-model.js", "authoring-ui.js", "authoring.css", "authoring-lessons.json", "web-handoff.js", "production-io.js", "composition-graph.js", "mindmap-ui.js", "box-copy.js", "box-examples.js", "model-contract.js", "composition-planner.js", "selection-model.js", "session-client.js", "model-provider.json",
     "review-groups.json", "review-catalog.json", "review-model.js", "review-client.js", "review-link.css", "group-review-ledger.json", "group-review.js", "sandbox.css",
@@ -98,7 +99,8 @@ def build_site() -> None:
     from test_curriculum import CurriculumTests
     from test_box_examples import BoxExampleTests
     from test_review_link import ReviewLinkTests
-    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests,ReviewLinkTests)])
+    from test_team_accounts import TeamAccountTests
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests,ReviewLinkTests,TeamAccountTests)])
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")
@@ -124,7 +126,7 @@ def build_site() -> None:
             Path(path).chmod(stat.S_IWRITE)
             function(path)
 
-        shutil.rmtree(SITE, onexc=remove_readonly)
+        shutil.rmtree(SITE, onerror=remove_readonly)
     SITE.mkdir()
     for name in STATIC_FILES:
         source = ROOT / name

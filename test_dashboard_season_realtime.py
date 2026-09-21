@@ -36,7 +36,7 @@ def main() -> None:
     assert html.count('id="actor"') == 1
     assert 'class="global-nav"' in html and 'aria-current="page"' in html
     assert re.search(r"min-height:\s*44px", shell_css) and "prefers-reduced-motion" in shell_css
-    assert "./realtime.js" in service_worker
+    assert "./realtime.js?v=team1" in service_worker
     assert re.search(r"shell-v\d+", service_worker) and "./math-text.js" in service_worker
     assert "./promotion-board.html" in service_worker and 'url.pathname.endsWith("promotion-board.json")' in service_worker
     assert "promotion-board.html" in html and "재료 검수" in html

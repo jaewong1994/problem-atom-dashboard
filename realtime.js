@@ -1,4 +1,16 @@
 (function () {
+  if(window.PAAccount?.enabled){
+    const A=window.PAAccount;let claimsTimer=null,commentsTimer=null;
+    const listClaims=async()=>(await A.call('claims')).claims;
+    const action=async(action,questionId)=>A.call('claims',{action,questionId});
+    const listComments=async()=>({unavailable:false,comments:(await A.call('comments')).comments});
+    window.PARealtime={enabled:()=>true,
+      async init(_name,onChange){await A.ready;if(!A.current()?.user)return {enabled:false,reason:'로그인이 필요합니다.'};clearInterval(claimsTimer);claimsTimer=setInterval(async()=>{try{onChange(await listClaims());}catch(_){}},15000);return {enabled:true,userId:A.current().user.id,claims:await listClaims()};},
+      saveProfile:async()=>{},listClaims,claim:q=>action('claim',q),release:q=>action('release',q),complete:q=>action('complete',q),reopen:q=>action('reopen',q),listComments,
+      async initComments(_name,onChange){await A.ready;clearInterval(commentsTimer);commentsTimer=setInterval(async()=>{try{onChange((await listComments()).comments);}catch(_){}},15000);return {enabled:true,userId:A.current().user.id,...await listComments()};},
+      async addComment(assetId,kind,body){const d=await A.call('comments',{assetId,kind,body});return d.comments[d.comments.length-1];},deleteComment:commentId=>A.call('comments',{action:'delete',commentId})
+    };return;
+  }
   const CDN = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js";
   let client = null;
   let user = null;
@@ -102,6 +114,12 @@
     if (error) throw error;
   }
 
+  async function reopen(questionId) {
+    if (!client || !user) throw new Error("실시간 로그인이 필요합니다.");
+    const { error } = await client.from("pa_question_claims").update({status:"claimed",updated_at:new Date().toISOString()}).eq("question_id",questionId).eq("owner_id",user.id);
+    if(error)throw error;
+  }
+
   function mapComment(row) {
     return {
       commentId: row.comment_id,
@@ -172,7 +190,7 @@
   }
 
   window.PARealtime = {
-    enabled, init, saveProfile, claim, release, complete, listClaims,
+    enabled, init, saveProfile, claim, release, complete, reopen, listClaims,
     initComments, listComments, addComment, deleteComment,
   };
 })();
