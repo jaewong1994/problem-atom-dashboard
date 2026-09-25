@@ -160,6 +160,22 @@
                 "const": false
               }
             }
+          },
+          "distinct_bindings": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "f",
+                  "h",
+                  "a"
+                ]
+              }
+            }
           }
         }
       }
@@ -180,11 +196,19 @@
         },
         "subject": {
           "type": "string",
-          "enum": ["$f", "$h", "$a"]
+          "enum": [
+            "$f",
+            "$h",
+            "$a"
+          ]
         },
         "object": {
           "type": "string",
-          "enum": ["$f", "$h", "$a"],
+          "enum": [
+            "$f",
+            "$h",
+            "$a"
+          ],
           "description": "매개변수와 함수의 대응처럼 두 대상을 잇는 경우"
         }
       }

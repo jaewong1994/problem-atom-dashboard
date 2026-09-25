@@ -1,0 +1,1523 @@
+{
+  "schema": "problem-atom/source-witnesses/1",
+  "version": "20260921-v2",
+  "status": "ai_candidate",
+  "policy": "원본 문항 10건을 통합 자산의 연결 단계로 다시 이어 본 고정 검산 사례다. 각 문항의 given은 문면에서 읽은 조건이고, 목표 정보가 모두 도출되어야 통과다. 통과는 연결 문법의 재생 확인이지 정답 유일성 증명이 아니다. 문법 가교(exposure=grammar)는 재료 목록에 노출하지 않으며 가교 탐색으로만 끼워진다.",
+  "binding_elements": [
+    {
+      "id": "BE-1",
+      "name": "대상 고정",
+      "rule": "한 문항의 원자는 모두 같은 함수 이름(F)에 묶이고, 포장 함수(G)·매개변수(a)는 별도 이름을 가진다. 이름이 다르면 정보가 자동으로 넘어가지 않는다."
+    },
+    {
+      "id": "BE-2",
+      "name": "정보 손바뀜",
+      "rule": "앞 원자의 provides 가 다음 원자의 requires 와 같은 {type, subject, object, scope} 일 때만 붙는다. 이름이 비슷한 것은 검색 후보일 뿐이다."
+    },
+    {
+      "id": "BE-3",
+      "name": "문법 가교",
+      "rule": "세미나 원자는 문항마다 다른 이름을 가지지만, 그 사이를 잇는 규칙(개수 조건→근 구조, 조각식→개형, 곱=0→근 모음, 합=평균×개수, 사잇값)은 문항을 가로질러 반복된다. 이 규칙이 없으면 원자 목록은 섬으로 남는다."
+    },
+    {
+      "id": "BE-4",
+      "name": "구조 조건과 수치 조건의 분업",
+      "rule": "구조 조건(연속·미분가능·극값 개수·교점 개수·끊김)은 후보를 유한화하고, 수치 조건(함숫값·합·정수·양수)은 유일화한다. 10문항 모두 candidate_functions → selection_condition → tested_candidates 또는 finite_parameter_set → admissible_set → integer_answer 로 끝난다."
+    }
+  ],
+  "principles": [
+    {
+      "id": "P1",
+      "name": "정체 숨기기(포장)",
+      "statement": "삼차·사차 다항함수를 정적분(Q20-2106, Q14-2206, Q20-2111), 절댓값(Q14-2106, Q20-2109, Q22-2109), 극한(Q22-2109), 합성(Q22-2106), 조각 붙임(Q14-2109), 개수함수(Q22-2111)로 감싼다. 풀이의 첫 원자는 언제나 포장을 벗기는 표현 원자다.",
+      "questions": [
+        "KICE-2021-06-Q20",
+        "KICE-2021-06-Q14",
+        "KICE-2021-09-Q14",
+        "KICE-2021-09-Q20",
+        "KICE-2021-09-Q22",
+        "KICE-2021-11-Q20",
+        "KICE-2021-11-Q22",
+        "KICE-2022-06-Q14",
+        "KICE-2021-06-Q22"
+      ],
+      "authoring_use": "골격에 포장 종류를 하나 고르고, 그 포장을 벗기는 원자가 등록되어 있는지 먼저 확인한다."
+    },
+    {
+      "id": "P2",
+      "name": "특이점이 정보를 나른다",
+      "statement": "포장된 함수의 정보는 매끈한 곳이 아니라 특이점(꺾임·끊김·접점·개수 변화)에 있다. 연속·미분가능·개수 조건은 그 특이점이 어디에 몇 개 있어야 하는지를 말하고, 그것이 근의 위치·반복 횟수로 번역된다.",
+      "questions": [
+        "KICE-2021-06-Q14",
+        "KICE-2021-09-Q22",
+        "KICE-2021-11-Q22",
+        "KICE-2021-09-Q20",
+        "KICE-2021-06-Q22"
+      ],
+      "authoring_use": "구조 조건 카드는 '어떤 특이점을 몇 개 허용하는가'로 적는다. 특이점이 생기지 않는 조건은 장식이다."
+    },
+    {
+      "id": "P3",
+      "name": "삼차 근 구조 4분류가 경우의 공간",
+      "statement": "최고차항 계수가 정해진 삼차함수의 실근 구조는 세 단순근·이중근+단순근·삼중근·실근 하나뿐이다. 4점 문항은 조건으로 이 네 경우 중 셋을 죽이고 하나만 남긴다(Q22-2109: 이중근+단순근, Q22-2106: 이중근+단순근, Q14-2106: 원점 이중근).",
+      "questions": [
+        "KICE-2021-09-Q22",
+        "KICE-2021-06-Q22",
+        "KICE-2021-06-Q14",
+        "KICE-2021-11-Q22"
+      ],
+      "authoring_use": "조건을 설계할 때 네 경우 각각에 대입해 살아남는 경우 수를 센다. 둘 이상 남으면 수치 조건이 하나 더 필요하다."
+    },
+    {
+      "id": "P4",
+      "name": "개수함수의 불연속 자리는 네 가지",
+      "statement": "매개변수에 따른 실근 개수 g(t)는 접선·꺾인점, 불연속점, 점근선, 평행선에서만 값이 바뀐다. 개수 조건은 곧 이 자리들의 높이·간격 조건이다(Q20-2109: 접점 7과 꺾인점 0, Q22-2111: 창 길이 2와 두 근 간격).",
+      "questions": [
+        "KICE-2021-09-Q20",
+        "KICE-2021-11-Q22",
+        "KICE-2021-06-Q22"
+      ],
+      "authoring_use": "개수 조건을 줄 때는 어느 자리에서 개수가 바뀌는지 표로 먼저 만들고, 그 자리의 높이가 정수·유리수로 떨어지게 계수를 고른다."
+    },
+    {
+      "id": "P5",
+      "name": "유한화 뒤 유일화",
+      "statement": "구조 조건으로 후보를 유한 목록으로 만든 다음, 수치 조건(f(1)=4, 합 7, f(0)=α−2, p>0, 정수)으로 하나만 남긴다. 유일화 조건은 항상 마지막에 오며 계산 한 줄로 닫힌다.",
+      "questions": [
+        "KICE-2021-06-Q20",
+        "KICE-2021-06-Q14",
+        "KICE-2021-09-Q14",
+        "KICE-2021-06-Q22",
+        "KICE-2021-09-Q20",
+        "KICE-2021-09-Q22",
+        "KICE-2021-11-Q22"
+      ],
+      "authoring_use": "후보 목록의 크기를 기록하고, 유일화 조건 하나를 빼면 후보가 둘 이상 남는지(조건이 살아 있는지) 회귀로 확인한다."
+    },
+    {
+      "id": "P6",
+      "name": "기준점과 평행이동",
+      "statement": "근의 합은 기준점에서의 거리로, 정적분은 구간 이동으로, 극점은 원점으로 옮겨 계산량을 줄인다. 출제자는 답이 정수가 되도록 기준점을 잡는다(합 7 → α+3=2, 60∫ → 110).",
+      "questions": [
+        "KICE-2021-09-Q22",
+        "KICE-2021-11-Q20",
+        "KICE-2021-06-Q14",
+        "KICE-2021-09-Q20"
+      ],
+      "authoring_use": "답 변환(합·배수·서로소 비)은 기준점을 정수로 만든 뒤 붙인다."
+    },
+    {
+      "id": "P7",
+      "name": "보기형은 국소 판단의 합",
+      "statement": "ㄱㄴㄷ는 같은 표현 원자 하나를 공유하되 가정을 섞지 않는다. 각 보기는 계산이 아니라 국소 판단(값 대입, 꺾인점 기울기 비교, 사잇값)으로 닫힌다.",
+      "questions": [
+        "KICE-2021-09-Q14",
+        "KICE-2022-06-Q14",
+        "KICE-2022-11-Q14"
+      ],
+      "authoring_use": "보기 셋은 표현 원자 1개 + 판단 원자 3개로 짠다. 두 보기가 같은 판단 원자를 쓰면 하나는 장식이다."
+    }
+  ],
+  "witnesses": [
+    {
+      "id": "W-KICE-2021-06-Q20",
+      "source_question_id": "KICE-2021-06-Q20",
+      "official_answer": "8",
+      "seminar": "seminar-01 · 민재웅",
+      "subjects": {
+        "F": "f(x)=x³−12x²+45x+3, g(x)=∫ₐˣ{f(x)−f(t)}{f(t)}⁴dt",
+        "a": "적분 하한 a"
+      },
+      "bindings": {
+        "f": "F",
+        "h": "G",
+        "a": "a"
+      },
+      "facts": [
+        {
+          "type": "difference_integral",
+          "subject": "F",
+          "reads": "g의 정의 {f(x)−f(t)}"
+        },
+        {
+          "type": "continuous_weight",
+          "subject": "F",
+          "reads": "{f(t)}⁴는 연속"
+        },
+        {
+          "type": "differentiable_function",
+          "subject": "F",
+          "reads": "f는 다항함수"
+        },
+        {
+          "type": "positive_intervals",
+          "subject": "F",
+          "reads": "{f(t)}⁴≥0, 길이 있는 구간 적분은 양수"
+        },
+        {
+          "type": "two_simple_critical_roots",
+          "subject": "F",
+          "reads": "f′=3(x−3)(x−5)"
+        },
+        {
+          "type": "one_extremum_required",
+          "subject": "F",
+          "reads": "오직 하나의 극값"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-MOTIF-S01-01",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-02",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-03",
+          "bindings": {
+            "f": "F",
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-BRIDGE-03",
+          "bindings": {
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-LEVELS-03",
+          "bindings": {
+            "a": "a"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "integer_answer",
+          "subject": "a"
+        }
+      ],
+      "principle_ids": [
+        "P1",
+        "P5",
+        "P6"
+      ],
+      "note": "세미나 기록의 문법(항등식 미분, 부호변화 곱 규칙, 도함수≥0이면 증가)은 MOTIF-01·02·03 안에 흡수되어 있다.",
+      "fusion_target": true
+    },
+    {
+      "id": "W-KICE-2021-06-Q14",
+      "source_question_id": "KICE-2021-06-Q14",
+      "official_answer": "8",
+      "seminar": "seminar-01 · 김상범",
+      "subjects": {
+        "F": "F(x)=f(x−p)+q, f(x)=x³−3x²−9x−12; g(x)=(|x|/x)|F(x)| (x≠0)",
+        "a": "이동량 (p,q)"
+      },
+      "bindings": {
+        "f": "F",
+        "h": "G",
+        "a": "a"
+      },
+      "facts": [
+        {
+          "type": "signed_absolute",
+          "subject": "F",
+          "reads": "xg(x)=|xF(x)| ⇒ g=sign(x)|F|"
+        },
+        {
+          "type": "polynomial",
+          "subject": "F",
+          "reads": "F는 삼차 다항식"
+        },
+        {
+          "type": "continuous_required",
+          "subject": "F",
+          "reads": "g는 실수 전체에서 연속"
+        },
+        {
+          "type": "point_value_defined",
+          "subject": "F",
+          "reads": "x=0의 g 값은 극한으로 정의"
+        },
+        {
+          "type": "polynomial_known",
+          "subject": "F",
+          "reads": "f의 식이 주어져 F는 p,q만 미정"
+        },
+        {
+          "type": "nonzero_polynomial",
+          "subject": "F",
+          "reads": "삼차식"
+        },
+        {
+          "type": "nonconstant_polynomial",
+          "subject": "F",
+          "reads": "삼차식"
+        },
+        {
+          "type": "nonsmooth_count_condition",
+          "subject": "F",
+          "reads": "(나) 미분불가점 개수 1"
+        },
+        {
+          "type": "selection_condition",
+          "subject": "F",
+          "reads": "p, q 양수"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-MOTIF-S01-04",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-BRIDGE-06",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-05",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-05",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-BRIDGE-02",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-06",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-13",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "tested_candidates",
+          "subject": "F"
+        }
+      ],
+      "principle_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P5",
+        "P6"
+      ],
+      "note": "signed_corners(원점 밖 단순근 꺾임)에서 shift_constraints(원점=이중근)로 가는 번역이 기존 자산에 없었다 → PA-GRAMMAR-05.",
+      "fusion_target": true
+    },
+    {
+      "id": "W-KICE-2021-09-Q14",
+      "source_question_id": "KICE-2021-09-Q14",
+      "official_answer": "⑤",
+      "seminar": "seminar-01 · 이광훈",
+      "subjects": {
+        "F": "g(x)=f(x)−f(0) (x≤0), f(x+p)−f(p) (x>0), f′=3x(x−2)",
+        "p": "이동량 p>0"
+      },
+      "bindings": {
+        "f": "F",
+        "h": "G",
+        "a": "p"
+      },
+      "facts": [
+        {
+          "type": "derivative_known",
+          "subject": "F",
+          "reads": "최고차항 1, f′(0)=f′(2)=0"
+        },
+        {
+          "type": "normalized_pieces",
+          "subject": "F",
+          "reads": "각 조각에서 기준 함숫값을 뺌"
+        },
+        {
+          "type": "value_match",
+          "subject": "F",
+          "reads": "두 조각 모두 x=0에서 0"
+        },
+        {
+          "type": "differentiability_required",
+          "subject": "F",
+          "reads": "ㄴ: 실수 전체에서 미분가능"
+        },
+        {
+          "type": "separate_claims",
+          "subject": "F",
+          "reads": "ㄱ p=1, ㄴ p 개수, ㄷ p≥2"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-MOTIF-S01-07",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-08",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-08",
+          "bindings": {
+            "f": "F",
+            "a": "p"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-BRIDGE-03",
+          "bindings": {
+            "a": "p"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-LEVELS-03",
+          "bindings": {
+            "a": "p"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-09",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "claim_results",
+          "subject": "F"
+        },
+        {
+          "type": "integer_answer",
+          "subject": "p"
+        }
+      ],
+      "principle_ids": [
+        "P1",
+        "P5",
+        "P7"
+      ],
+      "note": "boundary_equations가 종점이라 ㄴ의 '개수 1'로 못 가던 끊김 → PA-GRAMMAR-08.",
+      "fusion_target": false,
+      "fusion_note": "이 기록의 F는 포장 함수(g)라서, 앞 문항이 확정한 f를 F로 이어 붙이면 f와 g가 같은 대상으로 섞인다(결합 요소 BE-1 위반). 뒤 문항으로는 쓰지 않는다."
+    },
+    {
+      "id": "W-KICE-2021-06-Q22",
+      "source_question_id": "KICE-2021-06-Q22",
+      "official_answer": "61",
+      "seminar": "seminar-01 · 김연수",
+      "subjects": {
+        "F": "최고차항 계수 0이 아닌 삼차함수 f"
+      },
+      "bindings": {
+        "f": "F",
+        "h": "H",
+        "a": "a"
+      },
+      "facts": [
+        {
+          "type": "composite_equation",
+          "subject": "F",
+          "reads": "(나) f(x−f(x))=0"
+        },
+        {
+          "type": "two_distinct_roots",
+          "subject": "F",
+          "reads": "(가) f=0 서로 다른 실근 2개"
+        },
+        {
+          "type": "nonzero_scale",
+          "subject": "F",
+          "reads": "m=1"
+        },
+        {
+          "type": "original_composite_family",
+          "subject": "F",
+          "reads": "원문 m=1 삼차식 조건 일체"
+        },
+        {
+          "type": "slope_point_condition",
+          "subject": "F",
+          "reads": "f′(1)=1"
+        },
+        {
+          "type": "known_value_condition",
+          "subject": "F",
+          "reads": "f(1)=4"
+        },
+        {
+          "type": "selection_condition",
+          "subject": "F",
+          "reads": "f′(0)>1"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-MOTIF-S01-10",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-11",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-12",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-13",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "tested_candidates",
+          "subject": "F"
+        }
+      ],
+      "principle_ids": [
+        "P1",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "note": "기존 자산만으로 재생된다. (가)의 '실근 2개'는 P3(이중근+단순근)의 문면 표현이다.",
+      "fusion_target": true
+    },
+    {
+      "id": "W-KICE-2021-09-Q20",
+      "source_question_id": "KICE-2021-09-Q20",
+      "official_answer": "21",
+      "seminar": "seminar-02 · 민재웅",
+      "subjects": {
+        "F": "g(x)=f(x)+|f(x)+x|−6x, f=½x³−9⁄2x²+10x",
+        "k": "정수 k"
+      },
+      "bindings": {
+        "f": "F",
+        "h": "G",
+        "a": "k"
+      },
+      "facts": [
+        {
+          "type": "positive_quadratic_factor",
+          "subject": "F",
+          "reads": "f(x)+x=½x(x²−9x+22), 판별식<0"
+        },
+        {
+          "type": "polynomial",
+          "subject": "F",
+          "reads": "조각마다 다항식"
+        },
+        {
+          "type": "separable_parameter_equation",
+          "subject": "F",
+          "reads": "f(x)+|f(x)+x|=6x+k ⇒ g(x)=k"
+        },
+        {
+          "type": "requested_count",
+          "subject": "F",
+          "reads": "서로 다른 실근 4개"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-S02-LEVELS-01",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-02",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-01",
+          "bindings": {
+            "f": "F",
+            "a": "k"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-LEVELS-02",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-BRIDGE-05",
+          "bindings": {
+            "f": "F",
+            "a": "k"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-LEVELS-03",
+          "bindings": {
+            "a": "k"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "integer_answer",
+          "subject": "k"
+        }
+      ],
+      "principle_ids": [
+        "P1",
+        "P2",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "note": "LEVELS 레시피는 piecewise_formula → graph_profile, 그리고 horizontal_problem·height_identity가 given이었다. 세미나 개념 2·3(상수 분리, 조각별 미분과 이음점 확인)이 문법 가교 01·02가 된다.",
+      "fusion_target": false,
+      "fusion_note": "이 기록의 F는 포장 함수(g)라서, 앞 문항이 확정한 f를 F로 이어 붙이면 f와 g가 같은 대상으로 섞인다(결합 요소 BE-1 위반). 뒤 문항으로는 쓰지 않는다."
+    },
+    {
+      "id": "W-KICE-2021-09-Q22",
+      "source_question_id": "KICE-2021-09-Q22",
+      "official_answer": "108",
+      "seminar": "seminar-02 · 민재웅",
+      "subjects": {
+        "F": "최고차항 계수 1인 삼차함수 f (계수 미정)",
+        "G": "g(x)=f(x−3)·lim(|f(x+h)|−|f(x−h)|)/h"
+      },
+      "bindings": {
+        "f": "F",
+        "h": "G",
+        "a": "a"
+      },
+      "facts": [
+        {
+          "type": "symmetric_difference",
+          "subject": "F",
+          "reads": "lim_{h→0+}(|f(x+h)|−|f(x−h)|)/h"
+        },
+        {
+          "type": "polynomial_known",
+          "subject": "F",
+          "reads": "삼차·최고차항 1로 형태가 정해진 다항식(계수 미정)"
+        },
+        {
+          "type": "nonzero_polynomial",
+          "subject": "F",
+          "reads": "삼차식"
+        },
+        {
+          "type": "continuous_factor",
+          "subject": "F",
+          "reads": "f(x−3)은 연속"
+        },
+        {
+          "type": "product_continuity",
+          "subject": "F",
+          "reads": "(가) g 연속"
+        },
+        {
+          "type": "point_value_defined",
+          "subject": "F",
+          "reads": "단순근에서 h(α)=0"
+        },
+        {
+          "type": "finite_polynomial_roots",
+          "subject": "F",
+          "reads": "삼차식의 근은 유한"
+        },
+        {
+          "type": "cubic_leading",
+          "subject": "F",
+          "reads": "최고차항 계수 1"
+        },
+        {
+          "type": "product_zero_equation",
+          "subject": "G",
+          "object": "F",
+          "reads": "g=0 ⇔ f(x−3)=0 ∨ f=0 ∨ f′=0"
+        },
+        {
+          "type": "root_sum_condition",
+          "subject": "G",
+          "reads": "(나) 서로 다른 실근 4개의 합 7"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-S02-JUMP-01",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-BRIDGE-06",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-03",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-JUMP-02",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-04",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-JUMP-03",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-06",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-09",
+          "bindings": {
+            "f": "F",
+            "h": "G"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-JUMP-04",
+          "bindings": {
+            "f": "G"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-10",
+          "bindings": {
+            "f": "F",
+            "h": "G"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-13",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "tested_candidates",
+          "subject": "F"
+        }
+      ],
+      "principle_ids": [
+        "P1",
+        "P2",
+        "P3",
+        "P5",
+        "P6"
+      ],
+      "note": "JUMP 레시피의 네 원자는 서로 붙지 않는 섬이었다(one_sided_derivatives, factor_zero, root_shape_candidates가 모두 종점). 세미나 개념 2·4·5·6이 문법 가교 03·04·06·09·10이다. 가장 많은 문법이 필요한 문항.",
+      "fusion_target": true
+    },
+    {
+      "id": "W-KICE-2021-11-Q20",
+      "source_question_id": "KICE-2021-11-Q20",
+      "official_answer": "110",
+      "seminar": "seminar-02 · 이광훈",
+      "subjects": {
+        "F": "f: [0,1]에서 f(x)=x, f(x+1)−xf(x)=ax+b"
+      },
+      "bindings": {
+        "f": "F",
+        "h": "G",
+        "a": "a"
+      },
+      "facts": [
+        {
+          "type": "known_interval",
+          "subject": "F",
+          "reads": "(가) [0,1]에서 f(x)=x"
+        },
+        {
+          "type": "recurrence_relation",
+          "subject": "F",
+          "reads": "(나) f(x+1)−xf(x)=ax+b"
+        },
+        {
+          "type": "differentiability_required",
+          "subject": "F",
+          "reads": "실수 전체에서 미분가능"
+        },
+        {
+          "type": "recurrence_unique_constants",
+          "subject": "F",
+          "reads": "f(1)=1, f′(1)=1로 a,b 결정"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-S02-RECURRENCE-01",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-RECURRENCE-03",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-RECURRENCE-02",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "shifted_integral",
+          "subject": "F"
+        },
+        {
+          "type": "next_interval",
+          "subject": "F"
+        }
+      ],
+      "principle_ids": [
+        "P1",
+        "P6"
+      ],
+      "note": "기존 자산만으로 재생된다. 항등식 미분(CAND-CON-031)은 RECURRENCE-01 안에 흡수.",
+      "fusion_target": true
+    },
+    {
+      "id": "W-KICE-2021-11-Q22",
+      "source_question_id": "KICE-2021-11-Q22",
+      "official_answer": "9",
+      "seminar": "seminar-02 · 이광훈·민재웅",
+      "subjects": {
+        "F": "최고차항 계수 ½인 삼차함수 f, g(t)=#{f′=0 in [t,t+2]}"
+      },
+      "bindings": {
+        "f": "F",
+        "h": "G",
+        "a": "a"
+      },
+      "facts": [
+        {
+          "type": "two_points",
+          "subject": "F",
+          "reads": "f′=0의 두 근 α<β"
+        },
+        {
+          "type": "closed_window",
+          "subject": "F",
+          "reads": "닫힌구간 [t, t+2]"
+        },
+        {
+          "type": "window_limit_bound",
+          "subject": "F",
+          "reads": "(가) 좌우 극한 합 ≤ 2"
+        },
+        {
+          "type": "window_two_exists",
+          "subject": "F",
+          "reads": "(나) g(f(1))=g(f(4))=2"
+        },
+        {
+          "type": "equal_values",
+          "subject": "F",
+          "reads": "f(1)=f(4)=α"
+        },
+        {
+          "type": "cubic_leading",
+          "subject": "F",
+          "reads": "최고차항 계수 ½"
+        },
+        {
+          "type": "selection_condition",
+          "subject": "F",
+          "reads": "(나) g(f(0))=1 ⇒ f(0)=α−2"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-S02-WINDOW-01",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-WINDOW-02",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-WINDOW-03",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-07",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-WINDOW-04",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "tested_candidates",
+          "subject": "F"
+        }
+      ],
+      "principle_ids": [
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "note": "root_gap과 factored_family가 각각 종점이라 candidate_functions로 합류하지 못했다 → PA-GRAMMAR-07.",
+      "fusion_target": true
+    },
+    {
+      "id": "W-KICE-2022-06-Q14",
+      "source_question_id": "KICE-2022-06-Q14",
+      "official_answer": "④",
+      "seminar": "seminar-02 · 김상범",
+      "subjects": {
+        "G": "최고차항 계수 1인 삼차함수 g(x)=∓∫₀ˣf(t)dt (x<0 / x≥0)",
+        "F": "연속함수 f"
+      },
+      "bindings": {
+        "f": "F",
+        "h": "G",
+        "a": "a"
+      },
+      "facts": [
+        {
+          "type": "definite_integral_definition",
+          "subject": "G",
+          "reads": "g=±∫₀ˣ f"
+        },
+        {
+          "type": "opposite_integral_pieces",
+          "subject": "G",
+          "reads": "x<0에서 −, x≥0에서 +"
+        },
+        {
+          "type": "continuity_at_boundary",
+          "subject": "G",
+          "reads": "g는 x=0에서 미분가능"
+        },
+        {
+          "type": "polynomial",
+          "subject": "G",
+          "reads": "g는 삼차 다항식"
+        },
+        {
+          "type": "polynomial",
+          "subject": "F",
+          "reads": "f의 조각은 이차식"
+        },
+        {
+          "type": "separate_claims",
+          "subject": "F",
+          "reads": "ㄱ f(0)=0, ㄴ 극댓값, ㄷ f(x)=x 실근 3개"
+        },
+        {
+          "type": "corner_line_slope",
+          "subject": "F",
+          "reads": "ㄷ: 직선 y=x, 기울기 1"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-S02-SIGNED-01",
+          "bindings": {
+            "f": "G"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-SIGNED-02",
+          "bindings": {
+            "f": "G"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-11",
+          "bindings": {
+            "f": "F",
+            "h": "G"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-02",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-12",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-MOTIF-S01-09",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "claim_results",
+          "subject": "F"
+        },
+        {
+          "type": "graph_profile",
+          "subject": "F"
+        },
+        {
+          "type": "level_counts",
+          "subject": "F"
+        }
+      ],
+      "principle_ids": [
+        "P1",
+        "P2",
+        "P7"
+      ],
+      "note": "SIGNED 레시피는 g의 식(repeated_factor)에서 끝났고 보기가 묻는 f로 돌아오지 못했다(선수교체) → PA-GRAMMAR-11. ㄷ의 꺾인점 기울기 비교 → PA-GRAMMAR-12.",
+      "fusion_target": true
+    },
+    {
+      "id": "W-KICE-2022-11-Q14",
+      "source_question_id": "KICE-2022-11-Q14",
+      "official_answer": "③",
+      "seminar": "seminar-02 · 김연수",
+      "subjects": {
+        "F": "x(t)=t(t−1)(at+b), a≠0, 0≤t≤1"
+      },
+      "bindings": {
+        "f": "F",
+        "h": "G",
+        "a": "a"
+      },
+      "facts": [
+        {
+          "type": "position_velocity",
+          "subject": "F",
+          "reads": "v=x′"
+        },
+        {
+          "type": "time_interval",
+          "subject": "F",
+          "reads": "0≤t≤1"
+        },
+        {
+          "type": "same_end_position",
+          "subject": "F",
+          "reads": "x(0)=x(1)=0"
+        },
+        {
+          "type": "total_distance",
+          "subject": "F",
+          "reads": "∫₀¹|v|dt=2"
+        },
+        {
+          "type": "position_family",
+          "subject": "F",
+          "reads": "삼차 위치식 ⇒ 방향전환 ≤2"
+        },
+        {
+          "type": "strict_position_bound",
+          "subject": "F",
+          "reads": "ㄷ 가정: 모든 t에서 |x(t)|<1"
+        },
+        {
+          "type": "continuous_required",
+          "subject": "F",
+          "reads": "x는 다항함수라 연속"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-S02-TRAVEL-01",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-TRAVEL-04",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-TRAVEL-05",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-13",
+          "bindings": {
+            "f": "F"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "distance_definition",
+          "subject": "F"
+        },
+        {
+          "type": "distance_bound",
+          "subject": "F"
+        },
+        {
+          "type": "interior_zero",
+          "subject": "F"
+        }
+      ],
+      "principle_ids": [
+        "P2",
+        "P7"
+      ],
+      "note": "ㄷ의 사잇값 논증이 자산에 없었다. 방향전환 상한(삼차 위치식)을 쓰는 단계는 보이는 원자(TRAVEL-05), 사잇값 자체는 문법 가교 13.",
+      "fusion_target": true
+    },
+    {
+      "id": "W-SEMINAR-20260923-KIM_SANGBEOM",
+      "source_question_id": "SEMINAR-20260923-KIM_SANGBEOM",
+      "seminar": "2026-09-23 · 김상범",
+      "official_answer": null,
+      "independently_checked_answer": "⑤ (ㄱ, ㄴ, ㄷ)",
+      "coverage": "core_reasoning_route; complete solution in seminar intake report",
+      "bindings": {
+        "f": "F",
+        "h": "H",
+        "a": "a"
+      },
+      "facts": [
+        {
+          "type": "signed_area_difference",
+          "subject": "F",
+          "reads": "g(0)=∫₀¹f−∫₀¹|f|"
+        },
+        {
+          "type": "continuous_on_interval",
+          "subject": "F",
+          "reads": "f는 삼차함수이므로 [0,1]에서 연속"
+        },
+        {
+          "type": "forward_interval",
+          "subject": "F",
+          "reads": "0<1"
+        },
+        {
+          "type": "moving_root_cubic",
+          "subject": "F",
+          "object": "a",
+          "reads": "f=x(x−1)(x−a)"
+        },
+        {
+          "type": "signed_integral_constraints",
+          "subject": "F",
+          "object": "a",
+          "reads": "g(−1)>0, g(t)=∫ₜᵗ⁺¹f−∫₀¹|f|"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-S03-AREA-01",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S03-AREA-03",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "admissible_set",
+          "subject": "a"
+        }
+      ],
+      "principle_ids": [
+        "P1",
+        "P5",
+        "P6"
+      ],
+      "note": "ㄴ의 핵심 경로 a<−1. ㄱ·ㄷ은 별도 가정 범위에서 검산. 원문 표의 a≥1에서 g(0)=−2B는 g(0)=0으로 정정.",
+      "fusion_target": false
+    },
+    {
+      "id": "W-SEMINAR-20260923-KIM_YEONSU",
+      "source_question_id": "SEMINAR-20260923-KIM_YEONSU",
+      "seminar": "2026-09-23 · 김연수",
+      "official_answer": null,
+      "independently_checked_answer": "80",
+      "coverage": "core_reasoning_route; complete solution in seminar intake report",
+      "bindings": {
+        "f": "F",
+        "h": "H",
+        "a": "a"
+      },
+      "facts": [
+        {
+          "type": "polynomial_known",
+          "subject": "H",
+          "reads": "H=x³+x²−x"
+        },
+        {
+          "type": "absolute_graph_comparison",
+          "subject": "F",
+          "object": "H",
+          "reads": "F=H−4|x|, F(x)=a의 교점"
+        },
+        {
+          "type": "requested_count",
+          "subject": "F",
+          "reads": "a<0에서 서로 다른 교점 2개"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-S03-V-01",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-GRAMMAR-01",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S03-GRAPH-01",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S02-LEVELS-02",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-BRIDGE-05",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S03-V-02",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S03-AREA-04",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "area_result",
+          "subject": "F"
+        }
+      ],
+      "principle_ids": [
+        "P1",
+        "P5",
+        "P6"
+      ],
+      "note": "a=−3에서만 두 교점. 식이 바뀌는 x=0에서 적분을 나눠 S=8/3. 공식 출처 식별은 파일명 외 검증 대기.",
+      "fusion_target": false
+    },
+    {
+      "id": "W-SEMINAR-20260923-MIN_JAEWOONG",
+      "source_question_id": "SEMINAR-20260923-MIN_JAEWOONG",
+      "seminar": "2026-09-23 · 민재웅",
+      "official_answer": null,
+      "independently_checked_answer": "① (ㄱ)",
+      "coverage": "core_reasoning_route; complete solution in seminar intake report",
+      "bindings": {
+        "f": "F",
+        "h": "H",
+        "a": "a"
+      },
+      "facts": [
+        {
+          "type": "right_limit_product",
+          "subject": "F",
+          "object": "H",
+          "reads": "F(x)=H(x+)H((x+2)+)"
+        },
+        {
+          "type": "piecewise_polynomial_definition",
+          "subject": "H",
+          "reads": "H=x (|x|>1), H=f (|x|≤1). f는 다항식이고 [-1,1]에서 감소, f(−1)=−2."
+        },
+        {
+          "type": "positive_shift",
+          "subject": "F",
+          "reads": "이동 간격 2"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "PA-S03-LIMIT-01",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S03-LIMIT-02",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S03-GRAPH-01",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        },
+        {
+          "id": "PA-S03-MIN-01",
+          "bindings": {
+            "f": "F",
+            "h": "H",
+            "a": "a"
+          },
+          "scope": "main"
+        }
+      ],
+      "goals": [
+        {
+          "type": "minimum_result",
+          "subject": "F"
+        }
+      ],
+      "principle_ids": [
+        "P1",
+        "P5",
+        "P6"
+      ],
+      "note": "ㄷ의 핵심 경로: 최솟값 없음. 기존 KICE-2022-11-Q14(이동거리)와 파일 날짜가 겹치므로 공식 ID를 공유하지 않는다. 이전 AI 분석을 옮긴 양식지를 독립 증거로 중복 집계하지 않는다.",
+      "fusion_target": false
+    }
+  ],
+  "recombinations": [
+    {
+      "id": "RC-01",
+      "from": "KICE-2021-11-Q22",
+      "to": "KICE-2021-06-Q20",
+      "name": "함수 확정 → 정적분 정의 함수의 극값 개수",
+      "grammar": [
+        "PA-GRAMMAR-14",
+        "PA-BRIDGE-02",
+        "PA-BRIDGE-08"
+      ],
+      "statement": "2021-11 22번의 조건으로 f=½(x−1)²(x−4)+1을 확정한 뒤, g(x)=∫ₐˣ{f(x)−f(t)}{f(t)}⁴dt가 극값 하나를 갖는 모든 a의 합을 묻는다.",
+      "check": "f(1)=f(4)=1이므로 f′의 서로 다른 두 근이 있고(BRIDGE-08), f′=3/2(x−1)(x−3)이므로 a∈{1,3}, 합 4. 원문 수치 그대로 성립하는 양성 결합.",
+      "answer": "4",
+      "status": "ai_candidate"
+    },
+    {
+      "id": "RC-02",
+      "from": "KICE-2021-09-Q22",
+      "to": "KICE-2021-06-Q14",
+      "name": "함수 확정 → 부호 절댓값의 꺾임 개수",
+      "grammar": [
+        "PA-GRAMMAR-14",
+        "PA-GRAMMAR-15",
+        "PA-BRIDGE-02",
+        "PA-GRAMMAR-05"
+      ],
+      "statement": "2021-09 22번의 조건으로 f=(x+1)²(x−2)를 확정한 뒤, g(x)=(|x|/x)|f(x−p)+q|의 미분불가점이 하나가 되는 양수 p,q를 묻는다.",
+      "check": "F=f(x−p)+q의 원점이 이중근이어야 하므로 f′(−p)=0, f′=3(x+1)(x−1)에서 p=1이면 q=−f(−1)=0으로 양수가 아니고 p=−1은 음수. 양수 쌍이 없다. 결합은 이어지지만 이 수치로는 문항이 성립하지 않는다 — 앞 문항의 수치를 다시 정해야 한다는 검산 층의 판정.",
+      "answer": "없음(수치 재설계 필요)",
+      "status": "ai_candidate"
+    },
+    {
+      "id": "RC-03",
+      "from": "KICE-2021-11-Q22",
+      "to": "KICE-2021-09-Q22",
+      "name": "함수 확정 → 절댓값 극한 곱의 연속 조건",
+      "grammar": [
+        "PA-GRAMMAR-14",
+        "PA-BRIDGE-06",
+        "PA-GRAMMAR-03",
+        "PA-GRAMMAR-15"
+      ],
+      "statement": "2021-11 22번의 조건으로 f를 확정한 뒤, g(x)=f(x−3)·lim(|f(x+h)|−|f(x−h)|)/h가 연속이 되는지를 묻는다.",
+      "check": "f=½(x−1)²(x−4)+1은 f(1)=1>0, f(3)=−1<0이라 단순근이 셋이고, 가장 왼쪽 단순근 α에서 f(α−3)=0이 필요하지만 그보다 왼쪽에 근이 없다. (가)는 성립할 수 없다. 이중근+단순근 구조를 가지려면 앞 문항의 수치를 바꿔야 한다.",
+      "answer": "불가(수치 재설계 필요)",
+      "status": "ai_candidate"
+    }
+  ]
+}

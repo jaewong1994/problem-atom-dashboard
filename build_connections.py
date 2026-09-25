@@ -202,7 +202,22 @@ TYPES.update({
     'zero_integer_root_sum':'정수인 허용값의 합이 0임',
 })
 
+# 2026-09-21 문법 가교(connection-incoming/seminar-grammar-bridges.json)가 쓰는 정보 종류.
+# 원본 문항 10건 재생 회귀(source-witnesses.json)에서 끊긴 자리에만 추가했다.
+TYPES.update({
+    'separable_parameter_equation':'매개변수를 한쪽으로 분리해 F(x)=k 꼴로 쓸 수 있는 방정식',
+    'nonsmooth_count_condition':'미분불가점 또는 불연속점의 개수 조건',
+    'root_sum_condition':'서로 다른 근의 합이 주어진 값과 같다는 조건',
+    'product_zero_equation':'인수의 곱이 0인 방정식(인수별 근의 합집합으로 푼다)',
+    'corner_line_slope':'꺾인점을 지나는 직선의 기울기 조건',
+    'strict_position_bound':'범위 안 모든 시각에서 위치의 크기가 상한보다 작음',
+    'sign_change_values':'연속함수가 범위 안에서 부호가 다른 두 값을 가짐',
+    'interior_zero':'범위 안에 함숫값이 0인 점이 존재',
+})
+
 OPS=[]
+TYPES.update({'signed_area_difference': '같은 구간의 정적분에서 절댓값 적분을 뺀 식', 'continuous_on_interval': '해당 닫힌구간에서 연속인 함수', 'forward_interval': '아래끝보다 위끝이 큰 적분구간', 'negative_area_identity': '차가 음수 부분 넓이의 −2배라는 관계', 'zero_signed_difference': '정적분과 절댓값 적분의 차가 0', 'negative_interval_sample': '해당 구간에 함숫값이 0보다 작은 점이 있음', 'nonnegative_on_interval': '해당 구간 전체에서 함숫값이 0보다 크거나 같음', 'moving_root_cubic': '두 고정된 근과 움직이는 근으로 나타낸 삼차함수', 'signed_integral_constraints': '이 함수의 정적분·넓이에 관한 매개변수 조건', 'absolute_graph_comparison': '다항식에서 절댓값 그래프를 빼 수평선과 비교하는 식', 'piecewise_polynomial': '유한한 구간별로 다항식인 함수', 'bounded_area_family': '허용 매개변수마다 곡선들이 둘러싸는 구간과 함수 차', 'area_result': '두 그래프 사이의 넓이', 'piecewise_polynomial_definition': '구간·식·끝점 포함 여부가 주어진 조각 다항식', 'right_limit_product': '같은 함수의 우극한과 이동한 우극한의 곱', 'left_limit_product': '같은 함수의 좌극한과 이동한 좌극한의 곱', 'positive_shift': '양수로 주어진 수평 이동 간격', 'endpoint_values': '구간 경계에 실제로 정의된 함숫값', 'boundary_limits': '구간 경계에서의 좌극한과 우극한', 'continuity_report': '경계별 연속 여부와 필요한 조건', 'minimum_result': '최솟값이 있는지와 그 값'})
+
 def op(ident,name,needs,gives,guard,*,kind='step',forbids='',supports=None,work=None,power='representation'):
     OPS.append({'id':ident,'name':name,'kind':kind,'requires':ports(needs),'provides':ports(gives),
                 'forbids':ports(forbids),'guard_note':guard,'supports':supports or [ident],
@@ -329,6 +344,8 @@ def validate_extension(ext, known_records, known_ops, types):
         if o.get('review_status')!='ai_candidate' or o.get('contract_status')!='encoded':raise ValueError('자동 승인 금지')
         if o.get('effect')!='derive' or not isinstance(o.get('revision'),int) or o['revision']<1:raise ValueError('연산 또는 판본 누락')
         if not isinstance(o.get('forbids'),list):raise ValueError('금지 조건 배열 필요')
+        distinct=o.get('distinct_bindings',[])
+        if not isinstance(distinct,list) or any(not isinstance(pair,list) or len(pair)!=2 or pair[0]==pair[1] or any(s not in ('f','h','a') for s in pair) for pair in distinct):raise ValueError('서로 다른 대상 조건 형식 오류')
         if not isinstance(o.get('work'),dict) or any(type(o['work'].get(k)) is not int or o['work'][k]<0 for k in ('algebra','branches')):raise ValueError('계획 작업량 형식 오류')
         if o.get('influence',{}).get('role') not in ('representation','constraint','enabler') or o['influence'].get('calibrated') is not False:raise ValueError('영향 역할 또는 보정 상태 오류')
         if not set(o['supports']) <= rids:raise ValueError('출처 없는 연결')
@@ -367,7 +384,7 @@ def build():
       'sources':[{ 'file':s,'sha256':source_digest(ROOT/s)} for s in sources],
       'policy':{'human_approval_unchanged':True,'unknown_is_allowed':False,'auto_publish_items':False,
         'difficulty_calibrated':False,'max_bridge_depth':3,'legacy_studio':'retired'},
-      'contradictions':[['positive_intervals','zero_weight_interval'],['nonzero_domain','division_by_zero'],['finite_jump','jump_unbounded'],['nonzero_scale','zero_scale']],
+      'contradictions':[['positive_intervals','zero_weight_interval'],['nonzero_domain','division_by_zero'],['finite_jump','jump_unbounded'],['nonzero_scale','zero_scale'],['nonnegative_on_interval','negative_interval_sample']],
       'language':read(ROOT/'composition-catalog.json')['language'],
       'ontology':read(ROOT/'composition-catalog.json')['ontology']}
     encoded=json.dumps(payload,ensure_ascii=False,sort_keys=True).encode()

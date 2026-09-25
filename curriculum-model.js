@@ -21,11 +21,22 @@
  // Algebra, counting candidate roots, and information transfer are supporting skills.
  // They cannot alone certify a probability/statistics or other unstocked chapter.
  add(['PA-MOTIF-S01-09','PA-MOTIF-S01-13','PA-S02-LEVELS-01','PA-S02-LEVELS-03','PA-S02-JUMP-04','PA-S02-RECURRENCE-03','PA-S02-WINDOW-01','PA-S02-WINDOW-03','PA-S02-WINDOW-04','PA-CAND-SKL-20260910-033','PA-CAND-SKL-20260914-001','PA-BRIDGE-03','PA-BRIDGE-05','PA-BRIDGE-06'],[]);
+ // 2026-09-21 문법 가교와 이동 단계(connection-incoming/seminar-grammar-bridges.json).
+ add(['PA-GRAMMAR-02','PA-GRAMMAR-05','PA-GRAMMAR-07','PA-GRAMMAR-12','PA-S02-TRAVEL-05'],[DIFF]);
+ add(['PA-GRAMMAR-03','PA-GRAMMAR-13'],[LIMIT]);
+ add(['PA-GRAMMAR-11'],[INT]);
+ add(['PA-GRAMMAR-01','PA-GRAMMAR-04','PA-GRAMMAR-06','PA-GRAMMAR-08','PA-GRAMMAR-09','PA-GRAMMAR-10','PA-GRAMMAR-14'],[]);
+ add(['PA-GRAMMAR-15'],[DIFF]);
+ add(["PA-S03-AREA-01", "PA-S03-AREA-02", "PA-S03-AREA-03", "PA-S03-V-02", "PA-S03-AREA-04"],["m2-integrals"]);
+ add(["PA-S03-V-01", "PA-S03-GRAPH-01", "PA-S03-MIN-01"],["m2-derivatives"]);
+ add(["PA-S03-LIMIT-01", "PA-S03-LIMIT-03", "PA-S03-LIMIT-02"],["m2-limits"]);
  const factUnits={};
  function facts(list,unit){for(const key of list.split(' '))factUnits[key]=[unit];}
  facts('difference_integral continuous_weight positive_intervals zero_weight_interval changing_weight_sign integral_sign shifted_integral definite_integral_definition base_zero opposite_integral_pieces distance_definition distance_result',INT);
  facts('derivative_product two_simple_critical_roots one_extremum_required signed_corners critical_points derivative_known slope_match differentiability_required tangent_candidates slope_point_condition graph_profile one_sided_derivatives position_velocity turn_times zero_velocity_time nonzero_derivative differentiable_function parameter_is_critical_root',DIFF);
  facts('continuous_required finite_jump continuous_factor product_continuity continuity_at_boundary jump_unbounded window_limit_bound',LIMIT);
+ facts('sign_change_values interior_zero',LIMIT);
+ facts('corner_line_slope nonsmooth_count_condition',DIFF);
  const get=id=>units.find(u=>u.id===id)||null;
  function normalize(value){if(value==null)return null;const fusion=value.mode==='fusion',main=fusion?value.units:[value.unit];if(value.mode!=null&&!['unit','fusion'].includes(value.mode))throw Error('제작 틀 형식이 다릅니다.');if(!Array.isArray(main)||!main.length||main.some(id=>!get(id))||new Set(main).size!==main.length||!Array.isArray(value.supporting_units)||value.supporting_units.some(id=>!get(id)||main.includes(id))||new Set(value.supporting_units).size!==value.supporting_units.length)throw Error('대단원 선택 형식이 다릅니다.');if(fusion&&(main.length<2||new Set(main.map(id=>get(id).subject)).size<2))throw Error('융합형은 서로 다른 과목에서 두 대단원 이상 고르세요.');return {...(fusion?{mode:'fusion',units:[...main].sort()}:{unit:main[0]}),supporting_units:[...value.supporting_units].sort()};}
  const mainUnits=value=>{const s=normalize(value);return s?(s.mode==='fusion'?s.units:[s.unit]):[];};

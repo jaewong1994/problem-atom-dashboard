@@ -15,12 +15,13 @@
    // Same-tab navigation also works in embedded browsers that suppress popups.
    window.location.assign(url);
   }
+  function openDesign(design,brief){window.location.assign('http://127.0.0.1:8987/connections.html#design='+encodeURIComponent(JSON.stringify({schema:'problem-atom/design-draft/1',design,brief})));}
   async function exportHwpx(bundle){
    if(!local)throw Error('한글 출력은 이 PC의 연결 도우미 화면에서 사용하세요. 출력 묶음을 저장한 뒤 가져올 수 있습니다.');
    const r=await fetch('/session/export-hwpx',{method:'POST',headers:{'X-PA-Session':bootstrap.token,'Content-Type':'application/json'},body:JSON.stringify(bundle),signal:AbortSignal.timeout(75000)});
    if(!r.ok){const d=await r.json();throw Error(d.error||'한글 출력에 실패했습니다.');}return r.blob();
   }
-  return {local,reviews:()=>call('/session/reviews'),saveReviews:body=>call('/session/reviews',{method:'POST',body}),status:()=>call('/session/status'),jobs:()=>call('/session/jobs'),job:id=>call('/session/jobs/'+encodeURIComponent(id)),submit:job=>call('/session/jobs',{method:'POST',body:job}),importResult:body=>call('/session/import-result',{method:'POST',body}),exportHwpx,cancel:id=>call('/session/jobs/'+encodeURIComponent(id)+'/cancel',{method:'POST'}),open};
+  return {local,reviews:()=>call('/session/reviews'),saveReviews:body=>call('/session/reviews',{method:'POST',body}),status:()=>call('/session/status'),jobs:()=>call('/session/jobs'),job:id=>call('/session/jobs/'+encodeURIComponent(id)),submit:job=>call('/session/jobs',{method:'POST',body:job}),importResult:body=>call('/session/import-result',{method:'POST',body}),exportHwpx,openDesign,cancel:id=>call('/session/jobs/'+encodeURIComponent(id)+'/cancel',{method:'POST'}),open};
  }
  window.PASession={create};
 })();

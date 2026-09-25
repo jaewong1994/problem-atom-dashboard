@@ -21,7 +21,7 @@ class HandoffTests(unittest.TestCase):
         assert.deepEqual(payload.seed_plan,job.seed_plan);
         assert.deepEqual(payload.knowledge.operations.map(o=>o.id).sort(),[...new Set(plan.nodes.map(n=>n.id))].sort());
         for(const op of payload.knowledge.operations)for(const p of [...op.requires,...op.provides,...op.forbids])assert.ok(payload.knowledge.types[p.type]);
-        assert.deepEqual(payload.response_schema,C.RESULT_SCHEMA);assert.ok(!payload.preferred_model);
+        assert.deepEqual(payload.response_schema,job.response_schema);assert.ok(!payload.preferred_model);
         assert.throws(()=>W.prompt(job,'unknown'));assert.throws(()=>W.canonicalRequest({...job,registry_revision:'old'},R));
         """)
 

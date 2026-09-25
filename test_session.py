@@ -129,7 +129,7 @@ class SessionTests(unittest.TestCase):
         assert.equal(out.provider,'codex-chatgpt-session');assert.equal(out.validation.accepted,true);assert.equal(out.validation.release_ready,false);
         assert.ok(prompt.includes(job.request_id));assert.equal(fs.existsSync(folder),false);assert.equal(calls,1);
         assert.ok(prompt.includes(C.SOLUTION_GUIDANCE));
-        assert.equal(prompt.split('[학생용 해설 작성 기준').length-1,1);
+        assert.equal(prompt.split(C.SOLUTION_GUIDANCE).length-1,1);
         const signal=new AbortController();signal.abort();await assert.rejects(()=>A.generateSession(job,R,{signal:signal.signal,spawnImpl:mock,checkLogin:async()=>({ready:true})}));assert.equal(calls,1);
         const abort=new AbortController();
         const hanging=(cmd,args,options)=>{folder=options.cwd;const c=new EventEmitter();c.stdout=new EventEmitter();c.stderr=new EventEmitter();c.stdin=new EventEmitter();c.stdin.end=()=>setImmediate(()=>abort.abort());c.kill=()=>setImmediate(()=>c.emit('close',1));return c;};
@@ -202,7 +202,9 @@ class SessionTests(unittest.TestCase):
         self.assertNotIn('.pa-session', STATIC_DIRS)
         self.assertNotIn('model-workspace.js', STATIC_FILES)
         html = (ROOT/'connections.html').read_text(encoding='utf-8')
-        self.assertNotIn('<select', html)
+        self.assertEqual(html.count('<select'), 1)
+        self.assertIn('<select id="unitSelect">', html)
+        self.assertNotIn('id="conditionType"', html)
         self.assertIn('SESSION_BOOTSTRAP', html)
         self.assertNotIn('type="password"', html)
 

@@ -1,0 +1,1219 @@
+{
+  "schema": "problem-atom/connection-extension/1",
+  "id": "seminar-20260923",
+  "note": "원본 3건. 원자·예시는 검산 후보이며 사람 승인 상태는 바꾸지 않는다. 공식 문항 ID는 파일명만으로 합치지 않는다.",
+  "records": [
+    {
+      "id": "SEMINAR-20260923-KIM_SANGBEOM",
+      "name": "정적분과 넓이의 차 · 김상범",
+      "kind": "seminar_source",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "provenance": {
+        "filename": "미적분Ⅰ_20220914_김상범.hwpx",
+        "sha256": "03f1d3c71863c9e34a128df1bd3930dc3b70de8d96d9f0bb4866c075acdfb019",
+        "author": "김상범",
+        "official_identity": "unverified_filename_metadata",
+        "independent_evidence": true,
+        "note": "원본 조판을 직접 확인하고 수식을 다시 계산함."
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23"
+    },
+    {
+      "id": "SEMINAR-20260923-KIM_YEONSU",
+      "name": "절댓값 그래프와 교점 · 김연수",
+      "kind": "seminar_source",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "provenance": {
+        "filename": "미적1 20220920_김연수.hwpx",
+        "sha256": "f1f557c7dc1b779a56e0923ed671452f24c6c8b551fd48ef38270523ec7dd241",
+        "author": "김연수",
+        "official_identity": "unverified_filename_metadata",
+        "independent_evidence": true,
+        "note": "원본 조판을 직접 확인하고 수식을 다시 계산함."
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23"
+    },
+    {
+      "id": "SEMINAR-20260923-MIN_JAEWOONG",
+      "name": "극한으로 만든 함수 · 민재웅",
+      "kind": "seminar_source",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "provenance": {
+        "filename": "미적분1_20221114_민재웅.hwpx",
+        "sha256": "21b7baa3e6eaf30b2651b4f678aacdb1d6b24ae3eef768a9fa5f205fa0a69587",
+        "author": "민재웅",
+        "official_identity": "unverified_filename_metadata",
+        "independent_evidence": false,
+        "note": "이전 PDF 분석을 반영한 양식지. 독립된 두 번째 검산 근거로 중복 집계하지 않음."
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23"
+    },
+    {
+      "id": "PA-S03-AREA-01",
+      "name": "정적분과 넓이의 차",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_SANGBEOM"
+      ],
+      "payload": {
+        "definition": "동일한 함수·동일한 구간 [a,b], a<b에서만 사용한다. ∫f−∫|f|=−2∫max(−f,0). 다른 구간의 적분끼리 비교할 때는 이 항등식을 직접 적용하지 않는다.",
+        "original_box_name": "정적분으로 정의된 함수에서 적분 내부 함수의 개형 추론",
+        "page": 6,
+        "source_record": "SEMINAR-20260923-KIM_SANGBEOM",
+        "concrete_example": "$f(x)=x,\\ [-1,1]$에서 $\\int_{-1}^1f-\\int_{-1}^1|f|$는?"
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "definition": "동일한 함수·동일한 구간 [a,b], a<b에서만 사용한다. ∫f−∫|f|=−2∫max(−f,0). 다른 구간의 적분끼리 비교할 때는 이 항등식을 직접 적용하지 않는다."
+    },
+    {
+      "id": "PA-S03-AREA-02",
+      "name": "정적분과 넓이가 같을 때",
+      "kind": "decision",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_SANGBEOM"
+      ],
+      "payload": {
+        "definition": "차가 0이고 연속이면 음수인 곳이 없다. 따라서 구간 전체에서 f≥0이다. 역으로 적분값이 양수라는 조건만으로 모든 점에서 f≥0이라고 결론내리지 않는다.",
+        "original_box_name": "정적분으로 정의된 함수에서 적분 내부 함수의 개형 추론",
+        "page": 6,
+        "source_record": "SEMINAR-20260923-KIM_SANGBEOM",
+        "concrete_example": "$f$가 연속이고 $\\int_0^1f=\\int_0^1|f|$라면?"
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "definition": "차가 0이고 연속이면 음수인 곳이 없다. 따라서 구간 전체에서 f≥0이다. 역으로 적분값이 양수라는 조건만으로 모든 점에서 f≥0이라고 결론내리지 않는다."
+    },
+    {
+      "id": "PA-S03-AREA-03",
+      "name": "근의 위치와 적분 조건",
+      "kind": "decision",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_SANGBEOM"
+      ],
+      "payload": {
+        "definition": "고정된 두 근과 움직이는 근, 모든 적분구간 끝점을 함께 정렬해 매개변수 경우를 나눈다. 각 구간에서 부호를 확인해 정적분과 넓이를 구별한다. 결과는 빈 집합·여러 구간일 수도 있다. 앞 보기의 가정을 다음 보기에 옮기지 않는다.",
+        "original_box_name": "절댓값이 포함된 적분의 계산",
+        "page": 6,
+        "source_record": "SEMINAR-20260923-KIM_SANGBEOM",
+        "concrete_example": "$f=x(x-1)(x-k)$, $g(t)=\\int_t^{t+1}f-\\int_0^1|f|$. $g(-1)>0$이면?"
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "definition": "고정된 두 근과 움직이는 근, 모든 적분구간 끝점을 함께 정렬해 매개변수 경우를 나눈다. 각 구간에서 부호를 확인해 정적분과 넓이를 구별한다. 결과는 빈 집합·여러 구간일 수도 있다. 앞 보기의 가정을 다음 보기에 옮기지 않는다."
+    },
+    {
+      "id": "PA-S03-V-01",
+      "name": "절댓값 그래프와 교점",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_YEONSU"
+      ],
+      "payload": {
+        "definition": "원래 다항식 H와 비교 함수 F=H−m|x−c|는 서로 다른 대상이다. 교점 조건은 F(x)=k로 바뀐다. x=c에서 식이 달라지며 경계는 한 번만 센다. m의 부호와 k의 허용 범위를 보존한다.",
+        "original_box_name": "절댓값 함수의 그래프",
+        "page": 4,
+        "source_record": "SEMINAR-20260923-KIM_YEONSU",
+        "concrete_example": "$H=x^3+x^2-x$와 $y=4|x|+k$의 교점은?"
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "definition": "원래 다항식 H와 비교 함수 F=H−m|x−c|는 서로 다른 대상이다. 교점 조건은 F(x)=k로 바뀐다. x=c에서 식이 달라지며 경계는 한 번만 센다. m의 부호와 k의 허용 범위를 보존한다."
+    },
+    {
+      "id": "PA-S03-GRAPH-01",
+      "name": "구간별 함수의 그래프",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_YEONSU"
+      ],
+      "payload": {
+        "definition": "각 조각을 적용 구간 안에서만 미분하고 증감을 계산한다. 경계의 좌우 극한·실제 값·무한대 방향도 포함한 전체 개형을 만든다. 후보인 미분계수 0의 점을 구간 밖에서 채택하지 않는다. 조각 다항식을 전 구간의 다항식으로 바꾸지 않는다.",
+        "original_box_name": "삼차함수의 증감과 극대 극소",
+        "page": 4,
+        "source_record": "SEMINAR-20260923-KIM_YEONSU",
+        "concrete_example": "$F=x^3+x^2+3x\\ (x<0)$, $F=x^3+x^2-5x\\ (x\\ge0)$의 개형은?"
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "definition": "각 조각을 적용 구간 안에서만 미분하고 증감을 계산한다. 경계의 좌우 극한·실제 값·무한대 방향도 포함한 전체 개형을 만든다. 후보인 미분계수 0의 점을 구간 밖에서 채택하지 않는다. 조각 다항식을 전 구간의 다항식으로 바꾸지 않는다."
+    },
+    {
+      "id": "PA-S03-V-02",
+      "name": "교점 조건과 넓이",
+      "kind": "decision",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_YEONSU"
+      ],
+      "payload": {
+        "definition": "허용된 높이 각각을 구간별 식에 넣어 교점을 다시 구한다. 인접한 실제 교점 사이에서만 둘러싸인 영역을 찾는다. 교점 두 개라는 사실만으로 접점을 강제하지 않는다. 여러 높이가 남으면 넓이도 각각 구하며, 하나의 수로 확정하지 않는다.",
+        "original_box_name": "교점의 개수와 접선 조건",
+        "page": 4,
+        "source_record": "SEMINAR-20260923-KIM_YEONSU",
+        "concrete_example": "$F(x)=k$의 해가 $k<0$에서 두 개이고 앞 개형을 알고 있다면?"
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "definition": "허용된 높이 각각을 구간별 식에 넣어 교점을 다시 구한다. 인접한 실제 교점 사이에서만 둘러싸인 영역을 찾는다. 교점 두 개라는 사실만으로 접점을 강제하지 않는다. 여러 높이가 남으면 넓이도 각각 구하며, 하나의 수로 확정하지 않는다."
+    },
+    {
+      "id": "PA-S03-AREA-04",
+      "name": "두 그래프 사이의 넓이",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_YEONSU"
+      ],
+      "payload": {
+        "definition": "모든 교점과 식이 바뀌는 점을 함께 넣어 구간을 나눈다. 각 구간에서 위 함수−아래 함수를 적분한다. 교점에서 부호가 안 바뀌어도 식의 경계는 나눈다. 후보별 넓이가 같은지 확인하기 전에는 답 유일성을 선언하지 않는다.",
+        "original_box_name": "두 곡선 사이의 넓이 구하기",
+        "page": 4,
+        "source_record": "SEMINAR-20260923-KIM_YEONSU",
+        "concrete_example": "$H=x^3+x^2-x$와 $y=4|x|-3$ 사이의 넓이 $S$는?"
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "definition": "모든 교점과 식이 바뀌는 점을 함께 넣어 구간을 나눈다. 각 구간에서 위 함수−아래 함수를 적분한다. 교점에서 부호가 안 바뀌어도 식의 경계는 나눈다. 후보별 넓이가 같은지 확인하기 전에는 답 유일성을 선언하지 않는다."
+    },
+    {
+      "id": "PA-S03-LIMIT-01",
+      "name": "우극한으로 만든 함수",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-MIN_JAEWOONG"
+      ],
+      "payload": {
+        "definition": "유한한 개수의 조각 다항식이라 양쪽 극한이 유한하다. 이동한 인수의 모든 경계를 원래 경계와 합쳐 정렬한다. 우극한은 오른쪽 조각의 값을 사용한다. 원래 함수의 경계값을 그대로 곱하지 않는다. 이동 간격이 내부 구간 길이와 다르면 겹침 구간을 새로 만든다.",
+        "original_box_name": "극한으로 만든 함수 · 이동한 두 함수의 곱",
+        "page": 2,
+        "source_record": "SEMINAR-20260923-MIN_JAEWOONG",
+        "concrete_example": "$g=x\\ (|x|>1),\\ g=f\\ (|x|\\le1)$에서 $h=g(x+)g((x+2)+)$라면?"
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "definition": "유한한 개수의 조각 다항식이라 양쪽 극한이 유한하다. 이동한 인수의 모든 경계를 원래 경계와 합쳐 정렬한다. 우극한은 오른쪽 조각의 값을 사용한다. 원래 함수의 경계값을 그대로 곱하지 않는다. 이동 간격이 내부 구간 길이와 다르면 겹침 구간을 새로 만든다."
+    },
+    {
+      "id": "PA-S03-LIMIT-03",
+      "name": "좌극한으로 만든 함수",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-MIN_JAEWOONG"
+      ],
+      "payload": {
+        "definition": "유한한 개수의 조각 다항식이라 양쪽 극한이 유한하다. 이동한 인수의 모든 경계를 원래 경계와 합쳐 정렬한다. 좌극한은 왼쪽 조각의 값을 사용한다. 원래 함수의 경계값을 그대로 곱하지 않는다. 이동 간격이 내부 구간 길이와 다르면 겹침 구간을 새로 만든다.",
+        "original_box_name": "극한으로 만든 함수 · 이동한 두 함수의 곱",
+        "page": 2,
+        "source_record": "SEMINAR-20260923-MIN_JAEWOONG",
+        "concrete_example": "$g=x\\ (|x|>1),\\ g=f\\ (|x|\\le1)$에서 $h=g(x-)g((x+2)-)$라면?"
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "definition": "유한한 개수의 조각 다항식이라 양쪽 극한이 유한하다. 이동한 인수의 모든 경계를 원래 경계와 합쳐 정렬한다. 좌극한은 왼쪽 조각의 값을 사용한다. 원래 함수의 경계값을 그대로 곱하지 않는다. 이동 간격이 내부 구간 길이와 다르면 겹침 구간을 새로 만든다."
+    },
+    {
+      "id": "PA-S03-LIMIT-02",
+      "name": "구간 경계의 좌우 값",
+      "kind": "decision",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-MIN_JAEWOONG"
+      ],
+      "payload": {
+        "definition": "각 경계에서 왼쪽 극한·오른쪽 극한·그 점의 값을 별도로 비교한다. 한 보기에서 추가한 연속 가정은 다른 보기에 전달하지 않는다.",
+        "original_box_name": "극한으로 만든 함수",
+        "page": 2,
+        "source_record": "SEMINAR-20260923-MIN_JAEWOONG",
+        "concrete_example": "$g=x\\ (|x|>1),\\ g=f\\ (|x|\\le1)$, $h=g(x+)g((x+2)+)$가 연속일 조건은?"
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "definition": "각 경계에서 왼쪽 극한·오른쪽 극한·그 점의 값을 별도로 비교한다. 한 보기에서 추가한 연속 가정은 다른 보기에 전달하지 않는다."
+    },
+    {
+      "id": "PA-S03-MIN-01",
+      "name": "최솟값과 끝점",
+      "kind": "decision",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-MIN_JAEWOONG"
+      ],
+      "payload": {
+        "definition": "전 구간의 개형을 비교한다. 각 조각의 극값·끝점 실제 값·경계에서 다가가는 값·무한대 방향을 모두 확인한다. 더 작은 한계값에 다가갈 뿐 그 값을 얻는 점이 없으면 최솟값 없음으로 남긴다. 감소하는 한 조각만으로 전체 최솟값을 결론내리지 않는다.",
+        "original_box_name": "이동한 두 함수의 곱",
+        "page": 2,
+        "source_record": "SEMINAR-20260923-MIN_JAEWOONG",
+        "concrete_example": "$f$는 $[-1,1]$에서 감소하고 $f(-1)=-2$. $h=g(x+)g((x+2)+)$의 최솟값은?"
+      },
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "definition": "전 구간의 개형을 비교한다. 각 조각의 극값·끝점 실제 값·경계에서 다가가는 값·무한대 방향을 모두 확인한다. 더 작은 한계값에 다가갈 뿐 그 값을 얻는 점이 없으면 최솟값 없음으로 남긴다. 감소하는 한 조각만으로 전체 최솟값을 결론내리지 않는다."
+    },
+    {
+      "id": "PA-S03-CON-01",
+      "name": "정적분과 넓이",
+      "kind": "concept",
+      "definition": "같은 구간 [a,b], a<b에서 ∫f−∫|f|는 음수인 부분 넓이의 −2배다.",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_SANGBEOM"
+      ],
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "related_operations": [
+        "PA-S03-AREA-01",
+        "PA-S03-AREA-02",
+        "PA-S03-AREA-03"
+      ]
+    },
+    {
+      "id": "PA-S03-CON-02",
+      "name": "두 그래프 사이의 넓이",
+      "kind": "concept",
+      "definition": "교점 사이에서 위 함수−아래 함수를 적분한다. 절댓값이나 조각 정의의 식이 바뀌는 점에서도 구간을 나눈다.",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_YEONSU"
+      ],
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "related_operations": [
+        "PA-S03-V-02",
+        "PA-S03-AREA-04"
+      ]
+    },
+    {
+      "id": "PA-S03-CON-03",
+      "name": "이동한 함수의 극한",
+      "kind": "concept",
+      "definition": "g(x+s)의 조각 경계는 원래 경계를 −s만큼 옮긴 곳이다. 좌극한과 우극한은 경계의 서로 다른 조각을 사용할 수 있다.",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-MIN_JAEWOONG"
+      ],
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "related_operations": [
+        "PA-S03-LIMIT-01",
+        "PA-S03-LIMIT-03",
+        "PA-S03-LIMIT-02"
+      ]
+    },
+    {
+      "id": "PA-S03-CON-04",
+      "name": "최솟값과 함숫값",
+      "kind": "concept",
+      "definition": "최솟값은 정의역의 어떤 점에서 실제로 얻는 값이어야 한다. 다가가는 값만으로는 충분하지 않다.",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-MIN_JAEWOONG"
+      ],
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "related_operations": [
+        "PA-S03-MIN-01"
+      ]
+    },
+    {
+      "id": "PA-S03-PAT-01",
+      "name": "절댓값 적분과 근의 범위",
+      "kind": "problem_pattern",
+      "definition": "움직이는 근을 가진 다항식의 정적분·넓이 조건으로 매개변수의 범위나 보기의 참거짓을 구한다.",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_SANGBEOM"
+      ],
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "related_operations": [
+        "PA-S03-AREA-01",
+        "PA-S03-AREA-03"
+      ]
+    },
+    {
+      "id": "PA-S03-PAT-02",
+      "name": "교점 개수로 정하는 넓이",
+      "kind": "problem_pattern",
+      "definition": "절댓값 그래프와 다항함수의 교점 개수로 높이를 정하고, 그 높이에서 둘러싸인 넓이를 구한다.",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_YEONSU"
+      ],
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "related_operations": [
+        "PA-S03-V-01",
+        "PA-S03-V-02",
+        "PA-S03-AREA-04"
+      ]
+    },
+    {
+      "id": "PA-S03-PAT-03",
+      "name": "극한으로 만든 함수의 최솟값",
+      "kind": "problem_pattern",
+      "definition": "이동한 일방극한의 곱을 구간별 함수로 풀고 끝점 포함 여부로 연속·최솟값을 판단한다.",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-MIN_JAEWOONG"
+      ],
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "related_operations": [
+        "PA-S03-LIMIT-01",
+        "PA-S03-LIMIT-02",
+        "PA-S03-MIN-01"
+      ]
+    },
+    {
+      "id": "PA-S03-STR-01",
+      "name": "정적분·넓이와 근의 위치",
+      "kind": "strategy",
+      "definition": "적분을 전개하기 전에 음수 부분을 찾아 근의 위치를 제한한 뒤 필요한 구간만 계산한다.",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_SANGBEOM"
+      ],
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "related_operations": [
+        "PA-S03-AREA-01",
+        "PA-S03-AREA-03"
+      ]
+    },
+    {
+      "id": "PA-S03-STR-02",
+      "name": "절댓값 그래프·교점·넓이",
+      "kind": "strategy",
+      "definition": "함수의 차를 만든다. 모든 조각의 교점을 센다. 허용 높이를 얻은 뒤 그 높이의 영역을 적분한다.",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-KIM_YEONSU"
+      ],
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "related_operations": [
+        "PA-S03-V-01",
+        "PA-S03-GRAPH-01",
+        "PA-S03-V-02",
+        "PA-S03-AREA-04"
+      ]
+    },
+    {
+      "id": "PA-S03-STR-03",
+      "name": "우극한·구간별 함수·최솟값",
+      "kind": "strategy",
+      "definition": "원래 경계와 이동한 경계를 합친 뒤 실제 경계값을 결정하고 전 구간을 비교해 값의 달성 여부를 확인한다.",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "source_questions": [
+        "SEMINAR-20260923-MIN_JAEWOONG"
+      ],
+      "reviewers": [],
+      "updated_at": "2026-09-23",
+      "related_operations": [
+        "PA-S03-LIMIT-01",
+        "PA-S03-LIMIT-02",
+        "PA-S03-GRAPH-01",
+        "PA-S03-MIN-01"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "PA-S03-AREA-01",
+      "name": "정적분과 넓이의 차",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "signed_area_difference",
+          "subject": "$f"
+        },
+        {
+          "type": "continuous_on_interval",
+          "subject": "$f"
+        },
+        {
+          "type": "forward_interval",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "negative_area_identity",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "동일한 함수·동일한 구간 [a,b], a<b에서만 사용한다. ∫f−∫|f|=−2∫max(−f,0). 다른 구간의 적분끼리 비교할 때는 이 항등식을 직접 적용하지 않는다.",
+      "supports": [
+        "PA-S03-AREA-01",
+        "SEMINAR-20260923-KIM_SANGBEOM",
+        "PA-S03-CON-01",
+        "PA-S03-PAT-01",
+        "PA-S03-STR-01"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 0,
+        "branches": 1
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": {
+        "status": "regression_examples_checked_not_universal_proof",
+        "suite": "test_seminar_20260923.py",
+        "required_checks": [
+          "same_function_same_interval",
+          "integral_vs_area"
+        ],
+        "review_notes": [
+          "예시와 경계 변형을 정확한 수식으로 검산했습니다. 임의의 새 문항에 대한 정답 보증은 아닙니다.",
+          "김상범 자료의 k≥1인 경우 g(0)는 −2B가 아니라 0입니다. ㄴ은 ㄱ을 거꾸로 쓰지 않고 k≥0인 경우를 제외하여 증명합니다."
+        ]
+      }
+    },
+    {
+      "id": "PA-S03-AREA-02",
+      "name": "정적분과 넓이가 같을 때",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "negative_area_identity",
+          "subject": "$f"
+        },
+        {
+          "type": "continuous_on_interval",
+          "subject": "$f"
+        },
+        {
+          "type": "zero_signed_difference",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "nonnegative_on_interval",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "negative_interval_sample",
+          "subject": "$f"
+        }
+      ],
+      "guard_note": "차가 0이고 연속이면 음수인 곳이 없다. 따라서 구간 전체에서 f≥0이다. 역으로 적분값이 양수라는 조건만으로 모든 점에서 f≥0이라고 결론내리지 않는다.",
+      "supports": [
+        "PA-S03-AREA-02",
+        "SEMINAR-20260923-KIM_SANGBEOM",
+        "PA-S03-CON-01"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 0,
+        "branches": 1
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": {
+        "status": "regression_examples_checked_not_universal_proof",
+        "suite": "test_seminar_20260923.py",
+        "required_checks": [
+          "zero_difference_uses_continuity"
+        ],
+        "review_notes": [
+          "예시와 경계 변형을 정확한 수식으로 검산했습니다. 임의의 새 문항에 대한 정답 보증은 아닙니다.",
+          "김상범 자료의 k≥1인 경우 g(0)는 −2B가 아니라 0입니다. ㄴ은 ㄱ을 거꾸로 쓰지 않고 k≥0인 경우를 제외하여 증명합니다."
+        ]
+      }
+    },
+    {
+      "id": "PA-S03-AREA-03",
+      "name": "근의 위치와 적분 조건",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "negative_area_identity",
+          "subject": "$f"
+        },
+        {
+          "type": "moving_root_cubic",
+          "subject": "$f",
+          "object": "$a"
+        },
+        {
+          "type": "signed_integral_constraints",
+          "subject": "$f",
+          "object": "$a"
+        }
+      ],
+      "provides": [
+        {
+          "type": "admissible_set",
+          "subject": "$a"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "고정된 두 근과 움직이는 근, 모든 적분구간 끝점을 함께 정렬해 매개변수 경우를 나눈다. 각 구간에서 부호를 확인해 정적분과 넓이를 구별한다. 결과는 빈 집합·여러 구간일 수도 있다. 앞 보기의 가정을 다음 보기에 옮기지 않는다.",
+      "supports": [
+        "PA-S03-AREA-03",
+        "SEMINAR-20260923-KIM_SANGBEOM",
+        "PA-S03-CON-01",
+        "PA-S03-PAT-01",
+        "PA-S03-STR-01"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 2,
+        "branches": 3
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": {
+        "status": "regression_examples_checked_not_universal_proof",
+        "suite": "test_seminar_20260923.py",
+        "required_checks": [
+          "root_and_endpoint_order",
+          "strict_parameter_boundaries",
+          "claim_scope_isolation"
+        ],
+        "review_notes": [
+          "예시와 경계 변형을 정확한 수식으로 검산했습니다. 임의의 새 문항에 대한 정답 보증은 아닙니다.",
+          "김상범 자료의 k≥1인 경우 g(0)는 −2B가 아니라 0입니다. ㄴ은 ㄱ을 거꾸로 쓰지 않고 k≥0인 경우를 제외하여 증명합니다."
+        ]
+      }
+    },
+    {
+      "id": "PA-S03-V-01",
+      "name": "절댓값 그래프와 교점",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "polynomial_known",
+          "subject": "$h"
+        },
+        {
+          "type": "absolute_graph_comparison",
+          "subject": "$f",
+          "object": "$h"
+        }
+      ],
+      "provides": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piecewise_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        },
+        {
+          "type": "separable_parameter_equation",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "원래 다항식 H와 비교 함수 F=H−m|x−c|는 서로 다른 대상이다. 교점 조건은 F(x)=k로 바뀐다. x=c에서 식이 달라지며 경계는 한 번만 센다. m의 부호와 k의 허용 범위를 보존한다.",
+      "supports": [
+        "PA-S03-V-01",
+        "SEMINAR-20260923-KIM_YEONSU",
+        "PA-S03-PAT-02",
+        "PA-S03-STR-02"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 1
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": {
+        "status": "regression_examples_checked_not_universal_proof",
+        "suite": "test_seminar_20260923.py",
+        "required_checks": [
+          "new_function_new_subject",
+          "branch_domain_filter",
+          "corner_count_once"
+        ],
+        "review_notes": [
+          "예시와 경계 변형을 정확한 수식으로 검산했습니다. 임의의 새 문항에 대한 정답 보증은 아닙니다.",
+          "k<0이라는 범위와 양쪽 조각의 교점 수가 모두 필요합니다. k=0에서도 교점이 두 개지만 접점은 아닙니다."
+        ]
+      },
+      "distinct_bindings": [
+        [
+          "f",
+          "h"
+        ]
+      ]
+    },
+    {
+      "id": "PA-S03-GRAPH-01",
+      "name": "구간별 함수의 그래프",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piecewise_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "graph_profile",
+          "subject": "$f"
+        },
+        {
+          "type": "critical_points",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "각 조각을 적용 구간 안에서만 미분하고 증감을 계산한다. 경계의 좌우 극한·실제 값·무한대 방향도 포함한 전체 개형을 만든다. 후보인 미분계수 0의 점을 구간 밖에서 채택하지 않는다. 조각 다항식을 전 구간의 다항식으로 바꾸지 않는다.",
+      "supports": [
+        "PA-S03-GRAPH-01",
+        "SEMINAR-20260923-KIM_YEONSU",
+        "PA-S03-STR-02",
+        "PA-S03-STR-03",
+        "PA-CAND-CON-20260910-020",
+        "PA-CAND-CON-20260910-022"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 3,
+        "branches": 2
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": {
+        "status": "regression_examples_checked_not_universal_proof",
+        "suite": "test_seminar_20260923.py",
+        "required_checks": [
+          "all_branch_counts",
+          "domain_filtered_stationary_points"
+        ],
+        "review_notes": [
+          "예시와 경계 변형을 정확한 수식으로 검산했습니다. 임의의 새 문항에 대한 정답 보증은 아닙니다.",
+          "k<0이라는 범위와 양쪽 조각의 교점 수가 모두 필요합니다. k=0에서도 교점이 두 개지만 접점은 아닙니다."
+        ]
+      }
+    },
+    {
+      "id": "PA-S03-V-02",
+      "name": "교점 조건과 넓이",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "admissible_set",
+          "subject": "$a"
+        },
+        {
+          "type": "height_identity",
+          "subject": "$a",
+          "object": "$f"
+        },
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "bounded_area_family",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "허용된 높이 각각을 구간별 식에 넣어 교점을 다시 구한다. 인접한 실제 교점 사이에서만 둘러싸인 영역을 찾는다. 교점 두 개라는 사실만으로 접점을 강제하지 않는다. 여러 높이가 남으면 넓이도 각각 구하며, 하나의 수로 확정하지 않는다.",
+      "supports": [
+        "PA-S03-V-02",
+        "SEMINAR-20260923-KIM_YEONSU",
+        "PA-S03-CON-02",
+        "PA-S03-PAT-02",
+        "PA-S03-STR-02",
+        "PA-CAND-CON-20260910-020",
+        "PA-CAND-CON-20260910-022"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 2
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": {
+        "status": "regression_examples_checked_not_universal_proof",
+        "suite": "test_seminar_20260923.py",
+        "required_checks": [
+          "two_intersections_not_automatic_tangency",
+          "all_admissible_heights",
+          "all_enclosed_components"
+        ],
+        "review_notes": [
+          "예시와 경계 변형을 정확한 수식으로 검산했습니다. 임의의 새 문항에 대한 정답 보증은 아닙니다.",
+          "k<0이라는 범위와 양쪽 조각의 교점 수가 모두 필요합니다. k=0에서도 교점이 두 개지만 접점은 아닙니다."
+        ]
+      }
+    },
+    {
+      "id": "PA-S03-AREA-04",
+      "name": "두 그래프 사이의 넓이",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "bounded_area_family",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "area_result",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "모든 교점과 식이 바뀌는 점을 함께 넣어 구간을 나눈다. 각 구간에서 위 함수−아래 함수를 적분한다. 교점에서 부호가 안 바뀌어도 식의 경계는 나눈다. 후보별 넓이가 같은지 확인하기 전에는 답 유일성을 선언하지 않는다.",
+      "supports": [
+        "PA-S03-AREA-04",
+        "SEMINAR-20260923-KIM_YEONSU",
+        "PA-S03-CON-02",
+        "PA-S03-PAT-02",
+        "PA-S03-STR-02"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 3,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": {
+        "status": "regression_examples_checked_not_universal_proof",
+        "suite": "test_seminar_20260923.py",
+        "required_checks": [
+          "split_at_formula_boundary",
+          "top_minus_bottom",
+          "unique_area_or_unresolved"
+        ],
+        "review_notes": [
+          "예시와 경계 변형을 정확한 수식으로 검산했습니다. 임의의 새 문항에 대한 정답 보증은 아닙니다."
+        ]
+      }
+    },
+    {
+      "id": "PA-S03-LIMIT-01",
+      "name": "우극한으로 만든 함수",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "right_limit_product",
+          "subject": "$f",
+          "object": "$h"
+        },
+        {
+          "type": "piecewise_polynomial_definition",
+          "subject": "$h"
+        },
+        {
+          "type": "positive_shift",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piecewise_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        },
+        {
+          "type": "endpoint_values",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "left_limit_product",
+          "subject": "$f",
+          "object": "$h"
+        }
+      ],
+      "guard_note": "유한한 개수의 조각 다항식이라 양쪽 극한이 유한하다. 이동한 인수의 모든 경계를 원래 경계와 합쳐 정렬한다. 우극한은 오른쪽 조각의 값을 사용한다. 원래 함수의 경계값을 그대로 곱하지 않는다. 이동 간격이 내부 구간 길이와 다르면 겹침 구간을 새로 만든다.",
+      "supports": [
+        "PA-S03-LIMIT-01",
+        "SEMINAR-20260923-MIN_JAEWOONG",
+        "PA-S03-CON-03",
+        "PA-S03-PAT-03",
+        "PA-S03-STR-03"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 2
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": {
+        "status": "regression_examples_checked_not_universal_proof",
+        "suite": "test_seminar_20260923.py",
+        "required_checks": [
+          "one_sided_direction",
+          "shifted_boundary_partition",
+          "endpoint_owner",
+          "shift_overlap"
+        ],
+        "review_notes": [
+          "예시와 경계 변형을 정확한 수식으로 검산했습니다. 임의의 새 문항에 대한 정답 보증은 아닙니다.",
+          "파일명 날짜가 같은 기존 이동거리 문항과 별도 출처입니다. 이전 AI 분석을 반영한 양식지이므로 독립된 두 번째 증거로 세지 않습니다."
+        ]
+      },
+      "distinct_bindings": [
+        [
+          "f",
+          "h"
+        ]
+      ]
+    },
+    {
+      "id": "PA-S03-LIMIT-03",
+      "name": "좌극한으로 만든 함수",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "left_limit_product",
+          "subject": "$f",
+          "object": "$h"
+        },
+        {
+          "type": "piecewise_polynomial_definition",
+          "subject": "$h"
+        },
+        {
+          "type": "positive_shift",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piecewise_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        },
+        {
+          "type": "endpoint_values",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "right_limit_product",
+          "subject": "$f",
+          "object": "$h"
+        }
+      ],
+      "guard_note": "유한한 개수의 조각 다항식이라 양쪽 극한이 유한하다. 이동한 인수의 모든 경계를 원래 경계와 합쳐 정렬한다. 좌극한은 왼쪽 조각의 값을 사용한다. 원래 함수의 경계값을 그대로 곱하지 않는다. 이동 간격이 내부 구간 길이와 다르면 겹침 구간을 새로 만든다.",
+      "supports": [
+        "PA-S03-LIMIT-03",
+        "SEMINAR-20260923-MIN_JAEWOONG",
+        "PA-S03-CON-03"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 2
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": {
+        "status": "regression_examples_checked_not_universal_proof",
+        "suite": "test_seminar_20260923.py",
+        "required_checks": [
+          "one_sided_direction",
+          "shifted_boundary_partition",
+          "endpoint_owner",
+          "shift_overlap"
+        ],
+        "review_notes": [
+          "예시와 경계 변형을 정확한 수식으로 검산했습니다. 임의의 새 문항에 대한 정답 보증은 아닙니다.",
+          "파일명 날짜가 같은 기존 이동거리 문항과 별도 출처입니다. 이전 AI 분석을 반영한 양식지이므로 독립된 두 번째 증거로 세지 않습니다."
+        ]
+      },
+      "distinct_bindings": [
+        [
+          "f",
+          "h"
+        ]
+      ]
+    },
+    {
+      "id": "PA-S03-LIMIT-02",
+      "name": "구간 경계의 좌우 값",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piecewise_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        },
+        {
+          "type": "endpoint_values",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "boundary_limits",
+          "subject": "$f"
+        },
+        {
+          "type": "continuity_report",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "각 경계에서 왼쪽 극한·오른쪽 극한·그 점의 값을 별도로 비교한다. 한 보기에서 추가한 연속 가정은 다른 보기에 전달하지 않는다.",
+      "supports": [
+        "PA-S03-LIMIT-02",
+        "SEMINAR-20260923-MIN_JAEWOONG",
+        "PA-S03-CON-03",
+        "PA-S03-PAT-03",
+        "PA-S03-STR-03"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": {
+        "status": "regression_examples_checked_not_universal_proof",
+        "suite": "test_seminar_20260923.py",
+        "required_checks": [
+          "boundary_value_not_limit",
+          "claim_scope_isolation"
+        ],
+        "review_notes": [
+          "예시와 경계 변형을 정확한 수식으로 검산했습니다. 임의의 새 문항에 대한 정답 보증은 아닙니다.",
+          "파일명 날짜가 같은 기존 이동거리 문항과 별도 출처입니다. 이전 AI 분석을 반영한 양식지이므로 독립된 두 번째 증거로 세지 않습니다."
+        ]
+      }
+    },
+    {
+      "id": "PA-S03-MIN-01",
+      "name": "최솟값과 끝점",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "graph_profile",
+          "subject": "$f"
+        },
+        {
+          "type": "boundary_limits",
+          "subject": "$f"
+        },
+        {
+          "type": "endpoint_values",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "minimum_result",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "전 구간의 개형을 비교한다. 각 조각의 극값·끝점 실제 값·경계에서 다가가는 값·무한대 방향을 모두 확인한다. 더 작은 한계값에 다가갈 뿐 그 값을 얻는 점이 없으면 최솟값 없음으로 남긴다. 감소하는 한 조각만으로 전체 최솟값을 결론내리지 않는다.",
+      "supports": [
+        "PA-S03-MIN-01",
+        "SEMINAR-20260923-MIN_JAEWOONG",
+        "PA-S03-CON-04",
+        "PA-S03-PAT-03",
+        "PA-S03-STR-03",
+        "PA-CAND-CON-20260910-030"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 0,
+        "branches": 2
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": {
+        "status": "regression_examples_checked_not_universal_proof",
+        "suite": "test_seminar_20260923.py",
+        "required_checks": [
+          "global_not_local_minimum",
+          "attainment_not_infimum",
+          "opposite_direction_changes_answer"
+        ],
+        "review_notes": [
+          "예시와 경계 변형을 정확한 수식으로 검산했습니다. 임의의 새 문항에 대한 정답 보증은 아닙니다.",
+          "파일명 날짜가 같은 기존 이동거리 문항과 별도 출처입니다. 이전 AI 분석을 반영한 양식지이므로 독립된 두 번째 증거로 세지 않습니다."
+        ]
+      }
+    }
+  ]
+}

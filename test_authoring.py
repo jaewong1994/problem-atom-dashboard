@@ -16,7 +16,7 @@ class AuthoringTests(unittest.TestCase):
     def test_bundles_are_connected_strategies_and_every_member_reaches_an_answer(self):
         run_js(r"""
         const B=require('./judgment-bundles.js'),P=require('./composition-planner.js');
-        assert.equal(B.catalog.length,7);
+        assert.equal(B.catalog.length,10);
         for(const b of B.catalog){const s=B.seed(R,b.id),groups=B.groups(s.plan,R);
           assert.equal(groups.length,1);assert.equal(groups[0].id,b.id);
           assert.ok(groups[0].joins.length>=b.members.length-1);

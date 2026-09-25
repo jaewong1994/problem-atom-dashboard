@@ -41,6 +41,7 @@
     const output=op.provides.map(p=>materialize(p,bindings,scope));
     const forbidden=(op.forbids||[]).map(p=>materialize(p,bindings,scope));
     if(op.kind==='bridge'&&op.id==='PA-BRIDGE-01'&&bindings.f===bindings.h)return {...base,reasons:['기울기 항을 뺀 함수는 다른 대상으로 이름을 붙여야 합니다.']};
+    for(const [a,b] of op.distinct_bindings||[])if(bindings[a]===bindings[b])return {...base,reasons:['원래 함수와 새로 만든 함수는 서로 다른 이름으로 지정하세요.']};
     const current=new Set(facts.map(key));
     const clashes=forbidden.filter(p=>current.has(key(p)));
     const errors=contradictions([...facts,...output]);

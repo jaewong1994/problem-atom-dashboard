@@ -20,7 +20,7 @@ function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir
   // No CORS credential bridge: the public page opens this same-origin companion UI.
   if(origin&&!['http://127.0.0.1:'+actualPort,'http://localhost:'+actualPort].includes(origin))return send(403,{error:'연결 도우미 화면에서 요청해 주세요.'});
   const url=new URL(req.url,'http://'+host);
-  if(req.method==='GET'&&url.pathname==='/health')return send(200,{service:'problem-atom-codex-companion',revision:registry.revision,solution_guidance_version:C.SOLUTION_GUIDANCE_VERSION,design_intent_version:1,reasoning_graph_version:1,authoring_blueprint_version:1,judgment_bundle_version:1,curriculum_scope_version:1});
+  if(req.method==='GET'&&url.pathname==='/health')return send(200,{service:'problem-atom-codex-companion',revision:registry.revision,solution_guidance_version:C.SOLUTION_GUIDANCE_VERSION,problem_design_version:1,design_intent_version:1,reasoning_graph_version:1,authoring_blueprint_version:1,judgment_bundle_version:1,curriculum_scope_version:1});
   if(url.pathname.startsWith('/session/')){
    const given=Buffer.from(req.headers['x-pa-session']||''),expected=Buffer.from(token);
    if(given.length!==expected.length||!crypto.timingSafeEqual(given,expected))return send(401,{error:'연결 도우미에서 화면을 다시 열어 주세요.'});
@@ -29,7 +29,7 @@ function createSessionService({registry,siteDir=path.join(ROOT,'_site'),stateDir
     if(req.method==='POST'){try{let bytes=0;const chunks=[];for await(const chunk of req){bytes+=chunk.length;if(bytes>1000000)return send(413,{error:'검수 파일은 1MB 이하로 준비하세요.'});chunks.push(chunk);}return send(200,reviews.save(JSON.parse(Buffer.concat(chunks).toString('utf8'))));}catch(e){return send(409,{error:e.message});}}
     return send(405,{error:'지원하지 않는 요청'});
    }
-   if(req.method==='GET'&&url.pathname==='/session/status')return send(200,{...(await auth()),model:MODEL,revision:registry.revision,design_intent_version:1,reasoning_graph_version:1,authoring_blueprint_version:1,judgment_bundle_version:1,curriculum_scope_version:1,web_import_version:1,hwpx_export_version:1,hwpx:Hwp.status(),activeJob:active});
+   if(req.method==='GET'&&url.pathname==='/session/status')return send(200,{...(await auth()),model:MODEL,revision:registry.revision,problem_design_version:1,design_intent_version:1,reasoning_graph_version:1,authoring_blueprint_version:1,judgment_bundle_version:1,curriculum_scope_version:1,web_import_version:1,hwpx_export_version:1,hwpx:Hwp.status(),activeJob:active});
    if(req.method==='POST'&&['/session/export-hwpx','/session/import-result'].includes(url.pathname)){
     try{
      let bytes=0;const chunks=[];for await(const chunk of req){bytes+=chunk.length;if(bytes>8000000)return send(413,{error:'출력 묶음은 8MB 이하로 준비하세요.'});chunks.push(chunk);}

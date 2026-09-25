@@ -1,0 +1,946 @@
+{
+  "schema": "problem-atom/connection-extension/1",
+  "id": "seminar-grammar-bridges",
+  "note": "2026-09-21 원본 문항 10건 재생 회귀(source-witnesses.json)에서 드러난 끊김을 메우는 문법 가교. exposure=grammar 항목은 재료 목록에 노출하지 않고 연결 엔진의 가교 탐색으로만 끼워진다. 모든 항목은 ai_candidate이며 사람 승인은 별도다.",
+  "records": [
+    {
+      "id": "PA-GRAMMAR-FAMILY-F1",
+      "name": "문법 F1 · 포장 벗기기",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "definition": "정적분·절댓값·극한·조각 정의로 감싼 함수를 조각 다항식과 개형으로 되돌린다. 세미나 1·2차 10문항 중 8문항이 첫 단계에서 이 문법을 쓴다.",
+      "source_questions": [
+        "KICE-2021-06-Q20",
+        "KICE-2021-06-Q14",
+        "KICE-2021-09-Q14",
+        "KICE-2021-09-Q20",
+        "KICE-2021-09-Q22",
+        "KICE-2021-11-Q20",
+        "KICE-2022-06-Q14"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F2",
+      "name": "문법 F2 · 상수 분리와 수평선",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "definition": "매개변수를 한쪽으로 몰아 F(x)=k 꼴로 만들고 실근 개수를 수평선 교점 개수로 읽는다. 세미나 개념 '실근 개수 대표 유형 4가지(f(x)=t, f(x)=f(t), f(x)=tx, tf(x)=xf(t))'의 첫 유형이며 합성방정식 가교(PA-BRIDGE-01)도 같은 출력을 만든다.",
+      "source_questions": [
+        "KICE-2021-09-Q20",
+        "KICE-2021-06-Q22"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F3",
+      "name": "문법 F3 · 특이점 조건을 근 배치 규칙으로",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "definition": "연속·미분가능·개수 조건은 그 자체로는 함수를 정하지 못한다. 특이점(끊김·꺾임·개수 변화)이 생기는 자리를 근의 위치와 반복 횟수로 번역해야 후보가 유한해진다. 절댓값의 꺾임과 개수함수의 불연속은 모두 단순근·접점·꺾인점에서만 생긴다.",
+      "source_questions": [
+        "KICE-2021-06-Q14",
+        "KICE-2021-09-Q22",
+        "KICE-2021-11-Q22",
+        "KICE-2021-06-Q22"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F4",
+      "name": "문법 F4 · 구조 후보에서 함수 후보로",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "definition": "근 모양·근 간격·경계 방정식 같은 구조 정보에 최고차항 계수나 기준 함숫값을 붙여 유한한 함수(또는 매개변수) 후보 목록을 만든다. 삼차함수의 실근 구조는 세 단순근·이중근+단순근·삼중근·실근 하나의 네 가지뿐이라 후보가 유한하다.",
+      "source_questions": [
+        "KICE-2021-09-Q22",
+        "KICE-2021-11-Q22",
+        "KICE-2021-09-Q14",
+        "KICE-2021-06-Q22"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F5",
+      "name": "문법 F5 · 근 모으기와 합=평균×개수",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "definition": "곱=0 방정식의 근은 인수별로 모아 합집합으로 세고, 근의 합 조건은 기준점에서의 거리로 읽어 매개변수를 결정한다. 정수의 합도 평균×개수로 계산한다.",
+      "source_questions": [
+        "KICE-2021-09-Q22",
+        "KICE-2021-09-Q20",
+        "KICE-2021-06-Q20"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F6",
+      "name": "문법 F6 · 국소 판단(보기·꺾인점·사잇값)",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "definition": "보기마다 가정을 분리하고, 꺾인점에서는 좌우 기울기와 직선 기울기의 대소로 교점을 세며, 부호가 다른 두 값 사이에는 0이 있다(사잇값). 계산이 아니라 국소 판단으로 끝나는 보기형 문항의 문법이다.",
+      "source_questions": [
+        "KICE-2022-06-Q14",
+        "KICE-2022-11-Q14",
+        "KICE-2021-09-Q14"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F7",
+      "name": "문법 F7 · 확정과 후속",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "definition": "후보 검사에서 하나만 남으면 함수의 식이 정해지고, 식이 정해진 다항식은 다항식·유한한 근·도함수 식을 자동으로 가진다. 한 문항의 결론(함수 확정)이 다음 문항의 시작(개형·근·적분)이 되는 자리이며, 2026-09-21 재조합 탐침에서 틀 간 결합 4→27을 만든 문법이다.",
+      "source_questions": [
+        "KICE-2021-09-Q22",
+        "KICE-2021-11-Q22",
+        "KICE-2021-06-Q22",
+        "KICE-2021-06-Q20",
+        "KICE-2021-06-Q14"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "PA-GRAMMAR-01",
+      "name": "상수를 분리해 수평선 문제로 바꾸기",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F2",
+      "requires": [
+        {
+          "type": "separable_parameter_equation",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "horizontal_problem",
+          "subject": "$f"
+        },
+        {
+          "type": "height_identity",
+          "subject": "$a",
+          "object": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "매개변수가 방정식 한쪽에 단독으로 남을 때만 쓴다. F(x)=k 꼴이 되면 실근의 개수는 y=F(x)와 y=k의 교점 개수이고, k는 높이 자체다. k가 k² 등으로 들어가면 별도 역상 계산이 필요하다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F2",
+        "PA-S02-LEVELS-02",
+        "PA-CAND-PAT-20260910-027",
+        "PA-CAND-CON-20260910-021"
+      ],
+      "witness_questions": [
+        "KICE-2021-09-Q20"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "재생 회귀: f(x)+|f(x)+x|−6x=k, 0<k<7에서 실근 4개. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-02",
+      "name": "조각식마다 증감을 잡고 이음점을 이어 개형 만들기",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F1",
+      "requires": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "polynomial",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "graph_profile",
+          "subject": "$f"
+        },
+        {
+          "type": "critical_points",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "조각마다 미분해 증감과 극값 높이를 구하고, 이음점에서 양쪽 함숫값이 같은지 확인한다. 같지 않으면 불연속점을 개형에 표시하고 그 점의 값을 따로 둔다. 다항식이 아닌 조각에는 쓰지 않는다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F1",
+        "PA-S02-LEVELS-01",
+        "PA-S02-LEVELS-02",
+        "PA-CAND-CON-20260910-014",
+        "PA-CAND-SKL-20260914-001"
+      ],
+      "witness_questions": [
+        "KICE-2021-09-Q20",
+        "KICE-2022-06-Q14"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "재생 회귀: g(x)=x³−9x²+15x (x≥0), −7x (x<0)는 0에서 이어지고 극대 (1,7)·극소 (5,−25). 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-03",
+      "name": "절댓값의 좌우 미분계수 합은 단순근에서만 끊긴다",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F3",
+      "requires": [
+        {
+          "type": "one_sided_derivatives",
+          "subject": "$f"
+        },
+        {
+          "type": "root_multiplicities",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "finite_jump",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "|f|의 우미분계수+좌미분계수는 f≠0에서 ±2f′, 중근에서 0으로 연속, 단순근에서만 2f′(α)와 −2f′(α)로 갈려 유한하게 끊긴다. 단순근이 하나도 없으면 끊김이 없으므로 다음 단계로 넘기지 않는다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F3",
+        "PA-CAND-CON-20260910-008",
+        "PA-S02-JUMP-01",
+        "PA-S02-JUMP-02"
+      ],
+      "witness_questions": [
+        "KICE-2021-09-Q22"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "독립 검산(sympy): f=(x+1)²(x−2)에서 h(x)=lim(|f(x+h)|−|f(x−h)|)/h는 x=−1에서 연속, x=2에서 좌우 극한 −2f′(2)·+2f′(2)로 끊긴다. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-04",
+      "name": "끊김점마다 요구된 0을 근 배치 규칙으로 번역하기",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F3",
+      "requires": [
+        {
+          "type": "factor_zero",
+          "subject": "$f"
+        },
+        {
+          "type": "finite_polynomial_roots",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "positive_shift_root_rule",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "'끊기는 점 α마다 다른 인수 f(α−c)=0'이라는 점별 필요조건을 '단순근 α마다 α−c도 근'이라는 전역 규칙으로 바꾼다. c>0인 이동만 다루며, 근의 개수가 유한할 때 가장 왼쪽 근에서 모순이 나온다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F3",
+        "PA-S02-JUMP-02",
+        "PA-S02-JUMP-03",
+        "PA-CAND-CON-20260910-019"
+      ],
+      "witness_questions": [
+        "KICE-2021-09-Q22"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 0,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "재생 회귀: 삼차 근 구조 4가지 중 이중근 α + 단순근 α+3만 남는다. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-05",
+      "name": "꺾임 개수 조건을 이동 제약으로 번역하기",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F3",
+      "requires": [
+        {
+          "type": "signed_corners",
+          "subject": "$f"
+        },
+        {
+          "type": "nonsmooth_count_condition",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "shift_constraints",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "부호를 붙인 절댓값의 꺾임은 원점 밖 단순근에서만 생기고 원점(값 0)에서는 반복 횟수와 무관하게 매끈하다. 꺾임 개수를 맞추려면 어느 근이 원점에 놓이고 어느 근이 겹쳐야 하는지가 정해지며, 그것이 이동량의 제약이다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F3",
+        "PA-CAND-STR-20260910-011",
+        "PA-CAND-DEC-20260910-009",
+        "PA-CAND-SKL-20260910-010",
+        "PA-MOTIF-S01-05",
+        "PA-S02-WINDOW-02"
+      ],
+      "witness_questions": [
+        "KICE-2021-06-Q14"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 0,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "독립 검산(sympy): F=f(x−p)+q, f=x³−3x²−9x−12에서 sign(x)|F|의 꺾임이 1개가 되는 양수 (p,q)는 (1,7)뿐. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-06",
+      "name": "근 모양 후보에 최고차항 계수를 붙여 함수족 만들기",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F4",
+      "requires": [
+        {
+          "type": "root_shape_candidates",
+          "subject": "$f"
+        },
+        {
+          "type": "cubic_leading",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "근의 위치·반복 횟수 모양이 정해져도 최고차항 계수가 없으면 함수가 아니다. 남은 미정 매개변수(예: 이중근의 위치 α)는 후보 안에 그대로 둔다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F4",
+        "PA-S02-JUMP-03",
+        "PA-S02-WINDOW-03",
+        "PA-CAND-CON-20260910-019",
+        "PA-CAND-CON-20260910-023"
+      ],
+      "witness_questions": [
+        "KICE-2021-09-Q22"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "재생 회귀: f(x)=(x−α)²(x−α−3). 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-07",
+      "name": "근 간격 조건을 미정 인수에 대입해 후보 만들기",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F4",
+      "requires": [
+        {
+          "type": "root_gap",
+          "subject": "$f"
+        },
+        {
+          "type": "factored_family",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "도함수의 두 근 사이 거리는 판별식으로 미정 인수의 방정식이 된다. 근 간격 조건 하나로 후보가 둘 남을 수 있으므로 하나로 단정하지 않는다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F4",
+        "PA-S02-WINDOW-02",
+        "PA-S02-WINDOW-03",
+        "PA-S02-WINDOW-04"
+      ],
+      "witness_questions": [
+        "KICE-2021-11-Q22"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "독립 검산(sympy): f−α=½(x−1)(x−4)(x−k), f′의 두 근 간격 2 ⇔ k∈{1,4}. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-08",
+      "name": "경계 방정식을 풀어 매개변수 후보 목록 만들기",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F4",
+      "requires": [
+        {
+          "type": "boundary_equations",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "finite_parameter_set",
+          "subject": "$a"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "이음점의 값·기울기 일치 식은 매개변수의 다항방정식이다. 근을 모두 목록으로 남기고, 양수 조건 같은 선택은 다음 단계에서 한다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F4",
+        "PA-MOTIF-S01-08",
+        "PA-CAND-DEC-20260910-015",
+        "PA-S02-RECURRENCE-01"
+      ],
+      "witness_questions": [
+        "KICE-2021-09-Q14"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "재생 회귀: f′(0)=f′(2)=0, g 미분가능 ⇔ f′(p)=0 ⇔ p∈{0,2}, 양수 조건으로 p=2. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-09",
+      "name": "곱=0 방정식의 근을 인수별로 모으기",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F5",
+      "requires": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        },
+        {
+          "type": "product_zero_equation",
+          "subject": "$h",
+          "object": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "root_lists",
+          "subject": "$h"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "g=0의 근은 각 인수(f(x−c), f, f′ 등)의 근 목록을 f의 후보식으로 적은 것이다. 인수의 근을 모두 적되 겹침 제거는 다음 단계에서 한다. g와 f는 다른 대상으로 이름 붙인다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F5",
+        "PA-S02-JUMP-04",
+        "PA-CAND-CON-20260910-023"
+      ],
+      "witness_questions": [
+        "KICE-2021-09-Q22"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "재생 회귀: f(x−3)=0 → α+3, α+6; f=0 → α, α+3; f′=0 → α, α+2. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-10",
+      "name": "근의 합을 기준점 거리로 읽어 매개변수 조건 만들기",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F5",
+      "requires": [
+        {
+          "type": "distinct_roots",
+          "subject": "$h"
+        },
+        {
+          "type": "root_sum_condition",
+          "subject": "$h"
+        }
+      ],
+      "provides": [
+        {
+          "type": "selection_condition",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "합 = 평균 × 개수. 근들을 한 기준점에서의 거리로 적으면 합 조건은 기준점의 일차방정식이 된다. 서로 다른 근만 세었는지(겹침 제거 뒤인지) 확인한다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F5",
+        "PA-S02-JUMP-04",
+        "PA-S02-LEVELS-03",
+        "PA-CAND-SKL-20260910-034"
+      ],
+      "witness_questions": [
+        "KICE-2021-09-Q22"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "독립 검산(sympy): α, α+2, α+3, α+6의 합 7 ⇔ α=−1, f(5)=108. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-11",
+      "name": "적분으로 정의된 조각을 미분해 원래 함수의 조각식 얻기",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F1",
+      "requires": [
+        {
+          "type": "opposite_integral_pieces",
+          "subject": "$h"
+        },
+        {
+          "type": "repeated_factor",
+          "subject": "$h"
+        }
+      ],
+      "provides": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "one_sided_derivatives",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "g=±∫₀ˣf이면 f=±g′이다(선수교체). g의 식이 정해져야 f의 조각식이 나오고, 이음점의 좌우 미분계수는 ±g″(0)이다. g와 f를 같은 대상으로 두지 않는다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F1",
+        "PA-S02-SIGNED-02",
+        "PA-CAND-CON-20260910-013",
+        "PA-MOTIF-S01-07"
+      ],
+      "witness_questions": [
+        "KICE-2022-06-Q14"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "독립 검산(sympy): g=x²(x−a) ⇒ f=∓x(3x−2a), f′(0±)=∓2a. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-12",
+      "name": "꺾인점의 좌우 기울기와 직선 기울기 대소로 교점 세기",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F6",
+      "requires": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "one_sided_derivatives",
+          "subject": "$f"
+        },
+        {
+          "type": "corner_line_slope",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "level_counts",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "꺾인점을 지나는 직선이 좌우 조각과 각각 어느 쪽에서 만나는지는 직선 기울기와 좌·우미분계수의 대소로 정해진다. 꺾인점 자체의 교점 1개를 빠뜨리거나 두 번 세지 않는다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F6",
+        "PA-S02-SIGNED-03",
+        "PA-CAND-CON-20260910-020",
+        "PA-MOTIF-S01-12"
+      ],
+      "witness_questions": [
+        "KICE-2022-06-Q14"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "독립 검산(sympy): 0<a<½에서 f(x)=x의 서로 다른 실근은 (2a−1)/3, 0, (2a+1)/3의 3개. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-13",
+      "name": "부호가 다른 두 값 사이의 0 찾기(사잇값)",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F6",
+      "requires": [
+        {
+          "type": "continuous_required",
+          "subject": "$f"
+        },
+        {
+          "type": "sign_change_values",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "interior_zero",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "연속함수가 범위 안에서 양수와 음수를 모두 가지면 그 사이에 0이 있다. 부호가 다른 두 시각이 실제로 범위 안에 있는지 확인한다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F6",
+        "PA-S02-TRAVEL-04",
+        "PA-S02-TRAVEL-01"
+      ],
+      "witness_questions": [
+        "KICE-2022-11-Q14"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 0,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "독립 검산(sympy): x=c·t(t−1)(t−½), 이동거리 2, |x|<1이면 t=½에서 0. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-S02-TRAVEL-05",
+      "name": "상한에 못 미치면 방향전환이 늘어 부호가 바뀐다",
+      "kind": "step",
+      "exposure": "visible",
+      "requires": [
+        {
+          "type": "position_family",
+          "subject": "$f"
+        },
+        {
+          "type": "distance_bound",
+          "subject": "$f"
+        },
+        {
+          "type": "total_distance",
+          "subject": "$f"
+        },
+        {
+          "type": "strict_position_bound",
+          "subject": "$f"
+        },
+        {
+          "type": "same_end_position",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "sign_change_values",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "속도가 이차식이라 방향전환은 최대 2번이다. 출발점으로 돌아오면서 총 이동거리가 상한의 2배인데 상한에 닿지 않으면, 한 번 전환으로는 부족하고 두 번 전환은 반대쪽으로 넘어가야 하므로 위치의 부호가 바뀐다. 삼차 위치식이 아니면 전환 횟수 상한이 달라 쓰지 않는다.",
+      "supports": [
+        "PA-S02-TRAVEL-04",
+        "PA-S02-TRAVEL-02",
+        "PA-GRAMMAR-FAMILY-F6"
+      ],
+      "witness_questions": [
+        "KICE-2022-11-Q14"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 0,
+        "branches": 2
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "독립 검산(sympy): x=−4t(t−1)은 이동거리 2·상한 1·0 없음(상한에 닿음), x=c·t(t−1)(t−½)은 상한 ½·이동거리 2·t=½에서 0. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-14",
+      "name": "남은 후보가 하나이면 함수의 식이 정해진다",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F7",
+      "requires": [
+        {
+          "type": "tested_candidates",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "polynomial_known",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "nonconstant_polynomial",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "추가 조건에 대입해 남은 후보가 정확히 하나일 때만 쓴다. 둘 이상 남으면 함수가 정해지지 않았으므로 수치 조건을 하나 더 넣는다. 확정된 식이 상수나 영다항식이 아님을 확인한다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F7",
+        "PA-S02-WINDOW-04",
+        "PA-MOTIF-S01-13",
+        "PA-S02-JUMP-04"
+      ],
+      "witness_questions": [
+        "KICE-2021-11-Q22",
+        "KICE-2021-06-Q22",
+        "KICE-2021-09-Q22"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 0,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "재조합 회귀: 원본 세 문항(2021-09 22번, 2021-11 22번, 2021-06 22번)이 모두 함수 확정 뒤 f(5)·f(0)을 묻는다. 확정 뒤 개형·근·적분 문항으로 이어지는 결합을 회귀로 확인. 사람 승인은 별도."
+    },
+    {
+      "id": "PA-GRAMMAR-15",
+      "name": "식이 정해진 다항식의 기본 성질",
+      "kind": "bridge",
+      "exposure": "grammar",
+      "grammar_family": "PA-GRAMMAR-FAMILY-F7",
+      "requires": [
+        {
+          "type": "polynomial_known",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_polynomial",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "finite_polynomial_roots",
+          "subject": "$f"
+        },
+        {
+          "type": "derivative_known",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "영다항식이 아닌 다항식은 근이 유한하고, 미분하면 도함수의 식이 나온다. 실제 근의 위치·반복 횟수는 별도 계산(PA-BRIDGE-06)이다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F7",
+        "PA-CAND-SKL-20260910-028",
+        "PA-S02-JUMP-03",
+        "PA-CAND-CON-20260910-008"
+      ],
+      "witness_questions": [
+        "KICE-2021-06-Q20",
+        "KICE-2021-09-Q22",
+        "KICE-2021-06-Q14"
+      ],
+      "review_status": "ai_candidate",
+      "contract_status": "encoded",
+      "effect": "derive",
+      "revision": 1,
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "verification": "독립 검산(sympy): 삼차식의 근 ≤ 3개, 도함수는 이차식. 사람 승인은 별도."
+    }
+  ]
+}

@@ -17,3 +17,8 @@ reviews/*.json
 *.sqlite
 *.sqlite-wal
 *.sqlite-shm
+
+# Personal reports stay in the private Obsidian vault, never in public releases.
+seminar-structure-report.*
+build_seminar_report.py
+test_seminar_report.py

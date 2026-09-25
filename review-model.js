@@ -13,7 +13,7 @@
    const d=examples?.get(o.id),r=registry.records.find(r=>r.id===o.id);
    groups.push({id:'operation-'+o.id,title:d?.name||o.name,proposal:[o.name,o.guard_note].join('. '),guard:o.guard_note,
     members:[{id:o.id,name:d?.name||o.name,definition:r?.payload?.definition||o.guard_note,kind:o.kind,author:d?.source||'연결 재료'}],
-    operations:[o.id],revision:digest([o,r?.payload,d?.name]),relation:'제작실에서 사용하는 박스',reason:'이 박스의 사용 조건과 예시를 확인해 주세요.',regression_notes:[]});
+    operations:[o.id],revision:digest([o,r?.payload,d?.name]),relation:'제작실에서 사용하는 박스',reason:'이 박스의 사용 조건과 예시를 확인해 주세요.',regression_notes:o.verification?.review_notes||[]});
   }
   return {schema:'problem-atom/review-catalog/1',registry_revision:registry.revision,groups,checks:legacy.checks||[]};
  }

@@ -1,12 +1,12 @@
 {
   "engine": "connections-1.0",
-  "registry_revision": "75818ac5f26f5804575c46390d8184b4185a0474c9b3a41d7cf31571dc0d6115",
-  "engine_sha256": "c8bc2f6f403e8a96df931b3b64d18b22591ce72e07f6eed3bf6187be95a17a3a",
-  "test_methods_passed": 116,
+  "registry_revision": "52d96d1f3084f0f467da9cd4ee256e4da0bf2648bdb3397bb89eb09de81f3bbe",
+  "engine_sha256": "5f416a76d42db1de3722e7b858997c1c67f731479e5a8df41e29a7317727ad2a",
+  "test_methods_passed": 132,
   "test_methods_skipped": 0,
-  "records": 107,
-  "contracts": 46,
-  "pair_discovery_checks": 2116,
+  "records": 138,
+  "contracts": 73,
+  "pair_discovery_checks": 5329,
   "cross_seminar_witnesses": 3,
   "legacy_generated_cases": 192,
   "checks": [
