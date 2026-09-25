@@ -1,0 +1,5503 @@
+{
+  "schema": "problem-atom/seminar-structure-report/1",
+  "date": "2026-09-25",
+  "classification_status": "ai_proposal",
+  "registry_mutated": false,
+  "scope": "현재 통합 작업본의 고정 스냅샷",
+  "registry_revision": "52d96d1f3084f0f467da9cd4ee256e4da0bf2648bdb3397bb89eb09de81f3bbe",
+  "topics": {
+    "integral": "정적분으로 정의된 함수",
+    "count": "개수함수와 교점",
+    "absolute": "절댓값이 포함된 식",
+    "piecewise": "구간별 함수",
+    "function": "지나는 점들로 함수 작성",
+    "answer": "값의 범위와 정수",
+    "motion": "거리와 이동"
+  },
+  "summary": {
+    "records": 138,
+    "analysis_entries": 82,
+    "operations": 73,
+    "bridges": 25,
+    "hidden_grammar": 15,
+    "linked_records": 104,
+    "reference_records": 34,
+    "review_groups": 54,
+    "bundles": 10,
+    "source_replays": 13,
+    "file_approved_assets": 0
+  },
+  "deployed_at_audit": {
+    "url": "https://jaewong1994.github.io/problem-atom-dashboard/",
+    "records": 107,
+    "operations": 46,
+    "registry_revision": "75818ac5f26f5804575c46390d8184b4185a0474c9b3a41d7cf31571dc0d6115",
+    "checked_on": "2026-09-25"
+  },
+  "kind_counts": {
+    "concept": 24,
+    "decision": 15,
+    "skill": 26,
+    "strategy": 9,
+    "problem_pattern": 8,
+    "recipe": 10,
+    "motif": 13,
+    "condition": 19,
+    "skeleton": 4,
+    "seminar_source": 3,
+    "grammar_family": 7
+  },
+  "origin_counts": {
+    "seminar-01": 80,
+    "seminar-02": 27,
+    "seminar-20260923": 24,
+    "seminar-synthesis": 7
+  },
+  "role_counts": {
+    "representation": 38,
+    "constraint": 11,
+    "enabler": 24
+  },
+  "curriculum_counts": {
+    "수학Ⅱ": 73
+  },
+  "records": [
+    {
+      "id": "PA-CAND-CON-20260908-001",
+      "name": "매개변수가 들어 있는 정적분의 미분",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-01"
+      ]
+    },
+    {
+      "id": "PA-CAND-DEC-20260908-001",
+      "name": "0보다 크거나 같은 함수를 적분할 때 구간 방향으로 부호 판단",
+      "kind": "decision",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-02"
+      ]
+    },
+    {
+      "id": "PA-CAND-SKL-20260908-001",
+      "name": "곱으로 분해된 도함수의 통합 부호표",
+      "kind": "skill",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-03"
+      ]
+    },
+    {
+      "id": "PA-CAND-STR-20260908-001",
+      "name": "0이 되는 지점이 겹치는 경우로 극값 개수 줄이기",
+      "kind": "strategy",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-03"
+      ]
+    },
+    {
+      "id": "PA-CAND-PAT-20260908-001",
+      "name": "도함수 인수의 0이 되는 지점이 겹치는 경우로 극값 개수 제어",
+      "kind": "problem_pattern",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-03"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-001",
+      "name": "위끝과 피적분함수에 같은 변수가 있는 정적분의 미분",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-01"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-002",
+      "name": "부호가 일정한 피적분함수의 정적분은 x-a와 부호가 같다",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-02"
+      ]
+    },
+    {
+      "id": "PA-CAND-DEC-20260910-003",
+      "name": "곱 인수의 값이 0이 되는 지점이 겹치면 그 지점에서 극값이 생기지 않는다는 판단",
+      "kind": "decision",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-03"
+      ]
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-004",
+      "name": "도함수 인수들의 값이 0이 되는 지점을 한 수직선에 올려 부호표 만들기",
+      "kind": "skill",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-03"
+      ]
+    },
+    {
+      "id": "PA-CAND-STR-20260910-005",
+      "name": "극값 개수 조건을 매개변수 0이 되는 지점이 서로 겹치는 경우 문제로 바꾸기",
+      "kind": "strategy",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-03"
+      ]
+    },
+    {
+      "id": "PA-CAND-PAT-20260910-006",
+      "name": "정적분 인수를 품은 도함수의 극값 개수로 하한 a 결정",
+      "kind": "problem_pattern",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-03"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-007",
+      "name": "부호함수 |x|/x의 값과 x=0 불연속",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-04"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-008",
+      "name": "|다항식|의 미분불가점은 인수분해했을 때 한 번만 나타나는 근으로 x축을 통과하는 점뿐",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-05",
+        "PA-GRAMMAR-03",
+        "PA-GRAMMAR-15"
+      ]
+    },
+    {
+      "id": "PA-CAND-DEC-20260910-009",
+      "name": "연속인 인수를 분리하고 꺾임 개수만으로 이동량 정하기",
+      "kind": "decision",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-04",
+        "PA-MOTIF-S01-06",
+        "PA-GRAMMAR-05"
+      ]
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-010",
+      "name": "극점을 원점으로 옮기는 평행이동량 읽기",
+      "kind": "skill",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-06",
+        "PA-GRAMMAR-05"
+      ]
+    },
+    {
+      "id": "PA-CAND-STR-20260910-011",
+      "name": "절댓값 미분불가점 개수를 극값 위치 하나로 맞추기",
+      "kind": "strategy",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-05",
+        "PA-GRAMMAR-05"
+      ]
+    },
+    {
+      "id": "PA-CAND-PAT-20260910-012",
+      "name": "부호함수×|평행이동 삼차식|의 연속·미분가능 조건으로 이동량 결정",
+      "kind": "problem_pattern",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-05"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-013",
+      "name": "함숫값의 차를 도함수의 정적분으로 쓰기",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-07",
+        "PA-GRAMMAR-11"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-014",
+      "name": "조각함수의 한 점 미분가능성: 연속과 좌·우 미분계수 일치",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-08",
+        "PA-GRAMMAR-02"
+      ]
+    },
+    {
+      "id": "PA-CAND-DEC-20260910-015",
+      "name": "양수 조건으로 p=0을 버리고 p=2만 남기기",
+      "kind": "decision",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-08",
+        "PA-GRAMMAR-08"
+      ]
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-016",
+      "name": "이동된 조각별로 정적분을 나누어 p의 식 만들기",
+      "kind": "skill",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-09"
+      ]
+    },
+    {
+      "id": "PA-CAND-STR-20260910-017",
+      "name": "g의 정적분 표현 하나를 세 보기에 재사용",
+      "kind": "strategy",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-07",
+        "PA-MOTIF-S01-09"
+      ]
+    },
+    {
+      "id": "PA-CAND-PAT-20260910-018",
+      "name": "이동 붙임 삼차 조각함수의 미분가능·정적분 부호 보기 문항",
+      "kind": "problem_pattern",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-07",
+        "PA-MOTIF-S01-09"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-019",
+      "name": "삼차함수 실근 2개는 인수분해했을 때 한 번만 나타나는 근 1개와 여러 번 겹치는 근 1개",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-10",
+        "PA-GRAMMAR-04",
+        "PA-GRAMMAR-06"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-020",
+      "name": "미분계수는 접선의 기울기",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-12",
+        "PA-S03-GRAPH-01",
+        "PA-S03-V-02",
+        "PA-GRAMMAR-12"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-021",
+      "name": "합성형 방정식 f(g(x))=0의 치환 분해",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-10",
+        "PA-GRAMMAR-01"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-022",
+      "name": "접점은 여러 번 겹치는 근이지만 서로 다른 교점 수로는 1개",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-11",
+        "PA-S03-GRAPH-01",
+        "PA-S03-V-02"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-023",
+      "name": "인수정리로 남은 인수의 근 조건 만들기",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-11",
+        "PA-GRAMMAR-06",
+        "PA-GRAMMAR-09"
+      ]
+    },
+    {
+      "id": "PA-CAND-DEC-20260910-024",
+      "name": "교점 3개를 접선 2개 + 다른 직선 1개로 나누는 개형 선택",
+      "kind": "decision",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-11",
+        "PA-MOTIF-S01-12"
+      ]
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-025",
+      "name": "접선 인수를 여러 번 겹치는 근으로 두고 인수정리로 계수 k 구하기",
+      "kind": "skill",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-11",
+        "PA-MOTIF-S01-12"
+      ]
+    },
+    {
+      "id": "PA-CAND-STR-20260910-026",
+      "name": "근 구조 → 기울기 1 직선 → 접선 개형 → 인수 복원",
+      "kind": "strategy",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-10",
+        "PA-MOTIF-S01-12",
+        "PA-MOTIF-S01-13"
+      ]
+    },
+    {
+      "id": "PA-CAND-PAT-20260910-027",
+      "name": "f(x-f(x))=0의 근 개수를 평행 직선 교점 수로 묻는 삼차함수 계수 결정",
+      "kind": "problem_pattern",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-10",
+        "PA-MOTIF-S01-13",
+        "PA-GRAMMAR-01"
+      ]
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-028",
+      "name": "정적분으로 정의된 함수의 도함수 공식을 극한 정의로 유도하기",
+      "kind": "skill",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-01",
+        "PA-GRAMMAR-15"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-029",
+      "name": "극값이면 도함수의 부호가 바뀐다(도함수가 불연속이어도 성립)",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-CAND-CON-20260910-030",
+      "name": "도함수가 0 이상이고 0인 열린구간이 없으면 증가",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-02",
+        "PA-S03-MIN-01"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-031",
+      "name": "항등식은 미분·적분해도 항등식",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-01"
+      ]
+    },
+    {
+      "id": "PA-CAND-CON-20260910-032",
+      "name": "곱의 부호변화 규칙: 두 인수의 부호가 동시에 바뀌면 곱의 부호는 유지되고, 한쪽만 바뀌면 곱의 부호도 바뀜",
+      "kind": "concept",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-03"
+      ]
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-033",
+      "name": "절댓값 비율 |u|/u를 부호함수로 바꾸기",
+      "kind": "skill",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-04",
+        "PA-CAND-SKL-20260910-033"
+      ]
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-034",
+      "name": "삼차곡선과 평행한 두 직선의 교점 x좌표 합 보존으로 검산하기",
+      "kind": "skill",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-GRAMMAR-10"
+      ]
+    },
+    {
+      "id": "PA-CAND-SKL-20260914-001",
+      "name": "절댓값 합·차 |u|±u를 구간별 식으로 바꾸기",
+      "kind": "skill",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-CAND-SKL-20260914-001",
+        "PA-GRAMMAR-02"
+      ]
+    },
+    {
+      "id": "PA-RECIPE-S01-01",
+      "name": "적분의 부호를 매개변수에 따라 위치가 달라지는, 값이 0이 되는 지점으로 바꾸고 고정 0이 되는 지점과 겹치게 하기시키기",
+      "kind": "recipe",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-MOTIF-S01-01",
+      "name": "차형 적분을 미분해 곱으로 분리",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-01"
+      ]
+    },
+    {
+      "id": "PA-MOTIF-S01-02",
+      "name": "적분의 크기를 버리고 하한 기준 부호만 전달",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-02"
+      ]
+    },
+    {
+      "id": "PA-MOTIF-S01-03",
+      "name": "매개변수에 따라 0이 되는 위치를 옮겨 다른 인수가 0이 되는 위치와 겹치게 하기",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-03",
+        "PA-BRIDGE-03",
+        "PA-BRIDGE-09",
+        "PA-BRIDGE-08"
+      ]
+    },
+    {
+      "id": "PA-RECIPE-S01-02",
+      "name": "부호함수의 원점 조건과 원점 밖 절댓값 꺾임을 나눠 이동량 결정",
+      "kind": "recipe",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-MOTIF-S01-04",
+      "name": "부호 인수의 연속성을 원점 값이 0이 되는 지점 조건으로 번역",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-04"
+      ]
+    },
+    {
+      "id": "PA-MOTIF-S01-05",
+      "name": "원점에서 두 부호 변화가 서로 없어지는 현상와 원점 밖 인수분해했을 때 한 번만 나타나는 근을 분리해 꺾임 수 계산",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-05",
+        "PA-BRIDGE-06",
+        "PA-GRAMMAR-05"
+      ]
+    },
+    {
+      "id": "PA-MOTIF-S01-06",
+      "name": "극점을 원점으로 옮기는 후보를 구하고 부호로 선택",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-06"
+      ]
+    },
+    {
+      "id": "PA-RECIPE-S01-03",
+      "name": "함숫값을 빼서 상수항을 없앤 조각함수 하나를 세 보기 판단에 재사용",
+      "kind": "recipe",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-MOTIF-S01-07",
+      "name": "도함수에서 차함수를 복원해 함숫값을 빼면 상수항이 없어지는 성질",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-07",
+        "PA-BRIDGE-04",
+        "PA-BRIDGE-07",
+        "PA-GRAMMAR-11"
+      ]
+    },
+    {
+      "id": "PA-MOTIF-S01-08",
+      "name": "정의한 방식 때문에 연결 지점에서 항상 연속인 함수에서 미분계수만 맞추기",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-08",
+        "PA-GRAMMAR-08"
+      ]
+    },
+    {
+      "id": "PA-MOTIF-S01-09",
+      "name": "공통 표현을 공유하되 보기별 가정과 질문은 분리",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-09"
+      ]
+    },
+    {
+      "id": "PA-RECIPE-S01-04",
+      "name": "합성방정식의 근을 평행선 교점으로 바꾸고 접선 후보를 모두 검토",
+      "kind": "recipe",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-MOTIF-S01-10",
+      "name": "외부 함수의 두 값이 0이 되는 지점으로 합성방정식을 두 직선과의 교점을 구하는 문제로 바꾸기",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-10",
+        "PA-OP-FIXED-LEVELS",
+        "PA-BRIDGE-01"
+      ]
+    },
+    {
+      "id": "PA-MOTIF-S01-11",
+      "name": "인수분해로 교점 분기를 완성하고 접촉 조건 도출",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-11"
+      ]
+    },
+    {
+      "id": "PA-MOTIF-S01-12",
+      "name": "같은 기울기의 다른 점을 포함해 점 조건 후보를 모두 복원",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-12",
+        "PA-GRAMMAR-12"
+      ]
+    },
+    {
+      "id": "PA-MOTIF-S01-13",
+      "name": "검산 가능한 부등식으로 함수 후보를 선택한 뒤 답 변환",
+      "kind": "motif",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-MOTIF-S01-13",
+        "PA-GRAMMAR-14"
+      ]
+    },
+    {
+      "id": "PA-S02-LEVELS-01",
+      "name": "절댓값 안에서 부호를 정하는 부분 찾기",
+      "kind": "decision",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-LEVELS-01",
+        "PA-GRAMMAR-02"
+      ]
+    },
+    {
+      "id": "PA-S02-LEVELS-02",
+      "name": "방정식 대신 수평선과 만나는 점 세기",
+      "kind": "skill",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-LEVELS-02",
+        "PA-OP-FIXED-LEVELS",
+        "PA-BRIDGE-01",
+        "PA-BRIDGE-02",
+        "PA-BRIDGE-04",
+        "PA-BRIDGE-05",
+        "PA-GRAMMAR-01",
+        "PA-GRAMMAR-02"
+      ]
+    },
+    {
+      "id": "PA-S02-LEVELS-03",
+      "name": "양끝을 확인하고 정수만 골라내기",
+      "kind": "skill",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-LEVELS-03",
+        "PA-BRIDGE-03",
+        "PA-BRIDGE-05",
+        "PA-BRIDGE-09",
+        "PA-GRAMMAR-10"
+      ]
+    },
+    {
+      "id": "PA-S02-JUMP-01",
+      "name": "양쪽에서 다가오는 차이를 나눠 읽기",
+      "kind": "skill",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-JUMP-01",
+        "PA-GRAMMAR-03"
+      ]
+    },
+    {
+      "id": "PA-S02-JUMP-02",
+      "name": "끊기는 곳에 다른 인수의 0 맞추기",
+      "kind": "concept",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-JUMP-02",
+        "PA-GRAMMAR-03",
+        "PA-GRAMMAR-04"
+      ]
+    },
+    {
+      "id": "PA-S02-JUMP-03",
+      "name": "가장 왼쪽 근부터 가능한 모양 좁히기",
+      "kind": "decision",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-JUMP-03",
+        "PA-GRAMMAR-04",
+        "PA-GRAMMAR-06",
+        "PA-GRAMMAR-15"
+      ]
+    },
+    {
+      "id": "PA-S02-JUMP-04",
+      "name": "겹치는 근은 한 번만 세기",
+      "kind": "skill",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-JUMP-04",
+        "PA-BRIDGE-06",
+        "PA-GRAMMAR-09",
+        "PA-GRAMMAR-10",
+        "PA-GRAMMAR-14"
+      ]
+    },
+    {
+      "id": "PA-S02-RECURRENCE-01",
+      "name": "구간 끝의 값과 기울기로 상수 찾기",
+      "kind": "skill",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-RECURRENCE-01",
+        "PA-GRAMMAR-08"
+      ]
+    },
+    {
+      "id": "PA-S02-RECURRENCE-02",
+      "name": "적분 구간을 아는 구간으로 옮기기",
+      "kind": "skill",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-RECURRENCE-02"
+      ]
+    },
+    {
+      "id": "PA-S02-RECURRENCE-03",
+      "name": "한 구간에서 구한 식을 다음 구간에 재사용",
+      "kind": "strategy",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-RECURRENCE-03"
+      ]
+    },
+    {
+      "id": "PA-S02-WINDOW-01",
+      "name": "두 점이 함께 들어가는 구간의 위치 찾기",
+      "kind": "concept",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-WINDOW-01"
+      ]
+    },
+    {
+      "id": "PA-S02-WINDOW-02",
+      "name": "개수 조건을 두 근 사이 거리로 바꾸기",
+      "kind": "decision",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-WINDOW-02",
+        "PA-GRAMMAR-05",
+        "PA-GRAMMAR-07"
+      ]
+    },
+    {
+      "id": "PA-S02-WINDOW-03",
+      "name": "같은 함숫값을 빼서 인수 만들기",
+      "kind": "skill",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-WINDOW-03",
+        "PA-BRIDGE-09",
+        "PA-BRIDGE-08",
+        "PA-GRAMMAR-06",
+        "PA-GRAMMAR-07"
+      ]
+    },
+    {
+      "id": "PA-S02-WINDOW-04",
+      "name": "가능한 식을 둘 다 만들고 조건으로 고르기",
+      "kind": "decision",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-WINDOW-04",
+        "PA-GRAMMAR-07",
+        "PA-GRAMMAR-14"
+      ]
+    },
+    {
+      "id": "PA-S02-SIGNED-01",
+      "name": "적분의 위끝과 아래끝을 같게 놓기",
+      "kind": "skill",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-SIGNED-01"
+      ]
+    },
+    {
+      "id": "PA-S02-SIGNED-02",
+      "name": "양쪽 식을 미분한 뒤 연결 지점 맞추기",
+      "kind": "skill",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-SIGNED-02",
+        "PA-GRAMMAR-11"
+      ]
+    },
+    {
+      "id": "PA-S02-SIGNED-03",
+      "name": "구한 근이 그쪽 구간에 있는지 확인",
+      "kind": "decision",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-SIGNED-03",
+        "PA-GRAMMAR-12"
+      ]
+    },
+    {
+      "id": "PA-S02-TRAVEL-01",
+      "name": "이동거리와 처음·끝 위치 차이 구분",
+      "kind": "concept",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-TRAVEL-01",
+        "PA-GRAMMAR-13"
+      ]
+    },
+    {
+      "id": "PA-S02-TRAVEL-02",
+      "name": "방향 바뀐 지점까지 나눠 거리 더하기",
+      "kind": "skill",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-TRAVEL-02",
+        "PA-BRIDGE-02",
+        "PA-BRIDGE-07",
+        "PA-S02-TRAVEL-05"
+      ]
+    },
+    {
+      "id": "PA-S02-TRAVEL-03",
+      "name": "속도가 0인 시각으로 위치식의 계수 찾기",
+      "kind": "skill",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-TRAVEL-03"
+      ]
+    },
+    {
+      "id": "PA-S02-TRAVEL-04",
+      "name": "갔다 돌아오는 거리로 최대 위치 제한",
+      "kind": "concept",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S02-TRAVEL-04",
+        "PA-GRAMMAR-13",
+        "PA-S02-TRAVEL-05"
+      ]
+    },
+    {
+      "id": "PA-RECIPE-S02-levels",
+      "name": "절댓값을 풀고 만나는 점 세기",
+      "kind": "recipe",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-RECIPE-S02-jump",
+      "name": "끊기는 곳을 다른 인수의 0으로 메우기",
+      "kind": "recipe",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-RECIPE-S02-recurrence",
+      "name": "아는 구간을 옮겨 다음 구간 구하기",
+      "kind": "recipe",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-RECIPE-S02-window",
+      "name": "움직이는 구간으로 두 근의 간격 찾기",
+      "kind": "recipe",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-RECIPE-S02-signed",
+      "name": "적분으로 숨긴 함수를 좌우로 나눠 찾기",
+      "kind": "recipe",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-RECIPE-S02-travel",
+      "name": "왕복한 거리를 방향 바뀐 지점으로 계산",
+      "kind": "recipe",
+      "origin": "seminar-02",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-001",
+      "name": "극값 개수 지정",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-002",
+      "name": "답을 모든 값의 합으로 묻기",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-003",
+      "name": "실수 전체에서 연속",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-004",
+      "name": "미분불가점 개수 지정",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-005",
+      "name": "매개변수 양수 조건",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-006",
+      "name": "함수 정의를 항등식 문면으로 주기",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-007",
+      "name": "실수 전체에서 미분가능",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-008",
+      "name": "조건을 만족시키는 매개변수의 개수를 묻기",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-009",
+      "name": "구간 정적분의 부호 판정",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-010",
+      "name": "매개변수 범위 지정",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-011",
+      "name": "두 점의 미분계수를 0으로 지정",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-012",
+      "name": "방정식의 서로 다른 실근 개수 지정",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-013",
+      "name": "합성형 방정식의 서로 다른 실근 개수 지정",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-014",
+      "name": "함숫값 지정",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-015",
+      "name": "미분계수 지정",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-016",
+      "name": "미분계수 부등식으로 개형 배제",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-017",
+      "name": "답을 서로소 자연수 비로 묻기",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-018",
+      "name": "최고차항의 계수 지정",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-COND-20260911-019",
+      "name": "답을 최솟값으로 묻기",
+      "kind": "condition",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-SKEL-20260911-001",
+      "name": "정적분으로 정의된 함수의 극값 개수로 자리 하나를 정한다",
+      "kind": "skeleton",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-SKEL-20260911-002",
+      "name": "절댓값을 품은 함수의 연속과 미분불가점 개수로 이동량을 정한다",
+      "kind": "skeleton",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-SKEL-20260911-003",
+      "name": "이동해 붙인 조각함수의 경계 미분가능성과 구간 적분 부호",
+      "kind": "skeleton",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "PA-SKEL-20260911-004",
+      "name": "합성형 방정식의 근 개수를 평행한 직선의 교점으로 바꿔 계수를 정한다",
+      "kind": "skeleton",
+      "origin": "seminar-01",
+      "source_status": "ai_candidate",
+      "integration_status": "reference_only",
+      "connection_ids": []
+    },
+    {
+      "id": "SEMINAR-20260923-KIM_SANGBEOM",
+      "name": "정적분과 넓이의 차 · 김상범",
+      "kind": "seminar_source",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-AREA-01",
+        "PA-S03-AREA-02",
+        "PA-S03-AREA-03"
+      ]
+    },
+    {
+      "id": "SEMINAR-20260923-KIM_YEONSU",
+      "name": "절댓값 그래프와 교점 · 김연수",
+      "kind": "seminar_source",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-V-01",
+        "PA-S03-GRAPH-01",
+        "PA-S03-V-02",
+        "PA-S03-AREA-04"
+      ]
+    },
+    {
+      "id": "SEMINAR-20260923-MIN_JAEWOONG",
+      "name": "극한으로 만든 함수 · 민재웅",
+      "kind": "seminar_source",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-LIMIT-01",
+        "PA-S03-LIMIT-03",
+        "PA-S03-LIMIT-02",
+        "PA-S03-MIN-01"
+      ]
+    },
+    {
+      "id": "PA-S03-AREA-01",
+      "name": "정적분과 넓이의 차",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-AREA-01"
+      ]
+    },
+    {
+      "id": "PA-S03-AREA-02",
+      "name": "정적분과 넓이가 같을 때",
+      "kind": "decision",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-AREA-02"
+      ]
+    },
+    {
+      "id": "PA-S03-AREA-03",
+      "name": "근의 위치와 적분 조건",
+      "kind": "decision",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-AREA-03"
+      ]
+    },
+    {
+      "id": "PA-S03-V-01",
+      "name": "절댓값 그래프와 교점",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-V-01"
+      ]
+    },
+    {
+      "id": "PA-S03-GRAPH-01",
+      "name": "구간별 함수의 그래프",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-GRAPH-01"
+      ]
+    },
+    {
+      "id": "PA-S03-V-02",
+      "name": "교점 조건과 넓이",
+      "kind": "decision",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-V-02"
+      ]
+    },
+    {
+      "id": "PA-S03-AREA-04",
+      "name": "두 그래프 사이의 넓이",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-AREA-04"
+      ]
+    },
+    {
+      "id": "PA-S03-LIMIT-01",
+      "name": "우극한으로 만든 함수",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-LIMIT-01"
+      ]
+    },
+    {
+      "id": "PA-S03-LIMIT-03",
+      "name": "좌극한으로 만든 함수",
+      "kind": "skill",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-LIMIT-03"
+      ]
+    },
+    {
+      "id": "PA-S03-LIMIT-02",
+      "name": "구간 경계의 좌우 값",
+      "kind": "decision",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-LIMIT-02"
+      ]
+    },
+    {
+      "id": "PA-S03-MIN-01",
+      "name": "최솟값과 끝점",
+      "kind": "decision",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-MIN-01"
+      ]
+    },
+    {
+      "id": "PA-S03-CON-01",
+      "name": "정적분과 넓이",
+      "kind": "concept",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-AREA-01",
+        "PA-S03-AREA-02",
+        "PA-S03-AREA-03"
+      ]
+    },
+    {
+      "id": "PA-S03-CON-02",
+      "name": "두 그래프 사이의 넓이",
+      "kind": "concept",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-V-02",
+        "PA-S03-AREA-04"
+      ]
+    },
+    {
+      "id": "PA-S03-CON-03",
+      "name": "이동한 함수의 극한",
+      "kind": "concept",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-LIMIT-01",
+        "PA-S03-LIMIT-03",
+        "PA-S03-LIMIT-02"
+      ]
+    },
+    {
+      "id": "PA-S03-CON-04",
+      "name": "최솟값과 함숫값",
+      "kind": "concept",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-MIN-01"
+      ]
+    },
+    {
+      "id": "PA-S03-PAT-01",
+      "name": "절댓값 적분과 근의 범위",
+      "kind": "problem_pattern",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-AREA-01",
+        "PA-S03-AREA-03"
+      ]
+    },
+    {
+      "id": "PA-S03-PAT-02",
+      "name": "교점 개수로 정하는 넓이",
+      "kind": "problem_pattern",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-V-01",
+        "PA-S03-V-02",
+        "PA-S03-AREA-04"
+      ]
+    },
+    {
+      "id": "PA-S03-PAT-03",
+      "name": "극한으로 만든 함수의 최솟값",
+      "kind": "problem_pattern",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-LIMIT-01",
+        "PA-S03-LIMIT-02",
+        "PA-S03-MIN-01"
+      ]
+    },
+    {
+      "id": "PA-S03-STR-01",
+      "name": "정적분·넓이와 근의 위치",
+      "kind": "strategy",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-AREA-01",
+        "PA-S03-AREA-03"
+      ]
+    },
+    {
+      "id": "PA-S03-STR-02",
+      "name": "절댓값 그래프·교점·넓이",
+      "kind": "strategy",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-V-01",
+        "PA-S03-GRAPH-01",
+        "PA-S03-V-02",
+        "PA-S03-AREA-04"
+      ]
+    },
+    {
+      "id": "PA-S03-STR-03",
+      "name": "우극한·구간별 함수·최솟값",
+      "kind": "strategy",
+      "origin": "seminar-20260923",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-S03-GRAPH-01",
+        "PA-S03-LIMIT-01",
+        "PA-S03-LIMIT-02",
+        "PA-S03-MIN-01"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F1",
+      "name": "문법 F1 · 포장 벗기기",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-GRAMMAR-02",
+        "PA-GRAMMAR-11"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F2",
+      "name": "문법 F2 · 상수 분리와 수평선",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-GRAMMAR-01"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F3",
+      "name": "문법 F3 · 특이점 조건을 근 배치 규칙으로",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-GRAMMAR-03",
+        "PA-GRAMMAR-04",
+        "PA-GRAMMAR-05"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F4",
+      "name": "문법 F4 · 구조 후보에서 함수 후보로",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-GRAMMAR-06",
+        "PA-GRAMMAR-07",
+        "PA-GRAMMAR-08"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F5",
+      "name": "문법 F5 · 근 모으기와 합=평균×개수",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-GRAMMAR-09",
+        "PA-GRAMMAR-10"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F6",
+      "name": "문법 F6 · 국소 판단(보기·꺾인점·사잇값)",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-GRAMMAR-12",
+        "PA-GRAMMAR-13",
+        "PA-S02-TRAVEL-05"
+      ]
+    },
+    {
+      "id": "PA-GRAMMAR-FAMILY-F7",
+      "name": "문법 F7 · 확정과 후속",
+      "kind": "grammar_family",
+      "origin": "seminar-synthesis",
+      "source_status": "ai_candidate",
+      "integration_status": "contract_linked",
+      "connection_ids": [
+        "PA-GRAMMAR-14",
+        "PA-GRAMMAR-15"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "PA-MOTIF-S01-01",
+      "name": "적분을 미분해 두 인수로 나누기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "difference_integral",
+          "subject": "$f"
+        },
+        {
+          "type": "continuous_weight",
+          "subject": "$f"
+        },
+        {
+          "type": "differentiable_function",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "derivative_product",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "F(x)−F(t)의 차 구조에만 적용한다.",
+      "supports": [
+        "PA-MOTIF-S01-01",
+        "PA-CAND-CON-20260910-001",
+        "PA-CAND-SKL-20260910-028",
+        "PA-CAND-CON-20260910-031",
+        "PA-CAND-CON-20260908-001"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "정적분으로 정의된 함수",
+      "proposed_topic": "integral",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-02",
+      "name": "적분값 대신 양수·음수만 남기기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "derivative_product",
+          "subject": "$f"
+        },
+        {
+          "type": "positive_intervals",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "integral_sign",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "zero_weight_interval",
+          "subject": "$f"
+        },
+        {
+          "type": "changing_weight_sign",
+          "subject": "$f"
+        }
+      ],
+      "guard_note": "어떤 열린구간 전체에서 0이면 사용할 수 없다.",
+      "supports": [
+        "PA-MOTIF-S01-02",
+        "PA-CAND-CON-20260910-002",
+        "PA-CAND-CON-20260910-030",
+        "PA-CAND-DEC-20260908-001"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "정적분의 부호",
+      "proposed_topic": "integral",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-03",
+      "name": "0이 되는 두 위치를 겹쳐 극값 줄이기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "integral_sign",
+          "subject": "$f"
+        },
+        {
+          "type": "two_simple_critical_roots",
+          "subject": "$f"
+        },
+        {
+          "type": "one_extremum_required",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "finite_parameter_set",
+          "subject": "$a"
+        },
+        {
+          "type": "parameter_is_critical_root",
+          "subject": "$a",
+          "object": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "다른 부호 변화 인수가 없고 두 근이 서로 다를 때만 적용한다.",
+      "supports": [
+        "PA-MOTIF-S01-03",
+        "PA-CAND-DEC-20260910-003",
+        "PA-CAND-SKL-20260910-004",
+        "PA-CAND-STR-20260910-005",
+        "PA-CAND-PAT-20260910-006",
+        "PA-CAND-CON-20260910-032",
+        "PA-CAND-SKL-20260908-001",
+        "PA-CAND-STR-20260908-001",
+        "PA-CAND-PAT-20260908-001"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "display_name": "극값 개수와 근의 겹침",
+      "proposed_topic": "integral",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-04",
+      "name": "좌우로 부호가 바뀌는 곳을 0으로 잇기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "signed_absolute",
+          "subject": "$f"
+        },
+        {
+          "type": "polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "continuous_required",
+          "subject": "$f"
+        },
+        {
+          "type": "point_value_defined",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "origin_zero",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "나눗셈이 정의되지 않는 점의 값을 별도로 확인한다.",
+      "supports": [
+        "PA-MOTIF-S01-04",
+        "PA-CAND-CON-20260910-007",
+        "PA-CAND-DEC-20260910-009",
+        "PA-CAND-SKL-20260910-033"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "좌우로 부호가 바뀌는 곳을 0으로 잇기",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-05",
+      "name": "절댓값이 꺾이는 곳과 매끈한 곳 구별하기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "signed_absolute",
+          "subject": "$f"
+        },
+        {
+          "type": "root_multiplicities",
+          "subject": "$f"
+        },
+        {
+          "type": "origin_zero",
+          "subject": "$f"
+        },
+        {
+          "type": "point_value_defined",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "signed_corners",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "다항식 범위. 일반 절댓값과 부호를 붙인 절댓값을 구분한다.",
+      "supports": [
+        "PA-MOTIF-S01-05",
+        "PA-CAND-CON-20260910-008",
+        "PA-CAND-STR-20260910-011",
+        "PA-CAND-PAT-20260910-012"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "절댓값과 미분가능성",
+      "proposed_topic": "absolute",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-06",
+      "name": "극값이 있는 점을 원점으로 옮기기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "critical_points",
+          "subject": "$f"
+        },
+        {
+          "type": "polynomial_known",
+          "subject": "$f"
+        },
+        {
+          "type": "shift_constraints",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "가능한 두 이동을 모두 만들며 부호 조건의 효과를 따로 확인한다.",
+      "supports": [
+        "PA-MOTIF-S01-06",
+        "PA-CAND-SKL-20260910-010",
+        "PA-CAND-DEC-20260910-009"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "display_name": "극값이 있는 점을 원점으로 옮기기",
+      "proposed_topic": "function",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-07",
+      "name": "같은 함숫값을 빼서 상수 없애기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "derivative_known",
+          "subject": "$f"
+        },
+        {
+          "type": "normalized_pieces",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "constant_cancelled",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "사라진 적분상수를 이 식만으로 복원하지 않는다.",
+      "supports": [
+        "PA-MOTIF-S01-07",
+        "PA-CAND-CON-20260910-013",
+        "PA-CAND-STR-20260910-017",
+        "PA-CAND-PAT-20260910-018"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "같은 높이의 두 점",
+      "proposed_topic": "function",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-08",
+      "name": "먼저 값을 맞춘 뒤 기울기 맞추기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "normalized_pieces",
+          "subject": "$f"
+        },
+        {
+          "type": "value_match",
+          "subject": "$f"
+        },
+        {
+          "type": "differentiability_required",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "boundary_equations",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "두 조각이 다항식일 때. 값 일치만으로 기울기 일치를 주장하지 않는다.",
+      "supports": [
+        "PA-MOTIF-S01-08",
+        "PA-CAND-CON-20260910-014",
+        "PA-CAND-DEC-20260910-015"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "먼저 값을 맞춘 뒤 기울기 맞추기",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-09",
+      "name": "보기의 가정을 섞지 않고 따로 풀기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "separate_claims",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "claim_results",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "ㄱ의 가정을 ㄴ의 증명으로 가져오지 않는다.",
+      "supports": [
+        "PA-MOTIF-S01-09",
+        "PA-CAND-SKL-20260910-016",
+        "PA-CAND-STR-20260910-017",
+        "PA-CAND-PAT-20260910-018"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "보기의 가정을 섞지 않고 따로 풀기",
+      "proposed_topic": "answer",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-10",
+      "name": "합성방정식을 두 직선과의 교점으로 바꾸기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "composite_equation",
+          "subject": "$f"
+        },
+        {
+          "type": "two_distinct_roots",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_scale",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "parallel_intersections",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "zero_scale",
+          "subject": "$f"
+        }
+      ],
+      "guard_note": "직선 기울기는 1/m이다. 나눗셈 전에 m≠0을 확인한다.",
+      "supports": [
+        "PA-MOTIF-S01-10",
+        "PA-CAND-CON-20260910-019",
+        "PA-CAND-CON-20260910-021",
+        "PA-CAND-STR-20260910-026",
+        "PA-CAND-PAT-20260910-027"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "합성방정식과 직선",
+      "proposed_topic": "count",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-11",
+      "name": "접하는 경우까지 나눠 함수 후보 만들기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "parallel_intersections",
+          "subject": "$f"
+        },
+        {
+          "type": "original_composite_family",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "tangent_candidates",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "원문 m=1 조건을 벗어나면 계수 관계를 다시 유도해야 한다.",
+      "supports": [
+        "PA-MOTIF-S01-11",
+        "PA-CAND-CON-20260910-022",
+        "PA-CAND-CON-20260910-023",
+        "PA-CAND-DEC-20260910-024",
+        "PA-CAND-SKL-20260910-025"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "display_name": "접하는 경우까지 나눠 함수 후보 만들기",
+      "proposed_topic": "count",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-12",
+      "name": "같은 기울기의 점을 모두 후보로 남기기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "tangent_candidates",
+          "subject": "$f"
+        },
+        {
+          "type": "slope_point_condition",
+          "subject": "$f"
+        },
+        {
+          "type": "known_value_condition",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "기울기가 같다는 이유만으로 같은 접점이라고 할 수 없다.",
+      "supports": [
+        "PA-MOTIF-S01-12",
+        "PA-CAND-CON-20260910-020",
+        "PA-CAND-DEC-20260910-024",
+        "PA-CAND-SKL-20260910-025",
+        "PA-CAND-STR-20260910-026"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "같은 기울기의 점을 모두 후보로 남기기",
+      "proposed_topic": "function",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-MOTIF-S01-13",
+      "name": "남은 함수마다 조건을 대입해 거르기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        },
+        {
+          "type": "selection_condition",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "tested_candidates",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "남은 후보가 반드시 하나라고 가정하지 않는다.",
+      "supports": [
+        "PA-MOTIF-S01-13",
+        "PA-CAND-STR-20260910-026",
+        "PA-CAND-PAT-20260910-027"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "display_name": "남은 함수마다 조건을 대입해 거르기",
+      "proposed_topic": "function",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-LEVELS-01",
+      "name": "절댓값 안의 부호를 정해 식 나누기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "positive_quadratic_factor",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "이차식이 항상 양수인지 먼저 확인한다.",
+      "supports": [
+        "PA-S02-LEVELS-01"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "절댓값 안의 부호를 정해 식 나누기",
+      "proposed_topic": "absolute",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-LEVELS-02",
+      "name": "수평선 높이에 따라 만나는 점 세기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "graph_profile",
+          "subject": "$f"
+        },
+        {
+          "type": "horizontal_problem",
+          "subject": "$f"
+        },
+        {
+          "type": "requested_count",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "height_set",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "끝점과 접점의 높이를 따로 센다.",
+      "supports": [
+        "PA-S02-LEVELS-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "개수함수",
+      "proposed_topic": "count",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-LEVELS-03",
+      "name": "허용된 값 중 정수만 골라내기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "admissible_set",
+          "subject": "$a"
+        }
+      ],
+      "provides": [
+        {
+          "type": "integer_answer",
+          "subject": "$a"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "열린 끝과 닫힌 끝을 구분한다.",
+      "supports": [
+        "PA-S02-LEVELS-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "허용된 값 중 정수만 골라내기",
+      "proposed_topic": "answer",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-JUMP-01",
+      "name": "좌우에서 다가오는 차이를 나누기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "symmetric_difference",
+          "subject": "$f"
+        },
+        {
+          "type": "polynomial_known",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "one_sided_derivatives",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "좌우 미분계수의 합을 구한다. 끊김 여부는 별도의 좌우 극한 계산이 필요하다.",
+      "supports": [
+        "PA-S02-JUMP-01"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "좌우에서 다가오는 차이를 나누기",
+      "proposed_topic": "absolute",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-JUMP-02",
+      "name": "끊기는 곳에 다른 인수의 0 맞추기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "finite_jump",
+          "subject": "$f"
+        },
+        {
+          "type": "continuous_factor",
+          "subject": "$f"
+        },
+        {
+          "type": "product_continuity",
+          "subject": "$f"
+        },
+        {
+          "type": "point_value_defined",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "factor_zero",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "jump_unbounded",
+          "subject": "$f"
+        }
+      ],
+      "guard_note": "유한한 서로 다른 좌우 극한일 때의 필요조건이다. 점의 값도 확인한다.",
+      "supports": [
+        "PA-S02-JUMP-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "끊기는 곳에 다른 인수의 0 맞추기",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-JUMP-03",
+      "name": "가장 왼쪽 근부터 모양 좁히기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "positive_shift_root_rule",
+          "subject": "$f"
+        },
+        {
+          "type": "finite_polynomial_roots",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "root_shape_candidates",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "이동량이 양수여야 한다.",
+      "supports": [
+        "PA-S02-JUMP-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "가장 왼쪽 근부터 모양 좁히기",
+      "proposed_topic": "function",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-JUMP-04",
+      "name": "겹치는 근을 한 번만 세기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "root_lists",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "distinct_roots",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "같은 값인지 확인하고 합집합을 만든다.",
+      "supports": [
+        "PA-S02-JUMP-04"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "여러 식의 근과 중복",
+      "proposed_topic": "answer",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-RECURRENCE-01",
+      "name": "구간 끝의 값과 기울기로 상수 찾기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "known_interval",
+          "subject": "$f"
+        },
+        {
+          "type": "recurrence_relation",
+          "subject": "$f"
+        },
+        {
+          "type": "differentiability_required",
+          "subject": "$f"
+        },
+        {
+          "type": "recurrence_unique_constants",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "recurrence_constants",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "끝점 값과 기울기 조건을 실제로 모두 사용한다.",
+      "supports": [
+        "PA-S02-RECURRENCE-01"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "구간 끝의 값과 기울기로 상수 찾기",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-RECURRENCE-02",
+      "name": "적분 구간을 아는 구간으로 옮기기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "known_interval",
+          "subject": "$f"
+        },
+        {
+          "type": "recurrence_relation",
+          "subject": "$f"
+        },
+        {
+          "type": "recurrence_constants",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "shifted_integral",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "위끝과 아래끝을 함께 옮긴다.",
+      "supports": [
+        "PA-S02-RECURRENCE-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "적분 구간을 아는 구간으로 옮기기",
+      "proposed_topic": "integral",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-RECURRENCE-03",
+      "name": "앞 구간의 식을 다음 구간에 쓰기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "known_interval",
+          "subject": "$f"
+        },
+        {
+          "type": "recurrence_relation",
+          "subject": "$f"
+        },
+        {
+          "type": "recurrence_constants",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "next_interval",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "중간 구간의 식을 생략하지 않는다.",
+      "supports": [
+        "PA-S02-RECURRENCE-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "앞 구간의 식을 다음 구간에 쓰기",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-WINDOW-01",
+      "name": "두 점이 모두 들어가는 구간 찾기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "two_points",
+          "subject": "$f"
+        },
+        {
+          "type": "closed_window",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "window_positions",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "닫힌구간의 양끝을 포함한다.",
+      "supports": [
+        "PA-S02-WINDOW-01"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "두 점이 모두 들어가는 구간 찾기",
+      "proposed_topic": "count",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-WINDOW-02",
+      "name": "개수 조건에서 두 근의 간격 찾기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "window_positions",
+          "subject": "$f"
+        },
+        {
+          "type": "window_limit_bound",
+          "subject": "$f"
+        },
+        {
+          "type": "window_two_exists",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "root_gap",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "개수가 2인 위치가 있다는 조건이 필요하다.",
+      "supports": [
+        "PA-S02-WINDOW-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "개수 조건에서 두 근의 간격 찾기",
+      "proposed_topic": "count",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-WINDOW-03",
+      "name": "같은 함숫값을 빼서 인수 만들기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "equal_values",
+          "subject": "$f"
+        },
+        {
+          "type": "cubic_leading",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "factored_family",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "두 점은 다르고 최고차항 계수는 0이 아니다.",
+      "supports": [
+        "PA-S02-WINDOW-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "지나는 점들로 함수 작성",
+      "proposed_topic": "function",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-WINDOW-04",
+      "name": "가능한 식을 모두 대입해 고르기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        },
+        {
+          "type": "selection_condition",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "tested_candidates",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "추가 조건이 둘 다 허용할 가능성도 남긴다.",
+      "supports": [
+        "PA-S02-WINDOW-04"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "가능한 식을 모두 대입해 고르기",
+      "proposed_topic": "function",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-SIGNED-01",
+      "name": "적분의 양끝을 같게 놓아 값 얻기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "definite_integral_definition",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "base_zero",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "해당 점에서 적분이 정의되어야 한다.",
+      "supports": [
+        "PA-S02-SIGNED-01"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "적분의 양끝을 같게 놓아 값 얻기",
+      "proposed_topic": "integral",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-SIGNED-02",
+      "name": "좌우를 미분한 뒤 연결점 맞추기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "opposite_integral_pieces",
+          "subject": "$f"
+        },
+        {
+          "type": "continuity_at_boundary",
+          "subject": "$f"
+        },
+        {
+          "type": "base_zero",
+          "subject": "$f"
+        },
+        {
+          "type": "polynomial",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "repeated_factor",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "자료의 다항식 적분 표현과 좌우 연속성을 함께 사용한다.",
+      "supports": [
+        "PA-S02-SIGNED-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "좌우를 미분한 뒤 연결점 맞추기",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-SIGNED-03",
+      "name": "구한 근이 실제 적용 구간에 있는지 확인",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "piece_roots",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "root_lists",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "이 단계 뒤에 중복을 제거한다.",
+      "supports": [
+        "PA-S02-SIGNED-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "구한 근이 실제 적용 구간에 있는지 확인",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-TRAVEL-01",
+      "name": "이동거리와 위치 차이 구분하기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "position_velocity",
+          "subject": "$f"
+        },
+        {
+          "type": "time_interval",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "distance_definition",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "속도 적분과 속도 절댓값 적분을 구분한다.",
+      "supports": [
+        "PA-S02-TRAVEL-01"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "이동거리와 위치 차이 구분하기",
+      "proposed_topic": "motion",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-TRAVEL-02",
+      "name": "방향이 바뀐 곳에서 거리 나눠 더하기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "turn_times",
+          "subject": "$f"
+        },
+        {
+          "type": "position_values",
+          "subject": "$f"
+        },
+        {
+          "type": "time_interval",
+          "subject": "$f"
+        },
+        {
+          "type": "distance_definition",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "distance_result",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "시간 범위 안의 방향전환과 끝점을 사용한다.",
+      "supports": [
+        "PA-S02-TRAVEL-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "방향이 바뀐 곳에서 거리 나눠 더하기",
+      "proposed_topic": "motion",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-TRAVEL-03",
+      "name": "멈춘 시각으로 위치식의 계수 찾기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "position_family",
+          "subject": "$f"
+        },
+        {
+          "type": "zero_velocity_time",
+          "subject": "$f"
+        },
+        {
+          "type": "time_interval",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "position_coefficients",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "위치식의 도함수에 해당 시각을 대입한다.",
+      "supports": [
+        "PA-S02-TRAVEL-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "멈춘 시각으로 위치식의 계수 찾기",
+      "proposed_topic": "motion",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S02-TRAVEL-04",
+      "name": "갔다 돌아온 거리로 최대 거리 제한하기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "same_end_position",
+          "subject": "$f"
+        },
+        {
+          "type": "total_distance",
+          "subject": "$f"
+        },
+        {
+          "type": "time_interval",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "distance_bound",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "왕복 조건이 없으면 거리의 절반이라는 결론을 낼 수 없다.",
+      "supports": [
+        "PA-S02-TRAVEL-04"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "갔다 돌아온 거리로 최대 거리 제한하기",
+      "proposed_topic": "motion",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-OP-FIXED-LEVELS",
+      "name": "주어진 높이에서 만나는 점 세기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "graph_profile",
+          "subject": "$f"
+        },
+        {
+          "type": "horizontal_problem",
+          "subject": "$f"
+        },
+        {
+          "type": "fixed_heights",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "level_counts",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "정해진 높이의 교점 개수와, 특정 개수를 만드는 높이의 범위를 구하는 일은 별도다.",
+      "supports": [
+        "PA-S02-LEVELS-02",
+        "PA-MOTIF-S01-10"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 1
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "주어진 높이에서 만나는 점 세기",
+      "proposed_topic": "count",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-CAND-SKL-20260910-033",
+      "name": "절댓값을 나눈 식을 1 또는 −1로 바꾸기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "ratio_absolute",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_domain",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "sign_expression",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "division_by_zero",
+          "subject": "$f"
+        }
+      ],
+      "guard_note": "분모가 0인 점에는 적용하지 않는다.",
+      "supports": [
+        "PA-CAND-SKL-20260910-033"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "절댓값을 나눈 식을 1 또는 −1로 바꾸기",
+      "proposed_topic": "absolute",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-CAND-SKL-20260914-001",
+      "name": "절댓값의 합과 차를 두 식으로 나누기",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "absolute_sum",
+          "subject": "$f"
+        },
+        {
+          "type": "real_domain",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "0에서도 식이 정의된다. 절댓값 비율과 별개 원자이다.",
+      "supports": [
+        "PA-CAND-SKL-20260914-001"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "절댓값의 합과 차를 두 식으로 나누기",
+      "proposed_topic": "absolute",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-BRIDGE-01",
+      "name": "기울어진 직선을 수평선으로 바꾸기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "parallel_intersections",
+          "subject": "$f"
+        },
+        {
+          "type": "polynomial_known",
+          "subject": "$f"
+        },
+        {
+          "type": "degree_at_least_two",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_scale",
+          "subject": "$f"
+        },
+        {
+          "type": "two_distinct_roots",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "horizontal_problem",
+          "subject": "$h"
+        },
+        {
+          "type": "fixed_heights",
+          "subject": "$h"
+        },
+        {
+          "type": "linear_shear_relation",
+          "subject": "$h"
+        },
+        {
+          "type": "polynomial_known",
+          "subject": "$h"
+        },
+        {
+          "type": "nonconstant_polynomial",
+          "subject": "$h"
+        },
+        {
+          "type": "nonzero_polynomial",
+          "subject": "$h"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "H(x)=F(x)−x/m를 새 함수로 정의한다. F와 H의 성질을 같은 것으로 취급하지 않는다.",
+      "supports": [
+        "PA-MOTIF-S01-10",
+        "PA-S02-LEVELS-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "기울어진 직선을 수평선으로 바꾸기",
+      "proposed_topic": "count",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-BRIDGE-02",
+      "name": "알고 있는 다항식에서 증감과 높이 구하기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "polynomial_known",
+          "subject": "$f"
+        },
+        {
+          "type": "nonconstant_polynomial",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "graph_profile",
+          "subject": "$f"
+        },
+        {
+          "type": "critical_points",
+          "subject": "$f"
+        },
+        {
+          "type": "differentiable_function",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "미분·실근 계산·끝값 대입이 추가된다. 연결 검사 통과가 이 계산의 완료를 뜻하지는 않는다.",
+      "supports": [
+        "PA-S02-LEVELS-02",
+        "PA-S02-TRAVEL-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "알고 있는 다항식에서 증감과 높이 구하기",
+      "proposed_topic": "function",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-BRIDGE-03",
+      "name": "유한한 답 후보를 정수 선택에 넘기기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "finite_parameter_set",
+          "subject": "$a"
+        }
+      ],
+      "provides": [
+        {
+          "type": "admissible_set",
+          "subject": "$a"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "유한 집합 그대로 전달한다. 최솟값과 최댓값 사이의 모든 수로 넓히지 않는다.",
+      "supports": [
+        "PA-MOTIF-S01-03",
+        "PA-S02-LEVELS-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "유한한 답 후보를 정수 선택에 넘기기",
+      "proposed_topic": "answer",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-BRIDGE-04",
+      "name": "도함수와 한 점의 값으로 함수 되찾기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "derivative_known",
+          "subject": "$f"
+        },
+        {
+          "type": "anchor_value",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_derivative",
+          "subject": "$f"
+        },
+        {
+          "type": "polynomial",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "polynomial_known",
+          "subject": "$f"
+        },
+        {
+          "type": "nonconstant_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_polynomial",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "도함수는 다항식. 한 점의 값이 없으면 적분상수가 남는다.",
+      "supports": [
+        "PA-MOTIF-S01-07",
+        "PA-S02-LEVELS-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "도함수와 한 점으로 함수 작성",
+      "proposed_topic": "function",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-BRIDGE-05",
+      "name": "허용 높이를 매개변수의 허용값으로 옮기기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "height_set",
+          "subject": "$f"
+        },
+        {
+          "type": "height_identity",
+          "subject": "$a",
+          "object": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "admissible_set",
+          "subject": "$a"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "a가 높이 자체라는 일대일 대응을 명시한다. a² 등은 별도 역상 계산이 필요하다.",
+      "supports": [
+        "PA-S02-LEVELS-02",
+        "PA-S02-LEVELS-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "허용 높이를 매개변수의 허용값으로 옮기기",
+      "proposed_topic": "answer",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-BRIDGE-06",
+      "name": "다항식의 근과 반복 횟수 함께 구하기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "polynomial_known",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_polynomial",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "root_multiplicities",
+          "subject": "$f"
+        },
+        {
+          "type": "root_lists",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "근의 위치만 가져와 반복 횟수를 추정하지 않는다. 인수분해 또는 중복근 검사가 필요하다.",
+      "supports": [
+        "PA-MOTIF-S01-05",
+        "PA-S02-JUMP-04"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "다항식의 근과 반복 횟수 함께 구하기",
+      "proposed_topic": "function",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-BRIDGE-07",
+      "name": "함수 그래프를 시간에 따른 위치로 읽기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "graph_profile",
+          "subject": "$f"
+        },
+        {
+          "type": "time_interval",
+          "subject": "$f"
+        },
+        {
+          "type": "differentiable_function",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "turn_times",
+          "subject": "$f"
+        },
+        {
+          "type": "position_values",
+          "subject": "$f"
+        },
+        {
+          "type": "position_velocity",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "같은 함수를 위치로 정의하고 시간 범위를 제한한다. 극값을 시간 밖에서 세지 않는다.",
+      "supports": [
+        "PA-MOTIF-S01-07",
+        "PA-S02-TRAVEL-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "함수 그래프를 시간에 따른 위치로 읽기",
+      "proposed_topic": "motion",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-BRIDGE-09",
+      "name": "정수 후보가 한 개인지 두 개인지 나눠 거꾸로 찾기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "finite_parameter_set",
+          "subject": "$a"
+        },
+        {
+          "type": "parameter_is_critical_root",
+          "subject": "$a",
+          "object": "$f"
+        },
+        {
+          "type": "factored_family",
+          "subject": "$f"
+        },
+        {
+          "type": "two_simple_critical_roots",
+          "subject": "$f"
+        },
+        {
+          "type": "cubic_one_free_root",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_integer_root_sum",
+          "subject": "$a"
+        }
+      ],
+      "provides": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "zero_integer_root_sum",
+          "subject": "$a"
+        }
+      ],
+      "guard_note": "F(x)=k(x−p)(x−q)(x−r)에서 k≠0, 서로 다른 p,q가 정해지고 r만 미정이어야 한다. 허용 a는 F′의 두 실근과 정확히 일치하고, 그중 정수인 값의 합 S는 알려진 0 아닌 정수다. 두 근이 모두 정수인 경우와 한 근만 정수인 경우로 r 후보를 구한 뒤 실제 정수 여부와 합을 다시 확인한다. 합이 0이면 빈 집합 경우를 놓칠 수 있어 사용하지 않는다.",
+      "supports": [
+        "PA-S02-LEVELS-03",
+        "PA-S02-WINDOW-03",
+        "PA-MOTIF-S01-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 2
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "display_name": "정수 후보가 한 개인지 두 개인지 나눠 거꾸로 찾기",
+      "proposed_topic": "answer",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-BRIDGE-08",
+      "name": "같은 높이의 두 점에서 기울기 변화 확인하기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "equal_values",
+          "subject": "$f"
+        },
+        {
+          "type": "cubic_leading",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "two_simple_critical_roots",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "서로 다른 두 입력에서 함숫값이 같은 실제 삼차함수에만 쓴다. 두 기울기 변화 위치가 존재한다는 연결이며 위치의 수치는 실제 함수식을 미분해 별도로 구한다.",
+      "supports": [
+        "PA-S02-WINDOW-03",
+        "PA-MOTIF-S01-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "같은 높이의 두 점에서 기울기 변화 확인하기",
+      "proposed_topic": "function",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": true
+    },
+    {
+      "id": "PA-S03-AREA-01",
+      "name": "정적분과 넓이의 차",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "signed_area_difference",
+          "subject": "$f"
+        },
+        {
+          "type": "continuous_on_interval",
+          "subject": "$f"
+        },
+        {
+          "type": "forward_interval",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "negative_area_identity",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "동일한 함수·동일한 구간 [a,b], a<b에서만 사용한다. ∫f−∫|f|=−2∫max(−f,0). 다른 구간의 적분끼리 비교할 때는 이 항등식을 직접 적용하지 않는다.",
+      "supports": [
+        "PA-S03-AREA-01",
+        "SEMINAR-20260923-KIM_SANGBEOM",
+        "PA-S03-CON-01",
+        "PA-S03-PAT-01",
+        "PA-S03-STR-01"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 0,
+        "branches": 1
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "정적분과 넓이의 차",
+      "proposed_topic": "integral",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-S03-AREA-02",
+      "name": "정적분과 넓이가 같을 때",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "negative_area_identity",
+          "subject": "$f"
+        },
+        {
+          "type": "continuous_on_interval",
+          "subject": "$f"
+        },
+        {
+          "type": "zero_signed_difference",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "nonnegative_on_interval",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "negative_interval_sample",
+          "subject": "$f"
+        }
+      ],
+      "guard_note": "차가 0이고 연속이면 음수인 곳이 없다. 따라서 구간 전체에서 f≥0이다. 역으로 적분값이 양수라는 조건만으로 모든 점에서 f≥0이라고 결론내리지 않는다.",
+      "supports": [
+        "PA-S03-AREA-02",
+        "SEMINAR-20260923-KIM_SANGBEOM",
+        "PA-S03-CON-01"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 0,
+        "branches": 1
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "display_name": "정적분과 넓이가 같을 때",
+      "proposed_topic": "integral",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-S03-AREA-03",
+      "name": "근의 위치와 적분 조건",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "negative_area_identity",
+          "subject": "$f"
+        },
+        {
+          "type": "moving_root_cubic",
+          "subject": "$f",
+          "object": "$a"
+        },
+        {
+          "type": "signed_integral_constraints",
+          "subject": "$f",
+          "object": "$a"
+        }
+      ],
+      "provides": [
+        {
+          "type": "admissible_set",
+          "subject": "$a"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "고정된 두 근과 움직이는 근, 모든 적분구간 끝점을 함께 정렬해 매개변수 경우를 나눈다. 각 구간에서 부호를 확인해 정적분과 넓이를 구별한다. 결과는 빈 집합·여러 구간일 수도 있다. 앞 보기의 가정을 다음 보기에 옮기지 않는다.",
+      "supports": [
+        "PA-S03-AREA-03",
+        "SEMINAR-20260923-KIM_SANGBEOM",
+        "PA-S03-CON-01",
+        "PA-S03-PAT-01",
+        "PA-S03-STR-01"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 3
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "display_name": "근의 위치와 적분 조건",
+      "proposed_topic": "integral",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-S03-V-01",
+      "name": "절댓값 그래프와 교점",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "polynomial_known",
+          "subject": "$h"
+        },
+        {
+          "type": "absolute_graph_comparison",
+          "subject": "$f",
+          "object": "$h"
+        }
+      ],
+      "provides": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piecewise_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        },
+        {
+          "type": "separable_parameter_equation",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "원래 다항식 H와 비교 함수 F=H−m|x−c|는 서로 다른 대상이다. 교점 조건은 F(x)=k로 바뀐다. x=c에서 식이 달라지며 경계는 한 번만 센다. m의 부호와 k의 허용 범위를 보존한다.",
+      "supports": [
+        "PA-S03-V-01",
+        "SEMINAR-20260923-KIM_YEONSU",
+        "PA-S03-PAT-02",
+        "PA-S03-STR-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 1
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "절댓값 그래프와 교점",
+      "proposed_topic": "absolute",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-S03-GRAPH-01",
+      "name": "구간별 함수의 그래프",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piecewise_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "graph_profile",
+          "subject": "$f"
+        },
+        {
+          "type": "critical_points",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "각 조각을 적용 구간 안에서만 미분하고 증감을 계산한다. 경계의 좌우 극한·실제 값·무한대 방향도 포함한 전체 개형을 만든다. 후보인 미분계수 0의 점을 구간 밖에서 채택하지 않는다. 조각 다항식을 전 구간의 다항식으로 바꾸지 않는다.",
+      "supports": [
+        "PA-S03-GRAPH-01",
+        "SEMINAR-20260923-KIM_YEONSU",
+        "PA-S03-STR-02",
+        "PA-S03-STR-03",
+        "PA-CAND-CON-20260910-020",
+        "PA-CAND-CON-20260910-022"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 3,
+        "branches": 2
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "구간별 함수의 그래프",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-S03-V-02",
+      "name": "교점 조건과 넓이",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "admissible_set",
+          "subject": "$a"
+        },
+        {
+          "type": "height_identity",
+          "subject": "$a",
+          "object": "$f"
+        },
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "bounded_area_family",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "허용된 높이 각각을 구간별 식에 넣어 교점을 다시 구한다. 인접한 실제 교점 사이에서만 둘러싸인 영역을 찾는다. 교점 두 개라는 사실만으로 접점을 강제하지 않는다. 여러 높이가 남으면 넓이도 각각 구하며, 하나의 수로 확정하지 않는다.",
+      "supports": [
+        "PA-S03-V-02",
+        "SEMINAR-20260923-KIM_YEONSU",
+        "PA-S03-CON-02",
+        "PA-S03-PAT-02",
+        "PA-S03-STR-02",
+        "PA-CAND-CON-20260910-020",
+        "PA-CAND-CON-20260910-022"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 2
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "display_name": "교점 조건과 넓이",
+      "proposed_topic": "count",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-S03-AREA-04",
+      "name": "두 그래프 사이의 넓이",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "bounded_area_family",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "area_result",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "모든 교점과 식이 바뀌는 점을 함께 넣어 구간을 나눈다. 각 구간에서 위 함수−아래 함수를 적분한다. 교점에서 부호가 안 바뀌어도 식의 경계는 나눈다. 후보별 넓이가 같은지 확인하기 전에는 답 유일성을 선언하지 않는다.",
+      "supports": [
+        "PA-S03-AREA-04",
+        "SEMINAR-20260923-KIM_YEONSU",
+        "PA-S03-CON-02",
+        "PA-S03-PAT-02",
+        "PA-S03-STR-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 3,
+        "branches": 0
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "두 그래프 사이의 넓이",
+      "proposed_topic": "integral",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-S03-LIMIT-01",
+      "name": "우극한으로 만든 함수",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "right_limit_product",
+          "subject": "$f",
+          "object": "$h"
+        },
+        {
+          "type": "piecewise_polynomial_definition",
+          "subject": "$h"
+        },
+        {
+          "type": "positive_shift",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piecewise_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        },
+        {
+          "type": "endpoint_values",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "left_limit_product",
+          "subject": "$f",
+          "object": "$h"
+        }
+      ],
+      "guard_note": "유한한 개수의 조각 다항식이라 양쪽 극한이 유한하다. 이동한 인수의 모든 경계를 원래 경계와 합쳐 정렬한다. 우극한은 오른쪽 조각의 값을 사용한다. 원래 함수의 경계값을 그대로 곱하지 않는다. 이동 간격이 내부 구간 길이와 다르면 겹침 구간을 새로 만든다.",
+      "supports": [
+        "PA-S03-LIMIT-01",
+        "SEMINAR-20260923-MIN_JAEWOONG",
+        "PA-S03-CON-03",
+        "PA-S03-PAT-03",
+        "PA-S03-STR-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 2
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "우극한으로 만든 함수",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-S03-LIMIT-03",
+      "name": "좌극한으로 만든 함수",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "left_limit_product",
+          "subject": "$f",
+          "object": "$h"
+        },
+        {
+          "type": "piecewise_polynomial_definition",
+          "subject": "$h"
+        },
+        {
+          "type": "positive_shift",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piecewise_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        },
+        {
+          "type": "endpoint_values",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [
+        {
+          "type": "right_limit_product",
+          "subject": "$f",
+          "object": "$h"
+        }
+      ],
+      "guard_note": "유한한 개수의 조각 다항식이라 양쪽 극한이 유한하다. 이동한 인수의 모든 경계를 원래 경계와 합쳐 정렬한다. 좌극한은 왼쪽 조각의 값을 사용한다. 원래 함수의 경계값을 그대로 곱하지 않는다. 이동 간격이 내부 구간 길이와 다르면 겹침 구간을 새로 만든다.",
+      "supports": [
+        "PA-S03-LIMIT-03",
+        "SEMINAR-20260923-MIN_JAEWOONG",
+        "PA-S03-CON-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 2
+      },
+      "influence": {
+        "role": "representation",
+        "calibrated": false
+      },
+      "display_name": "좌극한으로 만든 함수",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-S03-LIMIT-02",
+      "name": "구간 경계의 좌우 값",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "piecewise_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        },
+        {
+          "type": "endpoint_values",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "boundary_limits",
+          "subject": "$f"
+        },
+        {
+          "type": "continuity_report",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "각 경계에서 왼쪽 극한·오른쪽 극한·그 점의 값을 별도로 비교한다. 한 보기에서 추가한 연속 가정은 다른 보기에 전달하지 않는다.",
+      "supports": [
+        "PA-S03-LIMIT-02",
+        "SEMINAR-20260923-MIN_JAEWOONG",
+        "PA-S03-CON-03",
+        "PA-S03-PAT-03",
+        "PA-S03-STR-03"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "display_name": "구간 경계의 좌우 값",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-S03-MIN-01",
+      "name": "최솟값과 끝점",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "graph_profile",
+          "subject": "$f"
+        },
+        {
+          "type": "boundary_limits",
+          "subject": "$f"
+        },
+        {
+          "type": "endpoint_values",
+          "subject": "$f"
+        },
+        {
+          "type": "piece_domains",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "minimum_result",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "전 구간의 개형을 비교한다. 각 조각의 극값·끝점 실제 값·경계에서 다가가는 값·무한대 방향을 모두 확인한다. 더 작은 한계값에 다가갈 뿐 그 값을 얻는 점이 없으면 최솟값 없음으로 남긴다. 감소하는 한 조각만으로 전체 최솟값을 결론내리지 않는다.",
+      "supports": [
+        "PA-S03-MIN-01",
+        "SEMINAR-20260923-MIN_JAEWOONG",
+        "PA-S03-CON-04",
+        "PA-S03-PAT-03",
+        "PA-S03-STR-03",
+        "PA-CAND-CON-20260910-030"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 0,
+        "branches": 2
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "display_name": "최솟값과 끝점",
+      "proposed_topic": "piecewise",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-01",
+      "name": "상수를 분리해 수평선 문제로 바꾸기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "separable_parameter_equation",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "horizontal_problem",
+          "subject": "$f"
+        },
+        {
+          "type": "height_identity",
+          "subject": "$a",
+          "object": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "매개변수가 방정식 한쪽에 단독으로 남을 때만 쓴다. F(x)=k 꼴이 되면 실근의 개수는 y=F(x)와 y=k의 교점 개수이고, k는 높이 자체다. k가 k² 등으로 들어가면 별도 역상 계산이 필요하다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F2",
+        "PA-S02-LEVELS-02",
+        "PA-CAND-PAT-20260910-027",
+        "PA-CAND-CON-20260910-021"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "상수를 분리해 수평선 문제로 바꾸기",
+      "proposed_topic": "count",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-02",
+      "name": "조각식마다 증감을 잡고 이음점을 이어 개형 만들기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "polynomial",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "graph_profile",
+          "subject": "$f"
+        },
+        {
+          "type": "critical_points",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "조각마다 미분해 증감과 극값 높이를 구하고, 이음점에서 양쪽 함숫값이 같은지 확인한다. 같지 않으면 불연속점을 개형에 표시하고 그 점의 값을 따로 둔다. 다항식이 아닌 조각에는 쓰지 않는다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F1",
+        "PA-S02-LEVELS-01",
+        "PA-S02-LEVELS-02",
+        "PA-CAND-CON-20260910-014",
+        "PA-CAND-SKL-20260914-001"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "조각식마다 증감을 잡고 이음점을 이어 개형 만들기",
+      "proposed_topic": "piecewise",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-03",
+      "name": "절댓값의 좌우 미분계수 합은 단순근에서만 끊긴다",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "one_sided_derivatives",
+          "subject": "$f"
+        },
+        {
+          "type": "root_multiplicities",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "finite_jump",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "|f|의 우미분계수+좌미분계수는 f≠0에서 ±2f′, 중근에서 0으로 연속, 단순근에서만 2f′(α)와 −2f′(α)로 갈려 유한하게 끊긴다. 단순근이 하나도 없으면 끊김이 없으므로 다음 단계로 넘기지 않는다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F3",
+        "PA-CAND-CON-20260910-008",
+        "PA-S02-JUMP-01",
+        "PA-S02-JUMP-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "절댓값의 좌우 미분계수 합은 단순근에서만 끊긴다",
+      "proposed_topic": "absolute",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-04",
+      "name": "끊김점마다 요구된 0을 근 배치 규칙으로 번역하기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "factor_zero",
+          "subject": "$f"
+        },
+        {
+          "type": "finite_polynomial_roots",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "positive_shift_root_rule",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "'끊기는 점 α마다 다른 인수 f(α−c)=0'이라는 점별 필요조건을 '단순근 α마다 α−c도 근'이라는 전역 규칙으로 바꾼다. c>0인 이동만 다루며, 근의 개수가 유한할 때 가장 왼쪽 근에서 모순이 나온다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F3",
+        "PA-S02-JUMP-02",
+        "PA-S02-JUMP-03",
+        "PA-CAND-CON-20260910-019"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 0,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "끊김점마다 요구된 0을 근 배치 규칙으로 번역하기",
+      "proposed_topic": "function",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-05",
+      "name": "꺾임 개수 조건을 이동 제약으로 번역하기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "signed_corners",
+          "subject": "$f"
+        },
+        {
+          "type": "nonsmooth_count_condition",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "shift_constraints",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "부호를 붙인 절댓값의 꺾임은 원점 밖 단순근에서만 생기고 원점(값 0)에서는 반복 횟수와 무관하게 매끈하다. 꺾임 개수를 맞추려면 어느 근이 원점에 놓이고 어느 근이 겹쳐야 하는지가 정해지며, 그것이 이동량의 제약이다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F3",
+        "PA-CAND-STR-20260910-011",
+        "PA-CAND-DEC-20260910-009",
+        "PA-CAND-SKL-20260910-010",
+        "PA-MOTIF-S01-05",
+        "PA-S02-WINDOW-02"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 0,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "꺾임 개수 조건을 이동 제약으로 번역하기",
+      "proposed_topic": "absolute",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-06",
+      "name": "근 모양 후보에 최고차항 계수를 붙여 함수족 만들기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "root_shape_candidates",
+          "subject": "$f"
+        },
+        {
+          "type": "cubic_leading",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "근의 위치·반복 횟수 모양이 정해져도 최고차항 계수가 없으면 함수가 아니다. 남은 미정 매개변수(예: 이중근의 위치 α)는 후보 안에 그대로 둔다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F4",
+        "PA-S02-JUMP-03",
+        "PA-S02-WINDOW-03",
+        "PA-CAND-CON-20260910-019",
+        "PA-CAND-CON-20260910-023"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "근 모양 후보에 최고차항 계수를 붙여 함수족 만들기",
+      "proposed_topic": "function",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-07",
+      "name": "근 간격 조건을 미정 인수에 대입해 후보 만들기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "root_gap",
+          "subject": "$f"
+        },
+        {
+          "type": "factored_family",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "도함수의 두 근 사이 거리는 판별식으로 미정 인수의 방정식이 된다. 근 간격 조건 하나로 후보가 둘 남을 수 있으므로 하나로 단정하지 않는다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F4",
+        "PA-S02-WINDOW-02",
+        "PA-S02-WINDOW-03",
+        "PA-S02-WINDOW-04"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 2,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "근 간격 조건을 미정 인수에 대입해 후보 만들기",
+      "proposed_topic": "function",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-08",
+      "name": "경계 방정식을 풀어 매개변수 후보 목록 만들기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "boundary_equations",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "finite_parameter_set",
+          "subject": "$a"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "이음점의 값·기울기 일치 식은 매개변수의 다항방정식이다. 근을 모두 목록으로 남기고, 양수 조건 같은 선택은 다음 단계에서 한다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F4",
+        "PA-MOTIF-S01-08",
+        "PA-CAND-DEC-20260910-015",
+        "PA-S02-RECURRENCE-01"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "경계 방정식을 풀어 매개변수 후보 목록 만들기",
+      "proposed_topic": "count",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-09",
+      "name": "곱=0 방정식의 근을 인수별로 모으기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "candidate_functions",
+          "subject": "$f"
+        },
+        {
+          "type": "product_zero_equation",
+          "subject": "$h",
+          "object": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "root_lists",
+          "subject": "$h"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "g=0의 근은 각 인수(f(x−c), f, f′ 등)의 근 목록을 f의 후보식으로 적은 것이다. 인수의 근을 모두 적되 겹침 제거는 다음 단계에서 한다. g와 f는 다른 대상으로 이름 붙인다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F5",
+        "PA-S02-JUMP-04",
+        "PA-CAND-CON-20260910-023"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "곱으로 된 방정식의 근",
+      "proposed_topic": "answer",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-10",
+      "name": "근의 합을 기준점 거리로 읽어 매개변수 조건 만들기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "distinct_roots",
+          "subject": "$h"
+        },
+        {
+          "type": "root_sum_condition",
+          "subject": "$h"
+        }
+      ],
+      "provides": [
+        {
+          "type": "selection_condition",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "합 = 평균 × 개수. 근들을 한 기준점에서의 거리로 적으면 합 조건은 기준점의 일차방정식이 된다. 서로 다른 근만 세었는지(겹침 제거 뒤인지) 확인한다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F5",
+        "PA-S02-JUMP-04",
+        "PA-S02-LEVELS-03",
+        "PA-CAND-SKL-20260910-034"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "근의 합을 기준점 거리로 읽어 매개변수 조건 만들기",
+      "proposed_topic": "answer",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-11",
+      "name": "적분으로 정의된 조각을 미분해 원래 함수의 조각식 얻기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "opposite_integral_pieces",
+          "subject": "$h"
+        },
+        {
+          "type": "repeated_factor",
+          "subject": "$h"
+        }
+      ],
+      "provides": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "one_sided_derivatives",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "g=±∫₀ˣf이면 f=±g′이다(선수교체). g의 식이 정해져야 f의 조각식이 나오고, 이음점의 좌우 미분계수는 ±g″(0)이다. g와 f를 같은 대상으로 두지 않는다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F1",
+        "PA-S02-SIGNED-02",
+        "PA-CAND-CON-20260910-013",
+        "PA-MOTIF-S01-07"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "적분으로 정의된 조각을 미분해 원래 함수의 조각식 얻기",
+      "proposed_topic": "integral",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-12",
+      "name": "꺾인점의 좌우 기울기와 직선 기울기 대소로 교점 세기",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "piecewise_formula",
+          "subject": "$f"
+        },
+        {
+          "type": "one_sided_derivatives",
+          "subject": "$f"
+        },
+        {
+          "type": "corner_line_slope",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "level_counts",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "꺾인점을 지나는 직선이 좌우 조각과 각각 어느 쪽에서 만나는지는 직선 기울기와 좌·우미분계수의 대소로 정해진다. 꺾인점 자체의 교점 1개를 빠뜨리거나 두 번 세지 않는다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F6",
+        "PA-S02-SIGNED-03",
+        "PA-CAND-CON-20260910-020",
+        "PA-MOTIF-S01-12"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 1
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "꺾인점의 좌우 기울기와 직선 기울기 대소로 교점 세기",
+      "proposed_topic": "count",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-13",
+      "name": "부호가 다른 두 값 사이의 0 찾기(사잇값)",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "continuous_required",
+          "subject": "$f"
+        },
+        {
+          "type": "sign_change_values",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "interior_zero",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "연속함수가 범위 안에서 양수와 음수를 모두 가지면 그 사이에 0이 있다. 부호가 다른 두 시각이 실제로 범위 안에 있는지 확인한다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F6",
+        "PA-S02-TRAVEL-04",
+        "PA-S02-TRAVEL-01"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 0,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "부호가 다른 두 값 사이의 0 찾기(사잇값)",
+      "proposed_topic": "function",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-S02-TRAVEL-05",
+      "name": "상한에 못 미치면 방향전환이 늘어 부호가 바뀐다",
+      "kind": "step",
+      "requires": [
+        {
+          "type": "position_family",
+          "subject": "$f"
+        },
+        {
+          "type": "distance_bound",
+          "subject": "$f"
+        },
+        {
+          "type": "total_distance",
+          "subject": "$f"
+        },
+        {
+          "type": "strict_position_bound",
+          "subject": "$f"
+        },
+        {
+          "type": "same_end_position",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "sign_change_values",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "속도가 이차식이라 방향전환은 최대 2번이다. 출발점으로 돌아오면서 총 이동거리가 상한의 2배인데 상한에 닿지 않으면, 한 번 전환으로는 부족하고 두 번 전환은 반대쪽으로 넘어가야 하므로 위치의 부호가 바뀐다. 삼차 위치식이 아니면 전환 횟수 상한이 달라 쓰지 않는다.",
+      "supports": [
+        "PA-S02-TRAVEL-04",
+        "PA-S02-TRAVEL-02",
+        "PA-GRAMMAR-FAMILY-F6"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 0,
+        "branches": 2
+      },
+      "influence": {
+        "role": "constraint",
+        "calibrated": false
+      },
+      "display_name": "상한에 못 미치면 방향전환이 늘어 부호가 바뀐다",
+      "proposed_topic": "motion",
+      "exposure": "visible",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-14",
+      "name": "남은 후보가 하나이면 함수의 식이 정해진다",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "tested_candidates",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "polynomial_known",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "nonconstant_polynomial",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "추가 조건에 대입해 남은 후보가 정확히 하나일 때만 쓴다. 둘 이상 남으면 함수가 정해지지 않았으므로 수치 조건을 하나 더 넣는다. 확정된 식이 상수나 영다항식이 아님을 확인한다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F7",
+        "PA-S02-WINDOW-04",
+        "PA-MOTIF-S01-13",
+        "PA-S02-JUMP-04"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 0,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "남은 후보가 하나이면 함수의 식이 정해진다",
+      "proposed_topic": "function",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    },
+    {
+      "id": "PA-GRAMMAR-15",
+      "name": "식이 정해진 다항식의 기본 성질",
+      "kind": "bridge",
+      "requires": [
+        {
+          "type": "polynomial_known",
+          "subject": "$f"
+        },
+        {
+          "type": "nonzero_polynomial",
+          "subject": "$f"
+        }
+      ],
+      "provides": [
+        {
+          "type": "polynomial",
+          "subject": "$f"
+        },
+        {
+          "type": "finite_polynomial_roots",
+          "subject": "$f"
+        },
+        {
+          "type": "derivative_known",
+          "subject": "$f"
+        }
+      ],
+      "forbids": [],
+      "guard_note": "영다항식이 아닌 다항식은 근이 유한하고, 미분하면 도함수의 식이 나온다. 실제 근의 위치·반복 횟수는 별도 계산(PA-BRIDGE-06)이다.",
+      "supports": [
+        "PA-GRAMMAR-FAMILY-F7",
+        "PA-CAND-SKL-20260910-028",
+        "PA-S02-JUMP-03",
+        "PA-CAND-CON-20260910-008"
+      ],
+      "review_status": "ai_candidate",
+      "curriculum": [
+        "수학Ⅱ"
+      ],
+      "work": {
+        "algebra": 1,
+        "branches": 0
+      },
+      "influence": {
+        "role": "enabler",
+        "calibrated": false
+      },
+      "display_name": "식이 정해진 다항식의 기본 성질",
+      "proposed_topic": "function",
+      "exposure": "grammar",
+      "classification_status": "ai_proposal",
+      "available_in_deployed_engine_at_audit": false
+    }
+  ],
+  "source_files": [
+    {
+      "file": "connection-registry.json",
+      "sha256": "4f7af9bc532c59075752c2b0f1e199401e52cc3d4f798c73ceff814cd1518e8d"
+    },
+    {
+      "file": "asset-library.json",
+      "sha256": "33f76cf822393114fa9f1c303702b0089946b8e4bf107795a74528e210bf4aa4"
+    },
+    {
+      "file": "review-catalog.json",
+      "sha256": "09441c2a26635ec7fafa32d9b9ddb5b04925a33fdd2a0d8b26feb94f7584644a"
+    },
+    {
+      "file": "source-witnesses.json",
+      "sha256": "7cec2675321b934267f03a390c8eaac7b2224ff1cc1a02b52c6918db36f2559a"
+    },
+    {
+      "file": "judgment-bundles.js",
+      "sha256": "be2e6aac2b10b181f9ae414429874d48d98c290b9b38919d8ced8d2f69a17768"
+    },
+    {
+      "file": "authoring-lessons.json",
+      "sha256": "4e834de4947948d55f0eb1ccbce64ba7fea3f7d61744f2535f174513600c4030"
+    },
+    {
+      "file": "connection-validation.json",
+      "sha256": "2ed55a9cf33f3ef654d52f1ba260278b5d51aa27c6ebb006746dc0154f2eb357"
+    }
+  ],
+  "authored_batches": [
+    {
+      "range": [
+        1,
+        5
+      ],
+      "count": 5,
+      "document_sha256": "3156cb236eb5126ee700d4b4114478287b8d6d2186e0772631cb8079f50dd3a8",
+      "verifier": "verify_cubic_batch.py",
+      "verifier_sha256": "0d52615d2cf10adbd122310b4b418817aaa6d549a82aded955b44c22874bc775",
+      "rerun_on": "2026-09-25",
+      "symbolic_regression_passed": true,
+      "human_approved": false,
+      "difficulty_calibrated": false
+    },
+    {
+      "range": [
+        6,
+        10
+      ],
+      "count": 5,
+      "document_sha256": "4c1be479c8918a76a5e633624db35ac2ec14db24f6596eebee588690e61bd57f",
+      "verifier": "verify_cubic_batch_02.py",
+      "verifier_sha256": "a4c9780613f6d4bea77d50910cae0b87e293bff5b7d52532850090163c383453",
+      "rerun_on": "2026-09-25",
+      "symbolic_regression_passed": true,
+      "human_approved": false,
+      "difficulty_calibrated": false
+    },
+    {
+      "range": [
+        11,
+        20
+      ],
+      "count": 10,
+      "document_sha256": "e8123ddd5adeb2a02e1825fd4e3523deab7fe5cc55e1620dc4f08dcce4fc3db6",
+      "verifier": "verify_batch_03.py",
+      "verifier_sha256": "ff6d3f7a2f518638e9fae850d8be1f91082951071be05c4b2775ae22d6b5ff04",
+      "rerun_on": "2026-09-25",
+      "symbolic_regression_passed": true,
+      "human_approved": false,
+      "difficulty_calibrated": false
+    }
+  ],
+  "limits": [
+    "파일 원장 기준이며 Supabase·브라우저의 개인별 승인 이력은 합산하지 않음",
+    "20문항은 현재 대화에서 직접 설계·검산했으며 자동 생성 엔진의 성능 시험이 아님",
+    "파일별 분류안은 기존 승인 상태와 연결 계약을 변경하지 않음"
+  ],
+  "bundle_candidates": [
+    {
+      "id": "REPORT-20260925-integral-sign-extrema",
+      "name": "정적분의 부호와 극값",
+      "evidence_item_numbers": [
+        1
+      ],
+      "related_operations": [
+        "PA-MOTIF-S01-01",
+        "PA-MOTIF-S01-02",
+        "PA-MOTIF-S01-03"
+      ],
+      "requires_new_review": "적분 안 함수의 부호 변화와 인수의 0이 겹치는 경우를 별도로 검사",
+      "status": "ai_proposal",
+      "executable": false
+    },
+    {
+      "id": "REPORT-20260925-count-contact-heights",
+      "name": "개수함수와 접하는 높이",
+      "evidence_item_numbers": [
+        2,
+        7,
+        14,
+        16,
+        19
+      ],
+      "related_operations": [
+        "PA-S02-LEVELS-02",
+        "PA-OP-FIXED-LEVELS"
+      ],
+      "requires_new_review": "목표 높이를 생성하는 적분·합성과 접점 개수를 잇는 관계 추가",
+      "status": "ai_proposal",
+      "executable": false
+    },
+    {
+      "id": "REPORT-20260925-zeros-of-integrals",
+      "name": "정적분이 0인 곳",
+      "evidence_item_numbers": [
+        3,
+        6,
+        15
+      ],
+      "related_operations": [
+        "PA-S03-GRAPH-01",
+        "PA-GRAMMAR-06"
+      ],
+      "requires_new_review": "전 구간 부호, 내부의 접하는 근, 조각의 공통 계수를 구분",
+      "status": "ai_proposal",
+      "executable": false
+    },
+    {
+      "id": "REPORT-20260925-continuous-product",
+      "name": "끊기는 함수와 이어지는 곱",
+      "evidence_item_numbers": [
+        4,
+        10
+      ],
+      "related_operations": [
+        "PA-S02-JUMP-02",
+        "PA-S02-JUMP-03"
+      ],
+      "requires_new_review": "유한 점프와 발산을 구별하고 필요한 0의 반복 횟수 확인",
+      "status": "ai_proposal",
+      "executable": false
+    },
+    {
+      "id": "REPORT-20260925-moving-integral",
+      "name": "움직이는 정적분 구간",
+      "evidence_item_numbers": [
+        5,
+        11
+      ],
+      "related_operations": [
+        "PA-S03-GRAPH-01",
+        "PA-S03-LIMIT-02"
+      ],
+      "requires_new_review": "이동하는 두 끝점이 조각 경계를 지나는 위치와 좌우 증감 추가",
+      "status": "ai_proposal",
+      "executable": false
+    },
+    {
+      "id": "REPORT-20260925-signed-area",
+      "name": "정적분과 넓이",
+      "evidence_item_numbers": [
+        8,
+        13
+      ],
+      "related_operations": [
+        "PA-S03-AREA-01",
+        "PA-S03-AREA-02",
+        "PA-S03-AREA-03"
+      ],
+      "requires_new_review": "적분의 절댓값과 절댓값의 적분은 기존 계약과 같지 않음",
+      "status": "ai_proposal",
+      "executable": false
+    },
+    {
+      "id": "REPORT-20260925-reflected-roots",
+      "name": "반사한 그래프와 근",
+      "evidence_item_numbers": [
+        9,
+        13
+      ],
+      "related_operations": [
+        "PA-S02-JUMP-04",
+        "PA-GRAMMAR-10"
+      ],
+      "requires_new_review": "원래 사용하는 구간과 반사된 근의 대응 및 경계 중복을 기록",
+      "status": "ai_proposal",
+      "executable": false
+    },
+    {
+      "id": "REPORT-20260925-extrema-heights-positions",
+      "name": "극값의 높이와 위치",
+      "evidence_item_numbers": [
+        17,
+        20
+      ],
+      "related_operations": [
+        "PA-BRIDGE-02"
+      ],
+      "requires_new_review": "높이 차와 위치 간격을 다른 결과로 저장, 도함수의 0을 극값으로 자동 인정하지 않음",
+      "status": "ai_proposal",
+      "executable": false
+    },
+    {
+      "id": "REPORT-20260925-shared-junction",
+      "name": "조각 사이의 값과 기울기",
+      "evidence_item_numbers": [
+        12,
+        18
+      ],
+      "related_operations": [
+        "PA-S02-RECURRENCE-01",
+        "PA-S02-SIGNED-02"
+      ],
+      "requires_new_review": "무한히 많은 근을 만드는 평평한 조각과 유한 근 배치를 분리",
+      "status": "ai_proposal",
+      "executable": false
+    }
+  ],
+  "proposed_item_role_fields": [
+    "core_judgment",
+    "bridge",
+    "calculation",
+    "answer_assembly",
+    "validation"
+  ],
+  "proposal_note": "원자 자체의 고정 점수가 아닌 문항별 역할. 기존 연결 계약·승인 상태를 자동 변경하지 않는다."
+}

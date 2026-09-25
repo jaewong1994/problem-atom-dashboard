@@ -4,7 +4,7 @@ import re
 
 ROOT = Path(__file__).resolve().parent
 PAGES = ('index', 'connections', 'asset-library', 'motif-library', 'dashboard',
-         'promotion-board', 'vision', 'studio', 'pilot-review')
+         'promotion-board', 'vision', 'studio', 'pilot-review', 'seminar-structure-report')
 PRIMARY = (('index', '홈'), ('connections', '문항 만들기'), ('promotion-board', '재료 검수'), ('asset-library', '재료 찾기'), ('dashboard', '현황판'))
 
 def header(page):
@@ -24,7 +24,8 @@ def build():
         text = path.read_text(encoding='utf-8')
         account_assets = '<script defer src="account-config.js?v=team2"></script><script defer src="account-supabase.js?v=team2"></script><script defer src="account-client.js?v=setup6"></script><link rel="stylesheet" href="account.css?v=team2">'
         text = re.sub(r'<script defer src="account-config.js[^\"]*"></script>(?:<script defer src="account-supabase.js[^\"]*"></script>)?<script defer src="account-client.js[^\"]*"></script><link rel="stylesheet" href="account.css[^\"]*">', account_assets, text)
-        if 'account-config.js' not in text:
+        # The sanitized research report is read-only public content; it has no account actions.
+        if 'account-config.js' not in text and page != 'seminar-structure-report':
             text = text.replace('<head>', '<head>' + account_assets, 1)
         text = text.replace('site-shell.css?v=flow2', 'site-shell.css?v=flow3')
         text, count = re.subn(r'<!--SITE_NAV-->.*?<!--/SITE_NAV-->',
