@@ -670,12 +670,76 @@ async function loadStaticMode() {
   sync(true, "GitHub 공유본", `${state.publishedSources.length}명 반영 · 본인 선점 문항만 완료 가능`);
 }
 
+let previewRevision = 0;
+let previewCopying = false;
+
+function canCopyPreview() {
+  return window.isSecureContext && typeof navigator.clipboard?.write === "function" &&
+    typeof window.ClipboardItem === "function";
+}
+
+function updatePreviewCopyButton() {
+  const image = $("#previewImage");
+  $("#copyPreview").disabled = previewCopying || !canCopyPreview() || !image.complete || !image.naturalWidth;
+  $("#copyPreview").textContent = previewCopying ? "복사 중…" : "이미지 복사";
+}
+
+async function copyPreviewImage() {
+  const image = $("#previewImage");
+  if (previewCopying || !canCopyPreview() || !image.complete || !image.naturalWidth) return;
+  const revision = previewRevision;
+  previewCopying = true;
+  updatePreviewCopyButton();
+  $("#previewCopyStatus").textContent = "이미지를 복사하고 있습니다.";
+  $("#downloadPreview").hidden = true;
+  try {
+    // Capture synchronously: switching questions must not change the pending copy.
+    const canvas = document.createElement("canvas");
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+    canvas.getContext("2d").drawImage(image, 0, 0);
+    const png = new Promise((resolve, reject) => {
+      canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error("PNG conversion failed")), "image/png");
+    });
+    png.catch(() => {}); // A browser may reject permission before consuming the PNG promise.
+    // Start write in the click handler, before awaiting conversion (Safari user activation).
+    await navigator.clipboard.write([new ClipboardItem({ "image/png": png })]);
+    if (revision === previewRevision) {
+      $("#previewCopyStatus").textContent = "이미지를 복사했습니다. 원하는 곳에 붙여넣으세요.";
+    }
+  } catch (error) {
+    if (revision === previewRevision) {
+      $("#previewCopyStatus").textContent = error.name === "NotAllowedError"
+        ? "복사 권한이 차단되어 있습니다. 브라우저에서 허용하거나 이미지를 저장해 주세요."
+        : "이미지를 복사하지 못했습니다. 다시 시도하거나 이미지를 저장해 주세요.";
+      $("#downloadPreview").hidden = false;
+    }
+  } finally {
+    previewCopying = false;
+    updatePreviewCopyButton();
+  }
+}
+
 function showPreview(exam, section, question) {
+  ++previewRevision;
   $("#previewTitle").textContent =
     `${exam.year} ${exam.session} ${section.title} · ${question.number}번 · ${question.score || "?"}점`;
   const image = $("#previewImage");
+  $("#copyPreview").disabled = true;
+  $("#copyPreview").textContent = previewCopying ? "복사 중…" : "이미지 복사";
+  $("#previewCopyStatus").textContent = canCopyPreview()
+    ? "원본 크기로 복사합니다."
+    : "이 브라우저에서는 이미지 복사를 지원하지 않습니다. 이미지 저장을 이용해 주세요.";
+  $("#downloadPreview").href = question.preview;
+  $("#downloadPreview").hidden = canCopyPreview();
+  image.onload = updatePreviewCopyButton;
+  image.onerror = () => {
+    $("#copyPreview").disabled = true;
+    $("#previewCopyStatus").textContent = "이미지를 불러오지 못했습니다. 닫은 뒤 다시 열어 주세요.";
+  };
   image.src = question.preview;
   image.alt = `${exam.year} ${exam.session} ${section.title} ${question.number}번 문제`;
+  updatePreviewCopyButton();
   const dialog = $("#previewDialog");
   dialog.showModal();
   dialog.scrollTop = 0;
@@ -804,6 +868,8 @@ async function init() {
       render();
     });
   });
+  $("#copyPreview").addEventListener("click", copyPreviewImage);
+  $("#previewDialog").addEventListener("close", () => { ++previewRevision; });
   $("#closePreview").addEventListener("click", () => $("#previewDialog").close());
   $("#previewDialog").addEventListener("click", (event) => {
     if (event.target.id === "previewDialog") event.target.close();

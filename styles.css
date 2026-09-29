@@ -7,6 +7,20 @@ main{max-width:1440px;margin:0 auto;padding:24px}.control-panel{display:grid;gri
 dialog{width:min(1100px,calc(100vw - 32px));max-height:90vh;padding:18px;overflow:auto;border:0;border-radius:14px;background:#fff;box-shadow:0 24px 80px rgba(12,30,26,.3)}dialog::backdrop{background:rgba(14,26,23,.68)}dialog img{display:block;width:100%;max-width:none;height:auto;max-height:none;margin:12px 0 0}.preview-title{padding-right:44px;font-weight:800}.close{position:sticky;z-index:1;float:right;right:0;top:0;width:36px;height:36px;border:0;border-radius:8px;background:#edf2f0;color:var(--ink);font-size:24px;cursor:pointer}.problem-figure-fallback{display:block;max-width:min(100%,420px);width:auto;height:auto;margin:16px auto}
 @media (max-width:900px){.control-panel{grid-template-columns:1fr 1fr}.filter-selects,.filter-group{grid-column:1/-1}.stats{grid-template-columns:1fr 1fr}.exam-card summary{grid-template-columns:1fr}.summary-progress{grid-template-columns:auto 1fr 42px}.summary-progress .count{text-align:left}.topbar{position:static}}@media (max-width:560px){main{padding:14px}.topbar{padding:16px}.sync-box{display:none}.control-panel{grid-template-columns:1fr}.search-field,.filter-selects,.filter-group{grid-column:auto}.filter-group{grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible}.stats{grid-template-columns:1fr 1fr}.stat-card{min-height:98px;padding:13px}.exam-card summary{padding:13px}.exam-heading .year{flex-basis:48px}.question-grid{grid-template-columns:1fr}.exam-toolbar{align-items:flex-start;flex-direction:column}}@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
+/* Original-image tools stay reachable while a long question is scrolled. */
+.preview-header{position:sticky;top:-18px;z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin:-18px -18px 0;padding:14px 18px 12px;background:#fff;border-bottom:1px solid var(--line)}
+.preview-header .preview-title{flex:1 1 260px;min-width:0;padding:0;font-size:14px}
+.preview-actions{display:flex;align-items:center;gap:8px}
+#copyPreview,#downloadPreview{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--accent);border-radius:9px;font:inherit;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer}
+#copyPreview{min-width:116px;color:#fff;background:var(--accent)}
+#copyPreview:disabled{opacity:.55;cursor:default}
+#downloadPreview{color:var(--accent);background:#fff}
+#downloadPreview[hidden]{display:none}
+.preview-header .close{position:static;float:none;width:44px;height:44px}
+#copyPreview:focus-visible,#downloadPreview:focus-visible,.preview-header .close:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+#previewCopyStatus{flex-basis:100%;min-height:20px;margin:0;color:var(--muted);font-size:13px;line-height:20px}
+@media(max-width:560px){.preview-actions{margin-left:auto}#previewCopyStatus{min-height:40px}}
+
 /* 과목 → 학년도 → 문항 순으로 탐색하는 문제은행 필터 */
 .control-panel{grid-template-columns:minmax(300px,1fr) minmax(430px,1.35fr) auto}
 .filter-selects{display:grid;grid-template-columns:minmax(150px,1.35fr) minmax(112px,.8fr) minmax(132px,.9fr);gap:8px}
