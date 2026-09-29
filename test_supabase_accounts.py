@@ -5,6 +5,15 @@ from pathlib import Path
 from test_connections import NODE
 
 ROOT=Path(__file__).resolve().parent
+SESSION_FIXTURE = r"""
+const assert=require('node:assert/strict'),M=require('./account-supabase.js');
+const key='pa-teacher-session-v1',config={url:'https://test.invalid',publishableKey:'test-public'};
+function store(){const values=new Map();return {getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};}
+const user={id:'fixture-teacher',name:'Fixture',role:'member'};
+function saved(expires_at=3600){return {session:{access_token:'fixture-access',refresh_token:'fixture-refresh',expires_at},mode:'web',userId:user.id};}
+const me=async(url,o)=>Response.json({user:o.headers.Authorization?user:null});
+"""
+
 class SupabaseAccountTests(unittest.TestCase):
     def run_js(self,source):
         p=subprocess.run([NODE,'-e',source],cwd=ROOT,text=True,encoding='utf-8',capture_output=True)
@@ -29,6 +38,90 @@ const assert=require('node:assert/strict'),M=require('./account-supabase.js');
  t+=3600000;await Promise.all([c.call('me'),c.call('claims')]);assert.equal(refreshes,1);assert.equal(calls.at(-1).headers.Authorization,'Bearer new');
  assert.equal((await c.call('login',{name:'Teacher',password:'secret'})).mode,null);
  revoked=true;await assert.rejects(c.call('claims'),/deleted/);assert.equal(storage.value,null);
+})().catch(e=>{console.error(e);process.exit(1)});
+""")
+
+    def test_browser_restart_defaults_to_persistent_storage_without_password(self):
+        self.run_js(SESSION_FIXTURE + r"""
+(async()=>{
+ globalThis.localStorage=store();globalThis.sessionStorage=store();
+ let logins=0;const fetcher=async(url,o)=>{const b=JSON.parse(o.body);
+  if(b.route==='login'){logins++;return Response.json({user,session:saved().session});}
+  if(b.route==='mode')return Response.json({user,mode:b.payload.mode});return me(url,o);
+ };
+ let c=M.create(config,{fetcher,now:()=>0});
+ await c.call('login',{name:'Fixture',password:'synthetic-password'});await c.call('mode',{mode:'web'});
+ assert.ok(!localStorage.getItem(key).includes('synthetic-password'));assert.equal(sessionStorage.getItem(key),null);
+ globalThis.sessionStorage=store(); // Closing a browser destroys tab storage, but keeps local storage.
+ c=M.create(config,{fetcher,now:()=>0});const resumed=await c.call('me');
+ assert.equal(resumed.user.id,user.id);assert.equal(resumed.mode,'web');assert.equal(logins,1);
+})().catch(e=>{console.error(e);process.exit(1)});
+""")
+
+    def test_legacy_migration_cannot_revive_session_after_logout(self):
+        self.run_js(SESSION_FIXTURE + r"""
+(async()=>{
+ const persistent=store(),tabA=store(),staleTab=store();
+ M.create(config,{storage:persistent,legacyStorage:store(),fetcher:me,now:()=>0});
+ assert.equal(persistent.getItem(key+':migrated'),null); // An empty new tab must not block a still-logged-in old tab.
+ for(const tab of [tabA,staleTab])tab.setItem(key,JSON.stringify(saved()));
+ const a=M.create(config,{storage:persistent,legacyStorage:tabA,fetcher:me,now:()=>0});
+ assert.equal((await a.call('me')).mode,'web');assert.equal(tabA.getItem(key),null);
+ a.clear();assert.equal(persistent.getItem(key),null);
+ const b=M.create(config,{storage:persistent,legacyStorage:staleTab,fetcher:me,now:()=>0});
+ assert.equal((await b.call('me')).user,null);assert.equal(staleTab.getItem(key),null);
+})().catch(e=>{console.error(e);process.exit(1)});
+""")
+
+    def test_temporary_refresh_failures_keep_login_but_revocation_clears_it(self):
+        self.run_js(SESSION_FIXTURE + r"""
+(async()=>{
+ const persistent=store();persistent.setItem(key,JSON.stringify(saved(0)));let failure=503;
+ const fetcher=async(url,o)=>{if(!url.includes('refresh_token'))return me(url,o);
+  if(failure==='network')throw new TypeError('offline');
+  if(failure)return Response.json({error:'fixture error'},{status:failure});
+  return Response.json({access_token:'renewed',refresh_token:'renewed-refresh',expires_in:3600});
+ };
+ const c=M.create(config,{storage:persistent,fetcher,now:()=>1000});
+ for(const f of [503,429,'network']){failure=f;await assert.rejects(c.call('me'));assert.ok(persistent.getItem(key));}
+ failure=0;assert.equal((await c.call('me')).mode,'web');
+ persistent.setItem(key,JSON.stringify(saved(0)));failure=400;
+ assert.equal((await c.call('me')).user,null);assert.equal(persistent.getItem(key),null);
+})().catch(e=>{console.error(e);process.exit(1)});
+""")
+
+    def test_two_tabs_refresh_once_and_use_the_latest_saved_session(self):
+        self.run_js(SESSION_FIXTURE + r"""
+(async()=>{
+ const persistent=store();persistent.setItem(key,JSON.stringify(saved(0)));let refreshes=0,queue=Promise.resolve();
+ const locks={request:(_key,fn)=>{const next=queue.then(fn);queue=next.catch(()=>{});return next;}};
+ const fetcher=async(url,o)=>{if(url.includes('refresh_token')){refreshes++;return Response.json({access_token:'renewed',refresh_token:'renewed-refresh',expires_in:3600});}assert.equal(o.headers.Authorization,'Bearer renewed');return me(url,o);};
+ const a=M.create(config,{storage:persistent,fetcher,locks,now:()=>1000});
+ const b=M.create(config,{storage:persistent,fetcher,locks,now:()=>1000});
+ await Promise.all([a.call('me'),b.call('me')]);assert.equal(refreshes,1);
+})().catch(e=>{console.error(e);process.exit(1)});
+""")
+
+    def test_logout_during_refresh_cannot_restore_credentials(self):
+        self.run_js(SESSION_FIXTURE + r"""
+(async()=>{
+ const persistent=store();persistent.setItem(key,JSON.stringify(saved(0)));let release,started;
+ const ready=new Promise(r=>started=r);
+ const fetcher=async(url,o)=>{if(url.includes('refresh_token')){started();return new Promise(r=>release=()=>r(Response.json({access_token:'too-late',refresh_token:'too-late',expires_in:3600})));}return me(url,o);};
+ const a=M.create(config,{storage:persistent,fetcher,now:()=>1000});
+ const pending=a.call('me');await ready;
+ const b=M.create(config,{storage:persistent,fetcher,now:()=>1000});await b.call('logout');release();
+ assert.equal((await pending).user,null);assert.equal(persistent.getItem(key),null);
+})().catch(e=>{console.error(e);process.exit(1)});
+""")
+
+    def test_logout_clears_device_even_when_network_fails(self):
+        self.run_js(SESSION_FIXTURE + r"""
+(async()=>{
+ const persistent=store();persistent.setItem(key,JSON.stringify(saved()));
+ const c=M.create(config,{storage:persistent,fetcher:async()=>{throw new TypeError('offline');},now:()=>0});
+ await assert.rejects(c.call('logout'));assert.equal(persistent.getItem(key),null);
+ const reopened=M.create(config,{storage:persistent,fetcher:me,now:()=>0});assert.equal((await reopened.call('me')).user,null);
 })().catch(e=>{console.error(e);process.exit(1)});
 """)
 

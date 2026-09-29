@@ -22,7 +22,7 @@ def build():
     for page in PAGES:
         path = ROOT / f'{page}.html'
         text = path.read_text(encoding='utf-8')
-        account_assets = '<script defer src="account-config.js?v=team2"></script><script defer src="account-supabase.js?v=team2"></script><script defer src="account-client.js?v=setup6"></script><link rel="stylesheet" href="account.css?v=team2">'
+        account_assets = '<script defer src="account-config.js?v=team2"></script><script defer src="account-supabase.js?v=persist1"></script><script defer src="account-client.js?v=persist1"></script><link rel="stylesheet" href="account.css?v=team2">'
         text = re.sub(r'<script defer src="account-config.js[^\"]*"></script>(?:<script defer src="account-supabase.js[^\"]*"></script>)?<script defer src="account-client.js[^\"]*"></script><link rel="stylesheet" href="account.css[^\"]*">', account_assets, text)
         # The sanitized research report is read-only public content; it has no account actions.
         if 'account-config.js' not in text and page != 'seminar-structure-report':
