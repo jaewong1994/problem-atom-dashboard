@@ -672,6 +672,51 @@ async function loadStaticMode() {
 
 let previewRevision = 0;
 let previewCopying = false;
+let previewSharing = false;
+let previewShareFile = null;
+
+function previewPNG(image) {
+  const canvas = document.createElement("canvas");
+  canvas.width = image.naturalWidth;
+  canvas.height = image.naturalHeight;
+  canvas.getContext("2d").drawImage(image, 0, 0);
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error("PNG conversion failed")), "image/png");
+  });
+}
+
+async function preparePreviewShare(revision, filename) {
+  if (typeof navigator.share !== "function" || typeof navigator.canShare !== "function") return;
+  try {
+    const png = await previewPNG($("#previewImage"));
+    if (revision !== previewRevision) return;
+    const file = new File([png], filename, { type: "image/png" });
+    if (navigator.canShare({ files: [file] })) {
+      previewShareFile = file;
+      $("#sharePreview").hidden = false;
+      $("#sharePreview").disabled = previewSharing;
+    }
+  } catch (_error) { /* Saving the original remains available if file sharing is unsupported. */ }
+}
+
+async function sharePreviewImage() {
+  if (!previewShareFile || previewSharing) return;
+  const revision = previewRevision;
+  previewSharing = true;
+  $("#sharePreview").disabled = true;
+  try {
+    // Prepare the file on image load, so share() runs directly in the user's tap.
+    await navigator.share({ files: [previewShareFile] });
+    if (revision === previewRevision) $("#previewCopyStatus").textContent = "공유 화면을 열었습니다. 선택한 앱에서 이미지를 확인해 주세요.";
+  } catch (error) {
+    if (revision === previewRevision) $("#previewCopyStatus").textContent = error.name === "AbortError"
+      ? "공유를 마치지 않았습니다. 다시 공유하거나 이미지를 저장할 수 있습니다."
+      : "공유를 열지 못했습니다. 이미지를 저장한 뒤 원하는 앱에서 불러와 주세요.";
+  } finally {
+    previewSharing = false;
+    $("#sharePreview").disabled = !previewShareFile;
+  }
+}
 
 function canCopyPreview() {
   return window.isSecureContext && typeof navigator.clipboard?.write === "function" &&
@@ -691,28 +736,20 @@ async function copyPreviewImage() {
   previewCopying = true;
   updatePreviewCopyButton();
   $("#previewCopyStatus").textContent = "이미지를 복사하고 있습니다.";
-  $("#downloadPreview").hidden = true;
   try {
     // Capture synchronously: switching questions must not change the pending copy.
-    const canvas = document.createElement("canvas");
-    canvas.width = image.naturalWidth;
-    canvas.height = image.naturalHeight;
-    canvas.getContext("2d").drawImage(image, 0, 0);
-    const png = new Promise((resolve, reject) => {
-      canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error("PNG conversion failed")), "image/png");
-    });
+    const png = previewPNG(image);
     png.catch(() => {}); // A browser may reject permission before consuming the PNG promise.
     // Start write in the click handler, before awaiting conversion (Safari user activation).
     await navigator.clipboard.write([new ClipboardItem({ "image/png": png })]);
     if (revision === previewRevision) {
-      $("#previewCopyStatus").textContent = "이미지를 복사했습니다. 원하는 곳에 붙여넣으세요.";
+      $("#previewCopyStatus").textContent = "이미지를 복사했습니다. 붙여넣기가 안 되면 공유 또는 저장을 이용해 주세요.";
     }
   } catch (error) {
     if (revision === previewRevision) {
       $("#previewCopyStatus").textContent = error.name === "NotAllowedError"
         ? "복사 권한이 차단되어 있습니다. 브라우저에서 허용하거나 이미지를 저장해 주세요."
         : "이미지를 복사하지 못했습니다. 다시 시도하거나 이미지를 저장해 주세요.";
-      $("#downloadPreview").hidden = false;
     }
   } finally {
     previewCopying = false;
@@ -721,18 +758,25 @@ async function copyPreviewImage() {
 }
 
 function showPreview(exam, section, question) {
-  ++previewRevision;
+  const revision = ++previewRevision;
+  previewShareFile = null;
+  $("#sharePreview").hidden = true;
+  $("#sharePreview").disabled = true;
   $("#previewTitle").textContent =
     `${exam.year} ${exam.session} ${section.title} · ${question.number}번 · ${question.score || "?"}점`;
   const image = $("#previewImage");
   $("#copyPreview").disabled = true;
   $("#copyPreview").textContent = previewCopying ? "복사 중…" : "이미지 복사";
   $("#previewCopyStatus").textContent = canCopyPreview()
-    ? "원본 크기로 복사합니다."
+    ? "원본 크기로 전달합니다. 노트 앱에서 붙여넣기가 안 되면 저장 후 이미지로 첨부하세요."
     : "이 브라우저에서는 이미지 복사를 지원하지 않습니다. 이미지 저장을 이용해 주세요.";
   $("#downloadPreview").href = question.preview;
-  $("#downloadPreview").hidden = canCopyPreview();
-  image.onload = updatePreviewCopyButton;
+  const filename = `문제-${exam.year}-${exam.session}-${section.title}-${question.number}.png`.replace(/[\\/:*?"<>|]/g, "-");
+  $("#downloadPreview").download = filename;
+  image.onload = () => {
+    updatePreviewCopyButton();
+    preparePreviewShare(revision, filename);
+  };
   image.onerror = () => {
     $("#copyPreview").disabled = true;
     $("#previewCopyStatus").textContent = "이미지를 불러오지 못했습니다. 닫은 뒤 다시 열어 주세요.";
@@ -869,6 +913,7 @@ async function init() {
     });
   });
   $("#copyPreview").addEventListener("click", copyPreviewImage);
+  $("#sharePreview").addEventListener("click", sharePreviewImage);
   $("#previewDialog").addEventListener("close", () => { ++previewRevision; });
   $("#closePreview").addEventListener("click", () => $("#previewDialog").close());
   $("#previewDialog").addEventListener("click", (event) => {

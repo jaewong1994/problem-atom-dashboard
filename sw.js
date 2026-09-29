@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v54-persistent-login`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v55-image-share`;
 const SHELL = [
   "./creator.js?v=design1", "./creator.css?v=design1", "./problem-design.js?v=design1", "./math-policy.js?v=policy2",
   "./account-supabase.js?v=persist1", "./account-client.js?v=persist1", "./account.css?v=team2",
@@ -18,10 +18,10 @@ const SHELL = [
   "./entry.js?v=design1",
   "./site-shell.css?v=flow3",
   "./dashboard.html",
-  "./styles.css",
+  "./styles.css?v=mobile2",
   "./grouped.css",
   "./season.css",
-  "./app.js?v=clipboard1",
+  "./app.js?v=mobile2",
   "./realtime-config.js",
   "./realtime.js?v=team1",
   "./season-config.json",

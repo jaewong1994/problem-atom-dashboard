@@ -10,16 +10,16 @@ dialog{width:min(1100px,calc(100vw - 32px));max-height:90vh;padding:18px;overflo
 /* Original-image tools stay reachable while a long question is scrolled. */
 .preview-header{position:sticky;top:-18px;z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin:-18px -18px 0;padding:14px 18px 12px;background:#fff;border-bottom:1px solid var(--line)}
 .preview-header .preview-title{flex:1 1 260px;min-width:0;padding:0;font-size:14px}
-.preview-actions{display:flex;align-items:center;gap:8px}
-#copyPreview,#downloadPreview{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--accent);border-radius:9px;font:inherit;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer}
+.preview-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+#copyPreview,#sharePreview,#downloadPreview{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--accent);border-radius:9px;font:inherit;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer}
 #copyPreview{min-width:116px;color:#fff;background:var(--accent)}
-#copyPreview:disabled{opacity:.55;cursor:default}
-#downloadPreview{color:var(--accent);background:#fff}
-#downloadPreview[hidden]{display:none}
+#copyPreview:disabled,#sharePreview:disabled{opacity:.55;cursor:default}
+#sharePreview,#downloadPreview{color:var(--accent);background:#fff}
+#sharePreview[hidden]{display:none}
 .preview-header .close{position:static;float:none;width:44px;height:44px}
-#copyPreview:focus-visible,#downloadPreview:focus-visible,.preview-header .close:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+#copyPreview:focus-visible,#sharePreview:focus-visible,#downloadPreview:focus-visible,.preview-header .close:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 #previewCopyStatus{flex-basis:100%;min-height:20px;margin:0;color:var(--muted);font-size:13px;line-height:20px}
-@media(max-width:560px){.preview-actions{margin-left:auto}#previewCopyStatus{min-height:40px}}
+@media(max-width:560px){.preview-actions{margin-left:auto;justify-content:flex-end}#previewCopyStatus{min-height:40px}}
 
 /* 과목 → 학년도 → 문항 순으로 탐색하는 문제은행 필터 */
 .control-panel{grid-template-columns:minmax(300px,1fr) minmax(430px,1.35fr) auto}

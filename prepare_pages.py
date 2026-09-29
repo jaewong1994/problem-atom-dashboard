@@ -107,7 +107,8 @@ def build_site() -> None:
     from test_seminar_20260923 import Seminar20260923Tests
     from test_problem_design import ProblemDesignTests
     from test_official_media import OfficialMediaTests
-    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests,ReviewLinkTests,TeamAccountTests,SupabaseAccountTests,Seminar20260923Tests,ProblemDesignTests,OfficialMediaTests)])
+    from test_preview_media import PreviewMediaTests
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests,ReviewLinkTests,TeamAccountTests,SupabaseAccountTests,Seminar20260923Tests,ProblemDesignTests,OfficialMediaTests,PreviewMediaTests)])
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")
