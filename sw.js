@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v51-problem-design`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v52-exam-photos`;
 const SHELL = [
   "./creator.js?v=design1", "./creator.css?v=design1", "./problem-design.js?v=design1", "./math-policy.js?v=policy2",
   "./account-supabase.js?v=team2", "./account-client.js?v=setup6", "./account.css?v=team2",

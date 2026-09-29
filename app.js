@@ -659,7 +659,7 @@ async function loadStaticMode() {
   ]);
   state.data = data;
   state.publishedSources = progress.sources || [];
-  state.lastData = `${data.generatedAt}|${data.schemaVersion}|${data.exams?.length}`;
+  state.lastData = `${data.generatedAt}|${data.mediaUpdatedAt || ""}|${data.schemaVersion}|${data.exams?.length}`;
   buildAliases();
   populateYearFilter();
   mergeAllProgress();
@@ -684,7 +684,7 @@ function showPreview(exam, section, question) {
 async function refreshData() {
   try {
     const next = await api("/api/data");
-    const signature = `${next.generatedAt}|${next.schemaVersion}|${next.exams?.length}`;
+    const signature = `${next.generatedAt}|${next.mediaUpdatedAt || ""}|${next.schemaVersion}|${next.exams?.length}`;
     if (state.lastData && signature !== state.lastData) {
       state.data = next;
       buildAliases();
@@ -824,7 +824,7 @@ async function init() {
       return;
     }
     state.data = await api("/api/data");
-    state.lastData = `${state.data.generatedAt}|${state.data.schemaVersion}|${state.data.exams?.length}`;
+    state.lastData = `${state.data.generatedAt}|${state.data.mediaUpdatedAt || ""}|${state.data.schemaVersion}|${state.data.exams?.length}`;
     buildAliases();
     populateYearFilter();
     await refreshProgress(true);

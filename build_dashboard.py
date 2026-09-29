@@ -670,8 +670,10 @@ def main() -> None:
         "scope": "평가원 2006~2026년 6·9월 및 수능 2007~2026학년도, 교육청 탭 준비",
         "exams": exams,
     }
+    from apply_official_media import apply_media
+    payload, _ = apply_media(payload, DASH)
     (DASH / "dashboard-data.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    questions = [q for e in exams for s in e["sections"] for q in s["questions"]]
+    questions = [q for e in payload["exams"] for s in e["sections"] for q in s["questions"]]
     previews = sum(bool(q["preview"]) for q in questions)
     figures = sum(len(q.get("images") or []) for q in questions)
     print(f"완료: 시험 박스 {len(exams)}개, 고유 체크 문항 {len(questions)}개, 실제 미리보기 {previews}문항, LaTeX 본문 그림 {figures}개")

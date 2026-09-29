@@ -1,0 +1,3416 @@
+{
+  "schema": "problem-atom/official-exam-media/1",
+  "updatedAt": "2026-09-29T07:02:42+00:00",
+  "sourceAuthority": "한국교육과정평가원",
+  "sourceNotice": "이 문제지에 관한 저작권은 한국교육과정평가원에 있습니다.",
+  "dashboardCoverage": {
+    "attached": 82,
+    "outsideDashboard": 10
+  },
+  "records": [
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 1,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 2,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-001.png",
+      "imageSha256": "8b39274503c72b5e50aee91e448c0274c69325d824cc5ab35ebabc3d0d0778f4",
+      "width": 828,
+      "height": 195,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 1,
+        "rect": [
+          82.0,
+          270.8,
+          413.0,
+          348.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          100.26,
+          254.71,
+          162.65,
+          265.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 2,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 2,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-002.png",
+      "imageSha256": "0208b47251ac5c1f7484e68e6133d15883723c23658e546b144a9228ac484cba",
+      "width": 828,
+      "height": 222,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 1,
+        "rect": [
+          82.0,
+          650.8,
+          413.0,
+          739.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          100.26,
+          279.85,
+          162.65,
+          291.1
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 3,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-003.png",
+      "imageSha256": "256c740ce59cae5265a3781227d2f5a219d73f876589041d6071b9c8b4b705c4",
+      "width": 821,
+      "height": 379,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 1,
+        "rect": [
+          431.0,
+          225.2,
+          759.0,
+          376.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          100.26,
+          304.99,
+          162.13,
+          316.24
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 4,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-004.png",
+      "imageSha256": "bd3b71bafe5e22f0cce7663323906b012f80a13c8154b6f44c518082dc53a215",
+      "width": 821,
+      "height": 766,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 1,
+        "rect": [
+          431.0,
+          658.0,
+          759.0,
+          964.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          100.26,
+          330.07,
+          162.13,
+          341.32
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 5,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-005.png",
+      "imageSha256": "180760bd51d2a465939b328655ed5febb4ba79139240320ebe90ffc164bf9750",
+      "width": 828,
+      "height": 182,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 2,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          227.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          100.26,
+          355.21,
+          162.13,
+          366.46
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 6,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-006.png",
+      "imageSha256": "1cdbe6b6741459c712b4df2587284c4e9081a5d6dde3e90cedca4235be7c5484",
+      "width": 828,
+      "height": 214,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 2,
+        "rect": [
+          82.0,
+          603.6,
+          413.0,
+          689.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          100.26,
+          380.35,
+          162.13,
+          391.6
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 7,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-007.png",
+      "imageSha256": "cc26ed2413e78b25109806324cd6022281c2c94bf71ff29452c4d0f50f8e1406",
+      "width": 821,
+      "height": 182,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 2,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          227.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          100.26,
+          405.43,
+          162.13,
+          416.68
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 8,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-008.png",
+      "imageSha256": "2747d57230fb2ecb86ebec597b7930b91ee8716ddb1c74f11adf72eb7a7e9296",
+      "width": 828,
+      "height": 354,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 3,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          296.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          100.26,
+          430.57,
+          162.13,
+          441.82
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 9,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-009.png",
+      "imageSha256": "256cbd6a4ad67dede75cbd5fb9e3e685bcfc4540f5df974a9ea1e5273511756b",
+      "width": 828,
+      "height": 439,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 3,
+        "rect": [
+          82.0,
+          599.6,
+          413.0,
+          775.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          100.26,
+          455.71,
+          162.13,
+          466.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 10,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-010.png",
+      "imageSha256": "07e79078a1a4353aa8a2a861a73ae7f47bfd25781b25be8dc8365d0beeafa770",
+      "width": 821,
+      "height": 326,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 3,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          285.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          97.8,
+          480.79,
+          162.12,
+          492.04
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 11,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-011.png",
+      "imageSha256": "080e9bdcc304b01cafdda61d70be20f2ccf77134e3ffeae33565576a8fcbbb3f",
+      "width": 828,
+      "height": 388,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 4,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          310.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          97.8,
+          505.93,
+          162.12,
+          517.18
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 12,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-012.png",
+      "imageSha256": "32cf55133eb9816ba456aa81ff2ec996430d8e1ea95d70d1b93f7e32058c6586",
+      "width": 821,
+      "height": 330,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 4,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          286.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          180.66,
+          254.71,
+          244.99,
+          265.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 13,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-013.png",
+      "imageSha256": "2aaffedb2e19493e636692689667fb527d8fe4f4a6414e9462586315021f2300",
+      "width": 828,
+      "height": 825,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 5,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          484.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          180.66,
+          279.85,
+          244.98,
+          291.1
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 14,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-014.png",
+      "imageSha256": "2da384d1269844c225fb46310ea95fb3aa3ad815257fcbe49372c7dc2433be7f",
+      "width": 821,
+      "height": 354,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 5,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          296.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          180.66,
+          304.99,
+          244.98,
+          316.24
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 15,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/common-015.png",
+      "imageSha256": "6b619d089abb2804136ce1cafb1d6dcf937036c1c6106b39bd03526ed6a5f25f",
+      "width": 828,
+      "height": 560,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 6,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          378.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          180.66,
+          330.07,
+          244.98,
+          341.32
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 16,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "2",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/common-016.png",
+      "imageSha256": "a0265647b0ff3fe9d7eafce2d032e2e026cea6667719109dd3cc628857e0c566",
+      "width": 821,
+      "height": 144,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 6,
+        "rect": [
+          431.0,
+          199.6,
+          759.0,
+          257.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          180.66,
+          355.21,
+          244.98,
+          366.46
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 17,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "10",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/common-017.png",
+      "imageSha256": "1d28d487952695645a75c95f31d0b2a58c737c8ee8bdc9a245a17f0486ad90f8",
+      "width": 821,
+      "height": 111,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 6,
+        "rect": [
+          431.0,
+          638.0,
+          759.0,
+          682.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          180.66,
+          380.35,
+          244.98,
+          391.6
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 18,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "15",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/common-018.png",
+      "imageSha256": "0439f77f56ae8bc18772ba2bff8c9c023b68375e6968a9817f41d03c26719aff",
+      "width": 828,
+      "height": 220,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 7,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          242.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          180.66,
+          405.43,
+          244.98,
+          416.68
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 19,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "9",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/common-019.png",
+      "imageSha256": "a79d026c23ba7d2c5cc54e716f119ffac566fad629438736d947684e2843b3ca",
+      "width": 828,
+      "height": 111,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 7,
+        "rect": [
+          82.0,
+          634.0,
+          413.0,
+          678.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          180.66,
+          430.57,
+          244.98,
+          441.82
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 20,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "48",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/common-020.png",
+      "imageSha256": "0966721ef8bae13d4bb8bba5c1b8a4ed848b674f65958533b07fdfcdf592efec",
+      "width": 821,
+      "height": 1826,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 7,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          885.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          180.66,
+          455.71,
+          244.98,
+          466.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 21,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "11",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/common-021.png",
+      "imageSha256": "3c787f7938042e288e6acc116dda261acd91b26a20a1bf81cab6052a9d1c8bc3",
+      "width": 828,
+      "height": 357,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 8,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          297.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          180.66,
+          480.79,
+          244.98,
+          492.04
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "common",
+      "number": 22,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "32",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/common-022.png",
+      "imageSha256": "c5555df1e779d78b038676dfe27e0f8183d14db7dd4e8c9ed908b175088db518",
+      "width": 821,
+      "height": 322,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 8,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          283.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          180.66,
+          505.93,
+          244.98,
+          517.18
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "확통",
+      "number": 23,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 2,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/probability-023.png",
+      "imageSha256": "a2010566f985437bbffa1c07cc3b24cbf7e275acde1eb93ef13e55f91e5095d7",
+      "width": 828,
+      "height": 183,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 9,
+        "rect": [
+          82.0,
+          270.0,
+          413.0,
+          343.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          263.52,
+          254.71,
+          328.37,
+          265.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "확통",
+      "number": 24,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/probability-024.png",
+      "imageSha256": "24627f0bc63a3c2229b9a9665692fc3cd8bbb7daf277d261bf7b063a212a9653",
+      "width": 821,
+      "height": 360,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 9,
+        "rect": [
+          431.0,
+          225.2,
+          759.0,
+          369.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          263.52,
+          279.85,
+          327.84,
+          291.1
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "확통",
+      "number": 25,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/probability-025.png",
+      "imageSha256": "f11f56f3875e87943c2e71aadff09a04b1f6e281b2ba85adbffc3361bbe64189",
+      "width": 828,
+      "height": 135,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 10,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          208.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          263.52,
+          304.99,
+          327.84,
+          316.24
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "확통",
+      "number": 26,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/probability-026.png",
+      "imageSha256": "26555d20e9551dcf4b2fd9cbf7be935f3833838e843290cc50374fc4b1d6d8ad",
+      "width": 821,
+      "height": 310,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 10,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          278.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          263.52,
+          330.07,
+          327.84,
+          341.32
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "확통",
+      "number": 27,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/probability-027.png",
+      "imageSha256": "dcd18bffe5d12989b61db33ac6e98f88c1665863ef933e22bd1251a6da63264b",
+      "width": 828,
+      "height": 229,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 11,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          246.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          263.52,
+          355.21,
+          327.84,
+          366.46
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "확통",
+      "number": 28,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/probability-028.png",
+      "imageSha256": "92911a18e6a230ff06f35550c2dd539a0a05aec54d76b9ac1f1cf21c781d2810",
+      "width": 821,
+      "height": 1062,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 11,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          579.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          263.52,
+          380.35,
+          327.84,
+          391.6
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "확통",
+      "number": 29,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "98",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/probability-029.png",
+      "imageSha256": "4b6ab43e5a1e3356d388f6e568b5cd3382b19f50b3acad7a7b6413ff530466c9",
+      "width": 828,
+      "height": 241,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 12,
+        "rect": [
+          82.0,
+          199.2,
+          413.0,
+          295.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          263.52,
+          405.43,
+          327.84,
+          416.68
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "확통",
+      "number": 30,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "780",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/probability-030.png",
+      "imageSha256": "797641de4192b78b1a5ee75a829ae844fc91919c730a82db2d02d6dc02fb5f0f",
+      "width": 821,
+      "height": 203,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 12,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          236.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          263.52,
+          430.57,
+          327.84,
+          441.82
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "미적분",
+      "number": 23,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 2,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/calculus-023.png",
+      "imageSha256": "234a0bf1381aac5ecc406bea740eaa5bb0aea812e6f5074e95594f3565ced38e",
+      "width": 828,
+      "height": 178,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 13,
+        "rect": [
+          82.0,
+          270.0,
+          413.0,
+          341.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          346.38,
+          254.71,
+          411.23,
+          265.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "미적분",
+      "number": 24,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/calculus-024.png",
+      "imageSha256": "783a4daf6c68ec9e9c9d5f6343f7dca78d6f1fe2b154e35a9f9aea7dde7de287",
+      "width": 821,
+      "height": 219,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 13,
+        "rect": [
+          431.0,
+          224.0,
+          759.0,
+          311.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          346.38,
+          279.85,
+          410.7,
+          291.1
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "미적분",
+      "number": 25,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/calculus-025.png",
+      "imageSha256": "706f7bf848c3958cb3049aa5d55dd60d51b10c0bca5dc27db41f184b277ed8cd",
+      "width": 828,
+      "height": 263,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 14,
+        "rect": [
+          82.0,
+          161.6,
+          413.0,
+          266.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          346.38,
+          304.99,
+          410.7,
+          316.24
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "미적분",
+      "number": 26,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/calculus-026.png",
+      "imageSha256": "f99b97c6c4d484cb1cd45de9fa40763b61f24a7723aefc54c72142759314a0fb",
+      "width": 821,
+      "height": 346,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 14,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          293.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          346.38,
+          330.07,
+          410.7,
+          341.32
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "미적분",
+      "number": 27,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/calculus-027.png",
+      "imageSha256": "8b67f297182d600c990a06cf017ad37df8a55614236a6189db20ace9b787ff19",
+      "width": 828,
+      "height": 484,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 15,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          348.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          346.38,
+          355.21,
+          410.7,
+          366.46
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "미적분",
+      "number": 28,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/calculus-028.png",
+      "imageSha256": "91a2dad35da2f3a4f790d4fa3e87d6f284e3bbc574723c190c46589afdb01835",
+      "width": 821,
+      "height": 1073,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 15,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          584.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          346.38,
+          380.35,
+          410.7,
+          391.6
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "미적분",
+      "number": 29,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "54",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/calculus-029.png",
+      "imageSha256": "6f40b3be594e77f69ad175c791c0ed787aa8c9bebe1b4e90b7e71fdccfa4def3",
+      "width": 828,
+      "height": 466,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 16,
+        "rect": [
+          82.0,
+          199.2,
+          413.0,
+          385.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          346.38,
+          405.43,
+          410.7,
+          416.68
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "미적분",
+      "number": 30,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "20",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/calculus-030.png",
+      "imageSha256": "327d06aa10f8870b6b63d2b46fbae1403222b184fa4c5d2be33294bb805a5ef8",
+      "width": 821,
+      "height": 378,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 16,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          306.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          346.38,
+          430.57,
+          410.7,
+          441.82
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "기하",
+      "number": 23,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 2,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/geometry-023.png",
+      "imageSha256": "def736c9bdc62c3019d68d735859990b2079c2ea643f37ce4c153d82804e84bd",
+      "width": 828,
+      "height": 192,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 17,
+        "rect": [
+          82.0,
+          267.2,
+          413.0,
+          344.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          429.24,
+          254.71,
+          494.09,
+          265.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "기하",
+      "number": 24,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/geometry-024.png",
+      "imageSha256": "7c234dc9b132e08096dffa7e8aaebbc518f6fc1e62e6e6ade1cd7f9781cb93b1",
+      "width": 821,
+      "height": 184,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 17,
+        "rect": [
+          431.0,
+          224.8,
+          759.0,
+          298.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          429.24,
+          279.85,
+          493.56,
+          291.1
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "기하",
+      "number": 25,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/geometry-025.png",
+      "imageSha256": "dff5b66d07fd6f1b401da6bc23302d1c69fb339cb133b9ca043f1e65d583c607",
+      "width": 828,
+      "height": 306,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 18,
+        "rect": [
+          82.0,
+          162.0,
+          413.0,
+          284.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          429.24,
+          304.99,
+          493.56,
+          316.24
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "기하",
+      "number": 26,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/geometry-026.png",
+      "imageSha256": "96e5f82a4da54a0a4435dc0a0d7bc9c015f5e786ee271bb85d8eeb17c04de1bb",
+      "width": 821,
+      "height": 218,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 18,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          242.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          429.24,
+          330.07,
+          493.56,
+          341.32
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "기하",
+      "number": 27,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/geometry-027.png",
+      "imageSha256": "c1553eadeec4d1b34059e9e4aa8fde01a65e66667f6323543dc6652efcfb6434",
+      "width": 828,
+      "height": 637,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 19,
+        "rect": [
+          82.0,
+          158.4,
+          413.0,
+          413.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          429.24,
+          355.21,
+          493.56,
+          366.46
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "기하",
+      "number": 28,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-06/geometry-028.png",
+      "imageSha256": "201eda959515dafde9c6ba7983f11f7043d24787cff6c1e73512692cea1dd07b",
+      "width": 821,
+      "height": 1072,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 19,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          583.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          429.24,
+          380.35,
+          493.56,
+          391.6
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "기하",
+      "number": 29,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "14",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/geometry-029.png",
+      "imageSha256": "589843bf632f035b22708b00532f59e2fbe32f897403a3f3247234c2822b4a2a",
+      "width": 828,
+      "height": 1065,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 20,
+        "rect": [
+          82.0,
+          199.2,
+          413.0,
+          625.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          429.24,
+          405.43,
+          493.56,
+          416.68
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-6",
+      "sectionId": "기하",
+      "number": 30,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "29",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-06/geometry-030.png",
+      "imageSha256": "99315d6737533f0d95ea29230da084057d8647f9ebbf32840d7c91be31a6d652",
+      "width": 821,
+      "height": 816,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-6월-모의평가-수학-문제 (1).pdf",
+        "sha256": "6812412952c426b2cd43b8a9a0eef92cb707811bd9264b525f583c7fc27d160a",
+        "page": 20,
+        "rect": [
+          431.0,
+          157.2,
+          759.0,
+          483.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-6월-모의평가-수학-정답.pdf",
+        "sha256": "2d30cdd54788505bfff5222e96bb888a65306a2131bd07476035232fdaf67c8d",
+        "page": 1,
+        "rect": [
+          429.24,
+          430.57,
+          493.56,
+          441.82
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 1,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 2,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-001.png",
+      "imageSha256": "5ca97fd26568201f7c14b055b269154819e3f9e08cadc0354821b93476d5e6db",
+      "width": 828,
+      "height": 190,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 1,
+        "rect": [
+          82.0,
+          270.8,
+          413.0,
+          346.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          100.26,
+          254.71,
+          162.65,
+          265.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 2,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 2,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-002.png",
+      "imageSha256": "e192f1c9f7855953214d94c200416823617912b7342f18ca8f64e5a64a3555b5",
+      "width": 828,
+      "height": 222,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 1,
+        "rect": [
+          82.0,
+          619.6,
+          413.0,
+          708.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          100.26,
+          279.85,
+          162.65,
+          291.1
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 3,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-003.png",
+      "imageSha256": "62a35772e24f51ce6863e217c53c59c94aa000e0c3781eb925e2b4370c18d556",
+      "width": 821,
+      "height": 298,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 1,
+        "rect": [
+          431.0,
+          225.2,
+          759.0,
+          344.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          100.26,
+          304.99,
+          162.13,
+          316.24
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 4,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-004.png",
+      "imageSha256": "8103c86cae381dff93b68ae63d407e6a07e95b76c7531348ed7b82d3c5df904a",
+      "width": 821,
+      "height": 374,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 1,
+        "rect": [
+          431.0,
+          627.2,
+          759.0,
+          776.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          100.26,
+          330.07,
+          162.13,
+          341.32
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 5,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-005.png",
+      "imageSha256": "3a4723047d6f89f0be427a81da8e957b4c5249bc5dd3038500ee7f381517b03d",
+      "width": 828,
+      "height": 172,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 2,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          223.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          100.26,
+          355.21,
+          162.13,
+          366.46
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 6,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-006.png",
+      "imageSha256": "41d283248fcb72303a167999b9bba7ddcba2be063d6ec2c467a053a047e66f83",
+      "width": 828,
+      "height": 239,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 2,
+        "rect": [
+          82.0,
+          602.4,
+          413.0,
+          698.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          100.26,
+          380.35,
+          162.13,
+          391.6
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 7,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-007.png",
+      "imageSha256": "6681662bb78e739575cb3feff73be1bb411d86a1740601fd7290ba1d18738286",
+      "width": 821,
+      "height": 184,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 2,
+        "rect": [
+          431.0,
+          160.0,
+          759.0,
+          233.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          100.26,
+          405.43,
+          162.13,
+          416.68
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 8,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-008.png",
+      "imageSha256": "0ec11b0f46654ae59cc059b7363225b7409a359a2440392ce20131c874809629",
+      "width": 828,
+      "height": 433,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 3,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          328.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          100.26,
+          430.57,
+          162.13,
+          441.82
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 9,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-009.png",
+      "imageSha256": "4817e6f8ae9d53aaefff35ee7211bc1b6b839e0c8fa9ddec0333cc598c013cd5",
+      "width": 828,
+      "height": 392,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 3,
+        "rect": [
+          82.0,
+          616.0,
+          413.0,
+          772.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          100.26,
+          455.71,
+          162.13,
+          466.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 10,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-010.png",
+      "imageSha256": "aa588cd440adc88e692021bbe9a492323ae991b025bf77057d55f12580dcada5",
+      "width": 821,
+      "height": 274,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 3,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          264.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          97.8,
+          480.79,
+          162.12,
+          492.04
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 11,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-011.png",
+      "imageSha256": "a88ab7c013ea5d586d822cc9add6d873aff7477dd8d644701ac8c79ebdbcd245",
+      "width": 828,
+      "height": 329,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 4,
+        "rect": [
+          82.0,
+          160.0,
+          413.0,
+          291.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          97.8,
+          505.93,
+          162.12,
+          517.18
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 12,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-012.png",
+      "imageSha256": "7731392dbd9d1d2f3cc61fc86c2c3b2ce231a6dac43b258c7a2b0bd5b3f56c22",
+      "width": 821,
+      "height": 996,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 4,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          553.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          180.66,
+          254.71,
+          244.99,
+          265.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 13,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-013.png",
+      "imageSha256": "bac7fd88c02aac4e6d6b0a3a22d22bc72b50857c60a4741deb9886b4ebef83c1",
+      "width": 828,
+      "height": 947,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 5,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          533.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          180.66,
+          279.85,
+          244.98,
+          291.1
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 14,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-014.png",
+      "imageSha256": "1f3088da374152d566b9b1f62af8f5e8b2f78cf578f59ae6b902ba6b440ef9b1",
+      "width": 821,
+      "height": 494,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 5,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          352.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          180.66,
+          304.99,
+          244.98,
+          316.24
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 15,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/common-015.png",
+      "imageSha256": "69bd55e52de3b9151b5fd1620810877b5008149fd06bd7c6775d8b7917d4c10a",
+      "width": 828,
+      "height": 527,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 6,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          365.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          180.66,
+          330.07,
+          244.98,
+          341.32
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 16,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "6",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/common-016.png",
+      "imageSha256": "08abb8fc2eca52240beda7a170b0e98443467aa15d4910a922d5d10565a4ea85",
+      "width": 821,
+      "height": 110,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 6,
+        "rect": [
+          431.0,
+          199.2,
+          759.0,
+          243.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          180.66,
+          355.21,
+          244.98,
+          366.46
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 17,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "11",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/common-017.png",
+      "imageSha256": "01641a4066f51045c6d5ad76bdc324f515147fa09a646599558a151930a2f2f1",
+      "width": 821,
+      "height": 110,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 6,
+        "rect": [
+          431.0,
+          626.8,
+          759.0,
+          670.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          180.66,
+          380.35,
+          244.98,
+          391.6
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 18,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "38",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/common-018.png",
+      "imageSha256": "855e1696e73e77c4f5c77efd261056692f31dc457933960c380335b5bc17fae9",
+      "width": 828,
+      "height": 322,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 7,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          283.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          180.66,
+          405.43,
+          244.98,
+          416.68
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 19,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "15",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/common-019.png",
+      "imageSha256": "da0b3cd3638b0c68433f754aca0a119fc2417291fc26b68b96cf7225798ef2ae",
+      "width": 828,
+      "height": 160,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 7,
+        "rect": [
+          82.0,
+          612.4,
+          413.0,
+          676.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          180.66,
+          430.57,
+          244.98,
+          441.82
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 20,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "17",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/common-020.png",
+      "imageSha256": "c67d74747d7c2b1dc9df349226ee459781e638e969e34630056aa4b70ae64a43",
+      "width": 821,
+      "height": 1970,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 7,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          942.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          180.66,
+          455.71,
+          244.98,
+          466.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 21,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "12",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/common-021.png",
+      "imageSha256": "d9dfe3ea6e2a5e98a50a8248b380301371e5196efa6a6a21ec4061b71221d56e",
+      "width": 828,
+      "height": 506,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 8,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          357.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          180.66,
+          480.79,
+          244.98,
+          492.04
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "common",
+      "number": 22,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "97",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/common-022.png",
+      "imageSha256": "4abb3d0a11092da9251434b3c0944348182c62d4141b90f8544f1ee23585cc84",
+      "width": 821,
+      "height": 557,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 8,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          377.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          180.66,
+          505.93,
+          244.98,
+          517.18
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "확통",
+      "number": 23,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 2,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/probability-023.png",
+      "imageSha256": "d386a7fbaa9f14e53bd0f9e1187ae595c4f6b0c1f79ae1b653e3f8dad4ab4efa",
+      "width": 828,
+      "height": 183,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 9,
+        "rect": [
+          82.0,
+          270.0,
+          413.0,
+          343.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          263.52,
+          254.71,
+          328.37,
+          265.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "확통",
+      "number": 24,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/probability-024.png",
+      "imageSha256": "286d15909bf42ca7f31992a3ba3b94c318bd3067f9bb75fe5d6764b060c01b07",
+      "width": 821,
+      "height": 356,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 9,
+        "rect": [
+          431.0,
+          225.2,
+          759.0,
+          367.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          263.52,
+          279.85,
+          327.84,
+          291.1
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "확통",
+      "number": 25,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/probability-025.png",
+      "imageSha256": "e0fc910098f3654fd4196e2296f721bb0eccfbeae6217d299460402a98af5edb",
+      "width": 828,
+      "height": 176,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 10,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          225.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          263.52,
+          304.99,
+          327.84,
+          316.24
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "확통",
+      "number": 26,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/probability-026.png",
+      "imageSha256": "62c5d8e20fa1bfc8035b50c79f7bce5e7612efaeee1867e026459c8e3d037295",
+      "width": 821,
+      "height": 263,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 10,
+        "rect": [
+          431.0,
+          162.4,
+          759.0,
+          267.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          263.52,
+          330.07,
+          327.84,
+          341.32
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "확통",
+      "number": 27,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/probability-027.png",
+      "imageSha256": "f8bab7e41528b360976f7b15120593038c17a25c24c296d0375091bcb44f4e49",
+      "width": 828,
+      "height": 452,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 11,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          335.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          263.52,
+          355.21,
+          327.84,
+          366.46
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "확통",
+      "number": 28,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/probability-028.png",
+      "imageSha256": "5376d77f9af66ae09a0fd2e873490e365c983e488608f464b5fa30e9c7b2e712",
+      "width": 821,
+      "height": 1035,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 11,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          568.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          263.52,
+          380.35,
+          327.84,
+          391.6
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "확통",
+      "number": 29,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "190",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/probability-029.png",
+      "imageSha256": "b81db2c431682dbb9c4f297f7b124e485f73a36c17402b63b931c07441487621",
+      "width": 828,
+      "height": 283,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 12,
+        "rect": [
+          82.0,
+          199.2,
+          413.0,
+          312.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          263.52,
+          405.43,
+          327.84,
+          416.68
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "확통",
+      "number": 30,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "170",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/probability-030.png",
+      "imageSha256": "77bd38dcd1eb75d4e3e24e36cd6035fbefce1ba4fe8b95a1398a0232a2320a43",
+      "width": 821,
+      "height": 671,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 12,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          423.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          263.52,
+          430.57,
+          327.84,
+          441.82
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "미적분",
+      "number": 23,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 2,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/calculus-023.png",
+      "imageSha256": "988d5b3f5118af295d405080c7d9b020397d803cdc1b6e900a337010877c3794",
+      "width": 828,
+      "height": 198,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 13,
+        "rect": [
+          82.0,
+          273.6,
+          413.0,
+          352.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          346.38,
+          254.71,
+          411.23,
+          265.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "미적분",
+      "number": 24,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/calculus-024.png",
+      "imageSha256": "5620aaf8026f4456442e07f41006f58f1c72c1d0c9c2f632e8ec6310ddd99768",
+      "width": 821,
+      "height": 174,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 13,
+        "rect": [
+          431.0,
+          224.8,
+          759.0,
+          294.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          346.38,
+          279.85,
+          410.7,
+          291.1
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "미적분",
+      "number": 25,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/calculus-025.png",
+      "imageSha256": "2f1d0239287aa02c9a80a68cd797bcaa250438eba0f01fc51e7f51c9a6339244",
+      "width": 828,
+      "height": 338,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 14,
+        "rect": [
+          82.0,
+          160.4,
+          413.0,
+          295.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          346.38,
+          304.99,
+          410.7,
+          316.24
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "미적분",
+      "number": 26,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/calculus-026.png",
+      "imageSha256": "04486c7a3f9a5bd781ddef29b103d0bf6ff4a8eed065d7c62d5af5780685ee0e",
+      "width": 821,
+      "height": 1075,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 14,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          584.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          346.38,
+          330.07,
+          410.7,
+          341.32
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "미적분",
+      "number": 27,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/calculus-027.png",
+      "imageSha256": "91457fee5404eb5e80c916617a697787dc865664b8c13bc1bddb81ae9284556e",
+      "width": 828,
+      "height": 500,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 15,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          354.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          346.38,
+          355.21,
+          410.7,
+          366.46
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "미적분",
+      "number": 28,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/calculus-028.png",
+      "imageSha256": "64eacce6deed0df15bb1a8fe5034285f44a23fc83b86c8bc17284f305c228a0d",
+      "width": 821,
+      "height": 1008,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 15,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          558.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          346.38,
+          380.35,
+          410.7,
+          391.6
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "미적분",
+      "number": 29,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "81",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/calculus-029.png",
+      "imageSha256": "095629e06d6ad0407fc3b7330711311042481e327999ba398745a08d3b072668",
+      "width": 828,
+      "height": 657,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 16,
+        "rect": [
+          82.0,
+          199.2,
+          413.0,
+          462.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          346.38,
+          405.43,
+          410.7,
+          416.68
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "미적분",
+      "number": 30,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "49",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/calculus-030.png",
+      "imageSha256": "590e809935ee4bbae56b06e8b1fa9edda6e8836975215c0ee5141fdcc6de6140",
+      "width": 821,
+      "height": 380,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 16,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          306.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          346.38,
+          430.57,
+          410.7,
+          441.82
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "기하",
+      "number": 23,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 2,
+      "answer": "①",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/geometry-023.png",
+      "imageSha256": "b75b487c407db3b35ba1459e90321479128edee11f0cc313cba0cd1438d20d0d",
+      "width": 828,
+      "height": 192,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 17,
+        "rect": [
+          82.0,
+          267.2,
+          413.0,
+          344.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          429.24,
+          254.71,
+          494.09,
+          265.96
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "기하",
+      "number": 24,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/geometry-024.png",
+      "imageSha256": "8176154caaa2b1e0b591810d3c3b386bcdfd4ff40f672751bf5e7566962366ef",
+      "width": 821,
+      "height": 231,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 17,
+        "rect": [
+          431.0,
+          224.8,
+          759.0,
+          317.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          429.24,
+          279.85,
+          493.56,
+          291.1
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "기하",
+      "number": 25,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "④",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/geometry-025.png",
+      "imageSha256": "ee9ccdbbeea2350f913c4906a898901047ac82ddd938c3e8ec34b9a9a597aeda",
+      "width": 828,
+      "height": 189,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 18,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          230.4
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          429.24,
+          304.99,
+          493.56,
+          316.24
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "기하",
+      "number": 26,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "⑤",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/geometry-026.png",
+      "imageSha256": "d396f73024ed7f8b866b8333af1a9790aba27a0f878ca200b16dac71d093d021",
+      "width": 821,
+      "height": 806,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 18,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          477.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          429.24,
+          330.07,
+          493.56,
+          341.32
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "기하",
+      "number": 27,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 3,
+      "answer": "③",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/geometry-027.png",
+      "imageSha256": "f6553cc41f6b98c257176b4c28caef3a369a8eddce606e35510473c21a4b7d6f",
+      "width": 828,
+      "height": 412,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 19,
+        "rect": [
+          82.0,
+          155.0,
+          413.0,
+          319.6
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          429.24,
+          355.21,
+          493.56,
+          366.46
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "기하",
+      "number": 28,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "②",
+      "responseType": "multiple_choice",
+      "preview": "assets/exams/2027-09/geometry-028.png",
+      "imageSha256": "006724c9c8a72905b074c14d97039c1da0cba1da20727b7c566adf306bc70cd7",
+      "width": 821,
+      "height": 1015,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 19,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          560.8
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          429.24,
+          380.35,
+          493.56,
+          391.6
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "기하",
+      "number": 29,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "60",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/geometry-029.png",
+      "imageSha256": "008e373c80b45827c4e068183525d204d910d62c3220b12cac7df13a499678da",
+      "width": 828,
+      "height": 900,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 20,
+        "rect": [
+          82.0,
+          199.2,
+          413.0,
+          559.2
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          429.24,
+          405.43,
+          493.56,
+          416.68
+        ]
+      }
+    },
+    {
+      "examId": "kice-2026-9",
+      "sectionId": "기하",
+      "number": 30,
+      "calendarYear": 2026,
+      "academicYear": 2027,
+      "score": 4,
+      "answer": "457",
+      "responseType": "short_answer",
+      "preview": "assets/exams/2027-09/geometry-030.png",
+      "imageSha256": "5abbdda87bc89d72aa0968e54bc8d104f96dcd501a27def5ee7ac78419658070",
+      "width": 821,
+      "height": 453,
+      "dpi": 180,
+      "source": {
+        "filename": "2027학년도-9월-모의평가-수학-문제.pdf",
+        "sha256": "4ecfeb0cad6e52397d20818710e3c6ac58aceb45da9adea00573aa868107354b",
+        "page": 20,
+        "rect": [
+          431.0,
+          155.0,
+          759.0,
+          336.0
+        ]
+      },
+      "answerSource": {
+        "filename": "2027학년도-9월-모의평가-수학-정답 (1).pdf",
+        "sha256": "3eced4925977b77c78c3084d1efede6fa02a0d05e15fb089c67963221773bc77",
+        "page": 1,
+        "rect": [
+          429.24,
+          430.57,
+          493.56,
+          441.82
+        ]
+      }
+    }
+  ]
+}

@@ -54,6 +54,7 @@ STATIC_FILES = (
     "promotion-board.json",
     "math-text.js",
     "dashboard-data.json",
+    "official-exam-media.json",
     "progress-summary.json",
 )
 STATIC_DIRS = ("assets", "vendor")
@@ -75,6 +76,8 @@ def merge_progress() -> None:
 
 
 def build_site() -> None:
+    from apply_official_media import update_dashboard
+    print(f"Official exam photos: {update_dashboard(ROOT)}")
     from build_navigation import build as build_navigation
     build_navigation()
     from build_sandbox import build
@@ -103,7 +106,8 @@ def build_site() -> None:
     from test_supabase_accounts import SupabaseAccountTests
     from test_seminar_20260923 import Seminar20260923Tests
     from test_problem_design import ProblemDesignTests
-    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests,ReviewLinkTests,TeamAccountTests,SupabaseAccountTests,Seminar20260923Tests,ProblemDesignTests)])
+    from test_official_media import OfficialMediaTests
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests,ReviewLinkTests,TeamAccountTests,SupabaseAccountTests,Seminar20260923Tests,ProblemDesignTests,OfficialMediaTests)])
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")
