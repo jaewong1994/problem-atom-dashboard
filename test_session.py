@@ -202,7 +202,9 @@ class SessionTests(unittest.TestCase):
         self.assertNotIn('.pa-session', STATIC_DIRS)
         self.assertNotIn('model-workspace.js', STATIC_FILES)
         html = (ROOT/'connections.html').read_text(encoding='utf-8')
-        self.assertEqual(html.count('<select'), 1)
+        # Archive filters do not reintroduce the long material dropdown in the creator.
+        workspace = html.split('<div id="creationWorkspace">', 1)[1]
+        self.assertEqual(workspace.count('<select'), 1)
         self.assertIn('<select id="unitSelect">', html)
         self.assertNotIn('id="conditionType"', html)
         self.assertIn('SESSION_BOOTSTRAP', html)

@@ -1,6 +1,7 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v55-image-share`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v56-session-collection`;
 const SHELL = [
+  "./session-collection.js?v=session1", "./session-collection.css?v=session1", "./session-collection.json?v=session1",
   "./creator.js?v=design1", "./creator.css?v=design1", "./problem-design.js?v=design1", "./math-policy.js?v=policy2",
   "./account-supabase.js?v=persist1", "./account-client.js?v=persist1", "./account.css?v=team2",
   "./studio.html", "./connections.html", "./connections.css?v=io1", "./connections.js?v=names1", "./connection-engine.js?v=design2", "./connection-registry.json",

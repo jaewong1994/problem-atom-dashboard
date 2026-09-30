@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parent
 SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
+    "session-collection.js", "session-collection.css", "session-collection.json",
     "account-config.js", "account-supabase.js", "account-client.js", "account.css",
     "studio.html", "connections.html", "connections.css", "connections.js", "connection-engine.js", "connection-registry.json", "connection-validation.json", "composition-catalog.json",
     "curriculum-model.js", "unit-ui.js", "units.css", "judgment-bundles.js", "authoring-model.js", "authoring-ui.js", "authoring.css", "authoring-lessons.json", "web-handoff.js", "production-io.js", "composition-graph.js", "mindmap-ui.js", "box-copy.js", "box-examples.js", "model-contract.js", "math-policy.js", "problem-design.js", "creator.js", "creator.css", "composition-planner.js", "selection-model.js", "session-client.js", "model-provider.json",
@@ -108,7 +109,8 @@ def build_site() -> None:
     from test_problem_design import ProblemDesignTests
     from test_official_media import OfficialMediaTests
     from test_preview_media import PreviewMediaTests
-    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests,ReviewLinkTests,TeamAccountTests,SupabaseAccountTests,Seminar20260923Tests,ProblemDesignTests,OfficialMediaTests,PreviewMediaTests)])
+    from test_session_collection import SessionCollectionTests
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests,ReviewLinkTests,TeamAccountTests,SupabaseAccountTests,Seminar20260923Tests,ProblemDesignTests,OfficialMediaTests,PreviewMediaTests,SessionCollectionTests)])
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")

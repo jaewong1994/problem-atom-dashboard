@@ -1,0 +1,25 @@
+.workspace-switch{display:flex;gap:8px;margin:0 0 28px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.workspace-switch a{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 18px;border-radius:8px;color:var(--muted);text-decoration:none;font-weight:700}
+.workspace-switch a[aria-current=page]{color:#fff;background:var(--navy)}
+#collectionCount:not(:empty){font-size:12px;border-radius:4px;padding:1px 6px;background:var(--soft);color:var(--ink)}
+.collection-header{margin:8px 0 24px}.collection-header h1{font-size:30px;letter-spacing:-.035em;margin:8px 0 12px}
+.collection-header p{color:var(--muted);margin:8px 0;line-height:1.7}.collection-header .collection-note{font-size:13px}
+.collection-filters{display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px;padding:20px;background:#fff;border:1px solid var(--line);border-radius:10px}
+.collection-filters label{display:grid;gap:8px;font-size:14px;font-weight:700;min-width:0}.collection-filters label:first-child{flex:1 1 300px}.collection-filters label:nth-child(2){flex:1 1 220px}
+.collection-filters input,.collection-filters select{font:inherit;min-height:46px;width:100%;padding:10px 12px;border:1px solid var(--line-strong);border-radius:6px;color:var(--ink);background:#fff}
+#collectionStatus{color:var(--muted);font-size:14px;margin:20px 0}
+.collection-group{margin:30px 0 40px}.collection-group-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}
+.collection-group-heading h3{font-size:20px;margin:0 0 8px}.collection-group-heading p{font-size:13px;color:var(--muted);margin:0;line-height:1.7}
+.collection-downloads{display:flex;gap:8px;flex-shrink:0}.collection-downloads a{display:inline-flex;align-items:center;min-height:44px;padding:10px 12px;border:1px solid var(--line-strong);border-radius:7px;background:#fff;color:var(--accent);font-size:13px;text-decoration:none;font-weight:700}
+.collection-item{margin:10px 0;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+.collection-item>summary{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px;list-style:none;cursor:pointer;min-height:70px}
+.collection-item>summary::-webkit-details-marker{display:none}.collection-item[open]{border-color:var(--line-strong)}
+.collection-item-heading{display:flex;align-items:center;gap:14px;min-width:0}.collection-number{color:var(--accent);font-size:13px;white-space:nowrap;min-width:40px}.collection-item-heading strong{font-size:16px;line-height:1.6}
+.collection-open-label{font-size:12px;white-space:nowrap;color:var(--accent)}.collection-item-content{border-top:1px solid var(--line);padding:24px;max-width:100%;min-width:0}
+.collection-difficulty{font-size:12px;color:var(--muted);margin:0 0 20px}.collection-manuscript{font-size:16px;line-height:1.95;overflow-wrap:anywhere}.collection-manuscript p{margin:10px 0;max-width:100%;overflow-x:auto;padding:2px 0}
+.collection-manuscript .katex,.collection-answer .katex{font-size:1.08em}.collection-display-math{display:block;overflow-x:auto}.collection-conditions{margin:20px 0;padding:14px 20px;border:1px solid var(--line-strong);border-radius:6px;background:var(--soft)}
+.collection-solution{border-top:1px solid var(--line);margin-top:24px;padding-top:10px}.collection-solution>summary{min-height:48px;padding:12px 0;cursor:pointer;color:var(--accent);font-weight:700;font-size:14px}
+.collection-answer{display:flex;align-items:baseline;gap:16px}.collection-answer strong{font-size:14px}.collection-empty{padding:40px 20px;text-align:center;border:1px dashed var(--line-strong);border-radius:10px}
+.workspace-switch a:focus-visible,.collection-downloads a:focus-visible{outline:3px solid #e69722;outline-offset:3px}
+body.viewing-collection .creator-mobile-actions{display:none!important}
+@media(max-width:720px){.workspace-switch a{padding:10px 12px;font-size:14px}.workspace-switch{gap:4px}.collection-header h1{font-size:25px}.collection-group-heading{align-items:flex-start;flex-direction:column}.collection-item>summary{padding:16px;align-items:flex-start}.collection-item-heading{align-items:flex-start;gap:8px}.collection-open-label{font-size:11px}.collection-item-content{padding:16px}.collection-conditions{padding:10px 12px}.collection-filters{padding:16px}.collection-item-heading strong{font-size:15px}}
