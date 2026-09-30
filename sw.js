@@ -1,12 +1,13 @@
 const CACHE_PREFIX = "problem-atom-";
-const CACHE_NAME = `${CACHE_PREFIX}shell-v56-session-collection`;
+const CACHE_NAME = `${CACHE_PREFIX}shell-v57-design-controls`;
 const SHELL = [
+  "./design-controls.js?v=controls1",
   "./session-collection.js?v=session1", "./session-collection.css?v=session1", "./session-collection.json?v=session1",
-  "./creator.js?v=design1", "./creator.css?v=design1", "./problem-design.js?v=design1", "./math-policy.js?v=policy2",
+  "./creator.js?v=controls1", "./creator.css?v=controls1", "./problem-design.js?v=controls1", "./math-policy.js?v=policy2",
   "./account-supabase.js?v=persist1", "./account-client.js?v=persist1", "./account.css?v=team2",
   "./studio.html", "./connections.html", "./connections.css?v=io1", "./connections.js?v=names1", "./connection-engine.js?v=design2", "./connection-registry.json",
   "./curriculum-model.js?v=select2", "./unit-ui.js?v=stock2", "./units.css?v=unit1", "./judgment-bundles.js?v=names1", "./authoring-model.js?v=unit1", "./authoring-ui.js?v=stock2", "./authoring.css?v=select2", "./authoring-lessons.json",
-  "./web-handoff.js?v=design1", "./production-io.js?v=team1", "./composition-graph.js?v=map1", "./box-copy.js?v=names1", "./box-examples.js?v=cards1", "./composition-planner.js?v=unit1", "./model-contract.js?v=design1", "./selection-model.js?v=map1", "./session-client.js?v=design1", "./model-provider.json",
+  "./web-handoff.js?v=controls1", "./production-io.js?v=team1", "./composition-graph.js?v=map1", "./box-copy.js?v=names1", "./box-examples.js?v=cards1", "./composition-planner.js?v=unit1", "./model-contract.js?v=controls1", "./selection-model.js?v=map1", "./session-client.js?v=design1", "./model-provider.json",
   "./review-groups.json", "./group-review-ledger.json", "./group-review.js?v=names1", "./review-model.js?v=review1", "./review-client.js?v=team1", "./review-link.css?v=review1", "./review-catalog.json", "./sandbox.css",
   "./combination-examples.json", "./combination-examples.js",
   "./motif-library.html",

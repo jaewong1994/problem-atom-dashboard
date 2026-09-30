@@ -14,7 +14,7 @@
   new_bridge_proposals:arr(obj({name:str,needed_input:str,provided_output:str,conditions:str,mathematical_argument:str})),
   unresolved:arr(str)
  });
- function resultSchema(registry,designMode=false){
+ function resultSchema(registry,designMode=false,tuned=false){
   const schema=JSON.parse(JSON.stringify(RESULT_SCHEMA)),id={type:'string',enum:registry.operations.map(o=>o.id),description:'등록된 ID만 그대로 쓴다. 이름이나 설명을 덧붙이지 않는다.'};
   schema.properties.used_operations.items=id;
   schema.properties.plan.properties.nodes.items.properties.id=id;
@@ -23,6 +23,7 @@
   schema.properties.plan.description='연결 엔진용 기록. seed_plan의 subject, bindings, scope 식별자를 일관되게 유지한다. 설명이나 LaTeX를 식별자에 쓰지 않는다.';
   schema.properties.solution.description='고등학생이 혼자 읽고 따라갈 수 있는 완성된 해설. 한 문단에 한 논점, 판단의 이유와 필요한 중간식을 쓰고 제작·검산 기록은 분리한다.';
   if(designMode){schema.properties.design_coverage=arr(obj({element_id:str,question_evidence:str,solution_evidence:str,operation_ids:arr(id)}));schema.required.push("design_coverage");}
+  if(designMode&&tuned){schema.properties.design_evidence=Design.controls.evidenceSchema();schema.required.push('design_evidence');}
   return schema;
  }
  // Obsidian: 해설·골든셋·숫자변형 §해설 작성 원칙, 골든셋 v6 서술 4원칙.
@@ -117,12 +118,12 @@ ${SOLUTION_GUIDANCE}`;
   return {schema:'problem-atom/model-request/1',request_id:id,registry_revision:registry.revision,...(design?{design_intent:design}:{}),
    preferred_model:'gpt-5.6-sol',brief:brief.trim(),seed_plan:JSON.parse(JSON.stringify(plan)),
    knowledge:{types:registry.types,operations:designing?Design.pool(registry,design.curriculum_scope):registry.operations,rules:registry.rules,
-    sources:registry.records.map(r=>({id:r.id,name:r.name,kind:r.kind,origin:r.origin,status:r.source_status})),
+    sources:registry.records.map(r=>Design.controls.sourceReference(r)),
     reviewed_assets:(registry.reviewed_assets||[]).filter(a=>a.operation_ids.some(id=>designing?Design.pool(registry,design.curriculum_scope).some(o=>o.id===id):plan.nodes.some(n=>n.id===id))),
     language:registry.language,ontology:registry.ontology,curriculum:Curriculum.guidance(design?.curriculum_scope),authoring:designing?null:Authoring.blueprint(plan,registry,design?.core?.id||null,design?.target||null),
     problem_design:designing?{...Design.guide(design,registry),operation_guidance:Design.pool(registry,design.curriculum_scope).map(o=>({id:o.id,...Authoring.profile(o.id)}))}:null,
     composition_recipes:JSON.parse(JSON.stringify(COMPOSITION_RECIPES.filter(r=>r.related_operations.some(id=>designing?Design.pool(registry,design.curriculum_scope).some(o=>o.id===id):plan.nodes.some(n=>n.id===id)))))},
-   response_schema:resultSchema(registry,designing),instructions:INSTRUCTIONS,
+   response_schema:resultSchema(registry,designing,!!design?.tuning),instructions:INSTRUCTIONS,
    execution:{composer:'model',validator:'connection-contracts-and-independent-math',auto_approve:false}};
  }
  function handoff(request){return `# Codex 문항 제작 요청\n\n이 요청의 원자·가교·연결 규칙을 사용해 문항 한 개와 풀이를 제작해 주세요. 로컬 생성기나 정해진 여섯 템플릿으로 대체하지 마세요. 결과 JSON을 별도 파일로 저장해 결과 검토 화면에서 열 수 있게 해 주세요.\n\n${INSTRUCTIONS}\n\n\`\`\`json\n${JSON.stringify(request,null,2)}\n\`\`\`\n`;}
@@ -142,7 +143,7 @@ ${SOLUTION_GUIDANCE}`;
  }
  function validateResult(data,request,registry,engine){
   const designing=Design.isDesign(request.design_intent);
-  const errors=schemaErrors(data,designing?resultSchema(registry,true):RESULT_SCHEMA);
+  const errors=schemaErrors(data,designing?resultSchema(registry,true,!!request.design_intent.tuning):RESULT_SCHEMA);
   if(errors.length)return {accepted:false,errors,release_ready:false};
   if(data.schema!=='problem-atom/model-result/1')errors.push('결과 형식이 다릅니다.');
   if(data.request_id!==request.request_id)errors.push('다른 제작 요청의 결과입니다.');
@@ -167,6 +168,7 @@ ${SOLUTION_GUIDANCE}`;
     const d=Design.normalize(request.design_intent,registry);
     if(!plan.nodes.length)errors.push("실제 풀이에 쓴 재료가 없습니다.");
     errors.push(...Curriculum.audit(plan,registry,d.curriculum_scope).issues,...Design.validateCoverage(data,d,registry));
+    if(d.tuning)errors.push(...Design.controls.validateEvidence(data,d.tuning,registry));
    }else if(request.design_intent)errors.push(...Planner.validateResult(plan,registry,Planner.normalizeIntent(request.design_intent,request.seed_plan,registry),request.seed_plan));
    const actual=[...new Set(plan.nodes.map(n=>n.id))].sort();
    if(JSON.stringify(actual)!==JSON.stringify([...new Set(data.used_operations)].sort()))errors.push('사용 원자 목록과 풀이 경로가 다릅니다.');

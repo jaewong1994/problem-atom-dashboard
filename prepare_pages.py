@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parent
 SITE = ROOT / "_site"
 SUMMARY = ROOT / "progress-summary.json"
 STATIC_FILES = (
+    "design-controls.js",
     "session-collection.js", "session-collection.css", "session-collection.json",
     "account-config.js", "account-supabase.js", "account-client.js", "account.css",
     "studio.html", "connections.html", "connections.css", "connections.js", "connection-engine.js", "connection-registry.json", "connection-validation.json", "composition-catalog.json",
@@ -107,10 +108,11 @@ def build_site() -> None:
     from test_supabase_accounts import SupabaseAccountTests
     from test_seminar_20260923 import Seminar20260923Tests
     from test_problem_design import ProblemDesignTests
+    from test_design_controls import DesignControlsTests
     from test_official_media import OfficialMediaTests
     from test_preview_media import PreviewMediaTests
     from test_session_collection import SessionCollectionTests
-    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests,ReviewLinkTests,TeamAccountTests,SupabaseAccountTests,Seminar20260923Tests,ProblemDesignTests,OfficialMediaTests,PreviewMediaTests,SessionCollectionTests)])
+    suite=unittest.TestSuite([unittest.defaultTestLoader.loadTestsFromTestCase(case) for case in (SandboxTests,ComposerTests,ConnectionTests,ModelTests,SessionTests,SessionMathTests,NavigationTests,PlannerTests,GraphTests,HandoffTests,HwpxTests,AuthoringTests,CurriculumTests,BoxExampleTests,ReviewLinkTests,TeamAccountTests,SupabaseAccountTests,Seminar20260923Tests,ProblemDesignTests,DesignControlsTests,OfficialMediaTests,PreviewMediaTests,SessionCollectionTests)])
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
         raise RuntimeError("조합 문항 회귀검증 실패: 배포를 중단합니다")

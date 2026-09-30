@@ -1,4 +1,4 @@
-(function(root,factory){const api=factory(typeof module==='object'?require('./curriculum-model.js'):root.PACurriculum);if(typeof module==='object')module.exports=api;else root.PAProblemDesign=api;})(typeof globalThis!=='undefined'?globalThis:this,function(U){
+(function(root,factory){const api=typeof module==='object'?factory(require('./curriculum-model.js'),require('./design-controls.js')):factory(root.PACurriculum,root.PADesignControls);if(typeof module==='object')module.exports=api;else root.PAProblemDesign=api;})(typeof globalThis!=='undefined'?globalThis:this,function(U,T){
  'use strict';
  const item=(id,name,example,why,units,ops)=>({id,name,example,why,units,operations:ops.split(' ')});
  const L='m2-limits',D='m2-derivatives',I='m2-integrals';
@@ -48,9 +48,13 @@
   for(const k of ['elements','branches'])if(!Array.isArray(value[k])||value[k].length>12||new Set(value[k]).size!==value[k].length||value[k].some(id=>!(k==='elements'?[...forms,...conditions]:branches.flatMap(b=>b.items)).some(e=>e.id===id)))throw Error('선택한 조건을 확인하세요.');
   for(const id of [...value.elements,...value.branches])if(!available(byId.get(id),scope,registry))throw Error(byId.get(id).name+'은 현재 제작 범위에 없습니다.');
   if(![0,1,2].includes(value.calculation)||![0,1,2].includes(value.reasoning))throw Error('계산량과 추론 난도를 확인하세요.');
-  return {mode:'problem_design',version:1,curriculum_scope:scope,elements:[...value.elements].sort(),branches:[...value.branches].sort(),calculation:value.calculation,reasoning:value.reasoning};
+  const tuning=value.tuning===undefined?undefined:T.normalize(value.tuning);
+  if(tuning){const errors=T.conflicts(tuning);if(errors.length)throw Error(errors.join(' '));}
+  return {mode:'problem_design',version:1,curriculum_scope:scope,elements:[...value.elements].sort(),branches:[...value.branches].sort(),calculation:value.calculation,reasoning:value.reasoning,...(tuning?{tuning}:{})};
  }
  function guide(value,registry){const d=normalize(value,registry);return {mode:d.mode,selected:[...d.elements,...d.branches].map(id=>({...byId.get(id),role:d.branches.includes(id)?'solution_branch':'problem_condition',operations:byId.get(id).operations.filter(id=>pool(registry,d.curriculum_scope).some(o=>o.id===id))})),rule:'선택한 조건은 필수이고 예시의 숫자와 식은 고정하지 않는다. 선택하지 않은 보조 판단은 AI가 등록 재료에서 찾아 풀이 경로를 구성한다.'};}
  function validateCoverage(data,d,registry){const errors=[],rows=data.design_coverage||[],required=[...d.elements,...d.branches],used=new Set(data.used_operations);if(new Set(rows.map(r=>r.element_id)).size!==rows.length)errors.push('条件の対応記録が重複しています。');for(const id of required){const e=byId.get(id),r=rows.find(x=>x.element_id===id);if(!r){errors.push('선택한 조건의 설명이 없습니다: '+e.name);continue;}if(!r.solution_evidence.trim()||!data.solution.some(s=>s.includes(r.solution_evidence)))errors.push(e.name+'이 풀이 어디에서 쓰이는지 확인하세요.');if(d.elements.includes(id)&&(!r.question_evidence.trim()||!data.question.some(s=>s.includes(r.question_evidence))))errors.push(e.name+'이 문면에 반영되지 않았습니다.');if(!r.operation_ids.length||r.operation_ids.some(op=>!used.has(op))||!r.operation_ids.some(op=>e.operations.includes(op)))errors.push(e.name+'과 실제 풀이 재료의 연결을 확인하세요.');}for(const r of rows)if(!required.includes(r.element_id))errors.push('선택하지 않은 조건의 대응 기록입니다.');return errors;}
- return {VERSION:1,forms,conditions,branches,all,byId,isDesign,defaults,normalize,pool,available,guide,validateCoverage};
+ const legacyGuide=guide;
+ function completeGuide(value,registry){const d=normalize(value,registry);return {...legacyGuide(d,registry),composition_rule:T.RULES.split('\ndesign_evidence')[0],...(d.tuning?{controls:T.guide(d.tuning)}:{})};}
+ return {VERSION:1,forms,conditions,branches,all,byId,isDesign,defaults,normalize,pool,available,guide:completeGuide,validateCoverage,controls:T};
 });
